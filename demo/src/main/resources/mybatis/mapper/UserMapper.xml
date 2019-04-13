@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nhfc99.test.dao.UserDao">
+	<select id="selectAllUser"
+		resultType="com.nhfc99.test.domain.UserDO" resultMap="BaseResultMap">
+		SELECT * FROM
+		N_User
+	</select>
+	<select id="selectUserCount" resultType="java.lang.Integer">
+		SELECT count(*) FROM
+		N_User
+	</select>
+
+	<resultMap id="BaseResultMap"
+		type="com.nhfc99.test.domain.UserDO">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="n_username" jdbcType="VARCHAR"
+			property="username" />
+		<result column="n_password" jdbcType="VARCHAR"
+			property="password" />
+		<result column="n_age" jdbcType="INTEGER" property="age" />
+	</resultMap>
+</mapper>

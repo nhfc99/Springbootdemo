@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class UserDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private String username;
 	private String password;
 	private int age;
@@ -32,4 +33,14 @@ public class UserDO implements Serializable {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }

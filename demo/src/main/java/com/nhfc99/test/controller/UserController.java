@@ -19,4 +19,10 @@ public class UserController {
 	public Object getUsers() {
 		return userService.getAllUsers();
 	}
+	
+	@ResponseBody
+	@GetMapping(value="/usercount")
+	public Object selectUserCount() {
+		return userService.selectUserCount();
+	}
 }

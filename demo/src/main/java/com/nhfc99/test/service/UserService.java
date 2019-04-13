@@ -1,7 +1,6 @@
 package com.nhfc99.test.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,12 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 	
-	public int getAllUsers() {
-		return userDao.selectAllUser();
+	public int selectUserCount() {
+		return userDao.selectUserCount();
+	}
+	
+	public List<UserDO> getAllUsers() {
+		List<UserDO> list = userDao.selectAllUser();
+		return list;
 	}
 }
