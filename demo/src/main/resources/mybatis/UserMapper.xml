@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nhfc99.test.dao.UserDao">
+	<!-- <select id="selectAllUser"
+		resultType="com.nhfc99.test.domain.UserDO">
+		SELECT * FROM N_User
+	</select> -->
+	<select id="selectAllUser"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM N_User
+	</select>
+</mapper>
