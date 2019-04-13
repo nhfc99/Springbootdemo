@@ -1,5 +1,8 @@
 package com.nhfc99.test.controller;
 
-public class UserController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class UserController {
+	
 }
