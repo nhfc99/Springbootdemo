@@ -12,26 +12,26 @@ import com.nhfc99.test.service.UserService;
 
 @Controller
 @RequestMapping("/base")
-@PropertySource("application.properties")
+@PropertySource({ "classpath:application.properties" })
 public class UserController {
 	@Autowired
 	UserService userService;
-	
+
 	@Value("${web.own.port}")
 	private String port;
-	
+
 	@ResponseBody
-	@GetMapping(value="/users")
+	@GetMapping(value = "/users")
 	public Object getUsers() {
 		return userService.getAllUsers();
 	}
-	
+
 	@ResponseBody
-	@GetMapping(value="/usercount")
+	@GetMapping(value = "/usercount")
 	public Object selectUserCount() {
 		return userService.selectUserCount();
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/testconfig")
 	public String testConfig() {
