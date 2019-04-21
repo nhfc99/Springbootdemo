@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UploadFileController {
 	@Value("${web.upload-path}")
 	private String filePath;
-	
+
 	@PostMapping("/upload")
 	public ModelAndView upload(MultipartFile[] file) throws Exception {
 		// 遍历文件数组执行上传
@@ -31,7 +32,7 @@ public class UploadFileController {
 		modelAndView.addObject("result", true);
 		return modelAndView;
 	}
-	
+
 	private void executeUpload(String uploadDir, MultipartFile file) throws Exception {
 		// 文件后缀名
 		String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
