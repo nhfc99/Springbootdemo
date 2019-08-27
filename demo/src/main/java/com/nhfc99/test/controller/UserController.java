@@ -35,6 +35,7 @@ public class UserController {
 	@ResponseBody
 	@GetMapping("/testconfig")
 	public String testConfig() {
+		System.out.println("testConfig");
 		return port;
 	}
 }
