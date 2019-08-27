@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: myproject
+Implementation-Title: springbootshiro
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: niuhongfei
 Implementation-Vendor-Id: com.nhfc99
 Build-Jdk: 1.8.0_131
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/myproject
+ ot-starter-parent/springbootshiro
 Created-By: Maven Integration for Eclipse
 

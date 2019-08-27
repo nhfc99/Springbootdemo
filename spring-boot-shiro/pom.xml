@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.nhfc99</groupId>
-	<artifactId>myproject</artifactId>
+	<artifactId>springbootshiro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<!-- Inherit defaults from Spring Boot -->
