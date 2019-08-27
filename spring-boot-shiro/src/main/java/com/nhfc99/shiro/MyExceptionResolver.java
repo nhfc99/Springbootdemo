@@ -13,12 +13,14 @@ public class MyExceptionResolver implements HandlerExceptionResolver {
 	public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			Object o, Exception e) {
 		if (e instanceof UnauthenticatedException) {
-			ModelAndView mv = new ModelAndView("/authenticationErr");
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("forward:/login/authenticationErr");
 			return mv;
 		}
 		
 		if (e instanceof UnauthorizedException) {
-			ModelAndView mv = new ModelAndView("/authorizationErr");
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("forward:/login/authorizationErr");
 			return mv;
 		}
 		

@@ -6,10 +6,14 @@
 		<result column="uid" property="uid" jdbcType="BIGINT" />
 		<result column="rid" property="rid" jdbcType="BIGINT" />
 	</resultMap>
+	<sql id="Base_Column_List">
+		uid, rid
+	</sql>
 	<insert id="insert"
 		parameterType="com.nhfc99.sql.model.UUserRole">
 		insert into u_user_role (uid, rid)
-		values (#{uid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT})
+		values
+		(#{uid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT})
 	</insert>
 	<insert id="insertSelective"
 		parameterType="com.nhfc99.sql.model.UUserRole">
@@ -31,4 +35,16 @@
 			</if>
 		</trim>
 	</insert>
+	<select id="getUserRolesByUid" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from u_user_role
+		where uid = #{uid,jdbcType=BIGINT}
+	</select>
 </mapper>
+
+
+
+
+

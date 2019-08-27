@@ -183,7 +183,6 @@ public class LoginController {
 	@RequiresRoles("admin")
 	@RequiresPermissions("管理员添加")
 	@RequestMapping(value = "/admin/add")
-//	@ResponseBody
 	public String create() {
 		return "add success!";
 	}

@@ -52,6 +52,10 @@ public class ShiroRealm extends AuthorizingRealm {
 			List<UPermissionDO> plist = uPermissionDOMapper.findPermissionByUid(hasUser.getId());// 获取用户权限
 			List<String> roleStrlist = new ArrayList<String>();//// 用户的角色集合
 			List<String> perminsStrlist = new ArrayList<String>();// 用户的权限集合
+			
+//			roleStrlist.add("admin");
+//			perminsStrlist.add("管理员添加");
+			
 			for (URoleDO role : rlist) {
 				roleStrlist.add(role.getName());
 			}

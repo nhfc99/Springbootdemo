@@ -9,8 +9,12 @@
 	<insert id="insert"
 		parameterType="com.nhfc99.sql.model.URolePermissionDO">
 		insert into u_role_permission (rid, pid)
-		values (#{rid,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT})
+		values
+		(#{rid,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT})
 	</insert>
+	<sql id="Base_Column_List">
+		rid, pid
+	</sql>
 	<insert id="insertSelective"
 		parameterType="com.nhfc99.sql.model.URolePermissionDO">
 		insert into u_role_permission
@@ -31,4 +35,11 @@
 			</if>
 		</trim>
 	</insert>
+	<select id="getRolePermissionsByrid" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from u_role_permission
+		where rid = #{rid,jdbcType=BIGINT}
+	</select>
 </mapper>
