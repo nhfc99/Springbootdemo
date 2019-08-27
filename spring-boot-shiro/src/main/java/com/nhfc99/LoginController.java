@@ -65,9 +65,10 @@ public class LoginController {
 			return value;
 		}
 	}
+
 	@RequestMapping(value = "/logined", method = RequestMethod.GET)
 	@ResponseBody
-	@RequiresRoles({"admin"})
+	@RequiresRoles({ "admin" })
 	public String loginedAfter() {
 		return "测试信息";
 	}
@@ -162,6 +163,20 @@ public class LoginController {
 	@ResponseBody
 	public String error() {
 		return "error ok!";
+	}
+
+	// 错误页面展示
+	@GetMapping("/authorizationErr")
+	@ResponseBody
+	public String authorizationError() {
+		return "Authorization error!";
+	}
+
+	// 错误页面展示
+	@GetMapping("/authenticationErr")
+	@ResponseBody
+	public String authenticationError() {
+		return "Authentication error!";
 	}
 
 	// 管理员功能

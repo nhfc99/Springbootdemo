@@ -96,7 +96,7 @@ public class ShiroConfiguration {
 		// 登录成功后要跳转的链接
 //		shiroFilterFactoryBean.setSuccessUrl("/login/success");
 		// 未授权界面
-		shiroFilterFactoryBean.setUnauthorizedUrl("/login/403");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
 		return shiroFilterFactoryBean;
 	}
