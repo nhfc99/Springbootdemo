@@ -89,7 +89,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionManager.put("/ajaxLogin", "anon");
 		filterChainDefinitionManager.put("/static/**", "anon");
 		filterChainDefinitionManager.put("/**", "authc,roles[user]");// 其他资源全部拦截
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
+//		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		shiroFilterFactoryBean.setLoginUrl("/login/login");
