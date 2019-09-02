@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.nhfc99.sql.model.URoleDO;
 import com.nhfc99.sql.model.UUserRole;
 
 @Mapper
