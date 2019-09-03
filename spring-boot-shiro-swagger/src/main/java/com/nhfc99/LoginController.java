@@ -26,6 +26,7 @@ import com.nhfc99.sql.model.UUserDO;
 import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -35,10 +36,14 @@ public class LoginController {
 
 	private static Logger logger = (Logger) LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/tologin", method = RequestMethod.POST)
+	@RequestMapping(value = "/tologin", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value = "用户登录", notes = "所有用户的登录入口")
-	@ApiImplicitParam(name = "username", value = "用户名", required = true)
+
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "username", value = "用户名", required = true, paramType = "query", dataType = "string"),
+			@ApiImplicitParam(name = "passwd", value = "密码", required = true, paramType = "query", dataType = "string") })
+
 	public String tologin(@RequestParam("username") String username, @RequestParam("passwd") String passwd) {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, passwd, "tologin");
 		Subject currentUser = SecurityUtils.getSubject();
