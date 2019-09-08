@@ -26,7 +26,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/schedu")
 public class TestController {
 	@Autowired
 	DepartmentService departmentService;
@@ -54,8 +54,15 @@ public class TestController {
 		List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
 		return userlist;
 	}
+	
+	@RequestMapping("/result")
+	@ResponseBody
+	public Object result() {
+		List<ResultVO> resultVOsOs = resultService.selectResultAll();
+		return resultVOsOs;
+	}
 
-	@RequestMapping("/test")
+	@RequestMapping("/deal")
 	@ResponseBody
 	public Object getDatas() {
 		// 清除结果库
@@ -68,8 +75,8 @@ public class TestController {
 		// 开始日期
 		DateTime startdateTime = new DateTime("2019-08-31", DatePattern.NORM_DATE_PATTERN);
 		// 结束时间
-//		DateTime enddateTime = new DateTime("2020-01-15", DatePattern.NORM_DATE_PATTERN);
-		DateTime enddateTime = new DateTime("2019-09-28", DatePattern.NORM_DATE_PATTERN);
+		DateTime enddateTime = new DateTime("2020-01-15", DatePattern.NORM_DATE_PATTERN);
+		
 		DateTime nextdatetime = startdateTime;
 		do {
 			// 获得指定日期是星期几，1表示周日，2表示周一
