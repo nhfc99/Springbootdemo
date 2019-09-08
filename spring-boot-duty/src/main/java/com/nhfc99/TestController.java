@@ -74,7 +74,7 @@ public class TestController {
 		DateTime startdateTime = new DateTime("2019-08-31", DatePattern.NORM_DATE_PATTERN);
 		// 结束时间
 		DateTime enddateTime = new DateTime("2020-01-15", DatePattern.NORM_DATE_PATTERN);
-		
+
 		DateTime nextdatetime = startdateTime;
 		do {
 			// 获得指定日期是星期几，1表示周日，2表示周一

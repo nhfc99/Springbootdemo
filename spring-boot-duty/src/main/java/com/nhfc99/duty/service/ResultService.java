@@ -12,6 +12,7 @@ import com.nhfc99.duty.dao.ResultDOMapper;
 import com.nhfc99.duty.model.DepartmentDO;
 import com.nhfc99.duty.model.PositionDO;
 import com.nhfc99.duty.model.ResultDO;
+import com.nhfc99.duty.model.SdutyDO;
 import com.nhfc99.duty.model.UserDO;
 import com.nhfc99.duty.vo.ResultVO;
 
@@ -29,6 +30,9 @@ public class ResultService {
 	@Autowired
 	PositionService positionService;
 
+	@Autowired
+	SdutyService sdutyService;
+
 	public List<ResultDO> selectAll() {
 		return resultDOMapper.selectAll();
 	}
@@ -37,6 +41,7 @@ public class ResultService {
 		List<UserDO> userDOs = userService.selectAll();
 		List<DepartmentDO> departmentDOs = departmentService.selectAll();
 		List<PositionDO> positionDOs = positionService.selectAll();
+		List<SdutyDO> sdutyDOs = sdutyService.selectAll();
 		List<ResultDO> list = selectAll();
 
 		List<ResultVO> resultVOs = new ArrayList<ResultVO>();
@@ -45,6 +50,10 @@ public class ResultService {
 			ResultDO resultDO = list.get(i);
 
 			ResultVO resultVO = new ResultVO();
+
+			resultVO.setDate(resultDO.getR_date());
+			resultVO.setSduty(getSdutyDoBy(sdutyDOs, resultDO.getR_dutytype()).getS_name());
+
 			UserDO userDO = getUserDoBy(userDOs, resultDO.getR_dpuid());
 			resultVO.setLusername(userDO.getU_name());
 			resultVO.setLtelphone(userDO.getU_phone());
@@ -93,6 +102,16 @@ public class ResultService {
 			PositionDO positionDO = positionDOs.get(i);
 			if (positionDO.getId() == pid) {
 				return positionDO;
+			}
+		}
+		return null;
+	}
+
+	SdutyDO getSdutyDoBy(List<SdutyDO> sdutyDOs, int sid) {
+		for (int i = 0; i < sdutyDOs.size(); i++) {
+			SdutyDO sdutyDO = sdutyDOs.get(i);
+			if (sdutyDO.getId() == sid) {
+				return sdutyDO;
 			}
 		}
 		return null;
