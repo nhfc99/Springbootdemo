@@ -54,7 +54,7 @@ public class TestController {
 		List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
 		return userlist;
 	}
-	
+
 	@RequestMapping("/result")
 	@ResponseBody
 	public Object result() {
@@ -69,8 +69,6 @@ public class TestController {
 		resultService.deleteAll();
 		// 获取所有的节假日
 		List<RestdayDO> restdays = restdayService.selectAll();
-		// 返回的结果集
-//		List<ResultVO> resultVOs = new ArrayList<ResultVO>();
 
 		// 开始日期
 		DateTime startdateTime = new DateTime("2019-08-31", DatePattern.NORM_DATE_PATTERN);
@@ -132,7 +130,6 @@ public class TestController {
 			// 下一天
 			nextdatetime = DateUtil.offsetDay(nextdatetime, 1);
 		} while (nextdatetime.compareTo(enddateTime) != 1);
-
-		return "";
+		return "处理完成";
 	}
 }
