@@ -76,7 +76,7 @@ public class UserService {
 	 * @return
 	 */
 	public List<UserDO> getMinUserListByDay(List<UserDO> list) {
-		int min = 0;
+		int min = list.get(0).getU_day();
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
 			int day = userDO.getU_day();
@@ -100,7 +100,7 @@ public class UserService {
 	 * @return
 	 */
 	public List<UserDO> getMinUserListByNight(List<UserDO> list) {
-		int min = 0;
+		int min = list.get(0).getU_night();
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
 			int night = userDO.getU_night();
@@ -125,7 +125,9 @@ public class UserService {
 	 * @return
 	 */
 	public UserDO randUserList(int week, List<UserDO> list) {
-		System.err.println("randUserList = 为0了");
+		if (list.size() == 0) {
+			System.err.println("randUserList = 为0了");			
+		}
 		
 		// 62 - > 2/3/5
 		UserDO userDO62 = null;

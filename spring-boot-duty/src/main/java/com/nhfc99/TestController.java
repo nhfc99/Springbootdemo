@@ -98,11 +98,8 @@ public class TestController {
 			}
 
 			// 再拿第二个辅导员
-			list.add(leaderUser.getU_dpid());
 			list.add(userDO1.getU_dpid());
 
-			pidlist.add(1);
-			pidlist.add(2);
 			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist);
 			UserDO userDO2 = null;
 			if (restdayDO != null) {
