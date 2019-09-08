@@ -69,7 +69,7 @@ public class TestController {
 		DateTime startdateTime = new DateTime("2019-08-31", DatePattern.NORM_DATE_PATTERN);
 		// 结束时间
 //		DateTime enddateTime = new DateTime("2020-01-15", DatePattern.NORM_DATE_PATTERN);
-		DateTime enddateTime = new DateTime("2020-09-3", DatePattern.NORM_DATE_PATTERN);
+		DateTime enddateTime = new DateTime("2019-09-28", DatePattern.NORM_DATE_PATTERN);
 		DateTime nextdatetime = startdateTime;
 		do {
 			// 获得指定日期是星期几，1表示周日，2表示周一
@@ -80,7 +80,12 @@ public class TestController {
 
 			// 先拿领导
 			List<UserDO> leaders = userService.selectLeaders();
-			UserDO leaderUser = userService.randUserList(week, userService.getMinUserListByDay(leaders));
+			UserDO leaderUser = null;
+			if (restdayDO != null) {// 该日期是白班
+				leaderUser = userService.randUserList(week, userService.getMinUserListByDay(leaders));
+			} else {// 该日期是夜班
+				leaderUser = userService.randUserList(week, userService.getMinUserListByNight(leaders));
+			}
 
 			// 再拿第一个辅导员
 			List<Integer> list = new ArrayList<Integer>();
