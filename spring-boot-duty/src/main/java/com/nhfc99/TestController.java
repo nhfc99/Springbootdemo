@@ -132,4 +132,79 @@ public class TestController {
 		} while (nextdatetime.compareTo(enddateTime) != 1);
 		return "处理完成";
 	}
+
+	@RequestMapping("/dealnumber")
+	@ResponseBody
+	public Object getDatas1() {
+		// 清除结果库
+		resultService.deleteAll();
+		// 获取所有的节假日
+		List<RestdayDO> restdays = restdayService.selectAll();
+
+		// 开始日期
+		DateTime startdateTime = new DateTime("2019-09-09", DatePattern.NORM_DATE_PATTERN);
+		// 结束时间
+		DateTime enddateTime = new DateTime("2020-01-15", DatePattern.NORM_DATE_PATTERN);
+
+		DateTime nextdatetime = startdateTime;
+		do {
+			// 获得指定日期是星期几，1表示周日，2表示周一
+			int week = DateUtil.dayOfWeek(nextdatetime);
+
+			// 判断是否是节假日
+			RestdayDO restdayDO = restdayService.haveDate(restdays, nextdatetime.toDateStr());
+
+			// 先拿领导
+			List<UserDO> leaders = userService.selectLeaders();
+			UserDO leaderUser = null;
+			if (restdayDO != null) {// 该日期是白班
+				leaderUser = userService.randUserList(week, userService.getMinUserListByDay(leaders, null, null));
+			} else {// 该日期是夜班
+				leaderUser = userService.randUserList(week, userService.getMinUserListByNight(leaders, null, null));
+			}
+
+			// 再拿第一个辅导员
+			List<Integer> list = new ArrayList<Integer>();
+//			list.add(leaderUser.getU_dpid());
+			List<Integer> pidlist = new ArrayList<Integer>();
+			pidlist.add(1);
+			pidlist.add(2);
+			List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
+
+			UserDO userDO1 = null;
+			if (restdayDO != null) {// 该日期是白班
+				userDO1 = userService.randUserList(week,
+						userService.getMinUserListByDay(userlist, leaderUser.getU_dpid(), null));
+			} else {// 该日期是夜班
+				userDO1 = userService.randUserList(week,
+						userService.getMinUserListByNight(userlist, leaderUser.getU_dpid(), null));
+			}
+
+			// 再拿第二个辅导员
+//			list.add(userDO1.getU_dpid());
+
+			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist);
+			UserDO userDO2 = null;
+			if (restdayDO != null) {
+				userDO2 = userService.randUserList(week,
+						userService.getMinUserListByDay(userlist1, leaderUser.getU_dpid(), userDO1.getU_dpid()));
+			} else {
+				userDO2 = userService.randUserList(week,
+						userService.getMinUserListByNight(userlist1, leaderUser.getU_dpid(), userDO1.getU_dpid()));
+			}
+
+			// 将这三个人存储到result表中
+			ResultDO resultDO = new ResultDO();
+			resultDO.setR_date(nextdatetime.toDateStr()); // 设置日期
+			resultDO.setR_dpuid(leaderUser.getId());// 领导id
+			resultDO.setR_fid1(userDO1.getId());
+			resultDO.setR_fid2(userDO2.getId());
+			resultDO.setR_dutytype(restdayDO != null ? 1 : 2);
+			resultService.insert(resultDO);
+
+			// 下一天
+			nextdatetime = DateUtil.offsetDay(nextdatetime, 1);
+		} while (nextdatetime.compareTo(enddateTime) != 1);
+		return "处理完成";
+	}
 }

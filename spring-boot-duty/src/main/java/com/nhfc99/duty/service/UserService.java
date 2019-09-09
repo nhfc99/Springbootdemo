@@ -73,8 +73,38 @@ public class UserService {
 	 * 获取白天值班数量最少的人列表
 	 * 
 	 * @param list
+	 * @param excludeDP0 去掉第一个系别
+	 * @param excludeDP1 去掉第二个系别
 	 * @return
 	 */
+	public List<UserDO> getMinUserListByDay(List<UserDO> list, Integer excludeDP0, Integer excludeDP1) {
+		int min = list.get(0).getU_day();
+		for (int i = 0; i < list.size(); i++) {
+			UserDO userDO = list.get(i);
+			int day = userDO.getU_day();
+			min = Integer.min(min, day);
+		}
+		// 两个系都不为空
+		List<UserDO> userList = getMinUserList(list, excludeDP0, excludeDP1, min, true);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		// 一个系为空
+		userList = getMinUserList(list, null, excludeDP1, min, true);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		// 两个系为空
+		userList = getMinUserList(list, null, null, min, true);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		return userList;
+	}
+
 	public List<UserDO> getMinUserListByDay(List<UserDO> list) {
 		int min = list.get(0).getU_day();
 		for (int i = 0; i < list.size(); i++) {
@@ -82,12 +112,33 @@ public class UserService {
 			int day = userDO.getU_day();
 			min = Integer.min(min, day);
 		}
-
 		List<UserDO> userList = new ArrayList<UserDO>();
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
 			if (userDO.getU_day() == min) {
 				userList.add(userDO);
+			}
+		}
+		return userList;
+	}
+
+	List<UserDO> getMinUserList(List<UserDO> list, Integer excludeDP0, Integer excludeDP1, int min, Boolean day) {
+		List<UserDO> userList = new ArrayList<UserDO>();
+		for (int i = 0; i < list.size(); i++) {
+			UserDO userDO = list.get(i);
+			Boolean result = !(userDO.getU_dpid() == excludeDP0 || userDO.getU_dpid() == excludeDP0);
+			if (day) {// 白班
+				if (userDO.getU_day() == min) {
+					if (result) {
+						userList.add(userDO);
+					}
+				}
+			} else {// 夜班
+				if (userDO.getU_night() == min) {
+					if (result) {
+						userList.add(userDO);
+					}
+				}
 			}
 		}
 		return userList;
@@ -99,6 +150,35 @@ public class UserService {
 	 * @param list
 	 * @return
 	 */
+	public List<UserDO> getMinUserListByNight(List<UserDO> list, Integer excludeDP0, Integer excludeDP1) {
+		int min = list.get(0).getU_night();
+		for (int i = 0; i < list.size(); i++) {
+			UserDO userDO = list.get(i);
+			int night = userDO.getU_night();
+			min = Integer.min(min, night);
+		}
+
+		// 两个系都不为空
+		List<UserDO> userList = getMinUserList(list, excludeDP0, excludeDP1, min, false);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		// 一个系为空
+		userList = getMinUserList(list, null, excludeDP1, min, false);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		// 两个系为空
+		userList = getMinUserList(list, null, null, min, false);
+		if (userList.size() > 0) {
+			return userList;
+		}
+
+		return userList;
+	}
+
 	public List<UserDO> getMinUserListByNight(List<UserDO> list) {
 		int min = list.get(0).getU_night();
 		for (int i = 0; i < list.size(); i++) {
@@ -126,9 +206,9 @@ public class UserService {
 	 */
 	public UserDO randUserList(int week, List<UserDO> list) {
 		if (list.size() == 0) {
-			System.err.println("randUserList = 为0了");			
+			System.err.println("randUserList = 为0了");
 		}
-		
+
 		// 62 - > 2/3/5
 		UserDO userDO62 = null;
 		// 1 -> 2
@@ -188,6 +268,8 @@ public class UserService {
 	 * @return
 	 */
 	UserDO randUserBy(List<UserDO> list) {
+		// 筛选一个总排版最少的人
+
 		Random rand = new Random();
 		int number = rand.nextInt(list.size());
 		return list.get(number);

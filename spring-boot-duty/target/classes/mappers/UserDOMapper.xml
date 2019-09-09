@@ -37,18 +37,24 @@
 		</foreach>
 	</select>
 
-	<select id="selectUsersByNDPidAndNPids" resultMap="BaseResultMap"
-		parameterType="java.util.HashMap">
+	<select id="selectUsersByNDPidAndNPids"
+		resultMap="BaseResultMap" parameterType="java.util.HashMap">
 		select
 		<include refid="Base_Column_List" />
-		from user where u_dpid not in
-		<foreach item="item" index="index" collection="list" open="("
-			separator="," close=")">
-			#{item}
-		</foreach>
-		and u_pid not in
-		<foreach item="item" index="index" collection="pidlist" open="("
-			separator="," close=")">
+		from user where 
+
+		<if test="list.size() > 0">
+			u_dpid not in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+			and
+		</if>
+
+		u_pid not in
+		<foreach item="item" index="index" collection="pidlist"
+			open="(" separator="," close=")">
 			#{item}
 		</foreach>
 	</select>
