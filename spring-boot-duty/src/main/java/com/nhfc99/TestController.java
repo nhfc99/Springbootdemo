@@ -207,4 +207,10 @@ public class TestController {
 		} while (nextdatetime.compareTo(enddateTime) != 1);
 		return "处理完成";
 	}
+
+	@RequestMapping("/resultInfo")
+	@ResponseBody
+	public Object resultInfo() {
+		return userService.resultInfo();
+	}
 }

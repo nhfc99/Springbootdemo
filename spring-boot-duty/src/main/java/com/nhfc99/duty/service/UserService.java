@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.nhfc99.duty.dao.UserDOMapper;
 import com.nhfc99.duty.model.UserDO;
+import com.nhfc99.duty.vo.UserResultInfoVO;
 
 @Service
 public class UserService {
@@ -53,13 +54,29 @@ public class UserService {
 		List<UserDO> list2 = userDOMapper.selectUsersByNDPidAndNPids(params);
 		return addOtherInfo(list2);
 	}
-
+	
 	/**
-	 * 给每个用户计算加入白班和夜班次数的信息
-	 * 
-	 * @param list
+	 * 获取用户的次数
 	 * @return
 	 */
+	public List<UserResultInfoVO> resultInfo() {
+		List<UserResultInfoVO> resultInfoVOs = new ArrayList<UserResultInfoVO>();
+		List<UserDO> userList = userDOMapper.selectAll();
+		for (int i = 0; i < userList.size(); i++) {
+			UserDO userDO = userList.get(i);
+			userDO.setU_day(resultService.selectCountBy(userDO.getId(), 1));
+			userDO.setU_night(resultService.selectCountBy(userDO.getId(), 2));
+
+			UserResultInfoVO userResultInfoVO = new UserResultInfoVO();
+			userResultInfoVO.setU_name(userDO.getU_name());
+			userResultInfoVO.setU_day(userDO.getU_day());
+			userResultInfoVO.setU_night(userDO.getU_night());
+			userResultInfoVO.setAllDays(userDO.getU_day() + userDO.getU_night());
+			resultInfoVOs.add(userResultInfoVO);
+		}
+		return resultInfoVOs;
+	}
+
 	List<UserDO> addOtherInfo(List<UserDO> list) {
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
