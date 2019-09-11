@@ -2,6 +2,8 @@ package com.nhfc99.duty.vo;
 
 public class UserResultInfoVO {
 	private String u_name;
+	private String u_dpname;
+	private String u_pname;
 
 	private String u_phone;
 
@@ -9,6 +11,22 @@ public class UserResultInfoVO {
 	private Integer u_night;
 
 	private Integer allDays;
+
+	public String getU_dpname() {
+		return u_dpname;
+	}
+
+	public void setU_dpname(String u_dpname) {
+		this.u_dpname = u_dpname;
+	}
+
+	public String getU_pname() {
+		return u_pname;
+	}
+
+	public void setU_pname(String u_pname) {
+		this.u_pname = u_pname;
+	}
 
 	public String getU_name() {
 		return u_name;

@@ -41,7 +41,7 @@
 		resultMap="BaseResultMap" parameterType="java.util.HashMap">
 		select
 		<include refid="Base_Column_List" />
-		from user where 
+		from user where
 
 		<if test="list.size() > 0">
 			u_dpid not in
@@ -52,11 +52,24 @@
 			and
 		</if>
 
-		u_pid not in
-		<foreach item="item" index="index" collection="pidlist"
-			open="(" separator="," close=")">
-			#{item}
-		</foreach>
+		<if test="pidlist.size() > 0">
+			u_pid not in
+			<foreach item="item" index="index" collection="pidlist"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+
+		<if test="uids != null">
+			<if test="uids.size() > 0">
+				and
+				id not in
+				<foreach item="item" index="index" collection="uids"
+					open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</if>
 	</select>
 
 	<delete id="deleteByPrimaryKey"

@@ -9,7 +9,11 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nhfc99.duty.dao.DepartmentDOMapper;
+import com.nhfc99.duty.dao.PositionDOMapper;
 import com.nhfc99.duty.dao.UserDOMapper;
+import com.nhfc99.duty.model.DepartmentDO;
+import com.nhfc99.duty.model.PositionDO;
 import com.nhfc99.duty.model.UserDO;
 import com.nhfc99.duty.vo.UserResultInfoVO;
 
@@ -19,6 +23,11 @@ public class UserService {
 	UserDOMapper userDOMapper;
 	@Autowired
 	ResultService resultService;
+	@Autowired
+	PositionDOMapper positionDOMapper;
+	@Autowired
+	DepartmentDOMapper departmentDOMapper;
+	
 
 	public List<UserDO> selectAll() {
 		return userDOMapper.selectAll();
@@ -47,31 +56,58 @@ public class UserService {
 	 * @param pidlist
 	 * @return
 	 */
-	public List<UserDO> selectUsersByNDPidAndNPids(List<Integer> list, List<Integer> pidlist) {
+	public List<UserDO> selectUsersByNDPidAndNPids(List<Integer> list, List<Integer> pidlist, List<Integer> uids) {
 		Map<String, List<Integer>> params = new HashMap<String, List<Integer>>();
 		params.put("list", list);
 		params.put("pidlist", pidlist);
+		params.put("uids", uids);
 		List<UserDO> list2 = userDOMapper.selectUsersByNDPidAndNPids(params);
 		return addOtherInfo(list2);
 	}
 	
+	PositionDO getPosition(List<PositionDO> positionDOs, Integer id) {
+		for (int i = 0; i < positionDOs.size(); i++) {
+			PositionDO positionDO = positionDOs.get(i);
+			if (positionDO.getId() == id) {
+				return positionDO;
+			}
+		}
+		return null;
+	}
+	
+	DepartmentDO getDepartment(List<DepartmentDO> departmentDOs, Integer id) {
+		for (int i = 0; i < departmentDOs.size(); i++) {
+			DepartmentDO departmentDO = departmentDOs.get(i);
+			if (departmentDO.getId() == id) {
+				return departmentDO;
+			}
+		}
+		return null;
+	}
+	
 	/**
-	 * 获取用户的次数
+	 * 获取用户的次数集合
 	 * @return
 	 */
 	public List<UserResultInfoVO> resultInfo() {
+		List<PositionDO> positionDOs = positionDOMapper.selectAll();
+		List<DepartmentDO> departmentDOs = departmentDOMapper.selectAll();
+		
 		List<UserResultInfoVO> resultInfoVOs = new ArrayList<UserResultInfoVO>();
 		List<UserDO> userList = userDOMapper.selectAll();
 		for (int i = 0; i < userList.size(); i++) {
 			UserDO userDO = userList.get(i);
 			userDO.setU_day(resultService.selectCountBy(userDO.getId(), 1));
 			userDO.setU_night(resultService.selectCountBy(userDO.getId(), 2));
-
+			
 			UserResultInfoVO userResultInfoVO = new UserResultInfoVO();
+			userResultInfoVO.setU_phone(userDO.getU_phone());
 			userResultInfoVO.setU_name(userDO.getU_name());
 			userResultInfoVO.setU_day(userDO.getU_day());
 			userResultInfoVO.setU_night(userDO.getU_night());
 			userResultInfoVO.setAllDays(userDO.getU_day() + userDO.getU_night());
+			userResultInfoVO.setU_pname(getPosition(positionDOs, userDO.getU_pid()).getName());
+			userResultInfoVO.setU_dpname(getDepartment(departmentDOs, userDO.getU_dpid()).getD_name());
 			resultInfoVOs.add(userResultInfoVO);
 		}
 		return resultInfoVOs;
@@ -286,6 +322,9 @@ public class UserService {
 	 */
 	UserDO randUserBy(List<UserDO> list) {
 		// 筛选一个总排版最少的人
+		if (list.size() == 0) {
+			System.out.print("为0了");
+		}
 
 		Random rand = new Random();
 		int number = rand.nextInt(list.size());

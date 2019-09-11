@@ -51,15 +51,8 @@ public class TestController {
 		List<Integer> pidlist = new ArrayList<Integer>();
 		pidlist.add(3);
 		pidlist.add(4);
-		List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
+		List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist, null);
 		return userlist;
-	}
-
-	@RequestMapping("/result")
-	@ResponseBody
-	public Object result() {
-		List<ResultVO> resultVOsOs = resultService.selectResultAll();
-		return resultVOsOs;
 	}
 
 	@RequestMapping("/deal")
@@ -98,7 +91,7 @@ public class TestController {
 			List<Integer> pidlist = new ArrayList<Integer>();
 			pidlist.add(1);
 			pidlist.add(2);
-			List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
+			List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist, null);
 
 			UserDO userDO1 = null;
 			if (restdayDO != null) {// 该日期是白班
@@ -110,7 +103,7 @@ public class TestController {
 			// 再拿第二个辅导员
 			list.add(userDO1.getU_dpid());
 
-			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist);
+			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist, null);
 			UserDO userDO2 = null;
 			if (restdayDO != null) {
 				userDO2 = userService.randUserList(week, userService.getMinUserListByDay(userlist1));
@@ -141,6 +134,8 @@ public class TestController {
 		// 获取所有的节假日
 		List<RestdayDO> restdays = restdayService.selectAll();
 
+		// 将这三个人存储到result表中
+		ResultDO resultDO = new ResultDO();
 		// 开始日期
 		DateTime startdateTime = new DateTime("2019-09-09", DatePattern.NORM_DATE_PATTERN);
 		// 结束时间
@@ -148,6 +143,15 @@ public class TestController {
 
 		DateTime nextdatetime = startdateTime;
 		do {
+			List<Integer> userIds = new ArrayList<Integer>();
+
+			// 如果存在之前的记录的时候，将这几个用户的id加入进去
+			if (resultDO.getId() != null) {
+				userIds.add(resultDO.getR_dpuid());
+				userIds.add(resultDO.getR_fid1());
+				userIds.add(resultDO.getR_fid2());
+			}
+
 			// 获得指定日期是星期几，1表示周日，2表示周一
 			int week = DateUtil.dayOfWeek(nextdatetime);
 
@@ -169,7 +173,10 @@ public class TestController {
 			List<Integer> pidlist = new ArrayList<Integer>();
 			pidlist.add(1);
 			pidlist.add(2);
-			List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist);
+
+			// 添加领导用户id
+			userIds.add(leaderUser.getId());
+			List<UserDO> userlist = userService.selectUsersByNDPidAndNPids(list, pidlist, userIds);
 
 			UserDO userDO1 = null;
 			if (restdayDO != null) {// 该日期是白班
@@ -183,7 +190,9 @@ public class TestController {
 			// 再拿第二个辅导员
 //			list.add(userDO1.getU_dpid());
 
-			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist);
+			// 添加第一个辅导员id
+			userIds.add(userDO1.getId());
+			List<UserDO> userlist1 = userService.selectUsersByNDPidAndNPids(list, pidlist, userIds);
 			UserDO userDO2 = null;
 			if (restdayDO != null) {
 				userDO2 = userService.randUserList(week,
@@ -194,7 +203,6 @@ public class TestController {
 			}
 
 			// 将这三个人存储到result表中
-			ResultDO resultDO = new ResultDO();
 			resultDO.setR_date(nextdatetime.toDateStr()); // 设置日期
 			resultDO.setR_dpuid(leaderUser.getId());// 领导id
 			resultDO.setR_fid1(userDO1.getId());
@@ -208,6 +216,23 @@ public class TestController {
 		return "处理完成";
 	}
 
+	/**
+	 * 获取排班信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/result")
+	@ResponseBody
+	public Object result() {
+		List<ResultVO> resultVOsOs = resultService.selectResultAll();
+		return resultVOsOs;
+	}
+
+	/**
+	 * 获取用户排班数量集合
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/resultInfo")
 	@ResponseBody
 	public Object resultInfo() {
