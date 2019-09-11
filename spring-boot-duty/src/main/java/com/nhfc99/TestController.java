@@ -146,7 +146,7 @@ public class TestController {
 			List<Integer> userIds = new ArrayList<Integer>();
 
 			// 如果存在之前的记录的时候，将这几个用户的id加入进去
-			if (resultDO.getId() != null) {
+			if (resultDO.getR_date() != null) {
 				userIds.add(resultDO.getR_dpuid());
 				userIds.add(resultDO.getR_fid1());
 				userIds.add(resultDO.getR_fid2());
@@ -159,7 +159,7 @@ public class TestController {
 			RestdayDO restdayDO = restdayService.haveDate(restdays, nextdatetime.toDateStr());
 
 			// 先拿领导
-			List<UserDO> leaders = userService.selectLeaders();
+			List<UserDO> leaders = userService.selectLeaders(userIds);
 			UserDO leaderUser = null;
 			if (restdayDO != null) {// 该日期是白班
 				leaderUser = userService.randUserList(week, userService.getMinUserListByDay(leaders, null, null));

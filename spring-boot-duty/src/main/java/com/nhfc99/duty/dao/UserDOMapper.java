@@ -24,6 +24,8 @@ public interface UserDOMapper {
 	List<UserDO> selectAll();
 
 	List<UserDO> selectUsersByPids(List<Integer> pids);
+	
+	List<UserDO> selectUsersByPidsExUids(Map<?, ?> map);
 
 	List<UserDO> selectUsersByNDPidAndNPids(Map<?, ?> map);
 }

@@ -27,7 +27,6 @@ public class UserService {
 	PositionDOMapper positionDOMapper;
 	@Autowired
 	DepartmentDOMapper departmentDOMapper;
-	
 
 	public List<UserDO> selectAll() {
 		return userDOMapper.selectAll();
@@ -38,6 +37,19 @@ public class UserService {
 		list.add(1);
 		list.add(2);
 		List<UserDO> list2 = userDOMapper.selectUsersByPids(list);
+		return addOtherInfo(list2);
+	}
+
+	public List<UserDO> selectLeaders(List<Integer> uids) {
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("list", list);
+		params.put("uids", uids);
+
+		List<UserDO> list2 = userDOMapper.selectUsersByPidsExUids(params);
 		return addOtherInfo(list2);
 	}
 
@@ -64,7 +76,7 @@ public class UserService {
 		List<UserDO> list2 = userDOMapper.selectUsersByNDPidAndNPids(params);
 		return addOtherInfo(list2);
 	}
-	
+
 	PositionDO getPosition(List<PositionDO> positionDOs, Integer id) {
 		for (int i = 0; i < positionDOs.size(); i++) {
 			PositionDO positionDO = positionDOs.get(i);
@@ -74,7 +86,7 @@ public class UserService {
 		}
 		return null;
 	}
-	
+
 	DepartmentDO getDepartment(List<DepartmentDO> departmentDOs, Integer id) {
 		for (int i = 0; i < departmentDOs.size(); i++) {
 			DepartmentDO departmentDO = departmentDOs.get(i);
@@ -84,22 +96,23 @@ public class UserService {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 获取用户的次数集合
+	 * 
 	 * @return
 	 */
 	public List<UserResultInfoVO> resultInfo() {
 		List<PositionDO> positionDOs = positionDOMapper.selectAll();
 		List<DepartmentDO> departmentDOs = departmentDOMapper.selectAll();
-		
+
 		List<UserResultInfoVO> resultInfoVOs = new ArrayList<UserResultInfoVO>();
 		List<UserDO> userList = userDOMapper.selectAll();
 		for (int i = 0; i < userList.size(); i++) {
 			UserDO userDO = userList.get(i);
 			userDO.setU_day(resultService.selectCountBy(userDO.getId(), 1));
 			userDO.setU_night(resultService.selectCountBy(userDO.getId(), 2));
-			
+
 			UserResultInfoVO userResultInfoVO = new UserResultInfoVO();
 			userResultInfoVO.setU_phone(userDO.getU_phone());
 			userResultInfoVO.setU_name(userDO.getU_name());
@@ -131,10 +144,10 @@ public class UserService {
 	 * @return
 	 */
 	public List<UserDO> getMinUserListByDay(List<UserDO> list, Integer excludeDP0, Integer excludeDP1) {
-		int min = list.get(0).getU_day();
+		int min = list.get(0).getU_day() + list.get(0).getU_night();
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
-			int day = userDO.getU_day();
+			int day = userDO.getU_day() + userDO.getU_night();
 			min = Integer.min(min, day);
 		}
 		// 两个系都不为空
@@ -204,10 +217,10 @@ public class UserService {
 	 * @return
 	 */
 	public List<UserDO> getMinUserListByNight(List<UserDO> list, Integer excludeDP0, Integer excludeDP1) {
-		int min = list.get(0).getU_night();
+		int min = list.get(0).getU_night() + list.get(0).getU_day();
 		for (int i = 0; i < list.size(); i++) {
 			UserDO userDO = list.get(i);
-			int night = userDO.getU_night();
+			int night = userDO.getU_night() + userDO.getU_day();
 			min = Integer.min(min, night);
 		}
 
@@ -327,7 +340,12 @@ public class UserService {
 		}
 
 		Random rand = new Random();
-		int number = rand.nextInt(list.size());
-		return list.get(number);
+		try {
+			int number = rand.nextInt(list.size());
+			return list.get(number);
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new RuntimeException("为0了");
+		}
 	}
 }
