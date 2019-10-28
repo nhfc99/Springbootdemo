@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>首页 - ${site.siteName!}</title>
+    <link href="${resPath}/xgwy/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="${resPath}/xgwy/css/common.css" rel="stylesheet" type="text/css">
+    <script src="${resPath}/xgwy/js/jquery.min.js"></script>
+    <script src="${resPath}/xgwy/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="${resPath}/xgwy/js/html5shiv.min.js"></script>
+    <script src="${resPath}/xgwy/js/html5shiv-printshiv.min.js"></script>
+    <script>
+    $(function() {
+        /*banner图滚动*/
+        jQuery(".slideBox").slide({
+            mainCell: ".bd ul",
+            autoPlay: true,
+            effect: "fold",
+            defaultIndex: 0,
+            delayTime: 2000,
+            interTime: 5000,
+            endFun: function(e) {
+            }
+        });
+        // 焦点图滚动
+        jQuery(".focus").slide({mainCell:".bd ul",autoPlay:true});
+        // 小图无缝滚动
+        jQuery(".picMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:6,interTime:50});
+        // 新增艺术家档案小图无缝滚动
+        jQuery(".picMarquee-left2").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:8,interTime:50});
+        /*banner图下方新闻消息切换*/
+        jQuery(".txtScroll-top").slide({mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,vis:1});
+    });
+	function sb(){
+	$("#searchForm").submit()
+	}
+    </script>
+</head>
+
+<body id="index">
+
+    <!--header begin-->
+    @includeFileTemplate("/www/xgwy/include/header.html",{"current":"index"}){}
+    <!--header end-->
+
+    <div class="layout clearfix">
+        <section class="sec1">
+            <div class="tit_box">
+		    <#cms_topic_content   siteId="${site.siteId}"  topicId="1"  orderBy="2" isHot="0"     isRecommend="1"  size="2"   titleLen="25"   var="bean">
+							@if(bean.index==1){			
+                <h2><span style="height:48px;font-size:30px;color:#CD3333;font-weight:bold"><a style="color:red" href="${bean.url!}" target="_blank">${bean.title!}</a> </span></h2>
+				@}
+				@if(bean.index==2){	
+                <h3><a href="${bean.url!}" target="_blank">${bean.title!}</a> </h3>
+				@}
+	      </#cms_topic_content>
+            </div>
+            <div class="con clearfix">
+                <div class="focus">
+                    <div class="hd">
+                        <ul>
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="189"  orderBy="2" isHot="0" isPic="1"    hasChild="1" isRecommend="0"  size="12"   titleLen="25"   var="bean">
+                            <li>${bean.index!}</li>
+                        </#cms_content_list>
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="189"  orderBy="2" isHot="0"  isPic="1"    hasChild="1" isRecommend="0"  size="12"   titleLen="25"   var="bean">
+							<li><a title="${bean.title!}" href="${bean.url!}" target="_blank"><img src="${bean.thumb!}"><h2>${bean.title!}</h2></a></li>
+                           </#cms_content_list>
+                        </ul>
+                    </div>
+                </div>
+                <div class="list1_box">
+				 
+                    <ul class="list1">
+                         <#cms_content_list  siteId="${site.siteId}" categoryId="189"  orderBy="2" isHot="0"  isPic="1"    hasChild="1" isRecommend="0"  size="12"   titleLen="25"   var="bean">
+								@if(bean.index%2!=0){
+                           <li class="b">
+                           @}else{
+                            <li>
+                           @}
+                            <a href="${bean.url!}" target="_blank">${bean.title!}</a>
+                    </li>
+                      </#cms_content_list>
+                    </ul>
+                   
+                </div>
+            </div>
+        </section>
+
+        <section class="sec2">
+            <div class="bar clearfix">
+                <div class="pic"><script language="JavaScript" src="${baseURL}/ad/js/1" type="text/javascript"></script></div>
+                <div class="list2_box">
+                    <!--最新公告-->
+                    <#cms_category  categoryId="204" isParent="0" var="bean">
+                    <div class="tit2">
+                        <h4>最新公告</h4>
+                        <a href="${bean.url!}" class="more">更多>></a>
+                    </div>
+                    <ul class="list2">
+                        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="3"   titleLen="25"   var="bean">
+                        <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                       </#cms_content_list>
+                    </ul>
+                    </#cms_category>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec3">
+            <div class="bar clearfix">
+                <div class="picMarquee-left">
+                    <!-- <div class="hd">
+                        <a class="next"></a>
+                        <ul></ul>
+                        <a class="prev"></a>
+                        <span class="pageState"></span>
+                    </div> -->
+                    <div class="bd">
+                        <ul class="picList">
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="189"  orderBy="2" isPic="1" isHot="0"    hasChild="1" isRecommend="0"  size="50"   titleLen="10"   var="bean">
+                            <li>
+                                <div class="pic"><a href="${bean.url!}" target="_blank"><img width="125" height="80" src="${bean.thumb!}" /></a></div>
+                                <div class="title"><a href="${bean.url!}" target="_blank">${bean.title!}</a></div>
+                            </li>
+                            </#cms_content_list>
+                        </ul>
+                    </div>
+                </div>
+                <div class="list2_box">
+                    <!--图文下载-->
+                    <#cms_category  categoryId="244" isParent="0" var="bean">
+                    <div class="tit2">
+                        <h4>图文下载</h4>
+                        <a href="${bean.url!}" class="more">更多>></a>
+                    </div>
+                    <ul class="list2">
+                        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                        <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                       </#cms_content_list>
+                    </ul>
+                    </#cms_category>
+                </div>
+                
+            </div>
+        </section>
+
+
+
+        <section class="sec4 clearfix">
+            <div class="tit3">
+                <div class="line cc"></div>
+                <h3 class="txt cc">文联动态</h3>
+            </div>
+            <div class="clearfix">
+                <div class="advance first">
+                    <!--文联工作-->
+                    <#cms_category  categoryId="205" isParent="0" var="bean">
+                    <div class="tit2">
+                        <h4>文联工作</h4>
+                        <a href="${bean.url!}" class="more">更多>></a>
+                    </div>
+                    <ul class="list2 clearfix">
+                        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="25"   var="bean">
+                        <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                    </#cms_content_list>
+                    </ul>
+                    </#cms_category>
+                </div>
+
+                <div class="advance ">
+                    <!--文联活动-->
+                    <#cms_category  categoryId="206" isParent="0" var="bean">
+                    <div class="tit2">
+                        <h4>文联活动</h4>
+                        <a href="${bean.url!}" class="more">更多>></a>
+                    </div>
+                    <ul class="list2">
+                        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="25"   var="bean">
+                        <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                        </#cms_content_list>
+                    </ul>
+                    </#cms_category>
+                </div>
+                <div class="advance">
+                    <!--展演信息-->
+                    <#cms_category  categoryId="228" isParent="0" var="bean">
+                    <div class="tit2">
+                        <h4>展演信息</h4>
+                        <a href="${bean.url!}" class="more">更多>></a>
+                    </div>
+                    <ul class="list2">
+                        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="25"   var="bean">
+                        <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                    </#cms_content_list>
+                    </ul>
+                </#cms_category>
+                </div>
+            </div>
+            <div class="left_bar ">
+                <!--文化新闻-->
+                <#cms_category  categoryId="205" isParent="0" var="bean">
+                <a href="${bean.url!}" class="tit4"><b>${bean.categoryName!}<b></a>
+                <!-- 此处为复制你上面部分代码，将图片地址换为下面地址即可，不同的是class名，加了个2，picMarquee-left2 -->
+                <div class="picMarquee-left2">
+                    <div class="bd">
+                        <ul class="picList">
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isPic="1" isHot="0"    hasChild="1" isRecommend="0"  size="50"   titleLen="10"   var="bean">
+                            <li>
+                                <div class="pic"><a href="${bean.url!}" target="_blank"><img width="90" height="110" src="${bean.thumb!}" /></a></div>
+                                <div class="title"><a href="${bean.url!}" target="_blank">${bean.title!}</a></div>
+                            </li>
+                            </#cms_content_list>
+							
+							
+                        </ul>
+                    </div>
+                </div>
+            </#cms_category>
+                <!-- 结束 -->
+                </ul>
+                <div class="h15"></div>
+                <ul class="news_list clearfix">
+                    <li>
+                        <!--文化新闻-->
+                        <#cms_category  categoryId="205" isParent="0" var="bean">
+                        <div class="tit2">
+                            <h4>${bean.categoryName!}</h4>
+                            <a href="${bean.url!}" class="more">更多>></a>
+                        </div>
+                        <ul class="list2">
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                            </#cms_content_list>
+                        </ul>
+                    </#cms_category>
+                    </li>
+                    <li>
+                        <!--文苑新作-->
+                        <#cms_category  categoryId="212" isParent="0" var="bean">
+                        <div class="tit2">
+                            <h4>文苑新作</h4>
+
+                            <a href="${bean.url!}" class="more">更多>></a>
+
+                        </div>
+
+                        <ul class="list2">
+
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                        </#cms_content_list>
+
+                        </ul>
+                    </#cms_category>
+                    </li>
+
+                    <li>
+                        <!--文艺评论-->
+                        <#cms_category  categoryId="192" isParent="0" var="bean">
+                        <div class="tit2">
+
+                            <h4>文艺评论</h4>
+
+                            <a href="${bean.url!}" class="more">更多>></a>
+
+                        </div>
+
+                        <ul class="list2">
+
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                        </#cms_content_list>
+
+                        </ul>
+                    </#cms_category>
+                    </li>
+
+                    <li>
+                        <!--摄影空间-->
+                        <#cms_category  categoryId="221" isParent="0" var="bean">
+                        <div class="tit2">
+
+                            <h4>摄影空间</h4>
+
+                            <a href="${bean.url!}" class="more">更多>></a>
+
+                        </div>
+
+                        <ul class="list2">
+
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                        </#cms_content_list>
+
+                        </ul>
+                    </#cms_category>
+                    </li>
+
+                    <li>
+                        <!--美术长廊-->
+                        <#cms_category  categoryId="222" isParent="0" var="bean">
+                        <div class="tit2">
+
+                            <h4>${bean.categoryName}</h4>
+
+                            <a href="${bean.url!}" class="more">更多>></a>
+
+                        </div>
+
+                        <ul class="list2">
+
+                            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                           </#cms_content_list>
+
+                        </ul>
+                    </#cms_category>
+                    </li>
+
+
+
+            <li>
+                <!--书法天地-->
+                <#cms_category  categoryId="223" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+                <ul class="list2">
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                    <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                </#cms_content_list>
+
+                </ul>
+            </#cms_category>
+            </li>
+
+            <li>
+                <!--影视星空-->
+                <#cms_category  categoryId="224" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+                <ul class="list2">
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                    <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                </#cms_content_list>
+
+                </ul>
+            </#cms_category>
+            </li>
+
+            <li>
+                <!--音乐舞蹈-->
+                <#cms_category  categoryId="225" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+                <ul class="list2">
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                    <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                </#cms_content_list>
+
+                </ul>
+            </#cms_category>
+            </li>
+
+            <li>
+                <!--民间文艺-->
+                <#cms_category  categoryId="230" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+                <ul class="list2">
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                    <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                </#cms_content_list>
+
+                </ul>
+            </#cms_category>
+            </li>
+
+            <li>
+                <!--戏剧曲艺-->
+                <#cms_category  categoryId="229" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+                <ul class="list2">
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="4"   titleLen="25"   var="bean">
+                    <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+                </#cms_content_list>
+
+                </ul>
+            </#cms_category>
+            </li>
+
+
+
+                </ul>
+
+            </div>
+
+            <div class="side_bar">
+                <!--XXX文艺-->
+                <#cms_category  categoryId="209" isParent="0" var="bean">
+                <div class="tit2">
+
+                    <h4>${bean.categoryName}</h4>
+
+                    <a href="${bean.url!}" class="more">更多>></a>
+
+                </div>
+
+
+                    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="25"   var="bean">
+                <a href="${bean.url!}" target="_blank" class="pic_box">
+                    <img src="${bean.thumb!}">
+
+                    <h4>${bean.title!}</h4>
+                </a>
+                </#cms_content_list>
+
+                </#cms_category>
+
+                <div class="tit2">
+
+                    <h4>文联资讯</h4>
+
+                    <a href="${frontPath}/${site.siteKey!}" class="more">更多>></a>
+
+                </div>
+
+            <#cms_content_list  siteId="${site.siteId}" categoryId="211"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="25"   var="bean">
+            <a href="${bean.url!}" target="_blank" class="pic_box">
+                <img src="${bean.thumb!}">
+
+                <h4>${bean.title!}</h4>
+            </a>
+        </#cms_content_list>
+
+                <a href="#" target="_blank" class="img"><img src="${resPath}/xgwy/images/pic4.png"></a>
+
+                <a href="#" target="_blank" class="img"><img src="${resPath}/xgwy/images/pic5.png"></a>
+
+
+
+            </div>
+
+        </section> 
+
+        
+
+        <section class="sec5">
+
+            <div class="tit3">
+
+                <div class="line cc"></div>
+
+                <h3 class="txt cc">XXX文艺家协会站群</h3>
+
+            </div>
+
+            <div class="h20"></div>
+
+            <ul class="list5">
+              <#cms_content_list  siteId="${site.siteId}" categoryId="195"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="20"   titleLen="25"   var="bean">
+                        
+    
+                <li>
+				   @if(bean.index%2==1){
+                    <a href="${bean.url!}" class="tit5 bdig3">${bean.title!}</a>
+				    @}
+					@if(bean.index%2==0){
+                    <a href="${bean.url!}" class="tit5 bdig1">${bean.title!}</a>
+				    @}
+		
+                 
+                    <ul class="list2">
+                      <li>${strutil.length(bean.description)>40?strutil.subStringTo(bean.description,0,40)+"..":bean.description}</LI>
+                    </ul>
+					</li>
+				</#cms_content_list>
+            </ul>
+		  
+
+        </section>
+
+        
+
+        <section class="sec6">
+
+            <div class="tit3">
+
+                <div class="line cc"></div>
+
+                <h3 class="txt cc">图片中心</h3>
+
+            </div>
+
+            <ul class="pic_war">
+
+               <#cms_content_list  siteId="${site.siteId}" categoryId="221"  orderBy="2" isHot="0" isPic="1"  hasChild="1" isRecommend="1"  size="6"   titleLen="25"   var="bean">
+                <li class="pic${bean.index!}"><a href="${bean.url!}" style="background-image: url(${bean.thumb!});"></a></li>
+            </#cms_content_list>
+
+            </ul>
+
+        </section>
+
+    </div>
+
+<!-- footer begin-->
+@includeFileTemplate("/www/xgwy/include/footer.html"){}
+<!-- footer end-->
+
+    <div class="h50"></div>
+
+</body>
+
+
+
+</html>
+

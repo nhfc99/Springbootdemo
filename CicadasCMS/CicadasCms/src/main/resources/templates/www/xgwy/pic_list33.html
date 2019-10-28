@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>${category.categoryName!} - ${site.siteName!}</title>
+
+    <link href="${resPath}/xgwy/css/reset.css" rel="stylesheet" type="text/css">
+
+    <link href="${resPath}/xgwy/css/common.css" rel="stylesheet" type="text/css">
+
+    <script src="${resPath}/xgwy/js/jquery.min.js"></script>
+
+    <script src="${resPath}/xgwy/js/jquery.SuperSlide.2.1.1.js"></script>
+
+
+    <script>
+
+        $(function () {
+
+            /*banner图滚动*/
+
+            jQuery(".slideBox").slide({
+
+                mainCell: ".bd ul",
+
+                autoPlay: true,
+
+                effect: "fold",
+
+                defaultIndex: 0,
+
+                delayTime: 2000,
+
+                interTime: 5000,
+
+                endFun: function (e) {
+
+                }
+
+            });
+
+
+            // 焦点图滚动
+
+            jQuery(".focus").slide({mainCell: ".bd ul", autoPlay: true});
+
+
+            // 小图无缝滚动
+
+            jQuery(".picMarquee-left").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "leftMarquee",
+                vis: 6,
+                interTime: 50
+            });
+
+
+            /*banner图下方新闻消息切换*/
+
+            jQuery(".txtScroll-top").slide({
+                mainCell: ".bd ul",
+                autoPage: true,
+                effect: "topLoop",
+                autoPlay: true,
+                vis: 1
+            });
+
+        });
+
+    </script>
+
+</head>
+
+
+<body id="index">
+
+<header class="slideBox">
+    <div class="w1400">
+        <div class="row">
+            <a href="${frontPath}/${site.siteKey!}/index.html" class="logo"><img src="${resPath}/xgwy/images/logo.png"></a>
+        </div>
+        <div class="bd">
+            <ul>
+                <#cms_index_silder titleLen="10" size="10" var="bean">
+					<li style="background-image: url('${bean.img!}')"></li>
+				    </#cms_index_silder>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+</header>
+
+
+<div class="nav_box row">
+    <ul class="nav clearfix">
+        <li><a href="${frontPath}/${site.siteKey!}/index.html">网站首页</a></li>
+        <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
+        <li><a href="${bean.url!}" target="_blank">${bean.categoryName!}</a></li>
+        </#cms_category_list>
+    </ul>
+    <div class="msg">
+        <div class="row clearfix">
+            <div class="left">
+                <div class="bread">
+                    <#cms_site_pos  site="${site}" category="${category}"  var="bean">
+                    <span>
+                         <a href="${frontPath}/${site.siteKey!}/index.html">首页</a>
+                        @for(location in bean.locations){
+                        <a href="${location.url}">${location.categoryName}</a>
+                        @if(!locationLP.last){
+                        >
+                        @}
+                        @}
+                   </span>
+                </#cms_site_pos>
+                </div>
+            </div>
+        <div class="search">
+            <input type="text" placeholder="搜索关键词">
+            <a href="#"><img src="${resPath}/xgwy/images/search.png"></a>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="h40"></div>
+
+<section class="layout clearfix mb30">
+ <#cms_category_list  siteId="${site.siteId}" categoryId="${category.categoryId!}" isNav="0"   var="c">
+     <div class="img_list2">
+            <div class="tit6"><a href="${c.url!}" >${c.categoryName!}</a></div>
+            <ul>
+			 <#cms_content_list  siteId="${site.siteId}" categoryId="${c.categoryId!}"  orderBy="2" isHot="0" isPic="1"    hasChild="1" isRecommend="0"  size="5"   titleLen="25"   var="bean"> 
+                <li><a href="${bean.url!}" ><div class="pic" style="background-image: url(${bean.thumb!});"></div><h3>${bean.title!}</h3></a></li>
+           </#cms_content_list>
+            </ul>
+        </div>
+</#cms_category_list>  
+    <div class="h30"></div>
+
+</section>
+
+
+<!-- footer begin-->
+@includeFileTemplate("/www/xgwy/include/footer.html"){}
+<!-- footer end-->
+
+<div class="h50"></div>
+
+</body>
+
+
+</html>
+

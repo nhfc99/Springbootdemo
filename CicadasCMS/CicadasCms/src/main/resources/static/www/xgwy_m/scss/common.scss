@@ -1,0 +1,81 @@
+@import "reset.css";
+
+$c1:#2b65a2;  /*蓝色*/
+/*cb4327 按钮浅  981b15 按钮深*/
+
+.h10{height: .1rem;}
+.h20{height: .2rem;}
+.h30{height: .3rem;}
+.h40{height: .4rem;}
+.h50{height: .5rem;}
+
+#index{background: url(../images/bg01.jpg)  -0px -0px no-repeat;background-size: 100%;}
+.row{width: 6rem;margin: 0 auto;position: relative;}
+.logo{
+    width: 4.45rem;margin:auto; margin-top: 1.65rem;margin-bottom: 3.1rem;
+    img{width: 100%;}
+}
+
+.nav{
+    display: flex;justify-content: space-between;flex-wrap: wrap;
+    a{width: 24%;height: .6rem;line-height: .6rem;text-align: center;color: #fff;background-color: #c14041;margin-bottom: .1rem;border-radius: 3px;}
+}
+
+.sec1{
+    margin-bottom: .4rem;
+    img{width: 100%;}
+    .tit_box{
+        margin-bottom: .2rem;
+        h3{text-align: center;margin-top: .2rem;line-height: 140%;}
+    }
+}
+
+.sec2{
+    img{width: 100%;}
+    .pic_list{
+        display: flex;justify-content: space-between;
+        a{
+            width:32%;
+            h4{text-align: center;}
+        }
+    }
+}
+
+.list1{
+    li{
+        background: url(../images/ii01.png)  .1rem center no-repeat;padding-left: .25rem;
+        a{display: block;line-height: 200%;color: #000;white-space: nowrap;-ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;overflow: hidden;}
+        &.b a{font-weight: bold;}
+    }
+}
+
+.list2_box{
+    border: 2px solid #be2d25;position: relative;padding-top: .2rem;margin-bottom: .5rem;
+    .tit{position: absolute;padding:0 .3rem;left: 50%;transform: translate(-50%); background-color: #fff;color: #be2d25;height: .3rem;line-height: .3rem;top: -.15rem;font-size: .28rem;}
+    .list1 li{padding-right: .1rem;}
+
+}
+
+.more1{width: 1.9rem;margin: 0 auto;display: block;height: .5rem;background-image: linear-gradient(to top, #cb4327, #981b15);text-align: center;line-height: .6rem;color: #fff;font-size: .28rem;border-radius: 3px;margin-top: .2rem;margin-bottom: .3rem;}
+
+.tit_common{
+    display: flex;-ms-align-items: center;
+    align-items: center;margin-bottom: .2rem;
+    .txt{
+        padding: 0 .3rem;font-size: .28rem;color: #be2d25;
+    }
+    .line{height: 2px;background-color: #be2d25;flex: 1;}
+}
+
+.footer{
+    padding: .5rem 0;background-color: #2b65a2;
+    .txt{text-align: center;color: #fff;line-height: 200%;}
+}
+
+
+
+
+
+
+
