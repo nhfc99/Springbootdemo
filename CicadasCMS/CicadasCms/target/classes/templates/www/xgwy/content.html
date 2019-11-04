@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${content.title!} - ${site.siteName!}</title>
+    <link href="${resPath}/xgwy/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="${resPath}/xgwy/css/common.css" rel="stylesheet" type="text/css">
+    <script src="${resPath}/xgwy/js/jquery.min.js"></script>
+    <script src="${resPath}/xgwy/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        $(function () {
+            /*banner图滚动*/
+            jQuery(".slideBox").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "fold",
+                defaultIndex: 0,
+                delayTime: 2000,
+                interTime: 5000,
+                endFun: function (e) {
+                }
+            });
+            // 焦点图滚动
+            jQuery(".focus").slide({mainCell: ".bd ul", autoPlay: true});
+            // 小图无缝滚动
+            jQuery(".picMarquee-left").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "leftMarquee",
+                vis: 6,
+                interTime: 50
+            });
+            /*banner图下方新闻消息切换*/
+            jQuery(".txtScroll-top").slide({
+                mainCell: ".bd ul",
+                autoPage: true,
+                effect: "topLoop",
+                autoPlay: true,
+                vis: 1
+            });
+        });
+			function sb(){
+	$("#searchForm").submit()
+	}
+    </script>
+    <style>
+        .txt img {
+            max-width: 100%!important;
+            max-height: 100%!important;
+        }
+    </style>
+</head>
+
+<body id="index">
+
+<!--header begin-->
+@includeFileTemplate("/www/xgwy/include/header.html",{"current":"index"}){}
+<!--header end-->
+
+<div class="h40"></div>
+
+<section class="layout clearfix news">
+    <div class="content">
+        <div class="news_detail ">
+            <div class="tit_b">${content.title!}</div>
+            <h3 class="subtit">时间：${content.inputdate!,dateFormat="yyyy/MM/dd"} 来源：${content.laiyuan!"无"} 作者：${content.author!}</h3>
+            <article class="txt">
+                <p>
+                    ${content.content!}
+                 </p>
+
+            </article>
+        </div>
+
+        <div class="h20"></div>
+        <div class="share">
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style_32x32">
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_weixin"></a>
+                <a class="jiathis_button_renren"></a>
+                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis"
+                   target="_blank"></a>
+                <a class="jiathis_counter_style"></a>
+            </div>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+        </div>
+    </div>
+    <div class="side_bar">
+        <!--最新公告-->
+        <#cms_category  categoryId="204" isParent="0" var="bean">
+        <div class="tit2">
+            <h4>${bean.categoryName!}</h4>
+            <a href="${bean.url!}" class="more">更多>></a>
+        </div>
+
+        <ul class="list6">
+            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="15"   var="bean">
+            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+        </#cms_content_list>
+        </ul>
+    </#cms_category>
+    <div class="h20"></div>
+    <!--嘉峪关文艺-->
+    <#cms_category  categoryId="209" isParent="0" var="bean">
+    <div class="tit2">
+        <h4>${bean.categoryName!}</h4>
+        <a href="${bean.url!}" class="more">更多>></a>
+    </div>
+    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+    <a href="${bean.url!}" target="_blank" class="pic_box">
+        <img src="${bean.thumb!}">
+
+        <h4>${bean.title!}</h4>
+    </a>
+</#cms_content_list>
+</#cms_category>
+<div class="h20"></div>
+<!--文联资讯-->
+<#cms_category  categoryId="211" isParent="0" var="bean">
+<div class="tit2">
+    <h4>${bean.categoryName!}</h4>
+    <a href="${bean.url!}" class="more">更多>></a>
+</div>
+<#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+<a href="${bean.url!}" target="_blank" class="pic_box">
+    <img src="${bean.thumb!}">
+
+    <h4>${bean.title!}</h4>
+</a>
+</#cms_content_list>
+</#cms_category>
+<a href="#" target="_blank" class="pic_box" style="padding-left: 10px;padding-right: 10px;">
+    <img src="${resPath}/xgwy/images/ewg.png">
+</a>
+</div>
+</section>
+
+<!-- footer begin-->
+@includeFileTemplate("/www/xgwy/include/footer.html"){}
+<!-- footer end-->
+
+<div class="h50"></div>
+</body>
+</html>
+

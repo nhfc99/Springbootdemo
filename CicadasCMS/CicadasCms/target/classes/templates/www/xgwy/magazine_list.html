@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${category.categoryName!} - ${site.siteName!}</title>
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        $(function () {
+            /*banner图滚动*/
+            jQuery(".slideBox").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "fold",
+                defaultIndex: 0,
+                delayTime: 2000,
+                interTime: 5000,
+                endFun: function (e) {
+                }
+            });
+            // 焦点图滚动
+            jQuery(".focus").slide({mainCell: ".bd ul", autoPlay: true});
+            // 小图无缝滚动
+            jQuery(".picMarquee-left").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "leftMarquee",
+                vis: 6,
+                interTime: 50
+            });
+            /*banner图下方新闻消息切换*/
+            jQuery(".txtScroll-top").slide({
+                mainCell: ".bd ul",
+                autoPage: true,
+                effect: "topLoop",
+                autoPlay: true,
+                vis: 1
+            });
+        });
+    </script>
+</head>
+
+<body id="index">
+<header class="slideBox">
+    <div class="w1400">
+        <div class="row">
+            <a href="index.html" class="logo"><img src="images/logo.png"></a>
+        </div>
+        <div class="bd">
+            <ul>
+                <li style="background-image: url(images/banner1.jpg)"></li>
+                <li style="background-image: url(images/banner2.jpg)"></li>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+</header>
+
+
+<div class="nav_box row">
+    <ul class="nav clearfix">
+        <li><a href="index.html">网站首页</a></li>
+        <li><a href="newsDetail.html">文联简介</a></li>
+        <li><a href="leader.html">文联领导</a></li>
+        <li><a href="newsList.html">文联动态</a></li>
+        <li><a href="#">领导讲话</a></li>
+        <li><a href="#">文联志愿</a></li>
+        <li><a href="#">文艺评论</a></li>
+    </ul>
+    <div class="msg">
+        <div class="row clearfix">
+            <div class="left">
+                <div class="bread">
+                    <span> 首页 > 杂志列表</span>
+                </div>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="搜索关键词">
+                <a href="#"><img src="images/search.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="h40"></div>
+<section class="layout clearfix mb30">
+    <div class="magazine_box">
+        <div class="tit">2018年</div>
+        <ul>
+            <li><a href="#"><img src="images/pic1.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+            <li><a href="#"><img src="images/pic6.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+            <li><a href="#"><img src="images/pic6.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+            <li><a href="#"><img src="images/pic6.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+        </ul>
+    </div>
+    <div class="magazine_box">
+        <div class="tit">2017年</div>
+        <ul>
+            <li><a href="#"><img src="images/pic6.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+
+            <li><a href="#"><img src="images/pic6.jpg"><h4>嘉峪关文艺2017年第2期</h4></a></li>
+        </ul>
+    </div>
+</section>
+
+
+<footer class="index">
+    <div class="row">
+        <div class="line"></div>
+        <div class="h15"></div>
+        <div class="desc">
+            <div class="ewg"><img src="images/ewg.png"><h4>手机版</h4></div>
+            <div class="txt">
+               <p>备案：陇ICP备06003073号-1</p>
+                <p>工业和信息化部ICP / IP地址/ 域名信息备案管理系统首页</p>
+                <p>甘公网安备 62020102000027号</p>
+                <p>嘉峪关市文学艺术界联合会 Copyright # 2018 All Rights Rrserved </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="h50"></div>
+</body>
+</html>
+

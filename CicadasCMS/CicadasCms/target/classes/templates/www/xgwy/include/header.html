@@ -1,0 +1,61 @@
+<header class="slideBox">
+    <div class="w1400">
+        <div class="row">
+            <a href="${frontPath}/${site.siteKey!}/index.html" class="logo">
+                <img src="${ctxPath}/images/logo.png">
+            </a>
+        </div>
+        <div class="bd">
+            <ul>
+                <#cms_index_silder titleLen="10" size="10" var="bean">
+                <li style="background-image: url('${bean.img!}')"></li>
+            </#cms_index_silder>
+            </ul>
+
+        </div>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+</header>
+
+<div class="nav_box row">
+    <ul class="nav clearfix">
+        <li><a href="${ctxPath}/index.html">网站首页</a></li>
+        <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
+        <li><a href="${bean.url!}" target="_blank">${bean.categoryName!}</a></li>
+    </#cms_category_list>
+    </ul>
+    <div class="msg">
+        <div class="row clearfix">
+            <div class="left">
+                <!--通知公告-->
+                <#cms_category  categoryId="204" isParent="0" var="bean">
+                <div class="tit"><span> ${bean.categoryName!}：</span></div>
+                <div class="slide">
+                    <div class="txtScroll-top">
+                        <div class="bd">
+                            <ul class="infoList">
+                                <!--新闻通知-->
+                                <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="20"   var="bean">
+                                <li>
+                                    <a href="${bean.url!}" target="_blank">${bean.title!}</a>
+                                </li>
+                            </#cms_content_list>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </#cms_category>
+        </div>
+        <div class="search">
+            <form id="searchForm" ACTION="${ctxPath}/search" method="get">
+                <input type="hidden" name="s" value="${site.siteId}">
+                <input type="text" name="keyword"  placeholder="请输入关键字" />
+                <a onclick="sb()" href="#"><img src="${resPath}/xgwy/images/search.png"></a>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>

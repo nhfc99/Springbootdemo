@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${category.categoryName!} - ${site.siteName!}</title>
+    <link href="${resPath}/xgwy/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="${resPath}/xgwy/css/common.css" rel="stylesheet" type="text/css">
+    <script src="${resPath}/xgwy/js/jquery.min.js"></script>
+    <script src="${resPath}/xgwy/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        $(function () {
+            /*banner图滚动*/
+            jQuery(".slideBox").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "fold",
+                defaultIndex: 0,
+                delayTime: 2000,
+                interTime: 5000,
+                endFun: function (e) {
+                }
+            });
+            // 焦点图滚动
+            jQuery(".focus").slide({mainCell: ".bd ul", autoPlay: true});
+            // 小图无缝滚动
+            jQuery(".picMarquee-left").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                effect: "leftMarquee",
+                vis: 6,
+                interTime: 50
+            });
+            /*banner图下方新闻消息切换*/
+            jQuery(".txtScroll-top").slide({
+                mainCell: ".bd ul",
+                autoPage: true,
+                effect: "topLoop",
+                autoPlay: true,
+                vis: 1
+            });
+        });
+					function sb(){
+	$("#searchForm").submit()
+	}
+    </script>
+</head>
+
+<body id="index">
+<header class="slideBox">
+    <div class="w1400">
+        <div class="row">
+            <a href="${frontPath}/${site.siteKey!}/index.html" class="logo"><img src="${resPath}/xgwy/images/logo.png"></a>
+        </div>
+        <div class="bd">
+            <ul>
+               <#cms_index_silder titleLen="10" size="10" var="bean">
+					<li style="background-image: url('${bean.img!}')"></li>
+				    </#cms_index_silder>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+</header>
+
+
+<div class="nav_box row">
+    <ul class="nav clearfix">
+        <li><a href="${frontPath}/${site.siteKey!}/index.html">网站首页</a></li>
+        <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
+        <li><a href="${bean.url!}" target="_blank">${bean.categoryName!}</a></li>
+        </#cms_category_list>
+    </ul>
+    <div class="msg">
+        <div class="row clearfix">
+            <div class="left">
+                <div class="bread">
+                    <#cms_site_pos  site="${site}" category="${category}"  var="bean">
+                    <span>
+                         <a href="${frontPath}/${site.siteKey!}/index.html">首页</a>
+                        @for(location in bean.locations){
+                        <a href="${location.url}">${location.categoryName}</a>
+                        @if(!locationLP.last){
+                        >
+                        @}
+                        @}
+                   </span>
+                </#cms_site_pos>
+                </div>
+            </div>
+        <div class="search">
+           <form id="searchForm" ACTION="${ctxPath}/search" method="get">
+		     <input type="hidden" name="s" value="${site.siteId}">
+			 <input type="text" name="keyword"  placeholder="请输入关键字" />
+            <a onclick="sb()" href="#"><img src="${resPath}/xgwy/images/search.png"></a>
+			
+		 </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="h40"></div>
+<section class="layout clearfix mb30">
+    <div class="content">
+        <ul class="newsList clearfix">
+            <#cms_content_page  siteId="${site.siteId!}"  titleLen="35" page="${page!}"  var="content">
+            <li><a href="${content.url!}" target="_blank">${content.title!}</a><span>${content.inputdate!,dateFormat="yyyy-MM-dd"}</span></li>
+        </#cms_content_page>
+        </ul>
+        <div class="h30"></div>
+        <div id="page">
+            <#cms_pagination siteId="${site.siteId}" categoryId="${category.categoryId}" page="${page}"  var="page" >
+            ${page.first}
+				@for( change in page.changePage){
+							@if(!change.isLink){
+							@if(change.isMore){
+							  ${change.value!}
+							@}else{
+							 <span style="color:red">${change.value!}</span>
+							@}
+							@}else{
+							  ${change.url!}
+							@}
+				@}
+            ${page.next}
+           </#cms_pagination>
+
+        </div>
+    </div>
+    <div class="side_bar">
+        <!--最新公告-->
+        <#cms_category  categoryId="204" isParent="0" var="bean">
+        <div class="tit2">
+            <h4>${bean.categoryName!}</h4>
+            <a href="${bean.url!}" class="more">更多>></a>
+        </div>
+
+        <ul class="list6">
+            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="15"   var="bean">
+            <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
+        </#cms_content_list>
+        </ul>
+    </#cms_category>
+    <div class="h20"></div>
+    <!--XXX文艺-->
+    <#cms_category  categoryId="209" isParent="0" var="bean">
+    <div class="tit2">
+        <h4>${bean.categoryName!}</h4>
+        <a href="${bean.url!}" class="more">更多>></a>
+    </div>
+    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+    <a href="${bean.url!}" target="_blank" class="pic_box">
+        <img src="${bean.thumb!}">
+
+        <h4>${bean.title!}</h4>
+    </a>
+</#cms_content_list>
+</#cms_category>
+<div class="h20"></div>
+<!--文联资讯-->
+<#cms_category  categoryId="211" isParent="0" var="bean">
+<div class="tit2">
+    <h4>${bean.categoryName!}</h4>
+    <a href="${bean.url!}" class="more">更多>></a>
+</div>
+<#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+<a href="${bean.url!}" target="_blank" class="pic_box">
+    <img src="${bean.thumb!}">
+
+    <h4>${bean.title!}</h4>
+</a>
+</#cms_content_list>
+</#cms_category>
+<a href="#" target="_blank" class="pic_box" style="padding-left: 10px;padding-right: 10px;">
+    <img src="${resPath}/xgwy/images/ewg.png">
+</a>
+</div>
+</section>
+<!-- footer begin-->
+@includeFileTemplate("/www/xgwy/include/footer.html"){}
+<!-- footer end-->
+<div class="h50"></div>
+</body>
+</html>
+
