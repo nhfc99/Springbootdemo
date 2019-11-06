@@ -12,27 +12,8 @@ public class UserDO implements Serializable {
     private Integer u_dpid;
 
     private Integer u_pid;
-    
-    private Integer u_day;
-    private Integer u_night;
 
-    public Integer getU_day() {
-		return u_day;
-	}
-
-	public void setU_day(Integer u_day) {
-		this.u_day = u_day;
-	}
-
-	public Integer getU_night() {
-		return u_night;
-	}
-
-	public void setU_night(Integer u_night) {
-		this.u_night = u_night;
-	}
-
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;

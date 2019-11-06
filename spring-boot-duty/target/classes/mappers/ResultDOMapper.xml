@@ -1,21 +1,222 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nhfc99.duty.dao.ResultDOMapper">
-	<resultMap id="BaseResultMap"
-		type="com.nhfc99.duty.model.ResultDO">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="r_date" property="r_date" jdbcType="VARCHAR" />
-		<result column="r_dpuid" property="r_dpuid" jdbcType="INTEGER" />
-		<result column="r_fid1" property="r_fid1" jdbcType="INTEGER" />
-		<result column="r_fid2" property="r_fid2" jdbcType="INTEGER" />
-		<result column="r_dutytype" property="r_dutytype"
-			jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.ResultDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="r_date" jdbcType="VARCHAR" property="r_date" />
+    <result column="r_dpuid" jdbcType="INTEGER" property="r_dpuid" />
+    <result column="r_fid1" jdbcType="INTEGER" property="r_fid1" />
+    <result column="r_fid2" jdbcType="INTEGER" property="r_fid2" />
+    <result column="r_dutytype" jdbcType="INTEGER" property="r_dutytype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, r_date, r_dpuid, r_fid1, r_fid2, r_dutytype
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nhfc99.duty.model.ResultDO">
+    insert into result (id, r_date, r_dpuid, 
+      r_fid1, r_fid2, r_dutytype
+      )
+    values (#{id,jdbcType=INTEGER}, #{r_date,jdbcType=VARCHAR}, #{r_dpuid,jdbcType=INTEGER}, 
+      #{r_fid1,jdbcType=INTEGER}, #{r_fid2,jdbcType=INTEGER}, #{r_dutytype,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.ResultDO">
+    insert into result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="r_date != null">
+        r_date,
+      </if>
+      <if test="r_dpuid != null">
+        r_dpuid,
+      </if>
+      <if test="r_fid1 != null">
+        r_fid1,
+      </if>
+      <if test="r_fid2 != null">
+        r_fid2,
+      </if>
+      <if test="r_dutytype != null">
+        r_dutytype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="r_date != null">
+        #{r_date,jdbcType=VARCHAR},
+      </if>
+      <if test="r_dpuid != null">
+        #{r_dpuid,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid1 != null">
+        #{r_fid1,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid2 != null">
+        #{r_fid2,jdbcType=INTEGER},
+      </if>
+      <if test="r_dutytype != null">
+        #{r_dutytype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.ResultDO">
+    update result
+    <set>
+      <if test="r_date != null">
+        r_date = #{r_date,jdbcType=VARCHAR},
+      </if>
+      <if test="r_dpuid != null">
+        r_dpuid = #{r_dpuid,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid1 != null">
+        r_fid1 = #{r_fid1,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid2 != null">
+        r_fid2 = #{r_fid2,jdbcType=INTEGER},
+      </if>
+      <if test="r_dutytype != null">
+        r_dutytype = #{r_dutytype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.ResultDO">
+    update result
+    set r_date = #{r_date,jdbcType=VARCHAR},
+      r_dpuid = #{r_dpuid,jdbcType=INTEGER},
+      r_fid1 = #{r_fid1,jdbcType=INTEGER},
+      r_fid2 = #{r_fid2,jdbcType=INTEGER},
+      r_dutytype = #{r_dutytype,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.ResultDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="r_date" jdbcType="VARCHAR" property="r_date" />
+    <result column="r_dpuid" jdbcType="INTEGER" property="r_dpuid" />
+    <result column="r_fid1" jdbcType="INTEGER" property="r_fid1" />
+    <result column="r_fid2" jdbcType="INTEGER" property="r_fid2" />
+    <result column="r_dutytype" jdbcType="INTEGER" property="r_dutytype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, r_date, r_dpuid, r_fid1, r_fid2, r_dutytype
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nhfc99.duty.model.ResultDO">
+    insert into result (id, r_date, r_dpuid, 
+      r_fid1, r_fid2, r_dutytype
+      )
+    values (#{id,jdbcType=INTEGER}, #{r_date,jdbcType=VARCHAR}, #{r_dpuid,jdbcType=INTEGER}, 
+      #{r_fid1,jdbcType=INTEGER}, #{r_fid2,jdbcType=INTEGER}, #{r_dutytype,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.ResultDO">
+    insert into result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="r_date != null">
+        r_date,
+      </if>
+      <if test="r_dpuid != null">
+        r_dpuid,
+      </if>
+      <if test="r_fid1 != null">
+        r_fid1,
+      </if>
+      <if test="r_fid2 != null">
+        r_fid2,
+      </if>
+      <if test="r_dutytype != null">
+        r_dutytype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="r_date != null">
+        #{r_date,jdbcType=VARCHAR},
+      </if>
+      <if test="r_dpuid != null">
+        #{r_dpuid,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid1 != null">
+        #{r_fid1,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid2 != null">
+        #{r_fid2,jdbcType=INTEGER},
+      </if>
+      <if test="r_dutytype != null">
+        #{r_dutytype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.ResultDO">
+    update result
+    <set>
+      <if test="r_date != null">
+        r_date = #{r_date,jdbcType=VARCHAR},
+      </if>
+      <if test="r_dpuid != null">
+        r_dpuid = #{r_dpuid,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid1 != null">
+        r_fid1 = #{r_fid1,jdbcType=INTEGER},
+      </if>
+      <if test="r_fid2 != null">
+        r_fid2 = #{r_fid2,jdbcType=INTEGER},
+      </if>
+      <if test="r_dutytype != null">
+        r_dutytype = #{r_dutytype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.ResultDO">
+    update result
+    set r_date = #{r_date,jdbcType=VARCHAR},
+      r_dpuid = #{r_dpuid,jdbcType=INTEGER},
+      r_fid1 = #{r_fid1,jdbcType=INTEGER},
+      r_fid2 = #{r_fid2,jdbcType=INTEGER},
+      r_dutytype = #{r_dutytype,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+	<resultMap id="BaseResultMap" type="com.nhfc99.duty.model.ResultDO">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="r_date" jdbcType="VARCHAR" property="r_date" />
+		<result column="r_dpuid" jdbcType="INTEGER" property="r_dpuid" />
+		<result column="r_fid1" jdbcType="INTEGER" property="r_fid1" />
+		<result column="r_fid2" jdbcType="INTEGER" property="r_fid2" />
+		<result column="r_dutytype" jdbcType="INTEGER" property="r_dutytype" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, r_date, r_dpuid, r_fid1, r_fid2, r_dutytype
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from result
@@ -28,8 +229,7 @@
 		from result
 	</select>
 
-	<select id="selectCountBy" resultType="java.lang.Integer"
-		parameterType="java.util.HashMap">
+	<select id="selectCountBy" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select
 		count(*)
 		from result WHERE
@@ -39,8 +239,7 @@
 		#{uid,jdbcType=INTEGER}) and r_dutytype = #{rtype,jdbcType=INTEGER})
 	</select>
 
-	<delete id="deleteByPrimaryKey"
-		parameterType="java.lang.Integer">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from result
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
@@ -49,8 +248,7 @@
 		delete from result
 	</delete>
 	
-	<insert id="insert"
-		parameterType="com.nhfc99.duty.model.ResultDO">
+	<insert id="insert" parameterType="com.nhfc99.duty.model.ResultDO">
 		insert into result (id, r_date, r_dpuid,
 		r_fid1, r_fid2, r_dutytype)
 		values (#{id,jdbcType=INTEGER}, #{r_date,jdbcType=VARCHAR},
@@ -59,8 +257,7 @@
 		#{r_fid2,jdbcType=INTEGER},
 		#{r_dutytype,jdbcType=INTEGER})
 	</insert>
-	<insert id="insertSelective"
-		parameterType="com.nhfc99.duty.model.ResultDO">
+	<insert id="insertSelective" parameterType="com.nhfc99.duty.model.ResultDO">
 		insert into result
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -103,8 +300,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="com.nhfc99.duty.model.ResultDO">
+	<update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.ResultDO">
 		update result
 		<set>
 			<if test="r_date != null">
@@ -125,8 +321,7 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="com.nhfc99.duty.model.ResultDO">
+	<update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.ResultDO">
 		update result
 		set r_date = #{r_date,jdbcType=VARCHAR},
 		r_dpuid = #{r_dpuid,jdbcType=INTEGER},

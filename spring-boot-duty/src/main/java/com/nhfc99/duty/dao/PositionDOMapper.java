@@ -1,12 +1,7 @@
 package com.nhfc99.duty.dao;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.nhfc99.duty.model.PositionDO;
 
-@Mapper
 public interface PositionDOMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -19,6 +14,4 @@ public interface PositionDOMapper {
     int updateByPrimaryKeySelective(PositionDO record);
 
     int updateByPrimaryKey(PositionDO record);
-    
-    List<PositionDO> selectAll();
 }

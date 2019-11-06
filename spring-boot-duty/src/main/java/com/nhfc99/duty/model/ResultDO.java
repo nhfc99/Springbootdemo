@@ -2,35 +2,20 @@ package com.nhfc99.duty.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class ResultDO implements Serializable {
-	@JsonIgnore
     private Integer id;
 
     private String r_date;
 
-    @JsonIgnore
     private Integer r_dpuid;
 
-    @JsonIgnore
     private Integer r_fid1;
 
-    @JsonIgnore
     private Integer r_fid2;
-    
-    @JsonIgnore
+
     private Integer r_dutytype;
 
-    public Integer getR_dutytype() {
-		return r_dutytype;
-	}
-
-	public void setR_dutytype(Integer r_dutytype) {
-		this.r_dutytype = r_dutytype;
-	}
-
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -70,5 +55,13 @@ public class ResultDO implements Serializable {
 
     public void setR_fid2(Integer r_fid2) {
         this.r_fid2 = r_fid2;
+    }
+
+    public Integer getR_dutytype() {
+        return r_dutytype;
+    }
+
+    public void setR_dutytype(Integer r_dutytype) {
+        this.r_dutytype = r_dutytype;
     }
 }
