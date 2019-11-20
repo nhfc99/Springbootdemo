@@ -22,16 +22,8 @@ public class IndexController {
 
     @GetMapping("/list")
     @ResponseBody
-//    public PR list(@RequestParam("name") String name) {
-//        logger.info("test log");
-//        return PR.ok("成功");
-//    }
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
-//        return PR.ok(this.des);
-//        Map<String, String> map = new HashMap();
-//        map.put("key", "value");
-//        return map;
         return this.des;
     }
 

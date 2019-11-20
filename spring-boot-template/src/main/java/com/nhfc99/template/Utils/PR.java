@@ -31,7 +31,7 @@ public class PR {
         return new PR();
     }
 
-    private static PR error(int code, String msg) {
+    public static PR error(int code, String msg) {
         PR r = new PR();
         r.setCode(code);
         r.setMsg(msg);

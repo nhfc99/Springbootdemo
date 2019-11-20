@@ -2,7 +2,7 @@ package com.nhfc99.template.Config;
 
 import com.nhfc99.template.Utils.JSONUtils;
 import com.nhfc99.template.Utils.PR;
-import com.nhfc99.template.Utils.RestfulResponse;
+import com.nhfc99.template.Utils.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +82,7 @@ public class ApiResultControllerAdvice implements ResponseBodyAdvice<Object> {
         httpServletResponse.setContentType("application/json; charset=utf-8");
 
         if (body == null) {
-            return RestfulResponse.failed();
+            return JsonResult.failed();
         }
         if (body instanceof PR) {
             return body;
@@ -102,11 +102,11 @@ public class ApiResultControllerAdvice implements ResponseBodyAdvice<Object> {
         }
 
         if (body instanceof String) {
-            String str = JSONUtils.beanToJson(RestfulResponse.success(body, msg));
+            String str = JSONUtils.beanToJson(JsonResult.success(body, msg));
             logger.info(str);
             return str;
         } else {
-            return RestfulResponse.success(body, msg);
+            return JsonResult.success(body, msg);
         }
     }
 }
