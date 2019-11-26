@@ -32,9 +32,7 @@ public class IndexController {
     @ResponseBody
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
-//        return JSONResult.success(this.des);
-        Integer nn = 2/0;
-        return "asdfasdf";
+        return JSONResult.success(this.des);
     }
 
     @APIRequestLog
