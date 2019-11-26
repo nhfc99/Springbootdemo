@@ -33,6 +33,7 @@ public class IndexController {
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
 //        return JSONResult.success(this.des);
+        Integer nn = 2/0;
         return "asdfasdf";
     }
 
@@ -43,7 +44,6 @@ public class IndexController {
         if (value == null) {
             logger.info("还没有用户信息");
             redisUtil.set("user", "nhfc99");
-            int i = 1/0;
             return JSONResult.failed("没有这样的用户信息");
         } else {
             logger.info("已有用户信息");

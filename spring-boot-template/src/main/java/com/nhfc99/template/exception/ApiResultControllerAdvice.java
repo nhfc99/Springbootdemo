@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 
 @ControllerAdvice
 public class ApiResultControllerAdvice implements ResponseBodyAdvice<Object> {
@@ -69,6 +71,15 @@ public class ApiResultControllerAdvice implements ResponseBodyAdvice<Object> {
                                   ServerHttpRequest request, ServerHttpResponse response) {
         if (body == null) {
             return JSONResult.failed();
+        }
+
+        //报错截获数据
+        Method method = returnType.getMethod();
+        if (method.getName().equals("error")) {
+            LinkedHashMap linkedHashMap = ((LinkedHashMap)body);
+            Integer status = (Integer)linkedHashMap.get("status");
+            String msg = linkedHashMap.get("message").toString();
+            return JSONResult.result(status, msg);
         }
 
         AnnotatedElement element = returnType.getAnnotatedElement();

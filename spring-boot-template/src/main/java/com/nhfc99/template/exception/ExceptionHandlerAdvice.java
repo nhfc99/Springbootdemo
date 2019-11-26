@@ -1,6 +1,7 @@
 package com.nhfc99.template.exception;
 
 import com.nhfc99.template.utils.JSONResult;
+import com.nhfc99.template.utils.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -138,6 +139,8 @@ public class ExceptionHandlerAdvice {
     private <T extends Throwable> JSONResult resultFormat(int code, T ex) {
         ex.printStackTrace();
         logger.error(ex.getMessage());
-        return JSONResult.result(code, ex.getMessage());
+        JSONResult json = JSONResult.result(code, ex.getMessage());
+        logger.info(JSONUtils.beanToJson(json));
+        return json;
     }
 }
