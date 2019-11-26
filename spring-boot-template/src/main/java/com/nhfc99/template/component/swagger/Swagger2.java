@@ -7,6 +7,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -15,38 +16,28 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ConditionalOnExpression("${swagger.enable:true}")
 public class Swagger2 {
-    /**
-     * 创建API应用
-     * apiInfo() 增加API相关信息
-     * 通过select()函数返回一个ApiSelectorBuilder实例,用来控制哪些接口暴露给Swagger来展现，
-     * 本例采用指定扫描的包路径来定义指定要建立API的目录。
-     *
-     * @return
-     */
+    //指定扫描哪些包
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.nhfc99.template.publish"))
+                //要扫描的包路径（这里无需通过命名空间，太low了）
+                .apis(RequestHandlerSelectors.basePackage("com.nhfc99"))//显示API注解的接口
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    /**
-     * 创建该API的基本信息（这些基本信息会展现在文档页面中）
-     * 访问地址：http://项目实际地址/swagger-ui.html
-     *
-     * @return
-     */
+    //配置swagger的基本信息
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("更多请关注http://www.baidu.com")
-                .termsOfServiceUrl("http://www.baidu.com")
-                .contact("nhfc99")
-                .version("1.0")
+                .title("Api Docs")
+                //创始人
+                .contact(new Contact("nhfc99", "nhfc99", "nhfc99@163.com"))
+                .description("接口文档V0.1")
+                //版本
+                .version("0.1")
+                //描述
                 .build();
-
     }
 }
