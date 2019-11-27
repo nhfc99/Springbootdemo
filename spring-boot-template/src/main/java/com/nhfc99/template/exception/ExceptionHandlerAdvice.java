@@ -26,50 +26,57 @@ public class ExceptionHandlerAdvice {
     private final int STATUS_VALIDATE = 480;
 
     //运行时异常
+    @ResponseBody
     @ExceptionHandler(RuntimeException.class)
     public Object runtimeExceptionHandler(RuntimeException ex) {
         return resultFormat(500, ex);
     }
 
     //空指针异常
+    @ResponseBody
     @ExceptionHandler(NullPointerException.class)
     public Object nullPointerExceptionHandler(NullPointerException ex) {
         return resultFormat(500, ex);
     }
 
     //类型转换异常
+    @ResponseBody
     @ExceptionHandler(ClassCastException.class)
     public Object classCastExceptionHandler(ClassCastException ex) {
         return resultFormat(500, ex);
     }
 
     //IO异常
+    @ResponseBody
     @ExceptionHandler(IOException.class)
     public Object iOExceptionHandler(IOException ex) {
         return resultFormat(500, ex);
     }
 
     //未知方法异常
+    @ResponseBody
     @ExceptionHandler(NoSuchMethodException.class)
     public Object noSuchMethodExceptionHandler(NoSuchMethodException ex) {
         return resultFormat(500, ex);
     }
 
     //数组越界异常
+    @ResponseBody
     @ExceptionHandler(IndexOutOfBoundsException.class)
     public Object indexOutOfBoundsExceptionHandler(IndexOutOfBoundsException ex) {
         return resultFormat(500, ex);
     }
 
     //400错误
+    @ResponseBody
     @ExceptionHandler({HttpMessageNotReadableException.class})
-
     public Object requestNotReadable(HttpMessageNotReadableException ex) {
         System.out.println("400..requestNotReadable");
         return resultFormat(400, ex);
     }
 
     //400错误
+    @ResponseBody
     @ExceptionHandler({TypeMismatchException.class})
     public Object requestTypeMismatch(TypeMismatchException ex) {
         System.out.println("400..TypeMismatchException");
@@ -77,6 +84,7 @@ public class ExceptionHandlerAdvice {
     }
 
     //400错误
+    @ResponseBody
     @ExceptionHandler({MissingServletRequestParameterException.class})
     public Object requestMissingServletRequest(MissingServletRequestParameterException ex) {
         System.out.println("400..MissingServletRequest");
@@ -84,30 +92,35 @@ public class ExceptionHandlerAdvice {
     }
 
     //405错误
+    @ResponseBody
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
     public Object request405(HttpRequestMethodNotSupportedException ex) {
         return resultFormat(405, ex);
     }
 
     //406错误
+    @ResponseBody
     @ExceptionHandler({HttpMediaTypeNotAcceptableException.class})
     public Object request406(HttpMediaTypeNotAcceptableException ex) {
         return resultFormat(406, ex);
     }
 
     //500错误
+    @ResponseBody
     @ExceptionHandler({ConversionNotSupportedException.class, HttpMessageNotWritableException.class})
     public Object server500(RuntimeException ex) {
         return resultFormat(500, ex);
     }
 
     //栈溢出
+    @ResponseBody
     @ExceptionHandler({StackOverflowError.class})
     public Object requestStackOverflow(StackOverflowError ex) {
         return resultFormat(500, ex);
     }
 
     //除数不能为0
+    @ResponseBody
     @ExceptionHandler({ArithmeticException.class})
     public Object arithmeticException(ArithmeticException ex) {
         return resultFormat(500, ex);

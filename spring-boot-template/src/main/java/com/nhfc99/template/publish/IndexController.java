@@ -32,6 +32,7 @@ public class IndexController {
     @ResponseBody
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
+        Integer state = 1/0;
         return JSONResult.success(this.des);
     }
 
