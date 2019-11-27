@@ -1,6 +1,6 @@
 package com.nhfc99.template.publish;
 
-import com.nhfc99.template.Vo.UserInfoVo;
+import com.nhfc99.template.vo.UserInfoVo;
 import com.nhfc99.template.component.annotations.apirequestlog.APIRequestLog;
 import com.nhfc99.template.component.redis.RedisUtil;
 import com.nhfc99.template.utils.JSONResult;

@@ -1,4 +1,4 @@
-package com.nhfc99.template.Vo;
+package com.nhfc99.template.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
