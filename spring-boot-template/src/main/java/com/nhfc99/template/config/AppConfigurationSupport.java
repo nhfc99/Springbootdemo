@@ -17,6 +17,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Spring Mvc 配置
+ */
 @Configuration
 public class AppConfigurationSupport extends WebMvcConfigurationSupport {
     @Override

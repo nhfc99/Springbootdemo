@@ -1,9 +1,10 @@
 package com.nhfc99.template.publish;
 
-import com.nhfc99.template.vo.UserInfoVo;
 import com.nhfc99.template.component.annotations.apirequestlog.APIRequestLog;
 import com.nhfc99.template.component.redis.RedisUtil;
 import com.nhfc99.template.utils.JSONResult;
+import com.nhfc99.template.utils.JSONUtils;
+import com.nhfc99.template.vo.UserInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.ConstructorProperties;
 
@@ -31,14 +33,17 @@ public class IndexController {
     @Autowired
     RedisUtil redisUtil;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @APIRequestLog
     @GetMapping("/list")
     @ResponseBody
     @ApiOperation(value = "获取列表", notes = "获取列表信息")
-    @ApiImplicitParam(paramType="query", name = "name", value = "用户名", required = true, dataType = "String")
+    @ApiImplicitParam(paramType = "query", name = "name", value = "用户名", required = true, dataType = "String")
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
-        Integer state = 1/0;
+        Integer state = 1 / 0;
         return JSONResult.success(this.des);
     }
 
@@ -65,8 +70,13 @@ public class IndexController {
     @PostMapping("/data")
     @ResponseBody
     @ApiOperation(value = "UserInfoVo传参", notes = "类型是UserInfoVo")
-    @ApiImplicitParam(paramType="query", name = "userInfoVo", value = "UserInfoVo值", required = true, dataType = "UserInfoVo")
+    @ApiImplicitParam(paramType = "query", name = "userInfoVo", value = "UserInfoVo值", required = true, dataType = "UserInfoVo")
     public Object showData(@RequestBody UserInfoVo userInfoVo) {
         return userInfoVo;
+    }
+
+    @GetMapping("/requestbaidu")
+    public Object restBaiDu() {
+        return JSONUtils.beanToJson(restTemplate.getForObject("http://www.baidu.com", String.class));
     }
 }
