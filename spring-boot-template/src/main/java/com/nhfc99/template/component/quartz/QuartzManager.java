@@ -151,6 +151,7 @@ public class QuartzManager {
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever())
                 .forJob(jobDetail())
                 .build();
+        scheduler.addJob(jobDetail(),true);
         scheduler.scheduleJob(trigger);
     }
 
@@ -158,6 +159,7 @@ public class QuartzManager {
         List<String> groupNames = scheduler.getJobGroupNames();
         for (int i = 0; i < groupNames.size(); i++) {
             Set<JobKey> jobKeys = scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupNames.get(i)));
+
             for (JobKey jobKey : jobKeys) {                                                 //删除从数据库中注册的所有JOB
                 scheduler.unscheduleJob(TriggerKey.triggerKey(jobKey.getName(), jobKey.getGroup()));
                 scheduler.deleteJob(jobKey);

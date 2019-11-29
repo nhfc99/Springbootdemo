@@ -4,11 +4,10 @@ import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+//@Component
 public class DefaultJob implements Job {
     private static final Logger logger = LoggerFactory.getLogger(QuartzJobBean.class);
 
