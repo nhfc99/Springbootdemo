@@ -1,4 +1,4 @@
-package com.nhfc99.template;
+package com.nhfc99;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan("com.nhfc99.template.*")
+@ComponentScan("com.nhfc99.*")
 @EnableWebMvc
 @EnableSwagger2
 public class TemplateApplication {

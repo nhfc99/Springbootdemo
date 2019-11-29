@@ -1,4 +1,4 @@
-package com.nhfc99.template;
+package com.nhfc99;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(TemplateApplication.class);
+        return application.sources(com.nhfc99.TemplateApplication.class);
     }
 
 }
