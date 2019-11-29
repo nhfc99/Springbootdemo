@@ -134,6 +134,8 @@ public class ExceptionHandlerAdvice {
         int code = response.getStatus();
         response.setStatus(480);
 
+        logger.error(ex.getMessage());
+
         if (ex instanceof org.springframework.web.servlet.NoHandlerFoundException) {
             result = JSONResult.result(404, ex.getMessage());
         } else if (404 == code) {

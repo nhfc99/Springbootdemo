@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.beans.ConstructorProperties;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -71,7 +72,7 @@ public class IndexController {
     @ResponseBody
     @ApiOperation(value = "UserInfoVo传参", notes = "类型是UserInfoVo")
     @ApiImplicitParam(paramType = "query", name = "userInfoVo", value = "UserInfoVo值", required = true, dataType = "UserInfoVo")
-    public Object showData(@RequestBody UserInfoVo userInfoVo) {
+    public Object showData(@Valid @RequestBody UserInfoVo userInfoVo) {
         return userInfoVo;
     }
 
