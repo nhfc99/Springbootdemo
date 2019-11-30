@@ -1,4 +1,4 @@
-package com.nhfc99.template.component.annotations.apirequestlog;
+package com.nhfc99.template.component.annotations.apirequestlogaspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -17,7 +17,7 @@ public class APIRequestLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(Object.class);
 
     //    @Pointcut(value = "execution(public * com.nhfc99.template.publish.IndexController.*(..))")
-    @Pointcut("@annotation(com.nhfc99.template.component.annotations.apirequestlog.APIRequestLog)")
+    @Pointcut("@annotation(com.nhfc99.template.component.annotations.apirequestlogaspect.APIRequestLog)")
     public void webLog() {
     }
 

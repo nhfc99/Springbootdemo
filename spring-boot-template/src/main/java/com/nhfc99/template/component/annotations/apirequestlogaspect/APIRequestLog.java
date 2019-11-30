@@ -1,4 +1,4 @@
-package com.nhfc99.template.component.annotations.apirequestlog;
+package com.nhfc99.template.component.annotations.apirequestlogaspect;
 
 import java.lang.annotation.*;
 

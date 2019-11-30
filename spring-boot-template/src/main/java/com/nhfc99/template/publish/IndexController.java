@@ -1,6 +1,6 @@
 package com.nhfc99.template.publish;
 
-import com.nhfc99.template.component.annotations.apirequestlog.APIRequestLog;
+import com.nhfc99.template.component.annotations.apirequestlogaspect.APIRequestLog;
 import com.nhfc99.template.component.redis.RedisUtil;
 import com.nhfc99.template.utils.JSONResult;
 import com.nhfc99.template.utils.JSONUtils;
