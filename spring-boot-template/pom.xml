@@ -20,6 +20,9 @@
         <swagger2.version>2.9.2</swagger2.version>
         <spring-version>2.1.1.RELEASE</spring-version>
         <shiro-version>1.2.2</shiro-version>
+        <netty>5.0.0.Alpha2</netty>
+        <msgpack>0.6.12</msgpack>
+        <lombok>1.16.20</lombok>
     </properties>
 
     <dependencies>
@@ -140,7 +143,6 @@
             <version>2.10.5</version>
         </dependency>
 
-
         <!-- quartz -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -154,6 +156,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
         </dependency>
+
+        <!--Test-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -161,6 +165,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--Socket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
