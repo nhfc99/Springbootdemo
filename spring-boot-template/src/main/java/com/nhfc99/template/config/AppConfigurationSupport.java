@@ -3,6 +3,8 @@ package com.nhfc99.template.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.nhfc99.template.component.jwt.JWTTokenInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -22,6 +25,15 @@ import java.util.List;
  */
 @Configuration
 public class AppConfigurationSupport extends WebMvcConfigurationSupport {
+    @Autowired
+    JWTTokenInterceptor jwtTokenInterceptor;
+
+    //JWT拦截器
+    @Bean
+    JWTTokenInterceptor jwtTokenInterceptor() {
+        return new JWTTokenInterceptor();
+    }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")//设置允许跨域的路径
@@ -59,6 +71,12 @@ public class AppConfigurationSupport extends WebMvcConfigurationSupport {
     public HttpMessageConverter<String> responseBodyConverter() {
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         return converter;
+    }
+
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        super.addInterceptors(registry);
+        registry.addInterceptor(jwtTokenInterceptor);
     }
 
     @Override

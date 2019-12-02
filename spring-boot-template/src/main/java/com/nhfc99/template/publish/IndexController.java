@@ -1,6 +1,7 @@
 package com.nhfc99.template.publish;
 
 import com.nhfc99.template.component.annotations.apirequestlogaspect.APIRequestLog;
+import com.nhfc99.template.component.jwt.annotation.PassToken;
 import com.nhfc99.template.component.redis.RedisUtil;
 import com.nhfc99.template.utils.JSONResult;
 import com.nhfc99.template.utils.JSONUtils;
@@ -42,6 +43,7 @@ public class IndexController {
     @ResponseBody
     @ApiOperation(value = "获取列表", notes = "获取列表信息")
     @ApiImplicitParam(paramType = "query", name = "name", value = "用户名", required = true, dataType = "String")
+    @PassToken
     public Object list(@RequestParam("name") String name) {
         logger.info("test log");
         Integer state = 1 / 0;
