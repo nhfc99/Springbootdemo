@@ -1,7 +1,5 @@
 package com.nhfc99.template.component.jwt;
 
-import com.google.common.collect.Maps;
-import com.nhfc99.template.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -58,11 +56,11 @@ public class JWTUtils implements Serializable {
      * @param device
      * @return
      */
-    public String generateToken(User user, Device device) {
-        Map<String, Object> claims = Maps.newHashMap();
-        claims.put("username", user.getUsername());
-        return doGenerateToken(claims, user.getId(), generateAudience(device));
-    }
+//    public String generateToken(User user, Device device) {
+//        Map<String, Object> claims = Maps.newHashMap();
+//        claims.put("username", user.getU_username());
+//        return doGenerateToken(claims, user.getU_id(), generateAudience(device));
+//    }
 
     //实现创建Token
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {

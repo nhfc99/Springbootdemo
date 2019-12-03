@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.User" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="u_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="u_username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="u_passwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, u_id, u_username, u_passwd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.nhfc99.template.domain.UserKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from User
+    where id = #{id,jdbcType=INTEGER}
+      and u_id = #{u_id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.nhfc99.template.domain.UserKey" >
+    delete from User
+    where id = #{id,jdbcType=INTEGER}
+      and u_id = #{u_id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nhfc99.template.domain.User" >
+    insert into User (id, u_id, u_username, 
+      u_passwd)
+    values (#{id,jdbcType=INTEGER}, #{u_id,jdbcType=CHAR}, #{u_username,jdbcType=VARCHAR}, 
+      #{u_passwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nhfc99.template.domain.User" >
+    insert into User
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="u_id != null" >
+        u_id,
+      </if>
+      <if test="u_username != null" >
+        u_username,
+      </if>
+      <if test="u_passwd != null" >
+        u_passwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="u_id != null" >
+        #{u_id,jdbcType=CHAR},
+      </if>
+      <if test="u_username != null" >
+        #{u_username,jdbcType=VARCHAR},
+      </if>
+      <if test="u_passwd != null" >
+        #{u_passwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.User" >
+    update User
+    <set >
+      <if test="u_username != null" >
+        u_username = #{u_username,jdbcType=VARCHAR},
+      </if>
+      <if test="u_passwd != null" >
+        u_passwd = #{u_passwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and u_id = #{u_id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.User" >
+    update User
+    set u_username = #{u_username,jdbcType=VARCHAR},
+      u_passwd = #{u_passwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and u_id = #{u_id,jdbcType=CHAR}
+  </update>
+</mapper>

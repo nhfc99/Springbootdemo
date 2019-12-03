@@ -3,6 +3,8 @@ package com.nhfc99.template.publish;
 import com.nhfc99.template.component.annotations.apirequestlogaspect.APIRequestLog;
 import com.nhfc99.template.component.jwt.annotation.PassToken;
 import com.nhfc99.template.component.redis.RedisUtil;
+import com.nhfc99.template.domain.User;
+import com.nhfc99.template.service.UserService;
 import com.nhfc99.template.utils.JSONResult;
 import com.nhfc99.template.utils.JSONUtils;
 import com.nhfc99.template.vo.UserInfoVo;
@@ -37,6 +39,9 @@ public class IndexController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    UserService userService;
 
     @APIRequestLog
     @GetMapping("/list")
@@ -81,5 +86,14 @@ public class IndexController {
     @GetMapping("/requestbaidu")
     public Object restBaiDu() {
         return JSONUtils.beanToJson(restTemplate.getForObject("http://www.baidu.com", String.class));
+    }
+
+    @PostMapping("/insert")
+    @ResponseBody
+    @ApiOperation(value = "User传参", notes = "类型是User")
+    @ApiImplicitParam(paramType = "query", name = "User", value = "User值", required = true, dataType = "User")
+    public Object insertUserInfo(@RequestBody User user) {
+        int count = userService.insertSelective(user);
+        return JSONResult.success(count);
     }
 }
