@@ -86,7 +86,7 @@
                 and  status = #{status,jdbcType=INTEGER}
             </if>
             <if test="status==null">
-                and  status in(0,1)
+                and  status in(0,1,-1)
             </if>
         </trim>
         <choose>
