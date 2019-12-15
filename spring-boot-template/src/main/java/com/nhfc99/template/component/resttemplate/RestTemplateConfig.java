@@ -1,4 +1,4 @@
-package com.nhfc99.template.config;
+package com.nhfc99.template.component.resttemplate;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
