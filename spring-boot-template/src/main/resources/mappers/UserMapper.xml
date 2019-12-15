@@ -13,7 +13,7 @@
     id, u_id, u_username, u_passwd
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.nhfc99.template.domain.UserKey" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from User
     where id = #{id,jdbcType=INTEGER}
@@ -25,9 +25,9 @@
       and u_id = #{u_id,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="com.nhfc99.template.domain.User" >
-    insert into User (id, u_id, u_username, 
+    insert into User (id, u_id, u_username,
       u_passwd)
-    values (#{id,jdbcType=INTEGER}, #{u_id,jdbcType=CHAR}, #{u_username,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{u_id,jdbcType=CHAR}, #{u_username,jdbcType=VARCHAR},
       #{u_passwd,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nhfc99.template.domain.User" >

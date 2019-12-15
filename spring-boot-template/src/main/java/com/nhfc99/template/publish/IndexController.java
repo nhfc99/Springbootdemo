@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.beans.ConstructorProperties;
+import java.util.Date;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -95,5 +97,21 @@ public class IndexController {
     public Object insertUserInfo(@RequestBody User user) {
         int count = userService.insertSelective(user);
         return JSONResult.success(count);
+    }
+
+    @RequestMapping("/index")
+    public ModelAndView test(){
+        ModelAndView mav=new ModelAndView("thymeleaf/index");
+        mav.addObject("time", new Date());
+        mav.getModel().put("name", "caoyc");
+        return mav;
+    }
+
+    @RequestMapping("/indexjsp")
+    public ModelAndView testjsp(){
+        ModelAndView mav=new ModelAndView("jsp/jndex");
+        mav.addObject("time", new Date());
+        mav.getModel().put("name", "cccc");
+        return mav;
     }
 }
