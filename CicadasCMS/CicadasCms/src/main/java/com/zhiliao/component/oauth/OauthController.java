@@ -30,14 +30,14 @@ public class OauthController {
 
 
     @RequestMapping("/api/{oauthType}/login")
-    public RedirectView oauth(@PathVariable String oauthType,HttpSession session){
+    public RedirectView oauth(@PathVariable String oauthType, HttpSession session) {
         RedirectView redirectView = new RedirectView();
         String state = TokenUtil.randomState();
-        if(oauthType.equals("qq")) {
+        if (oauthType.equals("qq")) {
             session.setAttribute(OauthQQ.SESSION_STATE, state);
             redirectView.setUrl(oauthQQ.getAuthorizeUrl(state));
         }
-        if(oauthType.equals("sina")) {
+        if (oauthType.equals("sina")) {
             session.setAttribute(OauthSina.SESSION_STATE, state);
             redirectView.setUrl(oauthSina.getAuthorizeUrl(state));
         }
@@ -47,16 +47,16 @@ public class OauthController {
     @RequestMapping("/api/{oauthType}/callback")
     @ResponseBody
     public String callback(@PathVariable String oauthType, @RequestParam("code") String code,
-                                 @RequestParam("state") String state,
-                                 Model model, HttpSession session) {
-        String session_state="",openid = "", nickname ="", photoUrl ="";
-        if(oauthType.equals("qq"))
+                           @RequestParam("state") String state,
+                           Model model, HttpSession session) {
+        String session_state = "", openid = "", nickname = "", photoUrl = "";
+        if (oauthType.equals("qq"))
             session_state = (String) session.getAttribute(OauthQQ.SESSION_STATE);
-        if(oauthType.equals("sina"))
+        if (oauthType.equals("sina"))
             session_state = (String) session.getAttribute(OauthSina.SESSION_STATE);
         if (StrUtil.isBlank(state) || StrUtil.isBlank(session_state) || !state.equals(session_state) || StrUtil.isBlank(code))
             return "登陆失败";
-        if(oauthType.equals("qq")) {
+        if (oauthType.equals("qq")) {
             session.removeAttribute(OauthQQ.SESSION_STATE);
             JSONObject userInfo = oauthQQ.getUserInfoByCode(code);
             log.debug(userInfo.toJSONString());
@@ -64,7 +64,7 @@ public class OauthController {
             nickname = userInfo.getString("nickname");
             photoUrl = userInfo.getString("figureurl_2");
         }
-        if(oauthType.equals("sina")) {
+        if (oauthType.equals("sina")) {
             session.removeAttribute(OauthSina.SESSION_STATE);
             JSONObject userInfo = oauthSina.getUserInfoByCode(code);
             log.debug(userInfo.toJSONString());
@@ -72,7 +72,7 @@ public class OauthController {
             nickname = userInfo.getString("screen_name");
             photoUrl = userInfo.getString("profile_image_url");
         }
-        return "["+nickname+"]登陆成功";
+        return "[" + nickname + "]登陆成功";
     }
 
 }

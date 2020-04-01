@@ -11,5 +11,5 @@ public interface LuceneService {
 
     void delete(IndexObject indexObject);
 
-    PageInfo page(Integer pageNumber, Integer pageSize,String keyword);
+    PageInfo page(Integer pageNumber, Integer pageSize, String keyword);
 }

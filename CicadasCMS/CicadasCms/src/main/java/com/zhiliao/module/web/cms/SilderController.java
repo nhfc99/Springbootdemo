@@ -27,22 +27,22 @@ public class SilderController {
     private SilderService silderService;
 
     @RequestMapping
-    public String index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "50") Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "50") Integer pageSize,
                         TCmsAdSilder pojo, Model model) {
-        PageInfo page = silderService.page(pageNumber,pageSize,pojo);
-        model.addAttribute("model",page);
-        model.addAttribute("pojo",pojo);
+        PageInfo page = silderService.page(pageNumber, pageSize, pojo);
+        model.addAttribute("model", page);
+        model.addAttribute("pojo", pojo);
         return "cms/ad_silder";
     }
 
 
     @RequestMapping("/save")
     @ResponseBody
-    public String save(TCmsAdSilder pojo){
-       if(StrUtil.isBlank(pojo.getImg()))
-           pojo.setImg(null);
-        if(pojo.getId()!=null)
+    public String save(TCmsAdSilder pojo) {
+        if (StrUtil.isBlank(pojo.getImg()))
+            pojo.setImg(null);
+        if (pojo.getId() != null)
             return silderService.update(pojo);
         return silderService.save(pojo);
     }
@@ -50,7 +50,7 @@ public class SilderController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public String delete(@RequestParam(value = "ids",required = false) Integer[] ids) throws SQLException {
+    public String delete(@RequestParam(value = "ids", required = false) Integer[] ids) throws SQLException {
         return silderService.delete(ids);
     }
 }

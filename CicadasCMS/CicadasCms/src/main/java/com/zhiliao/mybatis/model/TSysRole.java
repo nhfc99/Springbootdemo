@@ -20,7 +20,6 @@ public class TSysRole implements Serializable {
     }
 
 
-
     public Integer getRoleId() {
         return roleId;
     }

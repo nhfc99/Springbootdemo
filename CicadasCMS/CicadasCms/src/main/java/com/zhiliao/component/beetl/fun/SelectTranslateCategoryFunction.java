@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SelectTranslateCategoryFunction implements Function{
+public class SelectTranslateCategoryFunction implements Function {
 
     @Autowired
     private CategoryService service;
@@ -22,35 +22,34 @@ public class SelectTranslateCategoryFunction implements Function{
 
     @Override
     public Object call(Object[] objects, Context context) {
-        Long currentId =Long.parseLong(objects[1].toString());
-        Integer siteId =Integer.parseInt(objects[2].toString());
-        return head+recursion(currentId, 0L,"",siteId);
+        Long currentId = Long.parseLong(objects[1].toString());
+        Integer siteId = Integer.parseInt(objects[2].toString());
+        return head + recursion(currentId, 0L, "", siteId);
     }
 
 
-
     /*递归输出子节点*/
-    private String recursion(Long cid,Long sPid,String tag,Integer siteId){
-         /*临时拼凑看不懂就放弃*/
-        tag+=(StrUtil.isBlank(tag)?"&nbsp;&nbsp;":"&nbsp;&nbsp;&nbsp;&nbsp;");
+    private String recursion(Long cid, Long sPid, String tag, Integer siteId) {
+        /*临时拼凑看不懂就放弃*/
+        tag += (StrUtil.isBlank(tag) ? "&nbsp;&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;");
         StringBuffer sbf = new StringBuffer();
-        List<TCmsCategory> ctas  = service.findCategoryListByPid(sPid,siteId);
-        if(ctas!=null&&ctas.size()>0){
-            for(TCmsCategory cat:ctas){
-                if (ctas.lastIndexOf(cat) == (ctas.size()-1)) {
-                           sbf.append("<option value=\"" + cat.getCategoryId() + "\" " + isSelected(cat.getCategoryId(), cid) + ">" + tag + "└" + cat.getCategoryName() + "</option>");
-                }else{
-                           sbf.append("<option value=\"" + cat.getCategoryId() + "\" " + isSelected(cat.getCategoryId(), cid) + ">" + tag + "├" + cat.getCategoryName() + "</option>");
+        List<TCmsCategory> ctas = service.findCategoryListByPid(sPid, siteId);
+        if (ctas != null && ctas.size() > 0) {
+            for (TCmsCategory cat : ctas) {
+                if (ctas.lastIndexOf(cat) == (ctas.size() - 1)) {
+                    sbf.append("<option value=\"" + cat.getCategoryId() + "\" " + isSelected(cat.getCategoryId(), cid) + ">" + tag + "└" + cat.getCategoryName() + "</option>");
+                } else {
+                    sbf.append("<option value=\"" + cat.getCategoryId() + "\" " + isSelected(cat.getCategoryId(), cid) + ">" + tag + "├" + cat.getCategoryName() + "</option>");
                 }
-                   sbf.append(recursion(cid,cat.getCategoryId(),tag,siteId));
+                sbf.append(recursion(cid, cat.getCategoryId(), tag, siteId));
             }
-            return  sbf.toString();
+            return sbf.toString();
         }
         return "";
     }
 
-    private String isSelected(Long id,Long perId){
-        if(id.longValue()==perId.longValue())
+    private String isSelected(Long id, Long perId) {
+        if (id.longValue() == perId.longValue())
             return isSelected;
         return "";
     }

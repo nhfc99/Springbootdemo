@@ -18,7 +18,7 @@ import java.util.List;
  * @create 2017-04-15
  **/
 @Service
-public class TreeContentCategoryFunction implements Function{
+public class TreeContentCategoryFunction implements Function {
 
     @Autowired
     private CategoryService service;
@@ -37,16 +37,16 @@ public class TreeContentCategoryFunction implements Function{
     }
 
     /* 递归函数 */
-    private String recursion(Long pid){
-       StringBuffer sbf = new StringBuffer();
-       List<TCmsCategory> cats  = service.findCategoryListByPid(pid);
-       if(cats!=null&&cats.size()>0){
-           for(TCmsCategory cat:cats){
-               sbf.append("  <li data-id=\""+cat.getCategoryId()+"\" data-pid=\""+pid+"\" data-url=\""+httpProtocol+"://"+ httpHost+"/system/cms/content/input?id="+cat.getCategoryId()+"\" data-divid=\"#layout-11\">"+cat.getCategoryName()+"</li>");
-               sbf.append(recursion(cat.getCategoryId()));
-           }
-           return  sbf.toString();
-       }
-       return "";
+    private String recursion(Long pid) {
+        StringBuffer sbf = new StringBuffer();
+        List<TCmsCategory> cats = service.findCategoryListByPid(pid);
+        if (cats != null && cats.size() > 0) {
+            for (TCmsCategory cat : cats) {
+                sbf.append("  <li data-id=\"" + cat.getCategoryId() + "\" data-pid=\"" + pid + "\" data-url=\"" + httpProtocol + "://" + httpHost + "/system/cms/content/input?id=" + cat.getCategoryId() + "\" data-divid=\"#layout-11\">" + cat.getCategoryName() + "</li>");
+                sbf.append(recursion(cat.getCategoryId()));
+            }
+            return sbf.toString();
+        }
+        return "";
     }
 }

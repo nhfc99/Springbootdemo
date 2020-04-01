@@ -18,7 +18,7 @@ import java.util.List;
  * @create 2017-04-15
  **/
 @Service
-public class TreePermissionFunction implements Function{
+public class TreePermissionFunction implements Function {
 
     @Autowired
     private RoleService service;
@@ -37,16 +37,16 @@ public class TreePermissionFunction implements Function{
     }
 
     /* 递归函数 */
-    private String recursion(int pid){
-       StringBuffer sbf = new StringBuffer();
-       List<TSysPermission> permissions  = service.findPermissonByPid(pid);
-       if(permissions!=null&&permissions.size()>0){
-           for(TSysPermission per:permissions){
-               sbf.append("  <li data-id=\""+per.getPermissionId()+"\" data-pid=\""+pid+"\" data-url=\""+httpProtocol+"://"+httpHost+"/system/permission/input/"+per.getPermissionId()+"\" data-divid=\"#layout-1\">"+per.getDescription()+"</li>");
-               sbf.append(recursion(per.getPermissionId()));
-           }
-           return  sbf.toString();
-       }
-       return "";
+    private String recursion(int pid) {
+        StringBuffer sbf = new StringBuffer();
+        List<TSysPermission> permissions = service.findPermissonByPid(pid);
+        if (permissions != null && permissions.size() > 0) {
+            for (TSysPermission per : permissions) {
+                sbf.append("  <li data-id=\"" + per.getPermissionId() + "\" data-pid=\"" + pid + "\" data-url=\"" + httpProtocol + "://" + httpHost + "/system/permission/input/" + per.getPermissionId() + "\" data-divid=\"#layout-1\">" + per.getDescription() + "</li>");
+                sbf.append(recursion(per.getPermissionId()));
+            }
+            return sbf.toString();
+        }
+        return "";
     }
 }

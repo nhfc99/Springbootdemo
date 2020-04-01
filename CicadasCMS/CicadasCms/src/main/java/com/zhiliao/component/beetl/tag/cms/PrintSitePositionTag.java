@@ -41,8 +41,8 @@ public class PrintSitePositionTag extends GeneralVarTagBinding {
 
     @Override
     public void render() {
-        HttpServletRequest request = (HttpServletRequest)ctx.getGlobal("request");
-        String staticHtmlPath =  ctx.getGlobal("staticHtmlPath")==null?"":(String) ctx.getGlobal("staticHtmlPath");
+        HttpServletRequest request = (HttpServletRequest) ctx.getGlobal("request");
+        String staticHtmlPath = ctx.getGlobal("staticHtmlPath") == null ? "" : (String) ctx.getGlobal("staticHtmlPath");
         String url = request.getContextPath();
         String baseURL = "";
         List<Map> locations = new ArrayList<>();
@@ -50,7 +50,7 @@ public class PrintSitePositionTag extends GeneralVarTagBinding {
         TCmsSite site = (TCmsSite) this.getAttributeValue("site");
         if (CmsUtil.isNullOrEmpty(site))
             throw new CmsException("面包屑导航出错[site参数必须为site对象]");
-        baseURL += url  + staticHtmlPath + "/"+ site.getSiteKey()  + "/";
+        baseURL += url + staticHtmlPath + "/" + site.getSiteKey() + "/";
         result.put("baseURL", "<a href=\"" + baseURL + "\">首页</a>");
         TCmsCategory category = (TCmsCategory) this.getAttributeValue("category");
         if (!CmsUtil.isNullOrEmpty(category)) {
@@ -64,10 +64,10 @@ public class PrintSitePositionTag extends GeneralVarTagBinding {
 
     private List<Map> locations(List<Map> locations, String baseURL, TCmsCategory category) {
         Map<String, String> map = new HashedMap();
-        if(StrUtil.isBlank(category.getUrl()))
+        if (StrUtil.isBlank(category.getUrl()))
             map.put("url", baseURL + category.getAlias() + siteSubfix);
         else
-            map.put("url",category.getUrl());
+            map.put("url", category.getUrl());
         map.put("categoryName", category.getCategoryName());
         locations.add(0, map);
         if (category.getParentId() != 0) {

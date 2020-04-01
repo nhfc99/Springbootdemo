@@ -1,174 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nhfc99.duty.dao.RestdayDOMapper">
-  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="h_date" jdbcType="VARCHAR" property="h_date" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, h_date
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from restday
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from restday
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
-    insert into restday (id, h_date)
-    values (#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-    insert into restday
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="h_date != null">
-        h_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="h_date != null">
-        #{h_date,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-    update restday
-    <set>
-      <if test="h_date != null">
-        h_date = #{h_date,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
-    update restday
-    set h_date = #{h_date,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="h_date" jdbcType="VARCHAR" property="h_date" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, h_date
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from restday
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from restday
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
-    insert into restday (id, h_date)
-    values (#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-    insert into restday
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="h_date != null">
-        h_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="h_date != null">
-        #{h_date,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-    update restday
-    <set>
-      <if test="h_date != null">
-        h_date = #{h_date,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
-    update restday
-    set h_date = #{h_date,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-	<resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="h_date" jdbcType="VARCHAR" property="h_date" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, h_date
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from restday
-		where id = #{id,jdbcType=INTEGER}
-	</select>
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="h_date" jdbcType="VARCHAR" property="h_date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, h_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from restday
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from restday
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday (id, h_date)
+        values (#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="h_date != null">
+                h_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="h_date != null">
+                #{h_date,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        <set>
+            <if test="h_date != null">
+                h_date = #{h_date,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        set h_date = #{h_date,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="h_date" jdbcType="VARCHAR" property="h_date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, h_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from restday
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from restday
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday (id, h_date)
+        values (#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="h_date != null">
+                h_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="h_date != null">
+                #{h_date,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        <set>
+            <if test="h_date != null">
+                h_date = #{h_date,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        set h_date = #{h_date,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.RestdayDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="h_date" jdbcType="VARCHAR" property="h_date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, h_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from restday
+        where id = #{id,jdbcType=INTEGER}
+    </select>
 
-	<select id="selectAll" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from restday
-	</select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from restday
+    </select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from restday
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
-		insert into restday (id, h_date)
-		values
-		(#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-		insert into restday
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="h_date != null">
-				h_date,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
-			<if test="h_date != null">
-				#{h_date,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
-		update restday
-		<set>
-			<if test="h_date != null">
-				h_date = #{h_date,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where id = #{id,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
-		update restday
-		set h_date = #{h_date,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
-	</update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from restday
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday (id, h_date)
+        values
+        (#{id,jdbcType=INTEGER}, #{h_date,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        insert into restday
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="h_date != null">
+                h_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="h_date != null">
+                #{h_date,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        <set>
+            <if test="h_date != null">
+                h_date = #{h_date,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.RestdayDO">
+        update restday
+        set h_date = #{h_date,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

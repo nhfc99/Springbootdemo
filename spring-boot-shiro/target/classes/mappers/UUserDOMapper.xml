@@ -1,147 +1,147 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.nhfc99.sql.dao.UUserDOMapper">
-	<resultMap id="BaseResultMap"
-		type="com.nhfc99.sql.model.UUserDO">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="nickname" property="nickname"
-			jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="pswd" property="pswd" jdbcType="VARCHAR" />
-		<result column="create_time" property="create_time"
-			jdbcType="TIMESTAMP" />
-		<result column="last_login_time" property="last_login_time"
-			jdbcType="TIMESTAMP" />
-		<result column="status" property="status" jdbcType="BIGINT" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, nickname, email, pswd, create_time, last_login_time,
-		status
-	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from u_user
-		where id = #{id,jdbcType=BIGINT}
-	</select>
+    <resultMap id="BaseResultMap"
+               type="com.nhfc99.sql.model.UUserDO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="nickname" property="nickname"
+                jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="pswd" property="pswd" jdbcType="VARCHAR"/>
+        <result column="create_time" property="create_time"
+                jdbcType="TIMESTAMP"/>
+        <result column="last_login_time" property="last_login_time"
+                jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, nickname, email, pswd, create_time, last_login_time,
+        status
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from u_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 
-	<!-- UUserDO selectAllByName(String username); -->
+    <!-- UUserDO selectAllByName(String username); -->
 
-	<select id="selectAllByName" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from u_user
-		where nickname = #{username,jdbcType=VARCHAR}
-	</select>
+    <select id="selectAllByName" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from u_user
+        where nickname = #{username,jdbcType=VARCHAR}
+    </select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from u_user
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-	<insert id="insert" parameterType="com.nhfc99.sql.model.UUserDO">
-		insert into u_user (id,
-		nickname, email,
-		pswd, create_time, last_login_time,
-		status)
-		values
-		(#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR},
-		#{email,jdbcType=VARCHAR},
-		#{pswd,jdbcType=VARCHAR},
-		#{create_time,jdbcType=TIMESTAMP},
-		#{last_login_time,jdbcType=TIMESTAMP},
-		#{status,jdbcType=BIGINT})
-	</insert>
-	<insert id="insertSelective"
-		parameterType="com.nhfc99.sql.model.UUserDO">
-		insert into u_user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="nickname != null">
-				nickname,
-			</if>
-			<if test="email != null">
-				email,
-			</if>
-			<if test="pswd != null">
-				pswd,
-			</if>
-			<if test="create_time != null">
-				create_time,
-			</if>
-			<if test="last_login_time != null">
-				last_login_time,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=BIGINT},
-			</if>
-			<if test="nickname != null">
-				#{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				#{email,jdbcType=VARCHAR},
-			</if>
-			<if test="pswd != null">
-				#{pswd,jdbcType=VARCHAR},
-			</if>
-			<if test="create_time != null">
-				#{create_time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="last_login_time != null">
-				#{last_login_time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=BIGINT},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="com.nhfc99.sql.model.UUserDO">
-		update u_user
-		<set>
-			<if test="nickname != null">
-				nickname = #{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				email = #{email,jdbcType=VARCHAR},
-			</if>
-			<if test="pswd != null">
-				pswd = #{pswd,jdbcType=VARCHAR},
-			</if>
-			<if test="create_time != null">
-				create_time = #{create_time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="last_login_time != null">
-				last_login_time = #{last_login_time,jdbcType=TIMESTAMP},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=BIGINT},
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="com.nhfc99.sql.model.UUserDO">
-		update u_user
-		set nickname =
-		#{nickname,jdbcType=VARCHAR},
-		email = #{email,jdbcType=VARCHAR},
-		pswd =
-		#{pswd,jdbcType=VARCHAR},
-		create_time =
-		#{create_time,jdbcType=TIMESTAMP},
-		last_login_time =
-		#{last_login_time,jdbcType=TIMESTAMP},
-		status =
-		#{status,jdbcType=BIGINT}
-		where id = #{id,jdbcType=BIGINT}
-	</update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from u_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.sql.model.UUserDO">
+        insert into u_user (id,
+        nickname, email,
+        pswd, create_time, last_login_time,
+        status)
+        values
+        (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{pswd,jdbcType=VARCHAR},
+        #{create_time,jdbcType=TIMESTAMP},
+        #{last_login_time,jdbcType=TIMESTAMP},
+        #{status,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective"
+            parameterType="com.nhfc99.sql.model.UUserDO">
+        insert into u_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="pswd != null">
+                pswd,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+            <if test="last_login_time != null">
+                last_login_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pswd != null">
+                #{pswd,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_login_time != null">
+                #{last_login_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.nhfc99.sql.model.UUserDO">
+        update u_user
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pswd != null">
+                pswd = #{pswd,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_login_time != null">
+                last_login_time = #{last_login_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey"
+            parameterType="com.nhfc99.sql.model.UUserDO">
+        update u_user
+        set nickname =
+        #{nickname,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        pswd =
+        #{pswd,jdbcType=VARCHAR},
+        create_time =
+        #{create_time,jdbcType=TIMESTAMP},
+        last_login_time =
+        #{last_login_time,jdbcType=TIMESTAMP},
+        status =
+        #{status,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

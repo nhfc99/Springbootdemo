@@ -9,7 +9,8 @@ import java.util.Map.Entry;
 public class HttpKitExt {
     /**
      * 构造请求参数
-     * @param url url地址
+     *
+     * @param url    url地址
      * @param params 参数集合
      * @return String 构造完成的url
      */
@@ -24,9 +25,10 @@ public class HttpKitExt {
         sb.append(map2Url(params));
         return sb.toString();
     }
-    
+
     /**
      * map构造url
+     *
      * @param paramToMap 参数集合
      * @return String 构造完成的url
      */
@@ -45,10 +47,14 @@ public class HttpKitExt {
             url.append(entry.getKey()).append("=");
             String value = entry.getValue();
             if (StrKit.notBlank(value))
-                try {value = URLEncoder.encode(value, "UTF-8");} catch (UnsupportedEncodingException e) {throw new RuntimeException(e);}
+                try {
+                    value = URLEncoder.encode(value, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
             url.append(value);
         }
         return url.toString();
     }
-    
+
 }

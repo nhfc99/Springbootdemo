@@ -18,11 +18,11 @@ public interface TSysRolePermissionMapper {
     int updateByPrimaryKey(TSysRolePermission record);
 
     @Select("select count(0) from t_sys_role_permission where  role_id =#{roleId} and permisson_id =#{permissionId} ")
-    int selectCountByRoleIdAndPermissionId(@Param("roleId") Integer roleId,@Param("permissionId") Integer permissionId);
+    int selectCountByRoleIdAndPermissionId(@Param("roleId") Integer roleId, @Param("permissionId") Integer permissionId);
 
     @Deprecated
     @Select("select * from t_sys_role_permission where  role_id =#{roleId} and permisson_id =#{permissionId} ")
-    TSysRolePermission selectByRoleIdAndPermissionId(@Param("roleId") Integer roleId,@Param("permissionId") Integer permissionId);
+    TSysRolePermission selectByRoleIdAndPermissionId(@Param("roleId") Integer roleId, @Param("permissionId") Integer permissionId);
 
     int delectByRoleId(@Param("roleId") Integer roleId);
 

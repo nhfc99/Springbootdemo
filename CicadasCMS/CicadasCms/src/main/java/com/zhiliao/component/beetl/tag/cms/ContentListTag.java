@@ -48,7 +48,7 @@ public class ContentListTag extends GeneralVarTagBinding {
 
     /**
      * 文章列表标签
-     *
+     * <p>
      * siteId:站点id
      * categoryId:分类编号
      * hasChild：是否包含子栏目内容
@@ -58,48 +58,48 @@ public class ContentListTag extends GeneralVarTagBinding {
      * orderBy:排序
      * size:调用条数
      * recommend:是否推荐 ：0为不推荐，1为推荐
-     *
      */
     @Override
     public void render() {
         if (CmsUtil.isNullOrEmpty(this.args[1]))
-            throw  new SystemException("标签参数不能为空！");
-        Integer titleLen =  Integer.parseInt((String) this.getAttributeValue("titleLen"));
-        Integer siteId=  (this.getAttributeValue("siteId") instanceof String)?Integer.parseInt((String) this.getAttributeValue("siteId")):(Integer)this.getAttributeValue("siteId");
-        Long categoryId=  (this.getAttributeValue("categoryId") instanceof String)?Long.parseLong((String) this.getAttributeValue("categoryId")):(Long) this.getAttributeValue("categoryId");
-        Integer hasChild=  Integer.parseInt((String) this.getAttributeValue("hasChild"));
-        Integer isPic =  Integer.parseInt(CmsUtil.isNullOrEmpty(this.getAttributeValue("isPic"))?"3":(String)this.getAttributeValue("isPic"));
-        Integer isRecommend =  Integer.parseInt(CmsUtil.isNullOrEmpty(this.getAttributeValue("isRecommend"))?"0":(String) this.getAttributeValue("isRecommend"));
-        Integer orderBy =  Integer.parseInt((String) this.getAttributeValue("orderBy"));
-        Integer pageNumber =  Integer.parseInt((CmsUtil.isNullOrEmpty(this.getAttributeValue("pageNumber"))?"1":(String) this.getAttributeValue("pageNumber")));
-        Integer pageSize =  Integer.parseInt((String) this.getAttributeValue("size"));
-        Integer isHot =  Integer.parseInt((String) this.getAttributeValue("isHot"));
-        PageInfo<Map> pageInfo = contentService.findContentListBySiteIdAndCategoryId(siteId, categoryId, orderBy, pageNumber,pageSize, hasChild, isHot, isPic,isRecommend);
-        if(CmsUtil.isNullOrEmpty(pageInfo.getList())) return;
-        this.wrapRender(pageInfo.getList(),titleLen,siteId);
+            throw new SystemException("标签参数不能为空！");
+        Integer titleLen = Integer.parseInt((String) this.getAttributeValue("titleLen"));
+        Integer siteId = (this.getAttributeValue("siteId") instanceof String) ? Integer.parseInt((String) this.getAttributeValue("siteId")) : (Integer) this.getAttributeValue("siteId");
+        Long categoryId = (this.getAttributeValue("categoryId") instanceof String) ? Long.parseLong((String) this.getAttributeValue("categoryId")) : (Long) this.getAttributeValue("categoryId");
+        Integer hasChild = Integer.parseInt((String) this.getAttributeValue("hasChild"));
+        Integer isPic = Integer.parseInt(CmsUtil.isNullOrEmpty(this.getAttributeValue("isPic")) ? "3" : (String) this.getAttributeValue("isPic"));
+        Integer isRecommend = Integer.parseInt(CmsUtil.isNullOrEmpty(this.getAttributeValue("isRecommend")) ? "0" : (String) this.getAttributeValue("isRecommend"));
+        Integer orderBy = Integer.parseInt((String) this.getAttributeValue("orderBy"));
+        Integer pageNumber = Integer.parseInt((CmsUtil.isNullOrEmpty(this.getAttributeValue("pageNumber")) ? "1" : (String) this.getAttributeValue("pageNumber")));
+        Integer pageSize = Integer.parseInt((String) this.getAttributeValue("size"));
+        Integer isHot = Integer.parseInt((String) this.getAttributeValue("isHot"));
+        PageInfo<Map> pageInfo = contentService.findContentListBySiteIdAndCategoryId(siteId, categoryId, orderBy, pageNumber, pageSize, hasChild, isHot, isPic, isRecommend);
+        if (CmsUtil.isNullOrEmpty(pageInfo.getList())) return;
+        this.wrapRender(pageInfo.getList(), titleLen, siteId);
 
     }
 
-    private void wrapRender(List<Map>  contentList, int titleLen, int siteId) {
-        HttpServletRequest request = (HttpServletRequest)ctx.getGlobal("request");
-        String staticHtmlPath =  ctx.getGlobal("staticHtmlPath")==null?"":(String) ctx.getGlobal("staticHtmlPath");
+    private void wrapRender(List<Map> contentList, int titleLen, int siteId) {
+        HttpServletRequest request = (HttpServletRequest) ctx.getGlobal("request");
+        String staticHtmlPath = ctx.getGlobal("staticHtmlPath") == null ? "" : (String) ctx.getGlobal("staticHtmlPath");
         int i = 1;
         for (Map content : contentList) {
             String title = content.get("title").toString();
             int length = title.length();
             if (length > titleLen) {
-                content.put("title",title.substring(0, titleLen) + "...");
+                content.put("title", title.substring(0, titleLen) + "...");
             }
             if (StrUtil.isBlank(content.get("url").toString())) {
                 TCmsSite site = siteService.findById(siteId);
-                if(CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:"+siteId+"]");
-                TCmsCategory category= categoryService.findById(Long.parseLong(content.get("categoryId").toString()));
-                if(CmsUtil.isNullOrEmpty(category)) throw new CmsException("栏目不存在[categoryId:"+category.getCategoryId()+"]");
-                String url = request.getContextPath()  + staticHtmlPath +"/"+  site.getSiteKey() +"/";
-                url+=category.getAlias()+"/"+content.get("contentId");
-                content.put("url",url+siteSubfix);
+                if (CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:" + siteId + "]");
+                TCmsCategory category = categoryService.findById(Long.parseLong(content.get("categoryId").toString()));
+                if (CmsUtil.isNullOrEmpty(category))
+                    throw new CmsException("栏目不存在[categoryId:" + category.getCategoryId() + "]");
+                String url = request.getContextPath() + staticHtmlPath + "/" + site.getSiteKey() + "/";
+                url += category.getAlias() + "/" + content.get("contentId");
+                content.put("url", url + siteSubfix);
             }
-            content.put("index",i);
+            content.put("index", i);
             this.binds(content);
             this.doBodyRender();
             i++;

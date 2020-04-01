@@ -33,14 +33,14 @@ public class ModelController extends BaseController<TCmsModel> {
     @RequiresPermissions({"model:admin"})
     @RequestMapping
     @Override
-    public String index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "100") Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize,
                         TCmsModel pojo,
                         Model model) {
         UserVo userVo = UserUtil.getSysUserVo();
         pojo.setSiteId(userVo.getSiteId());
-        model.addAttribute("model",modelService.page(pageNumber,pageSize,pojo));
-        model.addAttribute("pojo",pojo);
+        model.addAttribute("model", modelService.page(pageNumber, pageSize, pojo));
+        model.addAttribute("pojo", pojo);
         return "cms/model_list";
     }
 
@@ -48,9 +48,9 @@ public class ModelController extends BaseController<TCmsModel> {
     @RequiresPermissions({"model:input"})
     @RequestMapping("/input")
     @Override
-    public String input(@RequestParam(value = "id",required = false) Integer Id, Model model) {
-        if(Id!=null)
-            model.addAttribute("pojo",modelService.findById(Id));
+    public String input(@RequestParam(value = "id", required = false) Integer Id, Model model) {
+        if (Id != null)
+            model.addAttribute("pojo", modelService.findById(Id));
         return "cms/model_input";
     }
 
@@ -61,8 +61,8 @@ public class ModelController extends BaseController<TCmsModel> {
     public String save(TCmsModel pojo) throws SQLException {
         UserVo userVo = UserUtil.getSysUserVo();
         pojo.setSiteId(userVo.getSiteId());
-        if(pojo.getModelId()!=null)
-           return modelService.update(pojo);
+        if (pojo.getModelId() != null)
+            return modelService.update(pojo);
         return modelService.save(pojo);
     }
 
@@ -71,14 +71,14 @@ public class ModelController extends BaseController<TCmsModel> {
     @RequestMapping("/delete")
     @ResponseBody
     @Override
-    public String delete(@RequestParam(value = "ids",required = false) Integer[] ids) {
+    public String delete(@RequestParam(value = "ids", required = false) Integer[] ids) {
         return modelService.delete(ids);
     }
 
     @RequestMapping("/checkModelName")
     @ResponseBody
     public String checkModelName(@RequestParam("modelName") String modelName) {
-        if(modelService.findModelByModelName(PinyinUtil.convertLower(modelName))!=null)
+        if (modelService.findModelByModelName(PinyinUtil.convertLower(modelName)) != null)
             return "{\"error\": \"名字已经被占用啦\"}";
         return "{\"ok\": \"名字很棒\"}";
     }
@@ -86,7 +86,7 @@ public class ModelController extends BaseController<TCmsModel> {
     @RequestMapping("/checkTableName")
     @ResponseBody
     public String checkTableName(@RequestParam("tableName") String tableName) {
-        if(modelService.findModelByTableName(PinyinUtil.convertLower(tableName))!=null)
+        if (modelService.findModelByTableName(PinyinUtil.convertLower(tableName)) != null)
             return "{\"error\": \"名字已经被占用啦\"}";
         return "{\"ok\": \"名字很棒\"}";
     }

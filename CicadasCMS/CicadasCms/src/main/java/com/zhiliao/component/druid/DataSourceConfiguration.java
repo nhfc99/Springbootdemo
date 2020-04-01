@@ -61,7 +61,7 @@ public class DataSourceConfiguration {
 
     @Bean("masterMapperScanner")
     @Lazy
-    public MapperScannerConfigurer mapperScannerConfigurer(){
+    public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("masterSqlSessionFactory");
         mapperScannerConfigurer.setBasePackage("com.zhiliao.mybatis.mapper");

@@ -33,8 +33,7 @@ public class Pojo2MapUtil {
             if (getter != null) {
                 log.debug(pd.getName() + "-->" + getter.invoke(o));
                 values.put(pd.getName(), getter.invoke(o));
-            }
-            else log.debug(">>>>>>>>>> null getter"+getter);
+            } else log.debug(">>>>>>>>>> null getter" + getter);
         }
         log.debug(">>>>>>>>>> pojo to map [end]");
         return values;
@@ -45,9 +44,9 @@ public class Pojo2MapUtil {
             InstantiationException, InvocationTargetException, ClassNotFoundException {
         T obj = clazz.newInstance();
         BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
-        PropertyDescriptor[] propertyDescriptors =  beanInfo.getPropertyDescriptors();
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
         log.debug(">>>>>>>>>> map to  pojo [begin]");
-        for (int i = 0; i< propertyDescriptors.length; i++) {
+        for (int i = 0; i < propertyDescriptors.length; i++) {
             PropertyDescriptor descriptor = propertyDescriptors[i];
             String propertyName = descriptor.getName();
 
@@ -56,7 +55,7 @@ public class Pojo2MapUtil {
                 Object[] args = new Object[1];
                 args[0] = value;
                 descriptor.getWriteMethod().invoke(obj, args);
-                log.debug(">>>>>>>>>> "+propertyName+ "==>" + map.get(propertyName));
+                log.debug(">>>>>>>>>> " + propertyName + "==>" + map.get(propertyName));
             }
         }
         log.debug(">>>>>>>>>> map to pojo [end]");
@@ -69,8 +68,8 @@ public class Pojo2MapUtil {
         content.setModelId(11111);
         content.setUpdatedate(new Date());
         Map m = toMap(content);
-        m.forEach((key,value)->
-          System.out.println(key+"-->>"+value)
+        m.forEach((key, value) ->
+                System.out.println(key + "-->>" + value)
         );
     }
 }

@@ -17,29 +17,29 @@ import org.springframework.stereotype.Component;
 public class AdminRealm extends AuthorizingRealm {
 
     @Autowired
-	@Lazy
-	private SysUserService userService;
+    @Lazy
+    private SysUserService userService;
 
 
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		String username = (String) principals.getPrimaryPrincipal();
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setStringPermissions(userService.findSysUserPermissionsByUsername(username));
-		info.setRoles(userService.findSysUserRolesPByUserame(username));
-		return info;
-	}
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        String username = (String) principals.getPrimaryPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setStringPermissions(userService.findSysUserPermissionsByUsername(username));
+        info.setRoles(userService.findSysUserRolesPByUserame(username));
+        return info;
+    }
 
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		String username= (String) token.getPrincipal();
-		TSysUser user = userService.findSysUserByUsername(username);
-		if (user == null) {
-			throw new UnknownAccountException();
-		}
-		System.out.println("user : "+user .toString());
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
-		return info;
-	}
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        String username = (String) token.getPrincipal();
+        TSysUser user = userService.findSysUserByUsername(username);
+        if (user == null) {
+            throw new UnknownAccountException();
+        }
+        System.out.println("user : " + user.toString());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+        return info;
+    }
 
 }

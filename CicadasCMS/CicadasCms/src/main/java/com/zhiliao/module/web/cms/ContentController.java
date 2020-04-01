@@ -46,7 +46,7 @@ import java.util.Map;
  **/
 @Controller
 @RequestMapping("/system/cms/content")
-public class ContentController{
+public class ContentController {
 
     @Autowired
     private ContentService contentService;
@@ -68,51 +68,51 @@ public class ContentController{
 
     @RequiresPermissions("content:admin")
     @RequestMapping("/page")
-    public String page(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "50") Integer pageSize,
+    public String page(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                       @RequestParam(value = "pageSize", defaultValue = "50") Integer pageSize,
                        TCmsContentVo content,
-                        Model model){
+                       Model model) {
         Subject currentUser = SecurityUtils.getSubject();
-        TCmsCategory category =categoryService.findById(content.getCategoryId());
-        if(!CmsUtil.isNullOrEmpty(content.getCategoryId())&&!StrUtil.isBlank(category.getPermissionKey())&&!currentUser.isPermitted(category.getPermissionKey()))
+        TCmsCategory category = categoryService.findById(content.getCategoryId());
+        if (!CmsUtil.isNullOrEmpty(content.getCategoryId()) && !StrUtil.isBlank(category.getPermissionKey()) && !currentUser.isPermitted(category.getPermissionKey()))
             throw new CmsException("对不起,您没有当前栏目的管理权限！");
-        UserVo userVo = ((UserVo)ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
-        if(CmsUtil.isNullOrEmpty(userVo))
-            throw  new UnauthenticatedException();
+        UserVo userVo = ((UserVo) ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
+        if (CmsUtil.isNullOrEmpty(userVo))
+            throw new UnauthenticatedException();
         content.setSiteId(userVo.getSiteId());
         content.setUserId(userVo.getUserId());
-        model.addAttribute("model",contentService.page(pageNumber,pageSize,content));
-        model.addAttribute("pojo",content);
-         return "cms/content_list";
+        model.addAttribute("model", contentService.page(pageNumber, pageSize, content));
+        model.addAttribute("pojo", content);
+        return "cms/content_list";
     }
 
     @SysLog("内容添加")
     @RequiresPermissions("content:input")
     @RequestMapping("/input")
-    public String input(@RequestParam(value = "categoryId",required = false) Long categoryId,
-                        @RequestParam(value = "contentId",required = false) Long contentId,
-                        @RequestParam(value = "isWindow",defaultValue = "NO") String isWindow,
+    public String input(@RequestParam(value = "categoryId", required = false) Long categoryId,
+                        @RequestParam(value = "contentId", required = false) Long contentId,
+                        @RequestParam(value = "isWindow", defaultValue = "NO") String isWindow,
                         Model model) {
-        TCmsCategory category =categoryService.findById(categoryId);
-        if(CmsUtil.isNullOrEmpty(category))
+        TCmsCategory category = categoryService.findById(categoryId);
+        if (CmsUtil.isNullOrEmpty(category))
             throw new CmsException("当前栏目已被删除！");
         Subject currentUser = SecurityUtils.getSubject();
-        if(!StrUtil.isBlank(category.getPermissionKey())&&!currentUser.isPermitted(category.getPermissionKey()))
+        if (!StrUtil.isBlank(category.getPermissionKey()) && !currentUser.isPermitted(category.getPermissionKey()))
             throw new CmsException("对不起,您没有当前栏目的管理权限！");
         TCmsModel cmsModel = modelService.findById(category.getModelId());
         List<TCmsModelFiled> cmsModelFileds = modelFiledService.findModelFiledListByModelId(cmsModel.getModelId());
-        if(contentId!=null)
-            model.addAttribute("content",contentService.findContentByContentIdAndTableName(contentId,cmsModel.getTableName()));
-        model.addAttribute("modelFiled",cmsModelFileds);
-        model.addAttribute("category",category);
-        model.addAttribute("isWindow",isWindow);
+        if (contentId != null)
+            model.addAttribute("content", contentService.findContentByContentIdAndTableName(contentId, cmsModel.getTableName()));
+        model.addAttribute("modelFiled", cmsModelFileds);
+        model.addAttribute("category", category);
+        model.addAttribute("isWindow", isWindow);
         return "cms/content_input";
     }
 
 
     @RequestMapping("/excel")
-    public ModelAndView excel(){
-        ExcelUtil.exports2007("123",contentService.page(1,20,new TCmsContentVo()).getList());
+    public ModelAndView excel() {
+        ExcelUtil.exports2007("123", contentService.page(1, 20, new TCmsContentVo()).getList());
         return null;
     }
 
@@ -120,9 +120,9 @@ public class ContentController{
     @RequestMapping("/save")
     @ResponseBody
     public String save(TCmsContent content, HttpServletRequest request,
-                       @RequestParam(value = "tag",required = false) String[] tags
-                      ) throws SQLException {
-        TCmsCategory category =categoryService.findById(content.getCategoryId());
+                       @RequestParam(value = "tag", required = false) String[] tags
+    ) throws SQLException {
+        TCmsCategory category = categoryService.findById(content.getCategoryId());
         TCmsModel cmsModel = modelService.findById(category.getModelId());
         List<TCmsModelFiled> cmsModelFileds = modelFiledService.findModelFiledListByModelId(category.getModelId());
         UserVo userVo = UserUtil.getSysUserVo();
@@ -131,37 +131,37 @@ public class ContentController{
         content.setInputdate(new Date());
         content.setModelId(category.getModelId());
         /*Jin：使用Map接收：遍历获取自定义模型字段*/
-        Map<String, Object> formParam =Maps.newHashMap();
+        Map<String, Object> formParam = Maps.newHashMap();
         for (TCmsModelFiled filed : cmsModelFileds) {
-            if(filed.getFiledClass().equals("checkbox")||filed.getFiledClass().equals("image")) {
+            if (filed.getFiledClass().equals("checkbox") || filed.getFiledClass().equals("image")) {
                 String[] filedValue = request.getParameterValues(filed.getFiledName());
-                if (filedValue!=null) {
+                if (filedValue != null) {
                     formParam.put(filed.getFiledName(), filedValue);
                 }
-            }else {
+            } else {
                 String filedValue = request.getParameter(filed.getFiledName());
                 if (!StrUtil.isBlank(filedValue)) {
                     formParam.put(filed.getFiledName(), filedValue);
                 }
             }
         }
-        if(content.getContentId()!=null)
-            return contentService.update(content,cmsModel.getTableName(),cmsModelFileds,formParam,tags);
-        return contentService.save(content,cmsModel.getTableName(),formParam,tags);
+        if (content.getContentId() != null)
+            return contentService.update(content, cmsModel.getTableName(), cmsModelFileds, formParam, tags);
+        return contentService.save(content, cmsModel.getTableName(), formParam, tags);
     }
 
     @SysLog("内容删除")
     @RequiresPermissions("content:delete")
     @RequestMapping("/delete")
     @ResponseBody
-    public String delete(@RequestParam(value = "ids",required = false) Long[] ids) {
+    public String delete(@RequestParam(value = "ids", required = false) Long[] ids) {
         return contentService.delete(ids);
     }
 
 
     @RequestMapping("/recovery")
     @ResponseBody
-    public String recovery(@RequestParam(value = "ids",required = false) Long[] ids) {
+    public String recovery(@RequestParam(value = "ids", required = false) Long[] ids) {
         return contentService.recovery(ids);
     }
 

@@ -34,7 +34,7 @@ public class PayloadVo {
         return ext;
     }
 
-    public void setExt(long  ext) {
+    public void setExt(long ext) {
         this.ext = ext;
     }
 

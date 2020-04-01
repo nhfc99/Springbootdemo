@@ -19,16 +19,16 @@ public class CheckSumUtil {
     }
 
     /*获取当前日期*/
-    public static String getTimestamp(){
-        SimpleDateFormat sdf = new  SimpleDateFormat("yyyyMMddHHmmss");
-        return  sdf.format(new Date());
+    public static String getTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(new Date());
     }
 
-    public static void  main(String [] args ){
+    public static void main(String[] args) {
 
 //        String s = getTimestamp();
 //        System.out.println(getCheckSum("jdeFDS89HFassdsfFDNDS73FDJK", "11", s));
-        System.out.println(Long.parseLong("20170608164200")-Long.parseLong("20170608164000"));
+        System.out.println(Long.parseLong("20170608164200") - Long.parseLong("20170608164000"));
 
     }
 
@@ -51,6 +51,7 @@ public class CheckSumUtil {
             throw new RuntimeException(e);
         }
     }
+
     private static String getFormattedText(byte[] bytes) {
         int len = bytes.length;
         StringBuilder buf = new StringBuilder(len * 2);
@@ -60,7 +61,8 @@ public class CheckSumUtil {
         }
         return buf.toString();
     }
-    private static final char[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
- }
+    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+}

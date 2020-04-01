@@ -9,17 +9,16 @@ import org.quartz.JobExecutionException;
 
 /**
  * 定时任务运行工厂类
- * 
-*/
+ */
 @DisallowConcurrentExecution
-public class DisallowConcurrentExecutionQuartzJobFactory implements Job{
+public class DisallowConcurrentExecutionQuartzJobFactory implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-         Object scheduleJob =context.getMergedJobDataMap().get("scheduleJob");
-         System.out.println(scheduleJob);
+        Object scheduleJob = context.getMergedJobDataMap().get("scheduleJob");
+        System.out.println(scheduleJob);
 //         System.out.println("任务名称 = [" + scheduleJob.getJobName() + "]");
-         TaskUtils.invokeMethod( (ScheduleJob)scheduleJob);
+        TaskUtils.invokeMethod((ScheduleJob) scheduleJob);
     }
 
 }

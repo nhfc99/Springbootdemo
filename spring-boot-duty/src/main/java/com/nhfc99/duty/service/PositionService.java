@@ -12,12 +12,12 @@ import com.nhfc99.duty.model.PositionDO;
 
 @Service
 public class PositionService {
-	@Autowired
-	PositionDOMapper positionDOMapper;
+    @Autowired
+    PositionDOMapper positionDOMapper;
 
-	private static final Logger log = LoggerFactory.getLogger(PositionService.class);
+    private static final Logger log = LoggerFactory.getLogger(PositionService.class);
 
-	public List<PositionDO> selectAll() {
-		return positionDOMapper.selectAll();
-	}
+    public List<PositionDO> selectAll() {
+        return positionDOMapper.selectAll();
+    }
 }

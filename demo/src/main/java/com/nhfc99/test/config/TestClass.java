@@ -17,27 +17,27 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= {DemoApplication.class})
+@SpringBootTest(classes = {DemoApplication.class})
 @AutoConfigureMockMvc
 public class TestClass {
-	@Autowired
-	protected MockMvc mockMvc;
-	
-	@Test
-	public void exampleTest() throws Exception {
-		System.out.println("****hello world***********");
-		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/test/config/getname")).andReturn();
-		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-		System.out.println(mockHttpServletResponse.getContentAsString());
-	}
-	
-	@Before
-	public void beforeTest() {
-		System.out.println("before");
-	}
-	
-	@After
-	public void afterTest() {
-		System.out.println("after");
-	}
+    @Autowired
+    protected MockMvc mockMvc;
+
+    @Test
+    public void exampleTest() throws Exception {
+        System.out.println("****hello world***********");
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/test/config/getname")).andReturn();
+        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+        System.out.println(mockHttpServletResponse.getContentAsString());
+    }
+
+    @Before
+    public void beforeTest() {
+        System.out.println("before");
+    }
+
+    @After
+    public void afterTest() {
+        System.out.println("after");
+    }
 }

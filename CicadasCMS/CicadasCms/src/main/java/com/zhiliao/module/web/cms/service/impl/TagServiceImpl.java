@@ -32,13 +32,13 @@ public class TagServiceImpl implements TagService {
 
         Example example = new Example(TCmsTag.class);
         example.createCriteria()
-                .andCondition("tag_name like '%"+tagWord+"%'");
-        List<TCmsTag> tags = CmsUtil.isNullOrEmpty(tagMapper.selectByExample(example))?tagMapper.selectAll():tagMapper.selectByExample(example);
+                .andCondition("tag_name like '%" + tagWord + "%'");
+        List<TCmsTag> tags = CmsUtil.isNullOrEmpty(tagMapper.selectByExample(example)) ? tagMapper.selectAll() : tagMapper.selectByExample(example);
         JSONArray jsonArray = new JSONArray();
         if (tags != null) {
             for (TCmsTag tag : tags) {
                 JSONObject object = new JSONObject();
-                object.put("id", tag.getTagId()<10?"0"+tag.getTagId():tag.getTagId());
+                object.put("id", tag.getTagId() < 10 ? "0" + tag.getTagId() : tag.getTagId());
                 object.put("label", tag.getTagName());
                 object.put("value", tag.getTagName());
                 jsonArray.add(object);

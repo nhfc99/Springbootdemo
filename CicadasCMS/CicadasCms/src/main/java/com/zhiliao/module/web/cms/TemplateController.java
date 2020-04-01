@@ -29,18 +29,18 @@ public class TemplateController {
 
     @RequiresPermissions("template:admin")
     @RequestMapping
-    public String index(Model model){
+    public String index(Model model) {
         List<TemplateFile> list = templateFileService.findAll();
-        model.addAttribute("templateFiles",list);
+        model.addAttribute("templateFiles", list);
         return "cms/template";
     }
 
 
     @RequiresPermissions("template:edit")
     @RequestMapping("/input")
-    public String input(TemplateFile templateFile,Model model){
-        if(templateFile.getFilePath()==null)throw new SystemException("模板路径不能为空！");
-        model.addAttribute("templateFile",templateFileService.findByPath(templateFile.getFilePath()));
+    public String input(TemplateFile templateFile, Model model) {
+        if (templateFile.getFilePath() == null) throw new SystemException("模板路径不能为空！");
+        model.addAttribute("templateFile", templateFileService.findByPath(templateFile.getFilePath()));
         return "cms/template_input";
 
     }
@@ -49,9 +49,9 @@ public class TemplateController {
     @RequiresPermissions("template:save")
     @RequestMapping("/save")
     @ResponseBody
-    public String save(TemplateFile templateFile){
+    public String save(TemplateFile templateFile) {
         templateFileService.writeTemplateFileContent(templateFile);
-        return JsonUtil.toSUCCESS("模板修改成功","template-tab",false);
+        return JsonUtil.toSUCCESS("模板修改成功", "template-tab", false);
     }
 
 }

@@ -58,7 +58,7 @@
             <article class="txt">
                 <p>
                     ${category.content!}
-                 </p>
+                </p>
 
             </article>
         </div>
@@ -82,41 +82,48 @@
     </div>
     <div class="side_bar">
         <!--最新公告-->
-        <#cms_category  categoryId="204" isParent="0" var="bean">
+        <#cms_category categoryId="204" isParent="0" var="bean">
         <div class="tit2">
             <h4>${bean.categoryName!}</h4>
             <a href="${bean.url!}" class="more">更多>></a>
         </div>
 
         <ul class="list6">
-            <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="15"   var="bean">
+            <#cms_content_list siteId="${site.siteId}" categoryId="${bean.categoryId!}" orderBy="2" isHot="0"
+            hasChild="1" isRecommend="0" size="6" titleLen="15" var="bean">
             <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
-        </#cms_content_list>
+        </
+        #cms_content_list>
         </ul>
-    </#cms_category>
+    </
+    #cms_category>
     <div class="h20"></div>
     <!--XXX文艺-->
-    <#cms_category  categoryId="209" isParent="0" var="bean">
+    <#cms_category categoryId="209" isParent="0" var="bean">
     <div class="tit2">
         <h4>${bean.categoryName!}</h4>
         <a href="${bean.url!}" class="more">更多>></a>
     </div>
-    <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+    <#cms_content_list siteId="${site.siteId}" categoryId="${bean.categoryId!}" orderBy="2" isHot="0" hasChild="1"
+    isRecommend="0" size="1" titleLen="15" var="bean">
     <a href="${bean.url!}" target="_blank" class="pic_box">
         <img src="${bean.thumb!}">
 
         <h4>${bean.title!}</h4>
     </a>
-</#cms_content_list>
-</#cms_category>
+</
+#cms_content_list>
+</
+#cms_category>
 <div class="h20"></div>
 <!--文联资讯-->
-<#cms_category  categoryId="211" isParent="0" var="bean">
+<#cms_category categoryId="211" isParent="0" var="bean">
 <div class="tit2">
     <h4>${bean.categoryName!}</h4>
     <a href="${bean.url!}" class="more">更多>></a>
 </div>
-<#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+<#cms_content_list siteId="${site.siteId}" categoryId="${bean.categoryId!}" orderBy="2" isHot="0" hasChild="1"
+isRecommend="0" size="1" titleLen="15" var="bean">
 <a href="${bean.url!}" target="_blank" class="pic_box">
     <img src="${bean.thumb!}">
 

@@ -10,10 +10,10 @@ import com.nhfc99.sql.model.URolePermissionDO;
 
 @Service
 public class RolePermissionService {
-	@Autowired
-	URolePermissionDOMapper uRolePermissionDOMapper;
+    @Autowired
+    URolePermissionDOMapper uRolePermissionDOMapper;
 
-	List<URolePermissionDO> getRolePermissionsByRid(long rid) {
-		return uRolePermissionDOMapper.getRolePermissionsByrid(rid);
-	}
+    List<URolePermissionDO> getRolePermissionsByRid(long rid) {
+        return uRolePermissionDOMapper.getRolePermissionsByrid(rid);
+    }
 }

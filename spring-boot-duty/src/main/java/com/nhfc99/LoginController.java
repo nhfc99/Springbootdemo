@@ -10,6 +10,6 @@ import ch.qos.logback.classic.Logger;
 @RequestMapping("/login")
 public class LoginController {
 
-	private static Logger logger = (Logger) LoggerFactory.getLogger(LoginController.class);
-	
+    private static Logger logger = (Logger) LoggerFactory.getLogger(LoginController.class);
+
 }

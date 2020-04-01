@@ -12,7 +12,7 @@ public interface LogService {
 
     void saveLog(String content, Date createTime, String username, String type);
 
-    PageInfo<TSysLog>  page(Integer pageNumer,Integer pageSize,String startTime,String endTime);
+    PageInfo<TSysLog> page(Integer pageNumer, Integer pageSize, String startTime, String endTime);
 
     String deleteById(Integer[] logId);
 

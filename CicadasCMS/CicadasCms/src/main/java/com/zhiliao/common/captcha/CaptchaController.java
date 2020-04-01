@@ -29,7 +29,7 @@ public class CaptchaController {
 
 
     @RequestMapping("/verify")
-    public ModelAndView doGet(HttpServletResponse response, HttpSession session)  {
+    public ModelAndView doGet(HttpServletResponse response, HttpSession session) {
         response.setDateHeader("Expires", 0);
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         response.addHeader("Cache-Control", "post-check=0, pre-check=0");
@@ -37,14 +37,14 @@ public class CaptchaController {
         response.setContentType("image/jpeg");
         String capText = captchaProducer.createText();
         BufferedImage bi = captchaProducer.createImage(capText);
-        session.setAttribute(Constants.KAPTCHA_SESSION_KEY,capText);
+        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
         try {
-        ServletOutputStream out = response.getOutputStream();
-        log.debug("captchaProducer.createText："+capText);
-        ImageIO.write(bi, "jpg", out);
-        out.flush();
-        out.close();
-        }catch(Exception e){
+            ServletOutputStream out = response.getOutputStream();
+            log.debug("captchaProducer.createText：" + capText);
+            ImageIO.write(bi, "jpg", out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -52,17 +52,17 @@ public class CaptchaController {
 
     @RequestMapping("/verify/validate")
     @ResponseBody
-    public String validateVerifyCode(@RequestParam("verifyCode") String verify,HttpSession session){
+    public String validateVerifyCode(@RequestParam("verifyCode") String verify, HttpSession session) {
         JSONObject result = new JSONObject();
-        if (validate(verify,session)){
-            result.put("ok","验证码输入正确！");
-        }else{
-            result.put("error","验证码错误,请刷新或重新输入！");
+        if (validate(verify, session)) {
+            result.put("ok", "验证码输入正确！");
+        } else {
+            result.put("error", "验证码错误,请刷新或重新输入！");
         }
-    return result.toJSONString();
+        return result.toJSONString();
     }
 
-    public static  boolean validate(String verifyCode,HttpSession session) {
+    public static boolean validate(String verifyCode, HttpSession session) {
         String text = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (StrUtil.isBlank(text))
             return false;

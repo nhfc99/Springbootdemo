@@ -32,28 +32,28 @@ public class IndexSilderTag extends GeneralVarTagBinding {
     @Override
     public void render() {
         if (CmsUtil.isNullOrEmpty(this.args[1]))
-            throw  new SystemException("标签参数不能为空！");
-        Integer titleLen =  Integer.parseInt((String) this.getAttributeValue("titleLen"));
-        Integer size =  Integer.parseInt((String) this.getAttributeValue("size"));
-        Integer type =  Integer.parseInt(this.getAttributeValue("type")==null?"1":(String) this.getAttributeValue("type"));
+            throw new SystemException("标签参数不能为空！");
+        Integer titleLen = Integer.parseInt((String) this.getAttributeValue("titleLen"));
+        Integer size = Integer.parseInt((String) this.getAttributeValue("size"));
+        Integer type = Integer.parseInt(this.getAttributeValue("type") == null ? "1" : (String) this.getAttributeValue("type"));
         TCmsAdSilder queryBean = new TCmsAdSilder();
         queryBean.setType(type);
-        PageInfo<TCmsAdSilder> pageInfo = silderService.page(1,size,queryBean);
+        PageInfo<TCmsAdSilder> pageInfo = silderService.page(1, size, queryBean);
         try {
-            wrapRender(pageInfo.getList(),titleLen);
+            wrapRender(pageInfo.getList(), titleLen);
         } catch (Exception e) {
             throw new CmsException(e.getMessage());
         }
     }
 
-    private void wrapRender(List<TCmsAdSilder>  silderList, int titleLen) throws Exception {
+    private void wrapRender(List<TCmsAdSilder> silderList, int titleLen) throws Exception {
         int i = 1;
         for (TCmsAdSilder silder : silderList) {
             String title = silder.getSildeName();
             int length = title.length();
             if (length > titleLen) silder.setSildeName(title.substring(0, titleLen) + "...");
             Map result = Pojo2MapUtil.toMap(silder);
-            result.put("index",i);
+            result.put("index", i);
             this.binds(result);
             this.doBodyRender();
             i++;

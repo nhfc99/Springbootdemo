@@ -5,8 +5,8 @@ import com.zhiliao.mybatis.model.TCmsTopic;
 
 import java.util.List;
 
-public interface TopicService extends BaseService<TCmsTopic,Integer> {
+public interface TopicService extends BaseService<TCmsTopic, Integer> {
     Integer AllCount();
 
-    List<TCmsTopic> findByRecommendList(Integer siteId,boolean isRecommend, Integer pageSize);
+    List<TCmsTopic> findByRecommendList(Integer siteId, boolean isRecommend, Integer pageSize);
 }

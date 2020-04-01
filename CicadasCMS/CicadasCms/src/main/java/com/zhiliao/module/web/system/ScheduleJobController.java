@@ -19,28 +19,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
  **/
 @Controller
 @RequestMapping("/system/schedule")
-public class ScheduleJobController extends BaseController<TSysScheduleJob>{
+public class ScheduleJobController extends BaseController<TSysScheduleJob> {
 
-    @Autowired private ScheduleJobService scheduleJobService;
+    @Autowired
+    private ScheduleJobService scheduleJobService;
 
 
     @RequiresPermissions("job:admin")
     @RequestMapping
     @Override
-    public String index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "50")Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "50") Integer pageSize,
                         TSysScheduleJob pojo, Model model) {
-        model.addAttribute("model",scheduleJobService.page(pageNumber,pageSize,pojo));
+        model.addAttribute("model", scheduleJobService.page(pageNumber, pageSize, pojo));
         return "system/schedule_list";
     }
 
     @RequiresPermissions("job:input")
     @RequestMapping("/input")
     @Override
-    public String input(@RequestParam(value = "id",required = false) Integer Id,
+    public String input(@RequestParam(value = "id", required = false) Integer Id,
                         Model model) {
-        if(Id!=null)
-            model.addAttribute("pojo",scheduleJobService.findById(Id));
+        if (Id != null)
+            model.addAttribute("pojo", scheduleJobService.findById(Id));
         return "system/schedule_input";
     }
 
@@ -48,8 +49,8 @@ public class ScheduleJobController extends BaseController<TSysScheduleJob>{
     @RequestMapping("/save")
     @ResponseBody
     @Override
-    public String save(TSysScheduleJob pojo){
-        if(pojo.getId()!=null)
+    public String save(TSysScheduleJob pojo) {
+        if (pojo.getId() != null)
             return scheduleJobService.update(pojo);
         return scheduleJobService.save(pojo);
     }
@@ -58,14 +59,14 @@ public class ScheduleJobController extends BaseController<TSysScheduleJob>{
     @RequestMapping("/delete")
     @ResponseBody
     @Override
-    public String delete(@RequestParam(value = "ids",required = false) Integer[] ids) {
+    public String delete(@RequestParam(value = "ids", required = false) Integer[] ids) {
         return scheduleJobService.delete(ids);
     }
 
     @RequestMapping("/change")
     @ResponseBody
-    public String change(@RequestParam(value = "id",required = false) Integer Id,
-                         @RequestParam(value = "status",required = false) String status){
-       return scheduleJobService.changeStatus(Id,status);
+    public String change(@RequestParam(value = "id", required = false) Integer Id,
+                         @RequestParam(value = "status", required = false) String status) {
+        return scheduleJobService.changeStatus(Id, status);
     }
 }

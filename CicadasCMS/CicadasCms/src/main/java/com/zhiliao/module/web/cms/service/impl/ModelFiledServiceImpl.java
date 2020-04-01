@@ -32,7 +32,7 @@ import java.util.List;
  **/
 @Service
 @CacheConfig(cacheNames = "cms_modelFiled-cache")
-public class ModelFiledServiceImpl implements ModelFiledService{
+public class ModelFiledServiceImpl implements ModelFiledService {
 
 
     @Autowired
@@ -45,51 +45,51 @@ public class ModelFiledServiceImpl implements ModelFiledService{
     private DbTableAssistantService dbTableAssistant;
 
     @Override
-    @Transactional(transactionManager = "masterTransactionManager",propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+    @Transactional(transactionManager = "masterTransactionManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public String save(TCmsModelFiled pojo) {
         pojo.setFiledName(PinyinUtil.convertLower(HtmlKit.getText(pojo.getFiledName())));
-        FiledTypeVo filedTypeVo = DbTableKit.getFiledTypeVo(pojo.getFiledClass(),pojo.getFiledType(),pojo.getFiledLength(),pojo.getFiledValue());
+        FiledTypeVo filedTypeVo = DbTableKit.getFiledTypeVo(pojo.getFiledClass(), pojo.getFiledType(), pojo.getFiledLength(), pojo.getFiledValue());
         pojo.setFiledLength(filedTypeVo.getLength());
         pojo.setFiledType(filedTypeVo.getM().toString());
-        if (filedMapper.insertSelective(pojo)>0) {
+        if (filedMapper.insertSelective(pojo) > 0) {
             TCmsModel model = modelMapper.selectByPrimaryKey(pojo.getModelId());
             /* 根据模型表名添加数据库字段 */
             try {
-                dbTableAssistant.addDbTableColumn(model.getTableName(),pojo.getFiledName(),filedTypeVo.getM(),filedTypeVo.getLength(),false,filedTypeVo.getDefaultValue(),pojo.getNotNull(),false);
+                dbTableAssistant.addDbTableColumn(model.getTableName(), pojo.getFiledName(), filedTypeVo.getM(), filedTypeVo.getLength(), false, filedTypeVo.getDefaultValue(), pojo.getNotNull(), false);
             } catch (SQLException e) {
-                throw  new SystemException(e.getMessage());
+                throw new SystemException(e.getMessage());
             }
-            return JsonUtil.toSUCCESS("操作成功", "", "model-filed-tab",true);
+            return JsonUtil.toSUCCESS("操作成功", "", "model-filed-tab", true);
         }
-        return  JsonUtil.toERROR("操作失败");
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsModelFiled pojo) {
-        if (filedMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","model-filed-tab",false);
-        return  JsonUtil.toERROR("操作失败");
+        if (filedMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "model-filed-tab", false);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String delete(Integer[] ids) {
-        if(ids!=null) {
+        if (ids != null) {
             for (Integer id : ids) {
-                TCmsModelFiled filed =filedMapper.selectByPrimaryKey(id);
-                TCmsModel model =modelMapper.selectByPrimaryKey(filed.getModelId());
+                TCmsModelFiled filed = filedMapper.selectByPrimaryKey(id);
+                TCmsModel model = modelMapper.selectByPrimaryKey(filed.getModelId());
                 /* 根据模型表名删除表字段 */
-                if(model!=null) {
+                if (model != null) {
                     try {
                         dbTableAssistant.deleteDbTableColumn(model.getTableName(), filed.getFiledName(), false);
                     } catch (SQLException e) {
-                        throw  new SystemException(e.getMessage());
+                        throw new SystemException(e.getMessage());
                     }
                 }
                 filedMapper.deleteByPrimaryKey(id);
             }
             return JsonUtil.toSUCCESS("操作成功", "model-filed-tab", false);
         }
-        return  JsonUtil.toERROR("操作失败");
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Cacheable(key = "#p0")
@@ -110,13 +110,13 @@ public class ModelFiledServiceImpl implements ModelFiledService{
 
     @Override
     public PageInfo<TCmsModelFiled> page(Integer pageNumber, Integer pageSize, TCmsModelFiled pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsModelFiled> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 

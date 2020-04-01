@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
 
-public class MyFormAuthenticationFilter extends FormAuthenticationFilter{
+public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
     private static final Logger log = LoggerFactory.getLogger(MyFormAuthenticationFilter.class);
 
     @Override
@@ -33,7 +33,7 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter{
                 log.trace("Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
-            if (!"XMLHttpRequest" .equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {// 不是ajax请求
+            if (!"XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {// 不是ajax请求
                 saveRequestAndRedirectToLogin(request, response);
             } else {
                 response.setCharacterEncoding("UTF-8");

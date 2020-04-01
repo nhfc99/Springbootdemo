@@ -14,6 +14,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface ParamNotNull {
 
-	/**校验的参数，多个参数用,号分割，如 parameter="userId,userName"*/
+    /**
+     * 校验的参数，多个参数用,号分割，如 parameter="userId,userName"
+     */
     String parameter();
 }

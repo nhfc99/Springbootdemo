@@ -7,102 +7,102 @@ package com.zhiliao.component.lucene.util;
  * @author Jin
  * @create 2017-05-19
  **/
-public class IndexObject implements Comparable<IndexObject>{
-	
-	private String id;
+public class IndexObject implements Comparable<IndexObject> {
 
-	private String title;
+    private String id;
 
-	private String keywords;
+    private String title;
 
-	private String description;
+    private String keywords;
 
-	private String postDate;
+    private String description;
 
-	private String url;
+    private String postDate;
 
-	/*相似度*/
-	private float score;
+    private String url;
 
-	public String getPostDate() {
-		return postDate;
-	}
+    /*相似度*/
+    private float score;
 
-	public void setPostDate(String postDate) {
-		this.postDate = postDate;
-	}
+    public String getPostDate() {
+        return postDate;
+    }
 
-	public String getKeywords() {
-		return keywords;
-	}
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
+    }
 
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
-	}
+    public String getKeywords() {
+        return keywords;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public float getScore() {
-		return score;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public  void setScore(float score) {
-		this.score = score;
-	}
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
 
 
-	
-	public IndexObject() {
-		super();
-	}
+    public IndexObject() {
+        super();
+    }
 
-	public IndexObject(String _id, String _keywords,String _description,String _postDate, float _score) {
-		super();
-		this.id = _id;
-		this.keywords = _keywords;
-		this.score = _score;
-		this.description=_description;
-		this.postDate=_postDate;
-	}
-	@Override
-	public int compareTo(IndexObject o) {
-		if(this.score < o.getScore()){
-			return 1;
-		}else if(this.score > o.getScore()){
-			return -1;
-		}
-		return 0;
-	}
-	
-	
+    public IndexObject(String _id, String _keywords, String _description, String _postDate, float _score) {
+        super();
+        this.id = _id;
+        this.keywords = _keywords;
+        this.score = _score;
+        this.description = _description;
+        this.postDate = _postDate;
+    }
+
+    @Override
+    public int compareTo(IndexObject o) {
+        if (this.score < o.getScore()) {
+            return 1;
+        } else if (this.score > o.getScore()) {
+            return -1;
+        }
+        return 0;
+    }
+
+
 }

@@ -32,7 +32,7 @@ import java.util.List;
  **/
 @Service
 @CacheConfig(cacheNames = "cms-category-cache")
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private TCmsCategoryMapper categoryMapper;
@@ -40,48 +40,48 @@ public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private TCmsContentMapper contentMapper;
 
-    @CacheEvict(cacheNames = "cms-category-cache",allEntries = true,beforeInvocation = true)
+    @CacheEvict(cacheNames = "cms-category-cache", allEntries = true, beforeInvocation = true)
     @Override
     public String save(TCmsCategory pojo) {
         /* 将栏目名称转换为拼音设置别名 */
-        if(StrUtil.isBlank(pojo.getAlias())) {
-            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getCategoryName())).replace(" ","-").trim());
-        }else {
-            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getAlias())).replace(" ","-").trim());
+        if (StrUtil.isBlank(pojo.getAlias())) {
+            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getCategoryName())).replace(" ", "-").trim());
+        } else {
+            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getAlias())).replace(" ", "-").trim());
         }
         /* 判断是否设置当前栏目为顶级节点 */
-        if(pojo.getParentId()!=0L){
-            TCmsCategory parentCategory =categoryMapper.selectByPrimaryKey(pojo.getParentId());
+        if (pojo.getParentId() != 0L) {
+            TCmsCategory parentCategory = categoryMapper.selectByPrimaryKey(pojo.getParentId());
             parentCategory.setHasChild(true);
             categoryMapper.updateByPrimaryKeySelective(parentCategory);
-             /*判断当前栏目是否需要继承父类模板*/
-            if(StrUtil.isBlank(pojo.getContentTpl()))
-                pojo.setContentTpl(StrUtil.isBlank(parentCategory .getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory .getContentTpl());
-            if(StrUtil.isBlank(pojo.getIndexTpl()))
-                pojo.setIndexTpl(StrUtil.isBlank(parentCategory .getIndexTpl()) ? CmsConst.CATEGORY_INDEX_TPL: parentCategory .getIndexTpl());
-            if(StrUtil.isBlank(pojo.getListTpl()))
-                pojo.setListTpl(StrUtil.isBlank(parentCategory .getListTpl()) ? CmsConst.CATEGORY_LIST_TPL :parentCategory .getListTpl());
-        }else {
+            /*判断当前栏目是否需要继承父类模板*/
+            if (StrUtil.isBlank(pojo.getContentTpl()))
+                pojo.setContentTpl(StrUtil.isBlank(parentCategory.getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory.getContentTpl());
+            if (StrUtil.isBlank(pojo.getIndexTpl()))
+                pojo.setIndexTpl(StrUtil.isBlank(parentCategory.getIndexTpl()) ? CmsConst.CATEGORY_INDEX_TPL : parentCategory.getIndexTpl());
+            if (StrUtil.isBlank(pojo.getListTpl()))
+                pojo.setListTpl(StrUtil.isBlank(parentCategory.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : parentCategory.getListTpl());
+        } else {
             pojo.setContentTpl(StrUtil.isBlank(pojo.getContentTpl()) ? CmsConst.CONTENT_TPL : pojo.getContentTpl());
             pojo.setIndexTpl(StrUtil.isBlank(pojo.getIndexTpl()) ? CmsConst.CATEGORY_INDEX_TPL : pojo.getIndexTpl());
             pojo.setListTpl(StrUtil.isBlank(pojo.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : pojo.getListTpl());
         }
-        if(categoryMapper.insert(pojo)>0){
-            return JsonUtil.toSUCCESS("分类添加成功！","category-tab",true);
+        if (categoryMapper.insert(pojo) > 0) {
+            return JsonUtil.toSUCCESS("分类添加成功！", "category-tab", true);
         }
         return JsonUtil.toERROR("分类添加失败！");
     }
 
 
-    @Transactional(transactionManager = "masterTransactionManager",propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
-    @CacheEvict(cacheNames = "cms-category-cache",allEntries = true,beforeInvocation = true)
+    @Transactional(transactionManager = "masterTransactionManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @CacheEvict(cacheNames = "cms-category-cache", allEntries = true, beforeInvocation = true)
     @Override
     public String update(TCmsCategory pojo) {
         /* 将栏目名称转换为拼音设置别名 */
         //pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getCategoryName())));
         /*todo 这地方需要做个判断栏目是否允许更换内容模型*/
         /*  如果当前栏目父Id是不是顶级节点 */
-        if(categoryMapper.selectByPrimaryKey(pojo.getCategoryId()).getParentId()==0&&pojo.getParentId()!=0L){
+        if (categoryMapper.selectByPrimaryKey(pojo.getCategoryId()).getParentId() == 0 && pojo.getParentId() != 0L) {
             /* 父类交换 */
             TCmsCategory parentCategory = categoryMapper.selectByPrimaryKey(pojo.getParentId());
             parentCategory.setParentId(0L);
@@ -89,62 +89,62 @@ public class CategoryServiceImpl implements CategoryService{
             pojo.setParentId(pojo.getParentId());
             categoryMapper.updateByPrimaryKey(parentCategory);
             /*判断当前栏目是否需要继承父类模板*/
-            if(StrUtil.isBlank(pojo.getContentTpl()))
-               pojo.setContentTpl(StrUtil.isBlank(parentCategory .getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory .getContentTpl());
-            if(StrUtil.isBlank(pojo.getIndexTpl()))
-               pojo.setIndexTpl(StrUtil.isBlank(parentCategory .getIndexTpl()) ? CmsConst.INDEX_TPL : parentCategory .getIndexTpl());
-            if(StrUtil.isBlank(pojo.getListTpl()))
-              pojo.setListTpl(StrUtil.isBlank(parentCategory .getListTpl()) ? CmsConst.CATEGORY_LIST_TPL :parentCategory .getListTpl());
-        }else {
+            if (StrUtil.isBlank(pojo.getContentTpl()))
+                pojo.setContentTpl(StrUtil.isBlank(parentCategory.getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory.getContentTpl());
+            if (StrUtil.isBlank(pojo.getIndexTpl()))
+                pojo.setIndexTpl(StrUtil.isBlank(parentCategory.getIndexTpl()) ? CmsConst.INDEX_TPL : parentCategory.getIndexTpl());
+            if (StrUtil.isBlank(pojo.getListTpl()))
+                pojo.setListTpl(StrUtil.isBlank(parentCategory.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : parentCategory.getListTpl());
+        } else {
             pojo.setContentTpl(StrUtil.isBlank(pojo.getContentTpl()) ? CmsConst.CONTENT_TPL : pojo.getContentTpl());
             pojo.setIndexTpl(StrUtil.isBlank(pojo.getIndexTpl()) ? CmsConst.INDEX_TPL : pojo.getIndexTpl());
             pojo.setListTpl(StrUtil.isBlank(pojo.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : pojo.getListTpl());
         }
-        if(categoryMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("分类更新成功！","category-tab",false);
+        if (categoryMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("分类更新成功！", "category-tab", false);
         return JsonUtil.toERROR("分类更新失败！");
     }
 
-    @Transactional(transactionManager = "masterTransactionManager",propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
-    @CacheEvict(cacheNames = "cms-category-cache",allEntries = true)
+    @Transactional(transactionManager = "masterTransactionManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @CacheEvict(cacheNames = "cms-category-cache", allEntries = true)
     @Override
     public String delete(Long[] ids) {
-        if(ids!=null&&ids.length>0)
-            for(Long id : ids){
+        if (ids != null && ids.length > 0)
+            for (Long id : ids) {
                 /*先遍历获取当前子栏目*/
                 TCmsCategory category = new TCmsCategory();
                 category.setParentId(id);
-                List<TCmsCategory> categories=categoryMapper.select(category);
-                if(categories!=null&&categories.size()>0){
-                   for(TCmsCategory c :categories){
-                       TCmsContent content =new TCmsContent();
-                       content.setCategoryId(c.getCategoryId());
-                       if(contentMapper.selectCount(content)>0)
-                          throw new CmsException("当前栏目["+id+"]下有多条内容，不允许删除");
-                       categoryMapper.deleteByPrimaryKey(c.getCategoryId());
+                List<TCmsCategory> categories = categoryMapper.select(category);
+                if (categories != null && categories.size() > 0) {
+                    for (TCmsCategory c : categories) {
+                        TCmsContent content = new TCmsContent();
+                        content.setCategoryId(c.getCategoryId());
+                        if (contentMapper.selectCount(content) > 0)
+                            throw new CmsException("当前栏目[" + id + "]下有多条内容，不允许删除");
+                        categoryMapper.deleteByPrimaryKey(c.getCategoryId());
                     }
                     categoryMapper.deleteByPrimaryKey(id);
-                }else{
-                    TCmsContent content =new TCmsContent();
+                } else {
+                    TCmsContent content = new TCmsContent();
                     content.setCategoryId(id);
-                    if(contentMapper.selectCount(content)>0)
-                        throw new CmsException("当前栏目["+id+"]下有多条内容，不允许删除");
-                    Long parentId= findById(id).getParentId();
+                    if (contentMapper.selectCount(content) > 0)
+                        throw new CmsException("当前栏目[" + id + "]下有多条内容，不允许删除");
+                    Long parentId = findById(id).getParentId();
                     categoryMapper.deleteByPrimaryKey(id);
                     hasChildUpdate(parentId);
                 }
             }
-        return JsonUtil.toSUCCESS("删除成功！","category-tab",true);
+        return JsonUtil.toSUCCESS("删除成功！", "category-tab", true);
     }
 
-    private void hasChildUpdate(Long id){
-        if(id!=null&&id!=0l) {
+    private void hasChildUpdate(Long id) {
+        if (id != null && id != 0l) {
             TCmsCategory category = findById(id);
             List<TCmsCategory> categories = findCategoryListByPid(id);
-            if(CollectionUtils.isNotEmpty(categories)&&categories.size()>0){
+            if (CollectionUtils.isNotEmpty(categories) && categories.size() > 0) {
                 category.setHasChild(Boolean.TRUE);
                 update(category);
-            }else {
+            } else {
                 category.setHasChild(Boolean.FALSE);
                 update(category);
             }
@@ -153,13 +153,13 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public PageInfo<TCmsCategory> page(Integer pageNumber, Integer pageSize, TCmsCategory pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo(categoryMapper.select(pojo));
     }
 
     @Override
     public PageInfo<TCmsCategory> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         PageInfo<TCmsCategory> pageInfo = new PageInfo();
         pageInfo.setList(categoryMapper.selectAll());
         return pageInfo;
@@ -182,8 +182,6 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
 
-
-
     @Cacheable(key = "'find-list-pid-'+#p0")
     @Override
     public List<TCmsCategory> findCategoryListByPid(Long pid) {
@@ -201,7 +199,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Cacheable(key = "'find-list-pid-'+#p0+'-siteId-'+#p1")
     @Override
-    public List<TCmsCategory> findCategoryListByPid(Long pid,Integer siteId) {
+    public List<TCmsCategory> findCategoryListByPid(Long pid, Integer siteId) {
         TCmsCategory category = new TCmsCategory();
         category.setParentId(pid);
         category.setSiteId(siteId);
@@ -213,8 +211,8 @@ public class CategoryServiceImpl implements CategoryService{
         TCmsCategory category = new TCmsCategory();
         category.setParentId(pid);
         category.setSiteId(siteId);
-        if(isNav)
-           category.setIsNav(isNav);
+        if (isNav)
+            category.setIsNav(isNav);
         return categoryMapper.select(category);
     }
 

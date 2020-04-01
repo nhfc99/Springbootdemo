@@ -44,36 +44,36 @@ public class ContentApiController {
 
     @ApiOperation("内容列表接口")
     @GetMapping(value = "/list")
-    @ParamNotNull(parameter="siteId,categoryId")
+    @ParamNotNull(parameter = "siteId,categoryId")
     public String list(@RequestParam("siteId") Integer siteId,
                        @RequestParam("categoryId") Long categoryId,
-                       @RequestParam(value = "isRecommend",defaultValue = "0") Integer isRecommend,
-                       @RequestParam(value = "isHot",defaultValue = "0") Integer isHot,
-                       @RequestParam(value = "hasChild",defaultValue = "0") Integer hasChild,
-                       @RequestParam(value = "orderBy",defaultValue = "1") Integer orderBy,
-                       @RequestParam(value = "isPic",required = false) Integer isPic,
-                       @RequestParam(value = "pageNumber",defaultValue = "1") Integer pageNumber,
-                       @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize
-                       ){
+                       @RequestParam(value = "isRecommend", defaultValue = "0") Integer isRecommend,
+                       @RequestParam(value = "isHot", defaultValue = "0") Integer isHot,
+                       @RequestParam(value = "hasChild", defaultValue = "0") Integer hasChild,
+                       @RequestParam(value = "orderBy", defaultValue = "1") Integer orderBy,
+                       @RequestParam(value = "isPic", required = false) Integer isPic,
+                       @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+                       @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize
+    ) {
         TCmsSite site = siteService.findById(siteId);
-        if(CmsUtil.isNullOrEmpty(site))
-            throw new ApiException("["+siteId+"]"+CmsConst.SITE_NOT_FOUND);
+        if (CmsUtil.isNullOrEmpty(site))
+            throw new ApiException("[" + siteId + "]" + CmsConst.SITE_NOT_FOUND);
         TCmsCategory category = categoryService.findById(categoryId);
-        if(CmsUtil.isNullOrEmpty(category))
-            throw new ApiException("["+categoryId+"]"+CmsConst.CATEGORY_NOT_FOUND);
-        PageInfo page = this.contentService.findContentListBySiteIdAndCategoryId(siteId,categoryId,orderBy,pageNumber,pageSize,hasChild,isHot,isPic,isRecommend);
-        return JsonUtil.toSuccessResultJSON("请求成功",page.getList());
+        if (CmsUtil.isNullOrEmpty(category))
+            throw new ApiException("[" + categoryId + "]" + CmsConst.CATEGORY_NOT_FOUND);
+        PageInfo page = this.contentService.findContentListBySiteIdAndCategoryId(siteId, categoryId, orderBy, pageNumber, pageSize, hasChild, isHot, isPic, isRecommend);
+        return JsonUtil.toSuccessResultJSON("请求成功", page.getList());
     }
 
     @ApiOperation("内容详情接口")
     @GetMapping(value = "/{contentId}")
-    public String content(@PathVariable Long contentId){
+    public String content(@PathVariable Long contentId) {
         TCmsContent content = contentService.findById(contentId);
-        if(CmsUtil.isNullOrEmpty(content)) throw new ApiException("["+contentId+"]"+CmsConst.CONTENT_NOT_FOUND);
+        if (CmsUtil.isNullOrEmpty(content)) throw new ApiException("[" + contentId + "]" + CmsConst.CONTENT_NOT_FOUND);
         TCmsModel contentModel = modelService.findById(content.getModelId());
-        Map result = contentService.findContentByContentIdAndTableName(contentId,contentModel.getTableName());
+        Map result = contentService.findContentByContentIdAndTableName(contentId, contentModel.getTableName());
         contentService.viewUpdate(contentId);
-        return JsonUtil.toSuccessResultJSON("请求成功",result);
+        return JsonUtil.toSuccessResultJSON("请求成功", result);
     }
 
 }

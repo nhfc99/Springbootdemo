@@ -13,9 +13,9 @@ import org.apache.shiro.authz.UnauthenticatedException;
 public class UserUtil {
 
     public static UserVo getSysUserVo() {
-        UserVo userVo =   ((UserVo) ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
-        if(CmsUtil.isNullOrEmpty(userVo))
-            throw  new UnauthenticatedException();
+        UserVo userVo = ((UserVo) ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
+        if (CmsUtil.isNullOrEmpty(userVo))
+            throw new UnauthenticatedException();
         return userVo;
     }
 }

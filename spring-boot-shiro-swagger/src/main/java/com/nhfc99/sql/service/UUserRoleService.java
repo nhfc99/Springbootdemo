@@ -10,14 +10,16 @@ import com.nhfc99.sql.model.UUserRole;
 
 @Service
 public class UUserRoleService {
-	@Autowired UUserRoleMapper uUserRoleMapper;
-	
-	/**
-	 * 通过用户id获取角色id列表
-	 * @param uid
-	 * @return
-	 */
-	List<UUserRole> getRolesByUid(long uid) {
-		return uUserRoleMapper.getUserRolesByUid(uid);
-	}
+    @Autowired
+    UUserRoleMapper uUserRoleMapper;
+
+    /**
+     * 通过用户id获取角色id列表
+     *
+     * @param uid
+     * @return
+     */
+    List<UUserRole> getRolesByUid(long uid) {
+        return uUserRoleMapper.getUserRolesByUid(uid);
+    }
 }

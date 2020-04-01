@@ -12,12 +12,12 @@ import com.nhfc99.duty.model.DepartmentDO;
 
 @Service
 public class DepartmentService {
-	@Autowired
-	DepartmentDOMapper departmentDOMapper;
+    @Autowired
+    DepartmentDOMapper departmentDOMapper;
 
-	private static final Logger log = LoggerFactory.getLogger(DepartmentService.class);
+    private static final Logger log = LoggerFactory.getLogger(DepartmentService.class);
 
-	public List<DepartmentDO> selectAll() {
-		return departmentDOMapper.selectAll();
-	}
+    public List<DepartmentDO> selectAll() {
+        return departmentDOMapper.selectAll();
+    }
 }

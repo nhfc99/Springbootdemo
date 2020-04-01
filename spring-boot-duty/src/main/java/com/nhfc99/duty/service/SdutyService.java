@@ -10,10 +10,10 @@ import com.nhfc99.duty.model.SdutyDO;
 
 @Service
 public class SdutyService {
-	@Autowired
-	SdutyDOMapper sdutyDOMapper;
-	
-	public List<SdutyDO> selectAll() {
-		return sdutyDOMapper.selectAll();
-	}
+    @Autowired
+    SdutyDOMapper sdutyDOMapper;
+
+    public List<SdutyDO> selectAll() {
+        return sdutyDOMapper.selectAll();
+    }
 }

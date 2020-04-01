@@ -26,16 +26,16 @@ public class TranslateServiceImpl implements TranslateService {
     @Override
     public String translateToString(String text) {
         JSONObject result = new JSONObject();
-        result.put("success","error");
-        if(StringUtils.isEmpty(text)){
-            result.put("message","翻译文本不能为空！");
+        result.put("success", "error");
+        if (StringUtils.isEmpty(text)) {
+            result.put("message", "翻译文本不能为空！");
             return result.toJSONString();
         }
         try {
             String salt = String.valueOf(System.currentTimeMillis());
             String from = "zh-CHS";
             String to = "EN";
-            String sign = TranslateUtil.md5(appKey + text + salt+ appSecret);
+            String sign = TranslateUtil.md5(appKey + text + salt + appSecret);
             Map params = new HashMap();
             params.put("q", text);
             params.put("from", from);
@@ -44,16 +44,16 @@ public class TranslateServiceImpl implements TranslateService {
             params.put("salt", salt);
             params.put("appKey", appKey);
             JSONObject translateResult = JSONObject.parseObject(TranslateUtil.requestForHttp(url, params));
-             if("0".equals(translateResult.getString("errorCode"))){
-                 result.put("data",translateResult.getJSONArray("translation").get(0));
-                 result.put("success","ok");
-                 result.put("message","翻译成功！");
-             }else {
-                 result.put("message","翻译失败！");
-             }
+            if ("0".equals(translateResult.getString("errorCode"))) {
+                result.put("data", translateResult.getJSONArray("translation").get(0));
+                result.put("success", "ok");
+                result.put("message", "翻译成功！");
+            } else {
+                result.put("message", "翻译失败！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            result.put("message",e.getMessage());
+            result.put("message", e.getMessage());
         }
         return result.toJSONString();
     }
@@ -61,16 +61,16 @@ public class TranslateServiceImpl implements TranslateService {
     @Override
     public JSONObject translate(String text) {
         JSONObject result = new JSONObject();
-        result.put("success","error");
-        if(StringUtils.isEmpty(text)){
-            result.put("message","翻译文本不能为空！");
+        result.put("success", "error");
+        if (StringUtils.isEmpty(text)) {
+            result.put("message", "翻译文本不能为空！");
             return result;
         }
         try {
             String salt = String.valueOf(System.currentTimeMillis());
             String from = "zh-CHS";
             String to = "EN";
-            String sign = TranslateUtil.md5(appKey + text + salt+ appSecret);
+            String sign = TranslateUtil.md5(appKey + text + salt + appSecret);
             Map params = new HashMap();
             params.put("q", text);
             params.put("from", from);
@@ -79,16 +79,16 @@ public class TranslateServiceImpl implements TranslateService {
             params.put("salt", salt);
             params.put("appKey", appKey);
             JSONObject translateResult = JSONObject.parseObject(TranslateUtil.requestForHttp(url, params));
-            if("0".equals(translateResult.getString("errorCode"))){
-                result.put("data",translateResult.getJSONArray("translation").get(0));
-                result.put("success","ok");
-                result.put("message","翻译成功！");
-            }else {
-                result.put("message","翻译失败！");
+            if ("0".equals(translateResult.getString("errorCode"))) {
+                result.put("data", translateResult.getJSONArray("translation").get(0));
+                result.put("success", "ok");
+                result.put("message", "翻译成功！");
+            } else {
+                result.put("message", "翻译失败！");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            result.put("message",e.getMessage());
+            result.put("message", e.getMessage());
         }
         return result;
     }

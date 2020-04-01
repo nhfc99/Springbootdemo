@@ -16,11 +16,11 @@ public interface TSysUserMapper {
 
     @Select("select * from t_sys_user where username = #{username}")
     @ResultMap("BaseResultMap")
-    TSysUser  selectByUsername(@Param("username") String username);
+    TSysUser selectByUsername(@Param("username") String username);
 
     @Select("select u.* from t_sys_user u inner join t_sys_org_user o on u.user_id = o.user_id where o.org_id=#{orgId}  group by u.user_id")
     @ResultMap("BaseResultMap")
-    TSysUser  selectByOrgId(@Param("orgId") String orgId);
+    TSysUser selectByOrgId(@Param("orgId") String orgId);
 
     List<TSysUser> selectAll();
 

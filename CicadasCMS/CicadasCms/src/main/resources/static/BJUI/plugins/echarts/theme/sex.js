@@ -1,4 +1,4 @@
-define(function() {
+define(function () {
 
     var theme =
 
@@ -491,7 +491,6 @@ define(function() {
                 }
             }
         }
-
 
 
     return theme;

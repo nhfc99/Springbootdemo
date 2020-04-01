@@ -8,7 +8,7 @@ import com.zhiliao.mybatis.model.TSysUser;
  * @author Jin
  * @create 2017-05-17
  **/
-public class UserVo extends TSysUser{
+public class UserVo extends TSysUser {
 
     private Integer siteId;
     private String siteName;

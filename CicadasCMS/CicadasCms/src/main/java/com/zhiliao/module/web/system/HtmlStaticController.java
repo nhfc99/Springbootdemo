@@ -51,17 +51,17 @@ public class HtmlStaticController {
 
     @RequestMapping
     public String index() {
-       return "system/site_static";
+        return "system/site_static";
     }
 
     @RequestMapping("/all")
     @ResponseBody
     public String all() {
         List<TCmsSite> siteList = siteService.findAll();
-        for(TCmsSite site : siteList) {
-            this. htmlStaticService.index(site.getSiteId());
+        for (TCmsSite site : siteList) {
+            this.htmlStaticService.index(site.getSiteId());
             this.generateCategory(site.getSiteId());
-            this. htmlStaticService.topic(site.getSiteId());
+            this.htmlStaticService.topic(site.getSiteId());
         }
         return JsonUtil.toSUCCESS("全站静态页面生成成功！");
     }
@@ -71,13 +71,13 @@ public class HtmlStaticController {
     @ResponseBody
     public String clear(@PathVariable("siteId") Integer siteId) {
         TCmsSite site = siteService.findById(siteId);
-        File file = new File(staticPath+File.separator +"html"+ File.separator+ site.getSiteKey());
-         try {
-                FileUtils.deleteDirectory(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return JsonUtil.toERROR("删除静态html失败！\n"+e.getMessage());
-         }
+        File file = new File(staticPath + File.separator + "html" + File.separator + site.getSiteKey());
+        try {
+            FileUtils.deleteDirectory(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return JsonUtil.toERROR("删除静态html失败！\n" + e.getMessage());
+        }
         return JsonUtil.toSUCCESS("删除静态html成功！");
     }
 
@@ -86,7 +86,7 @@ public class HtmlStaticController {
     public String siteStatic(@PathVariable("siteId") Integer siteId) {
         this.htmlStaticService.index(siteId);
         this.generateCategory(siteId);
-        this. htmlStaticService.topic(siteId);
+        this.htmlStaticService.topic(siteId);
         return JsonUtil.toSUCCESS("静态页面正在生成....");
     }
 
@@ -99,38 +99,38 @@ public class HtmlStaticController {
 
     @RequestMapping("/siteCategoryStatic")
     @ResponseBody
-    public String siteCategoryStatic(@RequestParam("siteId") Integer siteId,@RequestParam("categoryIds") String categoryIds) {
-        if(StrUtil.isBlank(categoryIds))  return JsonUtil.toERROR("请选择需要生成的栏目！");
+    public String siteCategoryStatic(@RequestParam("siteId") Integer siteId, @RequestParam("categoryIds") String categoryIds) {
+        if (StrUtil.isBlank(categoryIds)) return JsonUtil.toERROR("请选择需要生成的栏目！");
         this.generateCategory(siteId);
-        for(String id : categoryIds.split(",")){
-            this.generateCategoryPage(siteId,Long.parseLong(id));
+        for (String id : categoryIds.split(",")) {
+            this.generateCategoryPage(siteId, Long.parseLong(id));
         }
         return JsonUtil.toSUCCESS("静态页面正在生成....");
     }
 
 
-    private void generateCategory(Integer siteId){
+    private void generateCategory(Integer siteId) {
         List<TCmsCategory> categoryList = categoryService.findCategoryListBySiteId(siteId);
-        for (TCmsCategory category: categoryList) {
-            htmlStaticService.category(siteId,category.getCategoryId(),1,false);
-            this.generateCategoryPage(siteId,category.getCategoryId());
-            this.generateContent(siteId,category.getCategoryId());
+        for (TCmsCategory category : categoryList) {
+            htmlStaticService.category(siteId, category.getCategoryId(), 1, false);
+            this.generateCategoryPage(siteId, category.getCategoryId());
+            this.generateContent(siteId, category.getCategoryId());
         }
     }
 
-    private void generateCategoryPage(Integer siteId,Long categoryId){
-            int pages = contentService.page(1, siteId, categoryId).getPages();
-            for (int pageNumber = 1; pageNumber <= pages; pageNumber++) {
-                htmlStaticService.category(siteId, categoryId, pageNumber, true);
-            }
+    private void generateCategoryPage(Integer siteId, Long categoryId) {
+        int pages = contentService.page(1, siteId, categoryId).getPages();
+        for (int pageNumber = 1; pageNumber <= pages; pageNumber++) {
+            htmlStaticService.category(siteId, categoryId, pageNumber, true);
+        }
 
 
     }
 
-    private void generateContent(Integer siteId,Long categoryId){
+    private void generateContent(Integer siteId, Long categoryId) {
         List<TCmsContent> contentList = contentService.findByCategoryId(categoryId);
-        for(TCmsContent content:contentList){
-            htmlStaticService.content(siteId,categoryId,content.getContentId());
+        for (TCmsContent content : contentList) {
+            htmlStaticService.content(siteId, categoryId, content.getContentId());
         }
 
     }

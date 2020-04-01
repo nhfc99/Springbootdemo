@@ -29,7 +29,8 @@
         -->
 
         <!-- The 16 colors defined by the HTML Spec (also used by the CSS Spec) -->
-        <regexp name="colorName" value="(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)"/>
+        <regexp name="colorName"
+                value="(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)"/>
 
         <!-- HTML/CSS Spec allows 3 or 6 digit hex to specify color -->
         <regexp name="colorCode" value="(#([0-9a-fA-F]{6}|[0-9a-fA-F]{3}))"/>
@@ -38,11 +39,13 @@
         <regexp name="numberOrPercent" value="(\d)+(%{0,1})"/>
         <regexp name="paragraph" value="([\p{L}\p{N},'\.\s\-_\(\)]|&amp;[0-9]{2};)*"/>
         <regexp name="htmlId" value="[a-zA-Z0-9\:\-_\.]+"/>
-        <regexp name="htmlTitle" value="[\p{L}\p{N}\s\-_',:\[\]!\./\\\(\)&amp;]*"/> <!-- force non-empty with a '+' at the end instead of '*' -->
+        <regexp name="htmlTitle"
+                value="[\p{L}\p{N}\s\-_',:\[\]!\./\\\(\)&amp;]*"/> <!-- force non-empty with a '+' at the end instead of '*' -->
         <regexp name="htmlClass" value="[a-zA-Z0-9\s,\-_]+"/>
 
         <regexp name="onsiteURL" value="([\p{L}\p{N}\\\.\#@\$%\+&amp;;\-_~,\?=/!]+|\#(\w)+)"/>
-        <regexp name="offsiteURL" value="(\s)*((ht|f)tp(s?)://|mailto:)[\p{L}\p{N}]+[\p{L}\p{N}\p{Zs}\.\#@\$%\+&amp;;:\-_~,\?=/!\(\)]*(\s)*"/>
+        <regexp name="offsiteURL"
+                value="(\s)*((ht|f)tp(s?)://|mailto:)[\p{L}\p{N}]+[\p{L}\p{N}\p{Zs}\.\#@\$%\+&amp;;:\-_~,\?=/!\(\)]*(\s)*"/>
 
         <regexp name="boolean" value="(true|false)"/>
         <regexp name="singlePrintable" value="[a-zA-Z0-9]{1}"/> <!-- \w allows the '_' character -->
@@ -79,7 +82,8 @@
 
         <!--  This is for resources referenced from CSS (such as background images and other imported stylesheets) -->
         <regexp name="cssOnsiteUri" value="url\(([\p{L}\p{N}\\/\.\?=\#&amp;;\-_~]+|\#(\w)+)\)"/>
-        <regexp name="cssOffsiteUri" value="url\((\s)*((ht|f)tp(s?)://)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*\)"/>
+        <regexp name="cssOffsiteUri"
+                value="url\((\s)*((ht|f)tp(s?)://)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*\)"/>
 
         <!--  This if for CSS Identifiers -->
         <regexp name="cssIdentifier" value="[a-zA-Z0-9\-_]+"/>
@@ -102,10 +106,12 @@
         <regexp name="relative-size" value="(larger|smaller)"/>
 
         <!-- Used for CSS Color specifications (complex regexp expresses integer values of 0-255) -->
-        <regexp name="rgbCode" value="rgb\(([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\)"/>
+        <regexp name="rgbCode"
+                value="rgb\(([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\)"/>
 
         <!-- CSS2 Allowed System Color Values -->
-        <regexp name="systemColor" value="(activeborder|activecaption|appworkspace|background|buttonface|buttonhighlight|buttonshadow|buttontext|captiontext|graytext|highlight|highlighttext|inactiveborder|inactivecaption|inactivecaptiontext|infobackground|infotext|menu|menutext|scrollbar|threeddarkshadow|threedface|threedhighlight|threedlightshadow|threedshadow|window|windowframe|windowtext)"/>
+        <regexp name="systemColor"
+                value="(activeborder|activecaption|appworkspace|background|buttonface|buttonhighlight|buttonshadow|buttontext|captiontext|graytext|highlight|highlighttext|inactiveborder|inactivecaption|inactivecaptiontext|infobackground|infotext|menu|menutext|scrollbar|threeddarkshadow|threedface|threedhighlight|threedlightshadow|threedshadow|window|windowframe|windowtext)"/>
 
     </common-regexps>
 
@@ -129,30 +135,35 @@
 
         <!-- Common to all HTML tags  -->
 
-        <attribute name="id" description="The 'id' of any HTML attribute should not contain anything besides letters and numbers">
+        <attribute name="id"
+                   description="The 'id' of any HTML attribute should not contain anything besides letters and numbers">
             <regexp-list>
                 <regexp name="htmlId"/>
             </regexp-list>
         </attribute>
 
-        <attribute name="class" description="The 'class' of any HTML attribute is usually a single word, but it can also be a list of class names separated by spaces">
+        <attribute name="class"
+                   description="The 'class' of any HTML attribute is usually a single word, but it can also be a list of class names separated by spaces">
             <regexp-list>
                 <regexp name="htmlClass"/>
             </regexp-list>
         </attribute>
 
-        <attribute name="lang" description="The 'lang' attribute tells the browser what language the element's attribute values and content are written in">
+        <attribute name="lang"
+                   description="The 'lang' attribute tells the browser what language the element's attribute values and content are written in">
             <regexp-list>
                 <regexp value="[a-zA-Z]{2,20}"/>
             </regexp-list>
         </attribute>
-        <attribute name="title" description="The 'title' attribute provides text that shows up in a 'tooltip' when a user hovers their mouse over the element">
+        <attribute name="title"
+                   description="The 'title' attribute provides text that shows up in a 'tooltip' when a user hovers their mouse over the element">
             <regexp-list>
                 <regexp name="htmlTitle"/>
             </regexp-list>
         </attribute>
 
-        <attribute name="alt" description="The 'alt' attribute provides alternative text to users when its visual representation is not available">
+        <attribute name="alt"
+                   description="The 'alt' attribute provides alternative text to users when its visual representation is not available">
             <regexp-list>
                 <regexp name="paragraph"/>
             </regexp-list>
@@ -160,7 +171,8 @@
 
 
         <!-- the "style" attribute will be validated by an inline stylesheet scanner, so no need to define anything here - i hate having to special case this but no other choice -->
-        <attribute name="style" description="The 'style' attribute provides the ability for users to change many attributes of the tag's contents using a strict syntax"/>
+        <attribute name="style"
+                   description="The 'style' attribute provides the ability for users to change many attributes of the tag's contents using a strict syntax"/>
 
         <attribute name="media">
             <regexp-list>
@@ -215,7 +227,6 @@
                 <literal value="poly"/>
             </literal-list>
         </attribute>
-
 
 
         <!--  Table attributes  -->
@@ -294,7 +305,8 @@
             </regexp-list>
         </attribute>
 
-        <attribute name="nowrap" description="The 'nowrap' attribute tells the browser not to wrap text that goes over one line">
+        <attribute name="nowrap"
+                   description="The 'nowrap' attribute tells the browser not to wrap text that goes over one line">
             <regexp-list>
                 <regexp name="anything"/>
                 <!-- <regexp value="(nowrap){0,1}"/>  -->
@@ -316,7 +328,8 @@
             </regexp-list>
         </attribute>
 
-        <attribute name="align" description="The 'align' attribute of an HTML element is a direction word, like 'left', 'right' or 'center'">
+        <attribute name="align"
+                   description="The 'align' attribute of an HTML element is a direction word, like 'left', 'right' or 'center'">
             <literal-list>
                 <literal value="center"/>
                 <literal value="middle"/>
@@ -327,7 +340,8 @@
             </literal-list>
         </attribute>
 
-        <attribute name="valign" description="The 'valign' attribute of an HTML attribute is a direction word, like 'baseline','bottom','middle' or 'top'">
+        <attribute name="valign"
+                   description="The 'valign' attribute of an HTML attribute is a direction word, like 'baseline','bottom','middle' or 'top'">
             <literal-list>
                 <literal value="baseline"/>
                 <literal value="bottom"/>
@@ -337,52 +351,58 @@
         </attribute>
 
 
-
         <!-- Intrinsic JavaScript Events -->
 
-        <attribute name="onFocus" description="The 'onFocus' event is executed when the control associated with the tag gains focus">
+        <attribute name="onFocus"
+                   description="The 'onFocus' event is executed when the control associated with the tag gains focus">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onBlur" description="The 'onBlur' event is executed when the control associated with the tag loses focus">
+        <attribute name="onBlur"
+                   description="The 'onBlur' event is executed when the control associated with the tag loses focus">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onClick" description="The 'onClick' event is executed when the control associated with the tag is clicked">
+        <attribute name="onClick"
+                   description="The 'onClick' event is executed when the control associated with the tag is clicked">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onDblClick" description="The 'onDblClick' event is executed when the control associated with the tag is clicked twice immediately">
+        <attribute name="onDblClick"
+                   description="The 'onDblClick' event is executed when the control associated with the tag is clicked twice immediately">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onMouseDown" description="The 'onMouseDown' event is executed when the control associated with the tag is clicked but not yet released">
+        <attribute name="onMouseDown"
+                   description="The 'onMouseDown' event is executed when the control associated with the tag is clicked but not yet released">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onMouseUp" description="The 'onMouseUp' event is executed when the control associated with the tag is clicked after the button is released">
+        <attribute name="onMouseUp"
+                   description="The 'onMouseUp' event is executed when the control associated with the tag is clicked after the button is released">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
             </literal-list>
         </attribute>
 
-        <attribute name="onMouseOver" description="The 'onMouseOver' event is executed when the user's mouse hovers over the control associated with the tag">
+        <attribute name="onMouseOver"
+                   description="The 'onMouseOver' event is executed when the user's mouse hovers over the control associated with the tag">
             <literal-list>
                 <literal value="javascript:void(0)"/>
                 <literal value="javascript:history.go(-1)"/>
@@ -397,7 +417,6 @@
                 <literal value="colgroup"/>
             </literal-list>
         </attribute>
-
 
 
         <!-- If you want users to be able to mess with tabindex, uncomment this -->
@@ -485,8 +504,8 @@
         <!-- Tags related to JavaScript -->
 
         <tag name="script" action="remove"/>
-        <tag name="noscript" action="validate"/> <!-- although no javascript can fire inside a noscript tag, css is still a viable attack vector -->
-
+        <tag name="noscript"
+             action="validate"/> <!-- although no javascript can fire inside a noscript tag, css is still a viable attack vector -->
 
 
         <!-- Frame & related tags -->
@@ -494,7 +513,6 @@
         <tag name="iframe" action="remove"/>
         <tag name="frameset" action="remove"/>
         <tag name="frame" action="remove"/>
-
 
 
         <!-- Form related tags -->
@@ -598,7 +616,6 @@
         -->
 
 
-
         <!-- Stylesheet Tags -->
 
         <tag name="style" action="validate">
@@ -679,9 +696,6 @@
         </tag>
 
 
-
-
-
         <!-- List tags -->
 
         <tag name="ul" action="validate"/>
@@ -689,15 +703,11 @@
         <tag name="li" action="validate"/>
 
 
-
-
         <!-- Dictionary tags -->
 
         <tag name="dd" action="truncate"/>
         <tag name="dl" action="truncate"/>
         <tag name="dt" action="truncate"/>
-
-
 
 
         <!-- Table tags (tbody, thead, tfoot)-->
@@ -822,7 +832,8 @@
 
     <css-rules>
 
-        <property name="azimuth" description="This property is most likely to be implemented by mixing the same signal into different channels at differing volumes.">
+        <property name="azimuth"
+                  description="This property is most likely to be implemented by mixing the same signal into different channels at differing volumes.">
             <literal-list>
                 <literal value="left-side"/>
                 <literal value="far-left"/>
@@ -843,7 +854,8 @@
             </regexp-list>
         </property>
 
-        <property name="background" description="The 'background' property is a shorthand property for setting the individual background properties (i.e., 'background-color', 'background-image', 'background-repeat', 'background-attachment' and 'background-position') at the same place in the style sheet.">
+        <property name="background"
+                  description="The 'background' property is a shorthand property for setting the individual background properties (i.e., 'background-color', 'background-image', 'background-repeat', 'background-attachment' and 'background-position') at the same place in the style sheet.">
             <literal-list>
                 <literal value="inherit"/>
             </literal-list>
@@ -856,7 +868,8 @@
             </shorthand-list>
         </property>
 
-        <property name="background-attachment" description="If a background image is specified, this property specifies whether it is fixed with regard to the viewport ('fixed') or scrolls along with the document ('scroll').">
+        <property name="background-attachment"
+                  description="If a background image is specified, this property specifies whether it is fixed with regard to the viewport ('fixed') or scrolls along with the document ('scroll').">
             <literal-list>
                 <literal value="scroll"/>
                 <literal value="fixed"/>
@@ -864,7 +877,8 @@
             </literal-list>
         </property>
 
-        <property name="background-color" description="This property sets the background color of an element, either a &lt;color&gt; value or the keyword 'transparent', to make the underlying colors shine through.">
+        <property name="background-color"
+                  description="This property sets the background color of an element, either a &lt;color&gt; value or the keyword 'transparent', to make the underlying colors shine through.">
             <literal-list>
                 <literal value="transparent"/>
                 <literal value="inherit"/>
@@ -888,7 +902,8 @@
             </regexp-list>
         </property>
 
-        <property name="background-position" description="If a background image has been specified, this property specifies its initial position.">
+        <property name="background-position"
+                  description="If a background image has been specified, this property specifies its initial position.">
             <literal-list>
                 <literal value="top"/>
                 <literal value="center"/>
@@ -904,7 +919,8 @@
             </regexp-list>
         </property>
 
-        <property name="background-repeat" description="If a background image is specified, this property specifies whether the image is repeated (tiled), and how.">
+        <property name="background-repeat"
+                  description="If a background image is specified, this property specifies whether the image is repeated (tiled), and how.">
             <literal-list>
                 <literal value="repeat"/>
                 <literal value="repeat-x"/>
@@ -2239,7 +2255,8 @@
         </property>
         <!-- end hard properties -->
         <!--  begin manual properties -->
-        <property name="border-spacing" default="0" description="The lengths specify the distance that separates adjacent cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.">
+        <property name="border-spacing" default="0"
+                  description="The lengths specify the distance that separates adjacent cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2250,7 +2267,8 @@
                 <regexp name="length"/>
             </regexp-list>
         </property>
-        <property name="clip" default="auto" description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
+        <property name="clip" default="auto"
+                  description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2262,7 +2280,8 @@
                 <regexp name="length"/>
             </regexp-list>
         </property>
-        <property name="counter-increment" default="none" description="The 'counter-increment' property accepts one or more names of counters (identifiers), each one optionally followed by an integer.">
+        <property name="counter-increment" default="none"
+                  description="The 'counter-increment' property accepts one or more names of counters (identifiers), each one optionally followed by an integer.">
             <category-list>
                 <category value="all"/>
             </category-list>
@@ -2275,7 +2294,8 @@
                 <regexp name="integer"/>
             </regexp-list>
         </property>
-        <property name="clip" default="auto" description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
+        <property name="clip" default="auto"
+                  description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2287,7 +2307,8 @@
                 <regexp name="length"/>
             </regexp-list>
         </property>
-        <property name="cursor" default="auto" description="This property specifies the type of cursor to be displayed for the pointing device.">
+        <property name="cursor" default="auto"
+                  description="This property specifies the type of cursor to be displayed for the pointing device.">
             <category-list>
                 <category value="visual"/>
                 <category value="interactive"/>
@@ -2316,7 +2337,8 @@
             </regexp-list>
         </property>
 
-        <property name="text-shadow" default="none" description="This property accepts a comma-separated list of shadow effects to be applied to the text of the element.">
+        <property name="text-shadow" default="none"
+                  description="This property accepts a comma-separated list of shadow effects to be applied to the text of the element.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2333,7 +2355,8 @@
             </regexp-list>
         </property>
 
-        <property name="font" description="The 'font' property is, except as described below, a shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet.">
+        <property name="font"
+                  description="The 'font' property is, except as described below, a shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2357,7 +2380,8 @@
             </shorthand-list>
         </property>
 
-        <property name="font-family" description="This property specifies a prioritized list of font family names and/or generic family names.">
+        <property name="font-family"
+                  description="This property specifies a prioritized list of font family names and/or generic family names.">
             <category-list>
                 <category value="visual"/>
             </category-list>
@@ -2379,7 +2403,8 @@
             </regexp-list>
 
         </property>
-        <property name="page" description="The 'page' property can be used to specify a particular type of page where an element should be displayed.">
+        <property name="page"
+                  description="The 'page' property can be used to specify a particular type of page where an element should be displayed.">
             <category-list>
                 <category value="visual"/>
                 <category value="paged"/>
@@ -2391,7 +2416,8 @@
                 <regexp name="cssIdentifier"/>
             </regexp-list>
         </property>
-        <property name="play-during" default="auto" description="Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken.">
+        <property name="play-during" default="auto"
+                  description="Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken.">
             <category-list>
                 <category value="aural"/>
             </category-list>
@@ -2420,7 +2446,8 @@
                 <literal value="inherit"/>
             </literal-list>
         </property>
-        <property name="voice-family" description="The value is a comma-separated, prioritized list of voice family names (compare with 'font-family').">
+        <property name="voice-family"
+                  description="The value is a comma-separated, prioritized list of voice family names (compare with 'font-family').">
             <category-list>
                 <category value="aural"/>
             </category-list>

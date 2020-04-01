@@ -11,12 +11,12 @@ import com.nhfc99.test.config.Config;
 @Controller
 @RequestMapping("/test/config")
 public class ConfigController {
-	@Autowired
-	Config config;
-	
-	@GetMapping("/getname")
-	@ResponseBody
-	public String testName() {
-		return config.getName();
-	}
+    @Autowired
+    Config config;
+
+    @GetMapping("/getname")
+    @ResponseBody
+    public String testName() {
+        return config.getName();
+    }
 }

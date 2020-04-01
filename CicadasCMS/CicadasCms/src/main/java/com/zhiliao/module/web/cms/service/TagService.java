@@ -7,9 +7,9 @@ public interface TagService {
 
     String TagJsonList(String tagWord);
 
-    boolean save(Long contentId,String tag);
+    boolean save(Long contentId, String tag);
 
-    String delete(Integer [] ids);
+    String delete(Integer[] ids);
 
     java.util.List<TCmsTag> tagList();
 

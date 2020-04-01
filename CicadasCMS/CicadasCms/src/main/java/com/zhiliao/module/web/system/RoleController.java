@@ -25,38 +25,38 @@ public class RoleController {
 
     @RequiresPermissions({"role:admin"})
     @RequestMapping
-    public String index(Model model){
-        model.addAttribute("roles",roleService.findAll());
+    public String index(Model model) {
+        model.addAttribute("roles", roleService.findAll());
         return "system/role";
     }
 
 
     @RequiresPermissions({"role:input"})
     @RequestMapping("/input")
-    public String input(@RequestParam(value = "roleId",required = false) Integer roleId,
-                        @RequestParam(value = "roleType",required = false) Integer roleType, Model model){
-          if(roleId!=null){
-              model.addAttribute("role",roleService.findByid(roleId));
-          }
-          model.addAttribute("roleType",roleType);
-          model.addAttribute("permissions",roleService.findPermissonByPid(0));
-          return "system/role_input";
+    public String input(@RequestParam(value = "roleId", required = false) Integer roleId,
+                        @RequestParam(value = "roleType", required = false) Integer roleType, Model model) {
+        if (roleId != null) {
+            model.addAttribute("role", roleService.findByid(roleId));
+        }
+        model.addAttribute("roleType", roleType);
+        model.addAttribute("permissions", roleService.findPermissonByPid(0));
+        return "system/role_input";
     }
 
     @RequiresPermissions({"role:save"})
     @RequestMapping("/save")
     @ResponseBody
-    public String input(TSysRole role,@RequestParam(value = "permissionId",required = false) Integer[] permissionId) {
-        if(role.getRoleId()!=null)
-            return roleService.update(role,permissionId);
-        return roleService.save(role,permissionId);
+    public String input(TSysRole role, @RequestParam(value = "permissionId", required = false) Integer[] permissionId) {
+        if (role.getRoleId() != null)
+            return roleService.update(role, permissionId);
+        return roleService.save(role, permissionId);
     }
 
     @RequiresPermissions({"role:delete"})
     @RequestMapping("/delete")
     @ResponseBody
-    public String delete(@RequestParam("roleId") Integer roleId){
-       return roleService.delete(roleId);
+    public String delete(@RequestParam("roleId") Integer roleId) {
+        return roleService.delete(roleId);
     }
 
 }

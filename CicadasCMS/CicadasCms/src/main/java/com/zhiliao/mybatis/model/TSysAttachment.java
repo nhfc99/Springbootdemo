@@ -55,7 +55,6 @@ public class TSysAttachment implements Serializable {
     private Float fileSize;
 
 
-
     /**
      * 附件网址
      */

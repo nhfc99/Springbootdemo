@@ -2,7 +2,6 @@ package com.zhiliao.common.jwt.vo;
 
 /**
  * Description:token验证结果集
-*
  **/
 public class ResultVo {
 

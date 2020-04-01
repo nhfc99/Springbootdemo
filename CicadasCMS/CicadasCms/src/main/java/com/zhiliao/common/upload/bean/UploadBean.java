@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class UploadBean {
 
     @ApiModelProperty("附件地址")
-     private String fileUrl;
+    private String fileUrl;
 
 
     public String getFileUrl() {

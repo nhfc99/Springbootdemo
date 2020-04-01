@@ -17,7 +17,7 @@ import java.util.List;
  * @create 2017-04-15
  **/
 @Service
-public class SelectOrganizationFunction implements Function{
+public class SelectOrganizationFunction implements Function {
 
     @Autowired
     private OrganizationService service;
@@ -29,38 +29,37 @@ public class SelectOrganizationFunction implements Function{
     @Override
     public Object call(Object[] objects, Context context) {
 
-        Integer pid = (Integer)objects[0];
-        Integer currentId = (Integer)objects[1];
-        if(pid!=null)
-            return head+recursion(currentId,pid,0,"");
-        return head+recursion(currentId,0,0,"");
+        Integer pid = (Integer) objects[0];
+        Integer currentId = (Integer) objects[1];
+        if (pid != null)
+            return head + recursion(currentId, pid, 0, "");
+        return head + recursion(currentId, 0, 0, "");
     }
 
 
-
     /*递归输出子节点*/
-    private String recursion(Integer cid,Integer pid,Integer spid,String tag){
+    private String recursion(Integer cid, Integer pid, Integer spid, String tag) {
 
-        tag+=(StrUtil.isBlank(tag)?"&nbsp;&nbsp;":"&nbsp;&nbsp;&nbsp;&nbsp;");
+        tag += (StrUtil.isBlank(tag) ? "&nbsp;&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;");
         StringBuffer sbf = new StringBuffer();
-        List<TSysOrg> orgList  = service.findByPid(spid);
-        if(orgList!=null&&orgList.size()>0){
+        List<TSysOrg> orgList = service.findByPid(spid);
+        if (orgList != null && orgList.size() > 0) {
             int flag_ = 0;
-            for(TSysOrg org:orgList){
-                   /**如果是自己就不输出了**/
-                if(cid.intValue()!=org.getId().intValue()&&cid.intValue()!=org.getPid().intValue()||cid.intValue()==0) {
+            for (TSysOrg org : orgList) {
+                /**如果是自己就不输出了**/
+                if (cid.intValue() != org.getId().intValue() && cid.intValue() != org.getPid().intValue() || cid.intValue() == 0) {
                     flag_ = org.getId().intValue();
                     sbf.append("<option value=\"" + org.getId() + "\" " + isSelected(org.getId().intValue(), pid) + ">" + tag + "|—" + org.getName() + "</option>");
                 }
-                if(flag_!=0)sbf.append(recursion(cid,pid,org.getId(),tag));
+                if (flag_ != 0) sbf.append(recursion(cid, pid, org.getId(), tag));
             }
-            return  sbf.toString();
+            return sbf.toString();
         }
         return "";
     }
 
-    private String isSelected(Integer id,Integer perId){
-        if(id.intValue()==perId.intValue())
+    private String isSelected(Integer id, Integer perId) {
+        if (id.intValue() == perId.intValue())
             return isSelected;
         return "";
     }

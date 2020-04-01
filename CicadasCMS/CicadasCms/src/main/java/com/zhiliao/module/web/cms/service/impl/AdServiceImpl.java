@@ -26,7 +26,7 @@ import java.util.List;
  **/
 @Service
 @CacheConfig(cacheNames = "cms-ad-cache")
-public class AdServiceImpl implements AdService{
+public class AdServiceImpl implements AdService {
 
     @Autowired
     private TCmsAdMapper adMapper;
@@ -35,38 +35,38 @@ public class AdServiceImpl implements AdService{
     private TCmsAdGroupMapper adGroupMapper;
 
     @Override
-    @CacheEvict(cacheNames = "cms-ad-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-ad-cache", allEntries = true)
     public String save(TCmsAd pojo) {
-        if (adMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","ad-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (adMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "ad-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
-    @CacheEvict(cacheNames = "cms-ad-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-ad-cache", allEntries = true)
     public String update(TCmsAd pojo) {
-        if (adMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","ad-tab",false);
-        return  JsonUtil.toERROR("操作失败");
+        if (adMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "ad-tab", false);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
-    @CacheEvict(cacheNames = "cms-ad-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-ad-cache", allEntries = true)
     public String delete(Integer[] ids) {
-        if(ids!=null){
-            for(int id :ids)
+        if (ids != null) {
+            for (int id : ids)
                 adMapper.deleteByPrimaryKey(id);
         }
-        return JsonUtil.toSUCCESS("操作成功","ad-tab",false);
+        return JsonUtil.toSUCCESS("操作成功", "ad-tab", false);
     }
 
     @Override
     public String deleteGroup(Integer[] ids) {
-        if(ids!=null){
-            for(int id :ids)
+        if (ids != null) {
+            for (int id : ids)
                 adGroupMapper.deleteByPrimaryKey(id);
         }
-        return JsonUtil.toSUCCESS("操作成功","ad-tab",false);
+        return JsonUtil.toSUCCESS("操作成功", "ad-tab", false);
     }
 
     @Cacheable(key = "'id-'+#p0")
@@ -87,13 +87,13 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public PageInfo<TCmsAd> page(Integer pageNumber, Integer pageSize, TCmsAd pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsAd> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findAll());
     }
 
@@ -101,13 +101,13 @@ public class AdServiceImpl implements AdService{
     @Override
     public String toJavascript(Object id) {
         TCmsAd ad = adMapper.selectByIdAndEffective((Integer) id);
-        if(CmsUtil.isNullOrEmpty(ad))
-           return "document.write('您所访问的广告已过期，或者还没有开始');！";
+        if (CmsUtil.isNullOrEmpty(ad))
+            return "document.write('您所访问的广告已过期，或者还没有开始');！";
         StringBuffer body = new StringBuffer();
         body.append("var dtnow=new Date();");
         body.append("dtnow=dtnow.getFullYear()+'-'+(dtnow.getMonth()+1)+'-'+dtnow.getDate();");
         body.append("var HtmlContent=\"\";");
-        body.append(" HtmlContent='"+ad.getAdBody()+"';");
+        body.append(" HtmlContent='" + ad.getAdBody() + "';");
         body.append("HtmlContent = HtmlContent.replace(\"&#39\",\"'\");HtmlContent = HtmlContent.replace('&quot;','\"');");
         body.append("document.write(HtmlContent);");
         return body.toString();
@@ -116,21 +116,21 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public String save(TCmsAdGroup pojo) {
-        if (adGroupMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","ad-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (adGroupMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "ad-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsAdGroup pojo) {
-        if (adGroupMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","ad-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (adGroupMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "ad-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
-    public PageInfo<TCmsAdVo> page(Integer pageNumber, Integer pageSize,Integer status) {
-        PageHelper.startPage(pageNumber,pageSize);
+    public PageInfo<TCmsAdVo> page(Integer pageNumber, Integer pageSize, Integer status) {
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findVoListByStatus(status));
     }
 
@@ -157,7 +157,7 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public PageInfo<TCmsAdGroup> page(Integer pageNumber, Integer pageSize, TCmsAdGroup adGroup) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findList(adGroup));
     }
 }

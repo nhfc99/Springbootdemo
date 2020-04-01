@@ -1,3 +1,3 @@
-CKEDITOR.plugins.setLang('lineheight','en', {
+CKEDITOR.plugins.setLang('lineheight', 'en', {
     title: 'Line Height'
-} );
+});

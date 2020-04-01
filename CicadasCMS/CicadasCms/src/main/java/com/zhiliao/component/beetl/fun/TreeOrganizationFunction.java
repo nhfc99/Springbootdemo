@@ -18,7 +18,7 @@ import java.util.List;
  * @create 2017-04-15
  **/
 @Service
-public class TreeOrganizationFunction implements Function{
+public class TreeOrganizationFunction implements Function {
 
     @Autowired
     private OrganizationService service;
@@ -35,20 +35,20 @@ public class TreeOrganizationFunction implements Function{
         Integer pid = Integer.parseInt((String) objects[0]);
         String url = (String) objects[1];
         String layout = (String) objects[2];
-        return recursion(pid,url,layout);
+        return recursion(pid, url, layout);
     }
 
     /* 递归函数 */
-    private String recursion(Integer pid,String url,String layout){
-       StringBuffer sbf = new StringBuffer();
-       List<TSysOrg> orgList  = service.findByPid(pid);
-       if(orgList!=null&&orgList.size()>0){
-           for(TSysOrg org:orgList){
-               sbf.append("  <li data-id=\""+org.getId()+"\" data-pid=\""+pid+"\" data-url=\""+httpProtocol+"://"+ httpHost+"/"+url+org.getId()+"\"  data-divid=\""+layout+"\">"+org.getName()+"</li>");
-               sbf.append(recursion(org.getId(),url,layout));
-           }
-           return  sbf.toString();
-       }
-       return "";
+    private String recursion(Integer pid, String url, String layout) {
+        StringBuffer sbf = new StringBuffer();
+        List<TSysOrg> orgList = service.findByPid(pid);
+        if (orgList != null && orgList.size() > 0) {
+            for (TSysOrg org : orgList) {
+                sbf.append("  <li data-id=\"" + org.getId() + "\" data-pid=\"" + pid + "\" data-url=\"" + httpProtocol + "://" + httpHost + "/" + url + org.getId() + "\"  data-divid=\"" + layout + "\">" + org.getName() + "</li>");
+                sbf.append(recursion(org.getId(), url, layout));
+            }
+            return sbf.toString();
+        }
+        return "";
     }
 }

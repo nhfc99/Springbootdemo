@@ -13,7 +13,7 @@
 
     <script src="${resPath}/xgwy/js/jquery.SuperSlide.2.1.1.js"></script>
 
-  <script>
+    <script>
 
         $(function () {
 
@@ -80,28 +80,30 @@
         <div class="bd">
             <ul>
                 <#cms_index_silder titleLen="10" size="10" var="bean">
-					<li style="background-image: url('${bean.img!}')"></li>
-				    </#cms_index_silder>
+                <li style="background-image: url('${bean.img!}')"></li>
+            </
+            #cms_index_silder>
             </ul>
         </div>
         <a class="prev" href="javascript:void(0)"></a>
         <a class="next" href="javascript:void(0)"></a>
     </div>
 </header>
-    
 
-  <div class="nav_box row">
+
+<div class="nav_box row">
     <ul class="nav clearfix">
         <li><a href="${frontPath}/${site.siteKey!}/index.html">网站首页</a></li>
-        <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
+        <#cms_category_list siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
         <li><a href="${bean.url!}" target="_blank">${bean.categoryName!}</a></li>
-        </#cms_category_list>
+    </
+    #cms_category_list>
     </ul>
     <div class="msg">
         <div class="row clearfix">
             <div class="left">
                 <div class="bread">
-                    <#cms_site_pos  site="${site}" category="${category}"  var="bean">
+                    <#cms_site_pos site="${site}" category="${category}" var="bean">
                     <span>
                         <a href="${frontPath}/${site.siteKey!}/index.html">首页</a>
                         @for(location in bean.locations){
@@ -111,74 +113,85 @@
                         @}
                         @}
                    </span>
-                </#cms_site_pos>
-                </div>
+                </
+                #cms_site_pos>
             </div>
+        </div>
         <div class="search">
             <input type="text" placeholder="搜索关键词">
             <a href="#"><img src="${resPath}/xgwy/images/search.png"></a>
         </div>
-        </div>
     </div>
 </div>
-    <div style="height: 70px;"></div>
-    <section class="layout clearfix mb30">
-        <div class="content">
-            <ul class="list7">
-			 <#cms_category_list  siteId="${site.siteId}" categoryId="${category.categoryId!}" isNav="0"   var="c">
-                <li>
-                    <div class="tit2">
-                        <h4>${c.categoryName!}</h4>
-                        <a href="${c.url!}" class="more">更多>></a>
-                    </div>
-                    <div class="cont clearfix">
-					<#cms_content_list  siteId="${site.siteId}" categoryId="${c.categoryId!}"  orderBy="2" isHot="0" isPic="1"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean"> 
-                         
-                        <div class="pic"><a href="${bean.url!}" ><img src="${bean.thumb!}"></a></div>
-					</#cms_content_list>
-                        <ul class="list2">
-                   	     <#cms_content_list  siteId="${site.siteId}" categoryId="${c.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="5"   titleLen="50"   var="bean"> 
-                          <li><a href="${bean.url!}" >${bean.title!}</a></li>
-                         </#cms_content_list>
-                        </ul>
-                    </div>
-                </li>
-          </#cms_category_list>  
-             
-            </ul>
-            
-        <div class="h30"></div>
-  
-        
-        </div>
+</div>
+<div style="height: 70px;"></div>
+<section class="layout clearfix mb30">
+    <div class="content">
+        <ul class="list7">
+            <#cms_category_list siteId="${site.siteId}" categoryId="${category.categoryId!}" isNav="0" var="c">
+            <li>
+                <div class="tit2">
+                    <h4>${c.categoryName!}</h4>
+                    <a href="${c.url!}" class="more">更多>></a>
+                </div>
+                <div class="cont clearfix">
+                    <#cms_content_list siteId="${site.siteId}" categoryId="${c.categoryId!}" orderBy="2" isHot="0"
+                    isPic="1" hasChild="1" isRecommend="0" size="1" titleLen="15" var="bean">
+
+                    <div class="pic"><a href="${bean.url!}"><img src="${bean.thumb!}"></a></div>
+                </
+                #cms_content_list>
+                <ul class="list2">
+                    <#cms_content_list siteId="${site.siteId}" categoryId="${c.categoryId!}" orderBy="2" isHot="0"
+                    hasChild="1" isRecommend="0" size="5" titleLen="50" var="bean">
+                    <li><a href="${bean.url!}">${bean.title!}</a></li>
+                </
+                #cms_content_list>
+        </ul>
+    </div>
+    </li>
+</
+#cms_category_list>
+
+</ul>
+
+<div class="h30"></div>
+
+
+</div>
 <div class="side_bar">
     <!--最新公告-->
-    <#cms_category  categoryId="204" isParent="0" var="bean">
+    <#cms_category categoryId="204" isParent="0" var="bean">
     <div class="tit2">
         <h4>${bean.categoryName!}</h4>
         <a href="${bean.url!}" class="more">更多>></a>
     </div>
 
     <ul class="list6">
-        <#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="6"   titleLen="15"   var="bean">
+        <#cms_content_list siteId="${site.siteId}" categoryId="${bean.categoryId!}" orderBy="2" isHot="0" hasChild="1"
+        isRecommend="0" size="6" titleLen="15" var="bean">
         <li><a href="${bean.url!}" target="_blank">${bean.title!}</a></li>
-    </#cms_content_list>
+    </
+    #cms_content_list>
     </ul>
-</#cms_category>
+</
+#cms_category>
 <div class="h20"></div>
 <!--嘉峪关文艺-->
-<#cms_category  categoryId="209" isParent="0" var="bean">
+<#cms_category categoryId="209" isParent="0" var="bean">
 <div class="tit2">
     <h4>${bean.categoryName!}</h4>
     <a href="${bean.url!}" class="more">更多>></a>
 </div>
-<#cms_content_list  siteId="${site.siteId}" categoryId="${bean.categoryId!}"  orderBy="2" isHot="0"    hasChild="1" isRecommend="0"  size="1"   titleLen="15"   var="bean">
+<#cms_content_list siteId="${site.siteId}" categoryId="${bean.categoryId!}" orderBy="2" isHot="0" hasChild="1"
+isRecommend="0" size="1" titleLen="15" var="bean">
 <a href="${bean.url!}" target="_blank" class="pic_box">
     <img src="${bean.thumb!}">
 
     <h4>${bean.title!}</h4>
 </a>
-</#cms_content_list>
+</
+#cms_content_list>
 </#cms_category>
 <div class="h20"></div>
 <!--文联资讯-->
@@ -199,14 +212,14 @@
     <img src="${resPath}/xgwy/images/ewg.png">
 </a>
 </div>
-        
-        
-    </section>
+
+
+</section>
 
 <!-- footer begin-->
 @includeFileTemplate("/www/xgwy/include/footer.html"){}
 <!-- footer end-->
-    <div class="h50"></div>
+<div class="h50"></div>
 </body>
 
 </html>

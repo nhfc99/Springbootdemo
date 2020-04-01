@@ -19,23 +19,23 @@ import java.sql.SQLException;
  **/
 @Controller
 @RequestMapping("/system/attachment")
-public class AttachmentController{
+public class AttachmentController {
 
     @Autowired
     private AttachmentService attachmentService;
 
     @RequestMapping
-    public String index(@RequestParam(value = "pageCurrnet",defaultValue = "0") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "50")Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrnet", defaultValue = "0") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "50") Integer pageSize,
                         TSysAttachment pojo, Model model) {
-        model.addAttribute("model",attachmentService.page(pageNumber,pageSize,pojo));
+        model.addAttribute("model", attachmentService.page(pageNumber, pageSize, pojo));
         return "system/att_list";
     }
 
 
     @RequestMapping("/delete")
     @ResponseBody
-    public String delete(@RequestParam(value = "ids",required = false) Long[] ids) throws SQLException {
+    public String delete(@RequestParam(value = "ids", required = false) Long[] ids) throws SQLException {
         return attachmentService.delete(ids);
     }
 }

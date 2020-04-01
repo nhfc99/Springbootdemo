@@ -11,7 +11,7 @@ import java.util.List;
  * @author Jin
  * @create 2017-08-08
  **/
-public interface AttachmentService{
+public interface AttachmentService {
 
     void save(TSysAttachment pojo);
 

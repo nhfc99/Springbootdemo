@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @create 2017-06-06
  **/
 @Service
-public class LuceneServiceImpl implements LuceneService{
+public class LuceneServiceImpl implements LuceneService {
 
     @Autowired
     private LuceneManager luceneManager;
@@ -39,6 +39,6 @@ public class LuceneServiceImpl implements LuceneService{
 
     @Override
     public PageInfo page(Integer pageNumber, Integer pageSize, String keyword) {
-        return luceneManager.page(pageNumber,pageSize,keyword);
+        return luceneManager.page(pageNumber, pageSize, keyword);
     }
 }

@@ -19,7 +19,7 @@ public class LuceneConfiguration {
     @Bean
     public LuceneManager luceneUtil() {
         LuceneManager luceneDao = new LuceneManager();
-        luceneDao.setIndexDer(PathUtil.getRootClassPath()+ File.separator+"lucene");
+        luceneDao.setIndexDer(PathUtil.getRootClassPath() + File.separator + "lucene");
         return luceneDao;
     }
 

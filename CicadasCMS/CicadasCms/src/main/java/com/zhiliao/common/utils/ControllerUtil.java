@@ -26,23 +26,25 @@ public class ControllerUtil {
 
     /**
      * 判断是否为Ajav请求
+     *
      * @param request
      * @return
      */
-    public static boolean isAjaxRequest(HttpServletRequest request){
+    public static boolean isAjaxRequest(HttpServletRequest request) {
 
-        if (!"XMLHttpRequest" .equalsIgnoreCase(request.getHeader("X-Requested-With")))
+        if (!"XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With")))
             return false;
         return true;
     }
 
     /**
      * 判断验证码是否正确
+     *
      * @param verifyCode
      * @param request
      * @return
      */
-    public static  boolean validate(String verifyCode,HttpServletRequest request) {
+    public static boolean validate(String verifyCode, HttpServletRequest request) {
         String text = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (StrUtil.isBlank(text))
             return false;
@@ -52,9 +54,10 @@ public class ControllerUtil {
 
     /**
      * post请求
+     *
      * @return
      */
-    public static  boolean isPost() {
+    public static boolean isPost() {
         HttpServletRequest request = getHttpServletRequest();
         String requersMethod = request.getMethod();
         if (requersMethod.equals("POST") || "POST".equals(requersMethod)) {
@@ -68,7 +71,7 @@ public class ControllerUtil {
      *
      * @return
      */
-    public static  boolean isGet() {
+    public static boolean isGet() {
         HttpServletRequest request = getHttpServletRequest();
         String requersMethod = request.getMethod();
         if (requersMethod.equals("GET") || "GET".equals(requersMethod)) {
@@ -81,11 +84,10 @@ public class ControllerUtil {
      * 获取请求域名，域名不包括http请求协议头
      *
      * @return 返回域名地址
-     *
      */
-    public static  String getDomain() {
+    public static String getDomain() {
         HttpServletRequest request = getHttpServletRequest();
-        String path =  request.getContextPath();
+        String path = request.getContextPath();
         String domain = request.getServerName();
         if (request.getServerPort() == 80) {
             domain += path;
@@ -100,7 +102,7 @@ public class ControllerUtil {
      *
      * @return 返回主机IP，异常将会获取不到ip
      */
-    public static  String getHostIp() {
+    public static String getHostIp() {
         InetAddress addr;
         try {
             addr = InetAddress.getLocalHost();
@@ -112,15 +114,12 @@ public class ControllerUtil {
     }
 
     /**
-     *
      * 获取请求客户端ip
      *
      * @param request
-     *
      * @return ip地址
-     *
      */
-    public static  String getRemoteAddress(HttpServletRequest request) {
+    public static String getRemoteAddress(HttpServletRequest request) {
 
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || ip.equalsIgnoreCase("unknown")) {
@@ -144,12 +143,12 @@ public class ControllerUtil {
             content.append("<html>");
             content.append("<head>");
             content.append("<meta charset=\"UTF-8\">");
-            content.append("<title>"+msg+"</title>");
+            content.append("<title>" + msg + "</title>");
             content.append("</head>");
             content.append("<body>");
-            content.append("<p style=\"font-size:22px;padding-left:10px;\"><b>"+msg+"</b></p>");
+            content.append("<p style=\"font-size:22px;padding-left:10px;\"><b>" + msg + "</b></p>");
             content.append("<p style=\"font-size:18px;padding-left:10px;\">描述 : " + desc + "</p>");
-            content.append("<p style=\"font-size:18px;padding-left:10px;\">地址 : " +request.getRequestURL()+"</p>");
+            content.append("<p style=\"font-size:18px;padding-left:10px;\">地址 : " + request.getRequestURL() + "</p>");
             content.append("</body>");
             content.append("</html>");
             PrintWriter out = response.getWriter();
@@ -176,7 +175,7 @@ public class ControllerUtil {
 
     }
 
-    public static void renderTimeoutJson(String msg, HttpServletResponse response){
+    public static void renderTimeoutJson(String msg, HttpServletResponse response) {
         response.setHeader("Content-type", "application/x-json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         try {
@@ -190,20 +189,20 @@ public class ControllerUtil {
     }
 
 
-    public static HttpServletRequest getHttpServletRequest(){
+    public static HttpServletRequest getHttpServletRequest() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         return request;
     }
 
-    public static HttpServletResponse getHttpServletResponse(){
+    public static HttpServletResponse getHttpServletResponse() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = attributes.getResponse();
         return response;
     }
 
 
-    public static HttpSession getHttpSession(){
+    public static HttpSession getHttpSession() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         return request.getSession();
@@ -216,20 +215,20 @@ public class ControllerUtil {
         boolean mobileFlag = false;
         String via = request.getHeader("Via");
         String userAgent = request.getHeader("user-agent");
-        for (int i = 0; via != null && via.trim().length()!=0 && i < mobileGateWayHeaders.length; i++) {
+        for (int i = 0; via != null && via.trim().length() != 0 && i < mobileGateWayHeaders.length; i++) {
             if (via.contains(mobileGateWayHeaders[i])) {
                 mobileFlag = true;
                 break;
             }
         }
-        for (int i = 0; !mobileFlag && userAgent != null && userAgent.trim().length()!=0
+        for (int i = 0; !mobileFlag && userAgent != null && userAgent.trim().length() != 0
                 && i < mobileUserAgents.length; i++) {
             if (userAgent.contains(mobileUserAgents[i])) {
                 mobileFlag = true;
                 break;
             }
         }
-        for (int i = 0; userAgent != null && userAgent.trim().length()!=0 && i < pcHeaders.length; i++) {
+        for (int i = 0; userAgent != null && userAgent.trim().length() != 0 && i < pcHeaders.length; i++) {
             if (userAgent.contains(pcHeaders[i])) {
                 pcFlag = true;
                 break;
@@ -242,7 +241,7 @@ public class ControllerUtil {
 
     }
 
-    private static String mobileGateWayHeaders[] = new String[] { "ZXWAP", // 中兴提供的wap网关的via信息，例如：Via=ZXWAP
+    private static String mobileGateWayHeaders[] = new String[]{"ZXWAP", // 中兴提供的wap网关的via信息，例如：Via=ZXWAP
 
             // GateWayZTE
 
@@ -277,10 +276,10 @@ public class ControllerUtil {
 
     };
 
-    private static String[] pcHeaders = new String[] { "Windows 98", "Windows ME", "Windows 2000", "Windows XP",
-            "Windows NT", "Ubuntu" };
+    private static String[] pcHeaders = new String[]{"Windows 98", "Windows ME", "Windows 2000", "Windows XP",
+            "Windows NT", "Ubuntu"};
 
-    private  static String[] mobileUserAgents = new String[] { "Nokia", // 诺基亚，有山寨机也写这个的，总还算是手机，Mozilla/5.0
+    private static String[] mobileUserAgents = new String[]{"Nokia", // 诺基亚，有山寨机也写这个的，总还算是手机，Mozilla/5.0
 
             // (Nokia5800
 

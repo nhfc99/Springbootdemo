@@ -6,24 +6,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "nhf")
-@PropertySource({ "classpath:application.properties" })
+@PropertySource({"classpath:application.properties"})
 public class Config {
-	private String name;
-	private Long port;
+    private String name;
+    private Long port;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Long getPort() {
-		return port;
-	}
+    public Long getPort() {
+        return port;
+    }
 
-	public void setPort(Long port) {
-		this.port = port;
-	}
+    public void setPort(Long port) {
+        this.port = port;
+    }
 }

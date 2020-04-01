@@ -46,37 +46,40 @@ public class SystemController {
 
     /**
      * 后台首页地址
+     *
      * @return
      */
     @RequestMapping("/system")
-    public String index(){
+    public String index() {
         return "system/index";
     }
 
 
     /**
      * 后台登陆地址
+     *
      * @return
      */
     @FormToken
     @RequestMapping("/${system.login.path}/login")
-    public String login(){
+    public String login() {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!CmsUtil.isNullOrEmpty(currentUser)&&currentUser.isAuthenticated())
+        if (!CmsUtil.isNullOrEmpty(currentUser) && currentUser.isAuthenticated())
             return "redirect:/system";
         return "system/login";
     }
 
     @RequestMapping("/${system.login.path}/logout")
-    public String logout(@Value("${system.login.path}") String adminLoginPath){
+    public String logout(@Value("${system.login.path}") String adminLoginPath) {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!CmsUtil.isNullOrEmpty(currentUser)&&currentUser.isAuthenticated())currentUser.logout();
-        return "redirect:/"+adminLoginPath+"/login";
+        if (!CmsUtil.isNullOrEmpty(currentUser) && currentUser.isAuthenticated()) currentUser.logout();
+        return "redirect:/" + adminLoginPath + "/login";
     }
 
 
     /**
-     *后台登陆提提交地址
+     * 后台登陆提提交地址
+     *
      * @param username
      * @param password
      * @param remberMe
@@ -88,15 +91,15 @@ public class SystemController {
     @ResponseBody
     public Map<String, Object> doLogin(
             HttpServletRequest request,
-            @RequestParam(value = "verifyCode",required = false) String verifyCode,
-            @RequestParam(value = "username",required = false) String username,
-            @RequestParam(value = "password",required = false) String password,
-            @RequestParam(value = "remberMe",required = false,defaultValue = "") String remberMe){
+            @RequestParam(value = "verifyCode", required = false) String verifyCode,
+            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "remberMe", required = false, defaultValue = "") String remberMe) {
 
         /* 临时验证码验证 */
-        if(StrUtil.isBlank(verifyCode)|| !ControllerUtil.validate(verifyCode,request))
-             return JsonUtil.toMAP(false,"验证码输入错误");
-        return userService.login(request,username,password,remberMe);
+        if (StrUtil.isBlank(verifyCode) || !ControllerUtil.validate(verifyCode, request))
+            return JsonUtil.toMAP(false, "验证码输入错误");
+        return userService.login(request, username, password, remberMe);
 
     }
 
@@ -107,52 +110,52 @@ public class SystemController {
             HttpServletRequest request,
             @RequestParam("username") String username,
             @RequestParam("password") String password,
-            @RequestParam(value = "remberMe",required = false,defaultValue = "") String remberMe){
-         Map resutl = userService.login(request,username,password,remberMe);
-         if((Boolean) resutl.get("success"))
-             return JsonUtil.toSUCCESS("登陆成功","",true);
+            @RequestParam(value = "remberMe", required = false, defaultValue = "") String remberMe) {
+        Map resutl = userService.login(request, username, password, remberMe);
+        if ((Boolean) resutl.get("success"))
+            return JsonUtil.toSUCCESS("登陆成功", "", true);
         return JsonUtil.toERROR("登陆失败！");
     }
 
     @FormToken
     @RequestMapping("/loginTimeout")
-    public String doTimeOut(){
+    public String doTimeOut() {
         return "system/login_timeout";
     }
 
 
     /**
-     *
      * 修改密码
+     *
      * @return
      */
     @RequestMapping("/system/changePassword")
-    public String changePassword(HttpSession session, Model model){
-        UserVo userVo =  (UserVo) session.getAttribute(CmsConst.SITE_USER_SESSION_KEY);
-        if(CmsUtil.isNullOrEmpty(userVo))
+    public String changePassword(HttpSession session, Model model) {
+        UserVo userVo = (UserVo) session.getAttribute(CmsConst.SITE_USER_SESSION_KEY);
+        if (CmsUtil.isNullOrEmpty(userVo))
             throw new UnauthenticatedException();
-        model.addAttribute("userId",userVo.getUserId());
+        model.addAttribute("userId", userVo.getUserId());
         return "system/change_password";
     }
 
     @RequestMapping("/system/doChangePassword")
     @ResponseBody
-    public String doChangePassword(@RequestParam("userId") Integer userId,@RequestParam("oldPassword") String op,@RequestParam("password") String np){
-        return userService.changePassword(userId,op,np);
+    public String doChangePassword(@RequestParam("userId") Integer userId, @RequestParam("oldPassword") String op, @RequestParam("password") String np) {
+        return userService.changePassword(userId, op, np);
     }
 
     @RequestMapping("/system/welcome")
-    public String welcome(Model model){
-        model.addAttribute("contentCount",contentService.AllCount());
-        model.addAttribute("categoryCount",categoryService.AllCount());
-        model.addAttribute("topicCount",topicService.AllCount());
-        model.addAttribute("userCount",userService.countAll());
+    public String welcome(Model model) {
+        model.addAttribute("contentCount", contentService.AllCount());
+        model.addAttribute("categoryCount", categoryService.AllCount());
+        model.addAttribute("topicCount", topicService.AllCount());
+        model.addAttribute("userCount", userService.countAll());
         return "system/welcome";
     }
 
     @RequestMapping("/system/AllMonthCharts")
     @ResponseBody
-    public String charts(){
-       return contentService.findAllMonthCount();
+    public String charts() {
+        return contentService.findAllMonthCount();
     }
 }

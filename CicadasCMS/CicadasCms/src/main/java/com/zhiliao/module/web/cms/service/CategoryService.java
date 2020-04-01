@@ -8,21 +8,21 @@ import java.util.List;
 /**
  * Created by binary on 2017/4/18.
  */
-public interface CategoryService extends BaseService<TCmsCategory,Long>{
+public interface CategoryService extends BaseService<TCmsCategory, Long> {
 
     List<TCmsCategory> findCategoryListByPid(Long pid);
 
     List<TCmsCategory> findCategoryListBySiteId(Integer siteId);
 
-    List<TCmsCategory> findCategoryListByPid(Long pid,Integer siteId);
+    List<TCmsCategory> findCategoryListByPid(Long pid, Integer siteId);
 
-    List<TCmsCategory> findCategoryListByPidAndIsNav(Long pid,Integer siteId,Boolean isNav);
+    List<TCmsCategory> findCategoryListByPidAndIsNav(Long pid, Integer siteId, Boolean isNav);
 
     TCmsCategory findByAlias(String alias);
 
     Integer findPageSize(Long categoryId);
 
-    TCmsCategory findfindByAliasAndSiteId(String alias,Integer siteId);
+    TCmsCategory findfindByAliasAndSiteId(String alias, Integer siteId);
 
     Integer AllCount();
 }

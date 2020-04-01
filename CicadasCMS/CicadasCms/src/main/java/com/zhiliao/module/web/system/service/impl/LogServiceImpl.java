@@ -20,14 +20,14 @@ import java.util.Date;
  * @create 2017-04-10
  **/
 @Service
-public class LogServiceImpl implements LogService{
+public class LogServiceImpl implements LogService {
 
     @Autowired
     private TSysLogMapper logMapper;
 
     @Async
     @Override
-    public void saveLog(String content, Date createTime,String username,String type) {
+    public void saveLog(String content, Date createTime, String username, String type) {
         TSysLog log = new TSysLog();
         log.setContent(content);
         log.setCreatetime(createTime);
@@ -38,15 +38,15 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
-    public PageInfo<TSysLog> page(Integer pageNumer, Integer pageSize,String startTime,String endTime) {
+    public PageInfo<TSysLog> page(Integer pageNumer, Integer pageSize, String startTime, String endTime) {
 
-        PageHelper.startPage(pageNumer,pageSize);
+        PageHelper.startPage(pageNumer, pageSize);
 
-        if(!StrUtil.isBlank(startTime)&&!StrUtil.isBlank(endTime))
+        if (!StrUtil.isBlank(startTime) && !StrUtil.isBlank(endTime))
             return new PageInfo<>(logMapper.selectByDate(startTime, endTime));
-        if(!StrUtil.isBlank(startTime))
+        if (!StrUtil.isBlank(startTime))
             return new PageInfo<>(logMapper.selectByStartDate(startTime));
-        if(!StrUtil.isBlank(endTime))
+        if (!StrUtil.isBlank(endTime))
             return new PageInfo<>(logMapper.selectByEndDate(endTime));
 
         return new PageInfo<>(logMapper.selectAll());
@@ -55,15 +55,15 @@ public class LogServiceImpl implements LogService{
     @Override
     public String deleteById(Integer[] logId) {
         boolean flag_ = false;
-        if(logId.length>0){
-            for(int id :logId){
-                if(logMapper.deleteByPrimaryKey(id)>0) {
+        if (logId.length > 0) {
+            for (int id : logId) {
+                if (logMapper.deleteByPrimaryKey(id) > 0) {
                     flag_ = true;
                 }
             }
         }
-        if(flag_)
-           return JsonUtil.toSUCCESS("删除日志成功!");
+        if (flag_)
+            return JsonUtil.toSUCCESS("删除日志成功!");
         return JsonUtil.toERROR("删除日志失败!");
     }
 

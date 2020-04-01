@@ -24,39 +24,39 @@ import java.util.Map;
 @Scope("prototype")
 public class FriendLinkListTag extends GeneralVarTagBinding {
 
-	@Autowired
-	private FriendlinkService friendlinkService;
+    @Autowired
+    private FriendlinkService friendlinkService;
 
-	@Override
-	public void render() {
+    @Override
+    public void render() {
 
-		String size = (String) this.getAttributeValue("size");
-		String type = (String) this.getAttributeValue("type");
-		String groupId = (String) this.getAttributeValue("groupId");
-        if(CmsUtil.isNullOrEmpty(size))
-        	throw  new CmsException("[友链标签]:size不能为空");
+        String size = (String) this.getAttributeValue("size");
+        String type = (String) this.getAttributeValue("type");
+        String groupId = (String) this.getAttributeValue("groupId");
+        if (CmsUtil.isNullOrEmpty(size))
+            throw new CmsException("[友链标签]:size不能为空");
         TCmsFriendlink friendlink = new TCmsFriendlink();
-		if(!CmsUtil.isNullOrEmpty(type))friendlink.setLinkType(Integer.parseInt(type));
-		if(!CmsUtil.isNullOrEmpty(groupId))friendlink.setGroupId(Integer.parseInt(groupId));
-		PageInfo<TCmsFriendlink> page = friendlinkService.page(1,Integer.parseInt(size),friendlink);
-		try {
-			this.wrapRender(page.getList());
-		} catch (Exception e) {
-			throw new CmsException(e.getMessage());
-		}
+        if (!CmsUtil.isNullOrEmpty(type)) friendlink.setLinkType(Integer.parseInt(type));
+        if (!CmsUtil.isNullOrEmpty(groupId)) friendlink.setGroupId(Integer.parseInt(groupId));
+        PageInfo<TCmsFriendlink> page = friendlinkService.page(1, Integer.parseInt(size), friendlink);
+        try {
+            this.wrapRender(page.getList());
+        } catch (Exception e) {
+            throw new CmsException(e.getMessage());
+        }
 
-	}
+    }
 
-		private void wrapRender(List<TCmsFriendlink> list) throws Exception {
-        int i=1;
-        for (TCmsFriendlink link : list){
-            Map result=Pojo2MapUtil.toMap(link);
-			result.put("index",i);
-			result.put("last",i>=list.size()?true:false);
-        	this.binds(result);
-			this.doBodyRender();
-			i++;
-		}
-	}
+    private void wrapRender(List<TCmsFriendlink> list) throws Exception {
+        int i = 1;
+        for (TCmsFriendlink link : list) {
+            Map result = Pojo2MapUtil.toMap(link);
+            result.put("index", i);
+            result.put("last", i >= list.size() ? true : false);
+            this.binds(result);
+            this.doBodyRender();
+            i++;
+        }
+    }
 
 }

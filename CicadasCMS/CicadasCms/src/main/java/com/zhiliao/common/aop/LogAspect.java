@@ -43,13 +43,13 @@ public class LogAspect {
         Method method = currentMethod(joinPoint, methodName);
         SysLog log = method.getAnnotation(SysLog.class);
         HttpSession session = request.getSession();
-        String principal =(String) session.getAttribute("username");
-        if(StrUtil.isBlank(principal))
+        String principal = (String) session.getAttribute("username");
+        if (StrUtil.isBlank(principal))
             principal = " - ";
         if (log != null) {
-            logger.info("@Syslog value : {} username:{}",log.value());
-            String content =buildeContent(joinPoint, methodName, request);
-            logService.saveLog(content,new Date(),principal,log.value());
+            logger.info("@Syslog value : {} username:{}", log.value());
+            String content = buildeContent(joinPoint, methodName, request);
+            logService.saveLog(content, new Date(), principal, log.value());
         }
         return joinPoint.proceed();
     }
@@ -57,11 +57,12 @@ public class LogAspect {
 
     /**
      * 获取当前方法
+     *
      * @param joinPoint
      * @param methodName
      * @return
      */
-    public  Method currentMethod(ProceedingJoinPoint joinPoint,String methodName){
+    public Method currentMethod(ProceedingJoinPoint joinPoint, String methodName) {
         Method[] methods = joinPoint.getTarget().getClass().getMethods();
         Method resultMethod = null;
         for (Method method : methods) {
@@ -75,6 +76,7 @@ public class LogAspect {
 
     /**
      * 日志内容
+     *
      * @param joinPoint
      * @param methodName
      * @param request
@@ -95,7 +97,7 @@ public class LogAspect {
                 bf.append(request.getQueryString());
             }
         }
-        logger.info("REQUEST PARAMS :"+bf.toString());
+        logger.info("REQUEST PARAMS :" + bf.toString());
         return String.format(LOG_CONTENT, className, methodName, bf.toString(), ControllerUtil.getRemoteAddress(request));
     }
 

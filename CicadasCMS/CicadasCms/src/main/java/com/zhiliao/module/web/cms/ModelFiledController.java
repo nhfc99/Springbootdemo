@@ -21,26 +21,26 @@ import static com.zhiliao.common.db.kit.DbTableKit.PREPARED_MODEL_FILED_NAME;
  **/
 @Controller
 @RequestMapping("system/cms/model/filed")
-public class ModelFiledController extends BaseController<TCmsModelFiled>{
+public class ModelFiledController extends BaseController<TCmsModelFiled> {
 
     @Autowired
     private ModelFiledService filedService;
 
     @RequestMapping
     @Override
-    public String index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "100")Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize,
                         TCmsModelFiled pojo, Model model) {
-        model.addAttribute("pojo",pojo);
-        model.addAttribute("model",filedService.page(pageNumber,pageSize,pojo));
+        model.addAttribute("pojo", pojo);
+        model.addAttribute("model", filedService.page(pageNumber, pageSize, pojo));
         return "cms/model_filed_list";
     }
 
     @RequiresPermissions("modelFiled:input")
     @RequestMapping("/input")
     @Override
-    public String input(@RequestParam(value = "modelId",required = false)Integer modelId, Model model) {
-        model.addAttribute("modelId",modelId);
+    public String input(@RequestParam(value = "modelId", required = false) Integer modelId, Model model) {
+        model.addAttribute("modelId", modelId);
         return "cms/model_filed_input";
     }
 
@@ -49,7 +49,7 @@ public class ModelFiledController extends BaseController<TCmsModelFiled>{
     @ResponseBody
     @Override
     public String save(TCmsModelFiled pojo) {
-        if(pojo.getFiledId()!=null)
+        if (pojo.getFiledId() != null)
             return filedService.update(pojo);
         return filedService.save(pojo);
     }
@@ -64,17 +64,17 @@ public class ModelFiledController extends BaseController<TCmsModelFiled>{
 
     @RequestMapping("/checkFiledName")
     @ResponseBody
-   public String checkFiledName(@RequestParam("filedName") String filedName){
+    public String checkFiledName(@RequestParam("filedName") String filedName) {
         Boolean flag = false;
-        for(String s :PREPARED_MODEL_FILED_NAME){
-            if(filedName.toLowerCase().equals(s.toLowerCase())){
-                flag =true;
+        for (String s : PREPARED_MODEL_FILED_NAME) {
+            if (filedName.toLowerCase().equals(s.toLowerCase())) {
+                flag = true;
                 break;
             }
         }
-        if((filedService.findModelFiledByFiledName(filedName)!=null)||flag)
+        if ((filedService.findModelFiledByFiledName(filedName) != null) || flag)
             return "{\"error\": \"名字已经被占用啦\"}";
         return "{\"ok\": \"名字很棒\"}";
-   }
+    }
 
 }

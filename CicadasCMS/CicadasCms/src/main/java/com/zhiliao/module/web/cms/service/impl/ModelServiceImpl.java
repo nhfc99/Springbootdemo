@@ -27,7 +27,7 @@ import java.util.List;
 
 @Service
 @CacheConfig(cacheNames = "cms-model-cache")
-public class ModelServiceImpl implements ModelService{
+public class ModelServiceImpl implements ModelService {
 
     @Autowired
     private TCmsModelMapper modelMapper;
@@ -41,64 +41,65 @@ public class ModelServiceImpl implements ModelService{
     @Autowired
     private TCmsCategoryMapper categoryMapper;
 
-   @CacheEvict(cacheNames = "cms-model-cache",allEntries = true)
-   @Override
+    @CacheEvict(cacheNames = "cms-model-cache", allEntries = true)
+    @Override
     public String save(TCmsModel pojo) {
-       String tableName = PinyinUtil.convertLower(pojo.getTableName());
-       pojo.setTableName(tableName);
-       try {
-           dbTableAssistant.createDbtable(tableName);
-       } catch (SQLException e) {
-           throw  new SystemException(e.getMessage());
-       }
-       if (modelMapper.insertSelective(pojo)>0)
-        return JsonUtil.toSUCCESS("操作成功","model-tab",true);
-       return  JsonUtil.toERROR("操作失败");
+        String tableName = PinyinUtil.convertLower(pojo.getTableName());
+        pojo.setTableName(tableName);
+        try {
+            dbTableAssistant.createDbtable(tableName);
+        } catch (SQLException e) {
+            throw new SystemException(e.getMessage());
+        }
+        if (modelMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "model-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
-    @CacheEvict(cacheNames = "cms-model-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-model-cache", allEntries = true)
     @Override
     public String update(TCmsModel pojo) {
-        if (modelMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","model-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (modelMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "model-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
-    public String delete(Integer[] ids){
-       if(ids!=null) {
-           for (Integer id : ids) {
+    public String delete(Integer[] ids) {
+        if (ids != null) {
+            for (Integer id : ids) {
 
-               /*检查当前模型是否管理栏目*/
-               TCmsCategory category = new TCmsCategory();
-               category.setModelId(id);
-               List<TCmsCategory> categorys = categoryMapper.select(category);
-               if(!CmsUtil.isNullOrEmpty(categorys)&&categorys.size()>0)
-                   throw new CmsException("当前模型关联多个栏目[size:"+categorys.size()+"],请先删除栏目！");
-               /*删除数据库中的模型表*/
-               TCmsModel model =modelMapper.selectByPrimaryKey(id);
-               try {
-                   dbTableAssistant.deleteDbtable(model.getTableName());
-               } catch (SQLException e) {
-                   throw  new SystemException(e.getMessage());
-               }
-               modelMapper.deleteByPrimaryKey(id);
-               /*清空与当前模型相关的字段*/
-               TCmsModelFiled modelFiled = new TCmsModelFiled();
-               modelFiled.setModelId(id);
-               modelFiledMapper.delete(modelFiled);
+                /*检查当前模型是否管理栏目*/
+                TCmsCategory category = new TCmsCategory();
+                category.setModelId(id);
+                List<TCmsCategory> categorys = categoryMapper.select(category);
+                if (!CmsUtil.isNullOrEmpty(categorys) && categorys.size() > 0)
+                    throw new CmsException("当前模型关联多个栏目[size:" + categorys.size() + "],请先删除栏目！");
+                /*删除数据库中的模型表*/
+                TCmsModel model = modelMapper.selectByPrimaryKey(id);
+                try {
+                    dbTableAssistant.deleteDbtable(model.getTableName());
+                } catch (SQLException e) {
+                    throw new SystemException(e.getMessage());
+                }
+                modelMapper.deleteByPrimaryKey(id);
+                /*清空与当前模型相关的字段*/
+                TCmsModelFiled modelFiled = new TCmsModelFiled();
+                modelFiled.setModelId(id);
+                modelFiledMapper.delete(modelFiled);
 
-           }
-           return JsonUtil.toSUCCESS("操作成功", "model-tab", false);
-       }
-       return  JsonUtil.toERROR("操作失败");
+            }
+            return JsonUtil.toSUCCESS("操作成功", "model-tab", false);
+        }
+        return JsonUtil.toERROR("操作失败");
     }
+
     @Cacheable(key = "#p0")
     @Override
     public TCmsModel findById(Integer id) {
         TCmsModel model = modelMapper.selectByPrimaryKey(id);
-        if(CmsUtil.isNullOrEmpty(model))
-            throw new SystemException("模型（"+id+"）不存在！");
+        if (CmsUtil.isNullOrEmpty(model))
+            throw new SystemException("模型（" + id + "）不存在！");
         return model;
     }
 
@@ -109,18 +110,18 @@ public class ModelServiceImpl implements ModelService{
 
     @Override
     public List<TCmsModel> findAll() {
-         return modelMapper.selectAll();
+        return modelMapper.selectAll();
     }
 
     @Override
     public PageInfo<TCmsModel> page(Integer pageNumber, Integer pageSize, TCmsModel pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsModel> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 
@@ -140,10 +141,10 @@ public class ModelServiceImpl implements ModelService{
 
     @Cacheable(key = "'list-status-'+#p0+'-site-'+#p1")
     @Override
-    public List<TCmsModel> findModelListByStatusAndSiteId(boolean status,Integer siteId) {
-       TCmsModel model = new TCmsModel();
-       model.setStatus(status);
-       model.setSiteId(siteId);
+    public List<TCmsModel> findModelListByStatusAndSiteId(boolean status, Integer siteId) {
+        TCmsModel model = new TCmsModel();
+        model.setStatus(status);
+        model.setSiteId(siteId);
         return modelMapper.select(model);
     }
 

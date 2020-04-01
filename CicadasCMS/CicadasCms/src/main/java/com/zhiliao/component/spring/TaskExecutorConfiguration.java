@@ -11,8 +11,7 @@ import java.util.concurrent.Executor;
 
 @EnableAsync
 @Configuration
-public class TaskExecutorConfiguration  implements AsyncConfigurer{
-
+public class TaskExecutorConfiguration implements AsyncConfigurer {
 
 
     @Override

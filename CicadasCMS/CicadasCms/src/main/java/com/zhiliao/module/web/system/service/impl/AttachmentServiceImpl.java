@@ -21,7 +21,7 @@ import java.util.List;
  * @create 2017-08-08
  **/
 @Service
-public class AttachmentServiceImpl implements AttachmentService{
+public class AttachmentServiceImpl implements AttachmentService {
 
     @Autowired
     private TSysAttachmentMapper attachmentMapper;
@@ -34,9 +34,9 @@ public class AttachmentServiceImpl implements AttachmentService{
 
     @Override
     public String delete(Long[] ids) {
-        if(CmsUtil.isNullOrEmpty(ids))
+        if (CmsUtil.isNullOrEmpty(ids))
             return JsonUtil.toERROR("id不能为空！");
-        for(Long id :ids)
+        for (Long id : ids)
             deleteAttachmentFile(id);
         return JsonUtil.toSUCCESS("删除成功!");
     }
@@ -49,9 +49,9 @@ public class AttachmentServiceImpl implements AttachmentService{
     }
 
     @Async
-    public void deleteAttachmentFile(Long id){
+    public void deleteAttachmentFile(Long id) {
         TSysAttachment attachment = this.attachmentMapper.selectByPrimaryKey(id);
-        if(!CmsUtil.isNullOrEmpty(attachment)){
+        if (!CmsUtil.isNullOrEmpty(attachment)) {
             File file = new File(attachment.getFilePath());
             file.delete();
             this.attachmentMapper.deleteByPrimaryKey(id);
@@ -70,13 +70,13 @@ public class AttachmentServiceImpl implements AttachmentService{
 
     @Override
     public PageInfo<TSysAttachment> page(Integer pageNumber, Integer pageSize, TSysAttachment pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findList(pojo));
     }
 
     @Override
     public PageInfo<TSysAttachment> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findAll());
     }
 }

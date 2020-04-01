@@ -13,7 +13,7 @@ public class XSSDefenseFormat implements Format {
         } else {
 
             try {
-                if(data instanceof String) {
+                if (data instanceof String) {
                     Policy policy = Policy.getInstance(getClass().getResourceAsStream("/antisamy.xml"));
                     AntiSamy as = new AntiSamy(policy);
 
@@ -36,8 +36,8 @@ public class XSSDefenseFormat implements Format {
         }
     }
 
-    public static void main(String[] args){
-        String js =  "中文<script>hi</script><h5></h5>";
+    public static void main(String[] args) {
+        String js = "中文<script>hi</script><h5></h5>";
         System.out.println(js);
         js = (String) new XSSDefenseFormat().format(js, "escape");
         System.out.println(js);

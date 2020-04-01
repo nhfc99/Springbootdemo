@@ -28,30 +28,30 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private TCmsTopicMapper topicMapper;
 
-    @CacheEvict(cacheNames ="cms-topic-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-topic-cache", allEntries = true)
     @Override
     public String save(TCmsTopic pojo) {
-        if(topicMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功！","topic-tab",true);
+        if (topicMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功！", "topic-tab", true);
         return JsonUtil.toERROR("操作失败！");
     }
 
-    @CacheEvict(cacheNames ="cms-topic-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-topic-cache", allEntries = true)
     @Override
     public String update(TCmsTopic pojo) {
-        if(topicMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功！","topic-tab",false);
+        if (topicMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功！", "topic-tab", false);
         return JsonUtil.toERROR("操作失败！");
     }
 
-    @CacheEvict(cacheNames ="cms-topic-cache",allEntries = true)
+    @CacheEvict(cacheNames = "cms-topic-cache", allEntries = true)
     @Override
     public String delete(Integer[] ids) {
-        if(CmsUtil.isNullOrEmpty(ids))
+        if (CmsUtil.isNullOrEmpty(ids))
             return JsonUtil.toERROR("操作失败！");
-        for(Integer id : ids)
+        for (Integer id : ids)
             topicMapper.deleteByPrimaryKey(id);
-        return JsonUtil.toSUCCESS("操作成功！","topic-tab",false);
+        return JsonUtil.toSUCCESS("操作成功！", "topic-tab", false);
     }
 
     @Cacheable(key = "'topicId-'+#p0")
@@ -72,13 +72,13 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public PageInfo<TCmsTopic> page(Integer pageNumber, Integer pageSize, TCmsTopic pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsTopic> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(this.findAll());
     }
 
@@ -90,8 +90,8 @@ public class TopicServiceImpl implements TopicService {
 
     @Cacheable(key = "'recommend-list'+#p0+#p1+#p2")
     @Override
-    public List<TCmsTopic> findByRecommendList(Integer siteId,boolean isRecommend, Integer pageSize) {
-        PageHelper.startPage(1,pageSize);
+    public List<TCmsTopic> findByRecommendList(Integer siteId, boolean isRecommend, Integer pageSize) {
+        PageHelper.startPage(1, pageSize);
         TCmsTopic topic = new TCmsTopic();
         topic.setSiteId(siteId);
         topic.setIsRecommend(isRecommend);

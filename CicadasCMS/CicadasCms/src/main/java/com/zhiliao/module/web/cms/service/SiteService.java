@@ -9,7 +9,7 @@ import com.zhiliao.mybatis.model.TCmsSite;
 /**
  * Created by binary on 2017/5/15.
  */
-public interface SiteService extends BaseService<TCmsSite,Integer> {
+public interface SiteService extends BaseService<TCmsSite, Integer> {
 
     String save(TCmsSite pojo);
 

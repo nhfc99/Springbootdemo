@@ -17,7 +17,7 @@ import java.util.List;
  * @create 2017-04-15
  **/
 @Service
-public class SelectPermissionFunction implements Function{
+public class SelectPermissionFunction implements Function {
 
     @Autowired
     private RoleService service;
@@ -29,38 +29,37 @@ public class SelectPermissionFunction implements Function{
     @Override
     public Object call(Object[] objects, Context context) {
 
-        Integer pid = (Integer)objects[0];
-        Integer currentId = (Integer)objects[1];
-        if(pid!=null)
-            return head+recursion(currentId,pid,0,"");
-        return head+recursion(currentId,0,0,"");
+        Integer pid = (Integer) objects[0];
+        Integer currentId = (Integer) objects[1];
+        if (pid != null)
+            return head + recursion(currentId, pid, 0, "");
+        return head + recursion(currentId, 0, 0, "");
     }
 
 
-
     /*递归输出子节点*/
-    private String recursion(int cid,int pid,int spid,String tag){
+    private String recursion(int cid, int pid, int spid, String tag) {
 
-        tag+=(StrUtil.isBlank(tag)?"&nbsp;&nbsp;":"&nbsp;&nbsp;&nbsp;&nbsp;");
+        tag += (StrUtil.isBlank(tag) ? "&nbsp;&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;");
         StringBuffer sbf = new StringBuffer();
-        List<TSysPermission> permissions  = service.findPermissonByPid(spid);
-        if(permissions!=null&&permissions.size()>0){
+        List<TSysPermission> permissions = service.findPermissonByPid(spid);
+        if (permissions != null && permissions.size() > 0) {
             int flag_ = 0;
-            for(TSysPermission per:permissions){
-                   /**如果是自己就不输出了**/
-                if(cid!=per.getPermissionId()&&cid!=per.getPid()||cid==0) {
+            for (TSysPermission per : permissions) {
+                /**如果是自己就不输出了**/
+                if (cid != per.getPermissionId() && cid != per.getPid() || cid == 0) {
                     flag_ = per.getPermissionId();
                     sbf.append("<option value=\"" + per.getPermissionId() + "\" " + isSelected(per.getPermissionId(), pid) + ">" + tag + "|—" + per.getDescription() + "</option>");
                 }
-                if(flag_!=0)sbf.append(recursion(cid,pid,per.getPermissionId(),tag));
+                if (flag_ != 0) sbf.append(recursion(cid, pid, per.getPermissionId(), tag));
             }
-            return  sbf.toString();
+            return sbf.toString();
         }
         return "";
     }
 
-    private String isSelected(Integer id,Integer perId){
-        if(id.intValue()==perId.intValue())
+    private String isSelected(Integer id, Integer perId) {
+        if (id.intValue() == perId.intValue())
             return isSelected;
         return "";
     }

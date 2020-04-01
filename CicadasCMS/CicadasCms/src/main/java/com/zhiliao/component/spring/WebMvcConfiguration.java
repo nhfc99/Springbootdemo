@@ -33,15 +33,15 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
                         ?
                         (System.getProperty("os.name").toLowerCase().startsWith("win")
                                 ?
-                                "file:"+windowsUploadPath.replace("/", File.separator)+File.separator+"upload"+File.separator
+                                "file:" + windowsUploadPath.replace("/", File.separator) + File.separator + "upload" + File.separator
                                 :
-                                "file:"+linuxUploadPath.replace("/", File.separator)+File.separator+"upload"+File.separator)
+                                "file:" + linuxUploadPath.replace("/", File.separator) + File.separator + "upload" + File.separator)
                         :
                         "classpath:static";
         registry.addResourceHandler("/upload/**").addResourceLocations(uploadPath);
-        registry.addResourceHandler("/Uploads/**").addResourceLocations(uploadPath+"Uploads"+File.separator);
+        registry.addResourceHandler("/Uploads/**").addResourceLocations(uploadPath + "Uploads" + File.separator);
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/html/**").addResourceLocations("file:" + staticPath.replace("/", File.separator)+File.separator+"html"+File.separator);
+        registry.addResourceHandler("/html/**").addResourceLocations("file:" + staticPath.replace("/", File.separator) + File.separator + "html" + File.separator);
     }
 
     @Override

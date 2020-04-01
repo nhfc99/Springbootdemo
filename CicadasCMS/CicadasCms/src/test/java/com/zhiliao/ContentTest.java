@@ -28,21 +28,22 @@ public class ContentTest {
     private TCmsContentMapper contentMapper;
 
 
-    public void findContentByContentIdAndTbleName(){
-      Map map =  contentService.findContentByContentIdAndTableName(1l,"ceshi");
-        map.forEach((key, value) -> System.out.println(key+" --> "+value));
+    public void findContentByContentIdAndTbleName() {
+        Map map = contentService.findContentByContentIdAndTableName(1l, "ceshi");
+        map.forEach((key, value) -> System.out.println(key + " --> " + value));
     }
+
     @Test
-    public void findContentListByCategoryIdAndSiteId(){
-        contentService.findContentListBySiteIdAndCategoryId(0,26l,10,1,10,0,0,1,1);
+    public void findContentListByCategoryIdAndSiteId() {
+        contentService.findContentListBySiteIdAndCategoryId(0, 26l, 10, 1, 10, 0, 0, 1, 1);
     }
 
 
-    public void findContentPageByTableNameAndParam(){
+    public void findContentPageByTableNameAndParam() {
         Map param = Maps.newHashMap();
-        param.put("nianling",25);
-        param.put("danxuan",2);
-        contentMapper.selectByTableNameAndMap("ceshi",32l,param);
+        param.put("nianling", 25);
+        param.put("danxuan", 2);
+        contentMapper.selectByTableNameAndMap("ceshi", 32l, param);
     }
 
 

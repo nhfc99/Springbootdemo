@@ -25,18 +25,17 @@ public class PermissionController {
     private RoleService roleService;
 
 
-
     @RequiresPermissions("permission:admin")
     @RequestMapping
-    public String index(){
+    public String index() {
         return "system/permission";
     }
 
     @RequiresPermissions("permission:input")
     @RequestMapping("/input/{id}")
-    public String input(@PathVariable(value = "id",required = false) Integer perId,Model model){
-        if(perId!=null){
-            model.addAttribute("per",roleService.findPermissonByid(perId));
+    public String input(@PathVariable(value = "id", required = false) Integer perId, Model model) {
+        if (perId != null) {
+            model.addAttribute("per", roleService.findPermissonByid(perId));
         }
         return "system/permission_input";
     }
@@ -44,9 +43,9 @@ public class PermissionController {
     @RequiresPermissions("permission:save")
     @RequestMapping("/save")
     @ResponseBody
-    public String save(TSysPermission permission){
+    public String save(TSysPermission permission) {
 
-        if(permission.getPermissionId()!=null)
+        if (permission.getPermissionId() != null)
             return roleService.update(permission);
         return roleService.save(permission);
 

@@ -11,7 +11,6 @@ public class TCmsCategory implements Serializable {
     private Long categoryId;
 
 
-
     @Column(name = "translated_category_id")
     private Long translatedCategoryId;
     /**

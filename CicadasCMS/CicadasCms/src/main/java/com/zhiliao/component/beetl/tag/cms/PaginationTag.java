@@ -47,32 +47,32 @@ public class PaginationTag extends GeneralVarTagBinding {
 
     @Override
     public void render() {
-        HttpServletRequest request = (HttpServletRequest)ctx.getGlobal("request");
-        String staticHtmlPath =  ctx.getGlobal("staticHtmlPath")==null?"":(String) ctx.getGlobal("staticHtmlPath");
+        HttpServletRequest request = (HttpServletRequest) ctx.getGlobal("request");
+        String staticHtmlPath = ctx.getGlobal("staticHtmlPath") == null ? "" : (String) ctx.getGlobal("staticHtmlPath");
         PageInfo<TCmsContent> contentPage = (PageInfo<TCmsContent>) this.getAttributeValue("page");
-        if(CmsUtil.isNullOrEmpty(contentPage))
+        if (CmsUtil.isNullOrEmpty(contentPage))
             throw new CmsException("[分页标签]此标签只能和内容分页标签!");
         Integer siteId = (Integer) this.getAttributeValue("siteId");
-        if(CmsUtil.isNullOrEmpty(siteId))
+        if (CmsUtil.isNullOrEmpty(siteId))
             throw new CmsException("[分页标签]站点Id不能为空！");
         Long categoryId = (Long) this.getAttributeValue("categoryId");
-        if(CmsUtil.isNullOrEmpty(categoryId))
+        if (CmsUtil.isNullOrEmpty(categoryId))
             throw new CmsException("[分页标签]栏目Id不能为空！");
         String ajaxRender = (String) this.getAttributeValue("ajaxRender");
         TCmsSite site = siteService.findById(siteId);
         TCmsCategory category = categoryService.findById(categoryId);
-        if(CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:"+siteId+"]");
+        if (CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:" + siteId + "]");
         String action = (String) this.getAttributeValue("action");
-        if(CmsUtil.isNullOrEmpty(action)) {
-            action = request.getContextPath()  + staticHtmlPath +"/"+  site.getSiteKey()  + "/";
+        if (CmsUtil.isNullOrEmpty(action)) {
+            action = request.getContextPath() + staticHtmlPath + "/" + site.getSiteKey() + "/";
             action += category.getAlias() + "/index_{pageNumber}" + siteSubfix;
-        }else {
+        } else {
             action += "&p={pageNumber}";
         }
-        if(!CmsUtil.isNullOrEmpty(ajaxRender)) {
+        if (!CmsUtil.isNullOrEmpty(ajaxRender)) {
             action += "?ajaxRender=" + ajaxRender;
         }
-        PaginateVo page = paging(contentPage.getPageNum(), contentPage.getPages(),contentPage.getPageNum(), action);
+        PaginateVo page = paging(contentPage.getPageNum(), contentPage.getPages(), contentPage.getPageNum(), action);
         this.binds(page);
         this.doBodyRender();
     }
@@ -157,7 +157,7 @@ public class PaginationTag extends GeneralVarTagBinding {
             PageActionVo pageCurrent = new PageActionVo();
             if (currentPage == index) {
                 pageCurrent.setLink(false);
-                pageCurrent.setValue("<a>"+index+"</a>");
+                pageCurrent.setValue("<a>" + index + "</a>");
                 changeLink.add(pageCurrent);
             } else {
                 pageCurrent.setLink(true);

@@ -20,7 +20,7 @@ import java.util.List;
  * @create 2017-06-12
  **/
 @Service
-public class FriendlinkServiceImpl implements FriendlinkService{
+public class FriendlinkServiceImpl implements FriendlinkService {
 
     @Autowired
     private TCmsFriendlinkMapper friendlinkMapper;
@@ -30,24 +30,24 @@ public class FriendlinkServiceImpl implements FriendlinkService{
 
     @Override
     public String save(TCmsFriendlink pojo) {
-        if (friendlinkMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","friendlink-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (friendlinkMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsFriendlink pojo) {
-        if (friendlinkMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","friendlink-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (friendlinkMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String delete(Integer[] ids) {
-        if(ids!=null&&ids.length>0)
-            for(Integer id :ids)
+        if (ids != null && ids.length > 0)
+            for (Integer id : ids)
                 friendlinkMapper.deleteByPrimaryKey(id);
-        return JsonUtil.toSUCCESS("删除成功","friendlink-tab",false);
+        return JsonUtil.toSUCCESS("删除成功", "friendlink-tab", false);
     }
 
     @Override
@@ -67,22 +67,22 @@ public class FriendlinkServiceImpl implements FriendlinkService{
 
     @Override
     public PageInfo<TCmsFriendlink> page(Integer pageNumber, Integer pageSize, TCmsFriendlink pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
-        if(pojo.getGroupId()!=null){
-            return  new PageInfo<>(friendlinkMapper.selectFriendLinkByGroupId(pojo.getGroupId()));
+        PageHelper.startPage(pageNumber, pageSize);
+        if (pojo.getGroupId() != null) {
+            return new PageInfo<>(friendlinkMapper.selectFriendLinkByGroupId(pojo.getGroupId()));
         }
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsFriendlink> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 
     @Override
     public PageInfo<TCmsFriendlinkGroup> page(Integer pageNumber, Integer pageSize, TCmsFriendlinkGroup group) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(groupMapper.select(group));
     }
 
@@ -94,23 +94,23 @@ public class FriendlinkServiceImpl implements FriendlinkService{
 
     @Override
     public String save(TCmsFriendlinkGroup group) {
-        if(groupMapper.insertSelective(group)>0)
-             return JsonUtil.toSUCCESS("操作成功","friendlink-tab","friend-group-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (groupMapper.insertSelective(group) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", "friend-group-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsFriendlinkGroup group) {
-        if(groupMapper.updateByPrimaryKeySelective(group)>0)
-            return JsonUtil.toSUCCESS("操作成功","friendlink-tab","friend-group-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (groupMapper.updateByPrimaryKeySelective(group) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", "friend-group-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String deleteGroupById(Integer id) {
-        if(groupMapper.deleteByPrimaryKey(id)>0)
-            return JsonUtil.toSUCCESS("操作成功","friendlink-tab","friend-group-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (groupMapper.deleteByPrimaryKey(id) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", "friend-group-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override

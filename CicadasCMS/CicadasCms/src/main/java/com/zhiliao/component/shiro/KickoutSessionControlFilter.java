@@ -18,7 +18,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     private boolean kickoutAfter = false; /*踢前后判断*/
     private int maxSession = 1; /*同一帐号最大会话数*/
 
-    private Cache<String,  Deque<Session>> cache;
+    private Cache<String, Deque<Session>> cache;
 
     public void setEnableKckout(boolean enableKckout) {
         this.enableKckout = enableKckout;
@@ -33,7 +33,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     }
 
     public void setCache(CacheManager cacheManager) {
-            this.cache = cacheManager.getCache("shiro-kickout-cache");
+        this.cache = cacheManager.getCache("shiro-kickout-cache");
     }
 
     @Override
@@ -44,15 +44,15 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 
-        Subject subject= getSubject(request, response);
-        if(!subject.isAuthenticated() && !subject.isRemembered())return true;
+        Subject subject = getSubject(request, response);
+        if (!subject.isAuthenticated() && !subject.isRemembered()) return true;
         Session session = subject.getSession();
         String username = (String) subject.getPrincipal();
         Serializable sessionId = session.getId();
         boolean dequePushFlag = true;
         Deque<Session> deque = cache.get(username);
 
-        if(deque == null) {
+        if (deque == null) {
             deque = new LinkedList<>();
             cache.put(username, deque);
         }
@@ -68,15 +68,15 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             }
         }
 
-        if (dequePushFlag)deque.push(session);
+        if (dequePushFlag) deque.push(session);
 
-        while(deque.size() > maxSession) {
+        while (deque.size() > maxSession) {
             Session kickoutSession;
-            if(kickoutAfter)
-                kickoutSession  = deque.removeFirst();
+            if (kickoutAfter)
+                kickoutSession = deque.removeFirst();
             else
-                kickoutSession  = deque.removeLast();
-            if(kickoutSession != null)kickoutSession.stop();
+                kickoutSession = deque.removeLast();
+            if (kickoutSession != null) kickoutSession.stop();
         }
         return true;
     }

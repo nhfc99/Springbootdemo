@@ -25,18 +25,18 @@ public class CacheController {
     @Autowired
     private EhCacheCacheManager springEhCacheManager;
 
-    private String[] caches={"cms-site-cache","cms-category-cache","shiro-kickout-cache","cms-content-cache","cms-model-cache","cms-topic-cache"};
+    private String[] caches = {"cms-site-cache", "cms-category-cache", "shiro-kickout-cache", "cms-content-cache", "cms-model-cache", "cms-topic-cache"};
 
     @RequestMapping
-    public String index(Model model){
-        model.addAttribute("caches",caches);
+    public String index(Model model) {
+        model.addAttribute("caches", caches);
         return "system/cache";
     }
 
     @RequestMapping("/clear/{cacheNames}")
     @ResponseBody
-    public  String clear(@PathVariable("cacheNames") String cacheNames){
-        if(StrUtil.isBlank(cacheNames))
+    public String clear(@PathVariable("cacheNames") String cacheNames) {
+        if (StrUtil.isBlank(cacheNames))
             throw new SystemException("缓存名称不能为空！");
         Cache cache = springEhCacheManager.getCache(cacheNames);
         cache.clear();
@@ -45,14 +45,13 @@ public class CacheController {
 
     @RequestMapping("/clear/all")
     @ResponseBody
-    public  String clear(){
-        for(String cacheNames :caches) {
+    public String clear() {
+        for (String cacheNames : caches) {
             Cache cache = springEhCacheManager.getCache(cacheNames);
             cache.clear();
         }
         return JsonUtil.toSUCCESS("清理成功！");
     }
-
 
 
 }

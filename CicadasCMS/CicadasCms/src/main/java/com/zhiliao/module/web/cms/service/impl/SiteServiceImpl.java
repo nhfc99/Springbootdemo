@@ -34,7 +34,7 @@ import java.util.List;
  **/
 @Service
 @CacheConfig(cacheNames = "cms-site-cache")
-public class SiteServiceImpl implements SiteService{
+public class SiteServiceImpl implements SiteService {
 
     @Value("${system.site.name}")
     private String siteName;
@@ -61,35 +61,35 @@ public class SiteServiceImpl implements SiteService{
 
     @Override
     public String update(TCmsSite pojo) {
-       return null;
+        return null;
     }
 
     @Override
     public String delete(Integer[] ids) {
-        if(ids!=null){
-           for (Integer id :ids) {
-               if(id==1)return  JsonUtil.toERROR("主站点不能删除");
-               /*删除一切与当前站点相关联的内容*/
-               siteMapper.deleteByPrimaryKey(id);
-               userSiteMapper.deleteBySiteId(id);
-               /*删除站点相关的栏目*/
-               TCmsCategory category = new TCmsCategory();
-               category.setSiteId(id);
-               categoryMapper.delete(category);
+        if (ids != null) {
+            for (Integer id : ids) {
+                if (id == 1) return JsonUtil.toERROR("主站点不能删除");
+                /*删除一切与当前站点相关联的内容*/
+                siteMapper.deleteByPrimaryKey(id);
+                userSiteMapper.deleteBySiteId(id);
+                /*删除站点相关的栏目*/
+                TCmsCategory category = new TCmsCategory();
+                category.setSiteId(id);
+                categoryMapper.delete(category);
                 /*删除站点相关的栏内容*/
-               TCmsContent content = new TCmsContent();
-               content.setSiteId(id);
-               contentMapper.delete(content);
-           }
-           return JsonUtil.toSUCCESS("操作成功","site-tab",false);
+                TCmsContent content = new TCmsContent();
+                content.setSiteId(id);
+                contentMapper.delete(content);
+            }
+            return JsonUtil.toSUCCESS("操作成功", "site-tab", false);
         }
-        return  JsonUtil.toERROR("操作失败");
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Cacheable(key = "'find-Id-'+#p0")
     @Override
     public TCmsSite findById(Integer id) {
-        return  siteMapper.selectByPrimaryKey(id);
+        return siteMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -104,55 +104,55 @@ public class SiteServiceImpl implements SiteService{
 
     @Override
     public PageInfo<TCmsSite> page(Integer pageNumber, Integer pageSize, TCmsSite pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsSite> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 
-    @CacheEvict(value = "cms-site-cache",allEntries = true,beforeInvocation = true)
-    @Transactional(transactionManager = "masterTransactionManager",rollbackFor = Exception.class)
+    @CacheEvict(value = "cms-site-cache", allEntries = true, beforeInvocation = true)
+    @Transactional(transactionManager = "masterTransactionManager", rollbackFor = Exception.class)
     @Override
     public String save(TCmsSiteVo pojo) {
-        if(StringUtils.isEmpty(pojo.getSiteKey())){
-            pojo.setSiteKey(PinyinUtil.convertLower(pojo.getSiteName()).replace(" ",""));
+        if (StringUtils.isEmpty(pojo.getSiteKey())) {
+            pojo.setSiteKey(PinyinUtil.convertLower(pojo.getSiteName()).replace(" ", ""));
         }
         String[] userIds = StrUtil.excludeRepeatStr(pojo.getUserIds());
-        if (siteMapper.insertSelective(pojo)>0) {
-            this.UserSiteUpdate(userIds,pojo);
+        if (siteMapper.insertSelective(pojo) > 0) {
+            this.UserSiteUpdate(userIds, pojo);
             return JsonUtil.toSUCCESS("操作成功", "site-tab", true);
         }
-        return  JsonUtil.toERROR("操作失败");
+        return JsonUtil.toERROR("操作失败");
     }
 
 
-    @CacheEvict(value = "cms-site-cache",allEntries = true)
-    @Transactional(transactionManager = "masterTransactionManager",rollbackFor = Exception.class)
+    @CacheEvict(value = "cms-site-cache", allEntries = true)
+    @Transactional(transactionManager = "masterTransactionManager", rollbackFor = Exception.class)
     @Override
     public String update(TCmsSiteVo pojo) {
-        if(StringUtils.isEmpty(pojo.getSiteKey())){
-            pojo.setSiteKey(PinyinUtil.convertLower(pojo.getSiteName()).replace(" ",""));
+        if (StringUtils.isEmpty(pojo.getSiteKey())) {
+            pojo.setSiteKey(PinyinUtil.convertLower(pojo.getSiteName()).replace(" ", ""));
         }
         String[] userIds = StrUtil.excludeRepeatStr(pojo.getUserIds());
-        if (siteMapper.updateByPrimaryKeySelective(pojo)>0){
+        if (siteMapper.updateByPrimaryKeySelective(pojo) > 0) {
             /*如果是更新就先清空当前站点与用户的关联*/
             userSiteMapper.deleteBySiteId(pojo.getSiteId());
             /*重新遍历添加*/
-            this.UserSiteUpdate(userIds,pojo);
-            return JsonUtil.toSUCCESS("操作成功","site-tab",false);
+            this.UserSiteUpdate(userIds, pojo);
+            return JsonUtil.toSUCCESS("操作成功", "site-tab", false);
         }
-        return  JsonUtil.toERROR("操作失败");
+        return JsonUtil.toERROR("操作失败");
     }
 
-    private void UserSiteUpdate(String[] userIds,TCmsSiteVo pojo){
-        if (userIds!=null&&userIds.length>0) {
+    private void UserSiteUpdate(String[] userIds, TCmsSiteVo pojo) {
+        if (userIds != null && userIds.length > 0) {
             for (String userId : userIds) {
-                if(CmsUtil.isNullOrEmpty(sysUserMapper.selectByPrimaryKey(Integer.parseInt(userId))))
-                    throw new SystemException("管理员["+userId+"]不存在！");
+                if (CmsUtil.isNullOrEmpty(sysUserMapper.selectByPrimaryKey(Integer.parseInt(userId))))
+                    throw new SystemException("管理员[" + userId + "]不存在！");
                 TCmsUserSite userSite = new TCmsUserSite();
                 userSite.setSiteId(pojo.getSiteId());
                 userSite.setUserId(Integer.parseInt(userId));
@@ -165,14 +165,14 @@ public class SiteServiceImpl implements SiteService{
     public TCmsSiteVo findVoById(Integer id) {
         TCmsSiteVo siteVo = new TCmsSiteVo();
         TCmsSite site = findById(id);
-        BeanUtils.copyProperties(site,siteVo);
+        BeanUtils.copyProperties(site, siteVo);
         List<TCmsUserSite> userSites = userSiteMapper.selectBySiteId(site.getSiteId());
         String userIds = "";
-        if(userSites!=null&&userSites.size()>0)
-            for(TCmsUserSite userSite : userSites) {
-                userIds+=String.valueOf(userSite.getUserId())+",";
+        if (userSites != null && userSites.size() > 0)
+            for (TCmsUserSite userSite : userSites) {
+                userIds += String.valueOf(userSite.getUserId()) + ",";
             }
-        siteVo.setUserIds(userIds.length()>0?userIds.substring(0,userIds.length()-1):userIds);
+        siteVo.setUserIds(userIds.length() > 0 ? userIds.substring(0, userIds.length() - 1) : userIds);
         return siteVo;
     }
 
@@ -184,16 +184,16 @@ public class SiteServiceImpl implements SiteService{
     }
 
     @Override
-    public String change(UserVo userVo,Integer siteId) {
+    public String change(UserVo userVo, Integer siteId) {
         HttpSession session = ControllerUtil.getHttpSession();
         TCmsSite site = siteMapper.selectByPrimaryKey(siteId);
-        if(CmsUtil.isNullOrEmpty(site))
+        if (CmsUtil.isNullOrEmpty(site))
             return JsonUtil.toERROR("当前站点不存在！");
         userVo.setSiteId(site.getSiteId());
-        userVo.setSiteName(site.getSiteId()==0?this.siteName:site.getSiteName());
+        userVo.setSiteName(site.getSiteId() == 0 ? this.siteName : site.getSiteName());
         /*更新session*/
-        session.setAttribute(CmsConst.SITE_USER_SESSION_KEY,userVo);
-        return JsonUtil.toSUCCESS("站点切换成功，请刷新当前页面！","site-tab",false);
+        session.setAttribute(CmsConst.SITE_USER_SESSION_KEY, userVo);
+        return JsonUtil.toSUCCESS("站点切换成功，请刷新当前页面！", "site-tab", false);
     }
 
     @Cacheable(key = "'find-domain-'+#domain")

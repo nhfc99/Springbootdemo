@@ -15,21 +15,23 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 public class ParamNotNullAspect {
 
-	@Autowired
-	private HttpServletRequest request;
+    @Autowired
+    private HttpServletRequest request;
 
 
-	/**参数是否为空统一校验*/
-	@Around("@annotation(com.zhiliao.common.annotation.ParamNotNull) && @annotation(paramNotNull)")
-	public Object advice(ProceedingJoinPoint joinPoint,ParamNotNull paramNotNull) throws Throwable{
-		String[] paraName = paramNotNull.parameter().split(",");
-		for (String para : paraName) {
-			String parameter2 = request.getParameter(para);
-			if (StringUtils.isEmpty(parameter2)) {
-				throw new ApiException("参数[" + para + "]不能为空");
-			}
-		}
-		return joinPoint.proceed();
-	}
-	
+    /**
+     * 参数是否为空统一校验
+     */
+    @Around("@annotation(com.zhiliao.common.annotation.ParamNotNull) && @annotation(paramNotNull)")
+    public Object advice(ProceedingJoinPoint joinPoint, ParamNotNull paramNotNull) throws Throwable {
+        String[] paraName = paramNotNull.parameter().split(",");
+        for (String para : paraName) {
+            String parameter2 = request.getParameter(para);
+            if (StringUtils.isEmpty(parameter2)) {
+                throw new ApiException("参数[" + para + "]不能为空");
+            }
+        }
+        return joinPoint.proceed();
+    }
+
 }

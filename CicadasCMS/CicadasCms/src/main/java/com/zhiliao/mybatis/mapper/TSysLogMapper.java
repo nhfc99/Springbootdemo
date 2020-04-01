@@ -22,7 +22,7 @@ public interface TSysLogMapper {
     List<TSysLog> selectByEndDate(String endDate);
 
     @Select("select * from t_sys_log where  createTime>=#{starDate} and createTime<=#{endDate} order by id desc")
-    List<TSysLog> selectByDate(@Param("starDate") String starDate,@Param("endDate") String endTime);
+    List<TSysLog> selectByDate(@Param("starDate") String starDate, @Param("endDate") String endTime);
 
     int updateByPrimaryKey(TSysLog record);
 }

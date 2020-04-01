@@ -25,27 +25,26 @@ import java.util.Date;
  **/
 @Controller
 @RequestMapping("/system/cms/ad")
-public class AdController{
+public class AdController {
 
     @Autowired
     private AdService adService;
 
 
-
     @RequestMapping
-    public String index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "100") Integer pageSize,
+    public String index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize,
                         TCmsAd pojo, Model model) {
-        model.addAttribute("model",adService.page(pageNumber,pageSize,1));
-        model.addAttribute("pojo",pojo);
+        model.addAttribute("model", adService.page(pageNumber, pageSize, 1));
+        model.addAttribute("pojo", pojo);
         return "cms/ad_list";
     }
 
 
     @RequestMapping("/input")
-    public String input(@RequestParam(value = "id",required = false) Integer Id, Model model) {
-        if (Id!=null)
-            model.addAttribute("ad",adService.findById(Id));
+    public String input(@RequestParam(value = "id", required = false) Integer Id, Model model) {
+        if (Id != null)
+            model.addAttribute("ad", adService.findById(Id));
         return "cms/ad_input";
     }
 
@@ -53,45 +52,45 @@ public class AdController{
     @RequestMapping("/save")
     @ResponseBody
     public String save(TCmsAd pojo) {
-        if(pojo.getId()!=null)
+        if (pojo.getId() != null)
             return adService.update(pojo);
         return adService.save(pojo);
     }
 
     @RequestMapping("/group/input")
-    public String groupInput(@RequestParam(value = "id",required = false) Integer Id, Model model){
-        if(Id!=null)
-            model.addAttribute("group",adService.findById(Id));
+    public String groupInput(@RequestParam(value = "id", required = false) Integer Id, Model model) {
+        if (Id != null)
+            model.addAttribute("group", adService.findById(Id));
         return "cms/ad_group_input";
     }
 
     @RequestMapping("/group/save")
     @ResponseBody
     public String save(TCmsAdGroup pojo) {
-        if(pojo.getId()!=null)
+        if (pojo.getId() != null)
             return adService.update(pojo);
         return adService.save(pojo);
     }
 
     @RequestMapping("/groupCheck")
-    public String group(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                        @RequestParam(value = "pageSize",defaultValue = "100") Integer pageSize,
+    public String group(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                        @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize,
                         TCmsAdGroup pojo, Model model) {
-        model.addAttribute("model",adService.page(pageNumber,pageSize,pojo));
-        model.addAttribute("group",pojo);
+        model.addAttribute("model", adService.page(pageNumber, pageSize, pojo));
+        model.addAttribute("group", pojo);
         return "cms/ad_group_check";
     }
 
     @RequestMapping("/group/delete")
     @ResponseBody
-    public String deleteGroup(@RequestParam(value = "ids",required = false)Integer[] ids) {
+    public String deleteGroup(@RequestParam(value = "ids", required = false) Integer[] ids) {
         return adService.deleteGroup(ids);
     }
 
 
     @RequestMapping("/delete")
     @ResponseBody
-    public String delete(@RequestParam(value = "ids",required = false)Integer[] ids) {
+    public String delete(@RequestParam(value = "ids", required = false) Integer[] ids) {
         return adService.delete(ids);
     }
 

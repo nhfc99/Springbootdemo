@@ -17,7 +17,7 @@ import java.util.List;
  * @create 2017-07-26
  **/
 @Service
-public class OrganizationServiceImpl implements OrganizationService{
+public class OrganizationServiceImpl implements OrganizationService {
 
     @Autowired
     private TSysOrgMapper orgMapper;
@@ -39,27 +39,27 @@ public class OrganizationServiceImpl implements OrganizationService{
 
     @Override
     public String delete(Integer id) {
-        if(orgMapper.deleteByPrimaryKey(id)>0)
-            return JsonUtil.toSUCCESS("删除成功！","org-tab",false);
+        if (orgMapper.deleteByPrimaryKey(id) > 0)
+            return JsonUtil.toSUCCESS("删除成功！", "org-tab", false);
         return JsonUtil.toERROR("删除失败！");
     }
 
     @Override
     public String save(TSysOrg pojo) {
-         if(orgMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("添加成功！","org-tab",false);
+        if (orgMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("添加成功！", "org-tab", false);
         return JsonUtil.toERROR("添加成功！");
     }
 
     @Override
     public String update(TSysOrg pojo) {
-        if(orgMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("更新成功！","org-tab",false);
+        if (orgMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("更新成功！", "org-tab", false);
         return JsonUtil.toERROR("更新成功！");
     }
 
     @Override
     public int findCountByOrgIdAndUserId(Integer orgId, Integer userId) {
-        return orgUserMapper.selectCountByOrgIdAndUserId(orgId,userId);
+        return orgUserMapper.selectCountByOrgIdAndUserId(orgId, userId);
     }
 }

@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 @Service
-public class HtmlStaticServiceImpl implements HtmlStaticService{
+public class HtmlStaticServiceImpl implements HtmlStaticService {
 
     @Autowired
     private SiteService siteService;
@@ -45,22 +45,24 @@ public class HtmlStaticServiceImpl implements HtmlStaticService{
 
     /**
      * 生成首页
+     *
      * @param siteId
      */
     @Override
     public void index(Integer siteId) {
         TCmsSite site = siteService.findById(siteId);
         Map attr = Maps.newHashMap();
-        attr.put("title",site.getTitle());
-        attr.put("keyword",site.getKeyword());
-        attr.put("description",site.getDescription());
-        attr.put("site",site);
-        beetlHtmlUtil.create(request,siteId,"index",attr,(StrUtil.isBlank(site.getTemplate())?"default":site.getTemplate()),CmsConst.INDEX_TPL);
+        attr.put("title", site.getTitle());
+        attr.put("keyword", site.getKeyword());
+        attr.put("description", site.getDescription());
+        attr.put("site", site);
+        beetlHtmlUtil.create(request, siteId, "index", attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), CmsConst.INDEX_TPL);
 
     }
 
     /**
      * 生成栏目页
+     *
      * @param siteId
      * @param categoryId
      * @param pageNumber
@@ -68,10 +70,10 @@ public class HtmlStaticServiceImpl implements HtmlStaticService{
      */
 
     @Override
-    public void category(Integer siteId,Long categoryId,Integer pageNumber,boolean isPageList) {
+    public void category(Integer siteId, Long categoryId, Integer pageNumber, boolean isPageList) {
         TCmsSite site = siteService.findById(siteId);
         TCmsCategory category = categoryService.findById(categoryId);
-        PageInfo page = contentService.page(pageNumber==null?1:pageNumber, siteId, categoryId);
+        PageInfo page = contentService.page(pageNumber == null ? 1 : pageNumber, siteId, categoryId);
         Map attr = Maps.newHashMap();
         attr.put("title", category.getCategoryName());
         attr.put("keyword", site.getKeyword());
@@ -81,47 +83,48 @@ public class HtmlStaticServiceImpl implements HtmlStaticService{
         attr.put("page", page);
         if (!isPageList) {
             beetlHtmlUtil.create(request, siteId, category.getAlias(), attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), StrUtil.isBlank(category.getIndexTpl()) ? CmsConst.CATEGORY_INDEX_TPL : category.getIndexTpl());
-        }else {
-            beetlHtmlUtil.create(request, siteId, category.getAlias() + File.separator+"index_" + pageNumber, attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), StrUtil.isBlank(category.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : category.getListTpl());
+        } else {
+            beetlHtmlUtil.create(request, siteId, category.getAlias() + File.separator + "index_" + pageNumber, attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), StrUtil.isBlank(category.getListTpl()) ? CmsConst.CATEGORY_LIST_TPL : category.getListTpl());
         }
     }
 
     /**
      * 生成内容页
+     *
      * @param siteId
      * @param categoryId
      * @param contentId
      */
 
     @Override
-    public void content(Integer siteId,Long categoryId,Long contentId) {
+    public void content(Integer siteId, Long categoryId, Long contentId) {
         TCmsSite site = siteService.findById(siteId);
         TCmsCategory category = categoryService.findById(categoryId);
         TCmsModel contentModel = modelService.findById(category.getModelId());
-        Map content = contentService.findContentByContentIdAndTableName(contentId,contentModel.getTableName());
+        Map content = contentService.findContentByContentIdAndTableName(contentId, contentModel.getTableName());
         contentService.viewUpdate(contentId);
         Map attr = Maps.newHashMap();
-        attr.put("title",content.get("title"));
-        attr.put("keyword",content.get("keywords"));
-        attr.put("description",content.get("description"));
-        attr.put("site",site);
-        attr.put("category",category);
-        attr.put("content",content);
-        beetlHtmlUtil.create(request,siteId, category.getAlias()+File.separator+contentId, attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), StrUtil.isBlank(category.getContentTpl()) ? CmsConst.CATEGORY_LIST_TPL: category.getContentTpl());
+        attr.put("title", content.get("title"));
+        attr.put("keyword", content.get("keywords"));
+        attr.put("description", content.get("description"));
+        attr.put("site", site);
+        attr.put("category", category);
+        attr.put("content", content);
+        beetlHtmlUtil.create(request, siteId, category.getAlias() + File.separator + contentId, attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), StrUtil.isBlank(category.getContentTpl()) ? CmsConst.CATEGORY_LIST_TPL : category.getContentTpl());
     }
 
     @Override
     public void topic(Integer siteId) {
         TCmsSite site = siteService.findById(siteId);
         List<TCmsTopic> topicList = topicService.findAll();
-        for(TCmsTopic topic :topicList) {
+        for (TCmsTopic topic : topicList) {
             Map attr = Maps.newHashMap();
             attr.put("title", topic.getTopicName());
             attr.put("keyword", topic.getKeywords());
             attr.put("description", topic.getDescription());
             attr.put("site", site);
             attr.put("topic", topic);
-            beetlHtmlUtil.create(request,siteId,"topic"+File.separator+topic.getTopicId(),attr,(StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), !StrUtil.isBlank(topic.getTopicTpl()) ? topic.getTopicTpl() : CmsConst.TOPIC_TPL);
+            beetlHtmlUtil.create(request, siteId, "topic" + File.separator + topic.getTopicId(), attr, (StrUtil.isBlank(site.getTemplate()) ? "default" : site.getTemplate()), !StrUtil.isBlank(topic.getTopicTpl()) ? topic.getTopicTpl() : CmsConst.TOPIC_TPL);
         }
     }
 

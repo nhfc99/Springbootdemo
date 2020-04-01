@@ -25,24 +25,24 @@ public class SilderServiceImpl implements SilderService {
 
     @Override
     public String save(TCmsAdSilder pojo) {
-        if (silderMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","friendlink-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (silderMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "friendlink-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsAdSilder pojo) {
-        if (silderMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","silder-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (silderMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "silder-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String delete(Integer[] ids) {
-        if(ids!=null&&ids.length>0)
-            for(Integer id :ids)
+        if (ids != null && ids.length > 0)
+            for (Integer id : ids)
                 silderMapper.deleteByPrimaryKey(id);
-        return JsonUtil.toSUCCESS("删除成功","silder-tab",false);
+        return JsonUtil.toSUCCESS("删除成功", "silder-tab", false);
     }
 
     @Override
@@ -62,13 +62,13 @@ public class SilderServiceImpl implements SilderService {
 
     @Override
     public PageInfo<TCmsAdSilder> page(Integer pageNumber, Integer pageSize, TCmsAdSilder pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsAdSilder> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 }

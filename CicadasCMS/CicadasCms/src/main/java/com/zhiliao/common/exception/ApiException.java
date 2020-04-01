@@ -6,7 +6,7 @@ package com.zhiliao.common.exception;
  * @author Jin
  * @create 2017-04-09
  **/
-public class ApiException extends RuntimeException{
+public class ApiException extends RuntimeException {
 
     public ApiException(String message) {
         super(message);

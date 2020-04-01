@@ -16,7 +16,7 @@ public class TSysUser implements Serializable {
 
     private String password;
 
-    @ExcelField(value = "创建时",dateFormat = "yyyy年MM月dd日")
+    @ExcelField(value = "创建时", dateFormat = "yyyy年MM月dd日")
     private Date createTime;
 
     private String salt;
@@ -31,7 +31,7 @@ public class TSysUser implements Serializable {
 
     private String des;
 
-    private String  avatar;
+    private String avatar;
 
     public String getAvatar() {
         return avatar;

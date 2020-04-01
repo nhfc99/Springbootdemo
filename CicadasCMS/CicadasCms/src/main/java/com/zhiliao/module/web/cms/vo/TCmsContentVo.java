@@ -8,7 +8,7 @@ import com.zhiliao.mybatis.model.TCmsContent;
  * @author Jin
  * @create 2017-06-11
  **/
-public class TCmsContentVo extends TCmsContent{
+public class TCmsContentVo extends TCmsContent {
 
     private String orderField;
     private String orderDirection;

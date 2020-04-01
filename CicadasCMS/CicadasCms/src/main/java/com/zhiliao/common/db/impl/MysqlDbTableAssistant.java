@@ -42,11 +42,11 @@ public class MysqlDbTableAssistant implements DbTableAssistant<MysqlDbTableAssis
 
     private String sql_head = "";
 
-    private String sql_body="";
+    private String sql_body = "";
 
-    private String sql_foot="";
+    private String sql_foot = "";
 
-    private void init(){
+    private void init() {
 
         this.sql_head = "";
 
@@ -58,8 +58,8 @@ public class MysqlDbTableAssistant implements DbTableAssistant<MysqlDbTableAssis
     @Override
     public MysqlDbTableAssistant create() {
         this.init();
-        this.sql_head=CREATE_TABLE_BEGIN;
-        this.sql_foot=CREATE_TABLE_END;
+        this.sql_head = CREATE_TABLE_BEGIN;
+        this.sql_foot = CREATE_TABLE_END;
         return this;
     }
 
@@ -80,100 +80,100 @@ public class MysqlDbTableAssistant implements DbTableAssistant<MysqlDbTableAssis
 
     @Override
     public String BuilderSQL() {
-        String SQL = this.sql_head+this.sql_body+this.sql_foot;
+        String SQL = this.sql_head + this.sql_body + this.sql_foot;
         log.info(SQL);
         return SQL;
     }
 
     @Override
     public MysqlDbTableAssistant TableName(String tableName) {
-        this.sql_head=this.sql_head.replace("{table}",tableName);
+        this.sql_head = this.sql_head.replace("{table}", tableName);
         return this;
     }
 
     @Override
-    public MysqlDbTableAssistant InitColumn(String columnName, M columnType, Integer length,boolean autoIncrement, String defaultValue, boolean isNotNull,boolean isPrimaryKey) {
-        if(MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
-            this.sql_body = " `"+columnName+"`" + columnType+"("+length+")";
+    public MysqlDbTableAssistant InitColumn(String columnName, M columnType, Integer length, boolean autoIncrement, String defaultValue, boolean isNotNull, boolean isPrimaryKey) {
+        if (MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
+            this.sql_body = " `" + columnName + "`" + columnType + "(" + length + ")";
         else
-            this.sql_body = " `"+columnName+"`" + columnType;
-        if(isNotNull)/*判断字段是否不为空*/
-            this.sql_body+=" NOT null";
+            this.sql_body = " `" + columnName + "`" + columnType;
+        if (isNotNull)/*判断字段是否不为空*/
+            this.sql_body += " NOT null";
         if (!autoIncrement) {
-            if(!isNotNull)/*判断字段是否允许为空*/
-                this.sql_body+=" NULL ";
-            this.sql_body += " DEFAULT " +  (StrUtil.isBlank(defaultValue)?null:"'"+defaultValue+"'");
+            if (!isNotNull)/*判断字段是否允许为空*/
+                this.sql_body += " NULL ";
+            this.sql_body += " DEFAULT " + (StrUtil.isBlank(defaultValue) ? null : "'" + defaultValue + "'");
         } else { /* 判断字段类型是否支持自动增长 */
-            if(MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
+            if (MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
                 if (!isNotNull)
                     this.sql_body += " NOT null";
                 this.sql_body += " AUTO_INCREMENT";
             }
         }
-        if(isPrimaryKey)/*是否为主键*/
-            this.sql_body +=" , PRIMARY KEY (`"+columnName+"`) ";
+        if (isPrimaryKey)/*是否为主键*/
+            this.sql_body += " , PRIMARY KEY (`" + columnName + "`) ";
         return this;
     }
 
     @Override
-    public MysqlDbTableAssistant AddColumn(String columnName,M columnType,Integer length, boolean autoIncrement,String defaultValue,boolean isNotNull,boolean isPrimaryKey) {
+    public MysqlDbTableAssistant AddColumn(String columnName, M columnType, Integer length, boolean autoIncrement, String defaultValue, boolean isNotNull, boolean isPrimaryKey) {
         this.sql_body = ADD_COLUMN;
-        if(MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
-            this.sql_body += " `"+columnName+"` " + columnType+"("+length+")";
+        if (MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
+            this.sql_body += " `" + columnName + "` " + columnType + "(" + length + ")";
         else
-            this.sql_body += " `"+columnName+"` " + columnType;
-        if(isNotNull)/*判断字段是否不为空*/
-            this.sql_body+=" NOT NULL";
-        if(autoIncrement) { /* 判断字段类型是否支持自动增长 */
-            if(MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
+            this.sql_body += " `" + columnName + "` " + columnType;
+        if (isNotNull)/*判断字段是否不为空*/
+            this.sql_body += " NOT NULL";
+        if (autoIncrement) { /* 判断字段类型是否支持自动增长 */
+            if (MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
                 if (!isNotNull)
                     this.sql_body += " NOT null";
                 this.sql_body += " AUTO_INCREMENT";
             }
-        }else {
-            if(!isNotNull)/*判断字段是否允许为空*/
-                this.sql_body+=" NULL ";
-            if(!MysqlFiledUtil.isNotDefaultValue(columnType)) {
+        } else {
+            if (!isNotNull)/*判断字段是否允许为空*/
+                this.sql_body += " NULL ";
+            if (!MysqlFiledUtil.isNotDefaultValue(columnType)) {
                 /*判断字段类型是否为数值型*/
-                if(MysqlFiledUtil.isAutoIncrementFiled(columnType)&& !StringUtils.isNumeric(defaultValue))
+                if (MysqlFiledUtil.isAutoIncrementFiled(columnType) && !StringUtils.isNumeric(defaultValue))
                     /*todo 有待做日期类型验证*/
                     throw new SystemException("数值型字段不能设置默认值为字符");
                 this.sql_body += " DEFAULT " + (StrUtil.isBlank(defaultValue) ? null : "'" + defaultValue + "'");
             }
         }
-        if(isPrimaryKey)/*是否为主键*/
-            this.sql_body +="  , ADD PRIMARY KEY (`"+columnName+"`) ";
+        if (isPrimaryKey)/*是否为主键*/
+            this.sql_body += "  , ADD PRIMARY KEY (`" + columnName + "`) ";
         return this;
     }
 
     @Override
-    public MysqlDbTableAssistant ChangeColumn(String columnName,String newColumnName,M columnType,Integer length,boolean autoIncrement,String defaultValue,boolean isNotNull) {
+    public MysqlDbTableAssistant ChangeColumn(String columnName, String newColumnName, M columnType, Integer length, boolean autoIncrement, String defaultValue, boolean isNotNull) {
         this.sql_body = this.CHANGE_COLUMN;
-        if(MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
-            this.sql_body += " `"+columnName+"` " +" `"+newColumnName+"` "+ columnType+"("+length+")";
+        if (MysqlFiledUtil.isCharTextFiled(columnType))/*判断字段是否允许设置长度*/
+            this.sql_body += " `" + columnName + "` " + " `" + newColumnName + "` " + columnType + "(" + length + ")";
         else
-            this.sql_body += " `"+columnName+"` " +" `"+newColumnName+"` " + columnType;
-        if(isNotNull)
-            this.sql_body+=" NOT null";
-        if(autoIncrement) { /* 判断字段类型是否支持自动增长 */
-            if(MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
+            this.sql_body += " `" + columnName + "` " + " `" + newColumnName + "` " + columnType;
+        if (isNotNull)
+            this.sql_body += " NOT null";
+        if (autoIncrement) { /* 判断字段类型是否支持自动增长 */
+            if (MysqlFiledUtil.isAutoIncrementFiled(columnType)) {
                 if (!isNotNull)
                     this.sql_body += " NOT null";
                 this.sql_body += " AUTO_INCREMENT ;";
             }
-        }else {
-            if(!isNotNull)/*判断字段是否允许为空*/
-                this.sql_body+=" NULL ";
-            if(MysqlFiledUtil.isNotDefaultValue(columnType))
-               this.sql_body += " DEFAULT " +  (StrUtil.isBlank(defaultValue)?null:"'"+defaultValue+"'")+";";
+        } else {
+            if (!isNotNull)/*判断字段是否允许为空*/
+                this.sql_body += " NULL ";
+            if (MysqlFiledUtil.isNotDefaultValue(columnType))
+                this.sql_body += " DEFAULT " + (StrUtil.isBlank(defaultValue) ? null : "'" + defaultValue + "'") + ";";
         }
 
         return this;
     }
 
     @Override
-    public MysqlDbTableAssistant DropColumn(String columnName,boolean isPrimaryKey) {
-        this.sql_body=DROP_COLUMN +"`"+columnName+"`";
+    public MysqlDbTableAssistant DropColumn(String columnName, boolean isPrimaryKey) {
+        this.sql_body = DROP_COLUMN + "`" + columnName + "`";
         return this;
     }
 
@@ -185,13 +185,13 @@ public class MysqlDbTableAssistant implements DbTableAssistant<MysqlDbTableAssis
 
     @Override
     public MysqlDbTableAssistant Engine(String engineName) {
-        this.sql_foot+=" ENGINE="+engineName+" ";
+        this.sql_foot += " ENGINE=" + engineName + " ";
         return this;
     }
 
     @Override
     public MysqlDbTableAssistant CharSet(String charset) {
-        this.sql_foot+=" DEFAULT CHARSET="+charset+" ";
+        this.sql_foot += " DEFAULT CHARSET=" + charset + " ";
         return this;
     }
 

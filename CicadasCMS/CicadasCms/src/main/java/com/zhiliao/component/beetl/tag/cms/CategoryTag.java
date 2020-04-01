@@ -27,46 +27,46 @@ import java.util.Map;
 @Scope("prototype")
 public class CategoryTag extends GeneralVarTagBinding {
 
-	@Autowired
-	private CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
-	@Autowired
-	private SiteService siteService;
+    @Autowired
+    private SiteService siteService;
 
-	@Value("${system.http.protocol}")
-	private String httpProtocol;
+    @Value("${system.http.protocol}")
+    private String httpProtocol;
 
-	@Value("${system.http.host}")
-	private String httpHost;
+    @Value("${system.http.host}")
+    private String httpHost;
 
-	@Value("${system.site.prefix}")
-	private String sitePrefix;
+    @Value("${system.site.prefix}")
+    private String sitePrefix;
 
-	@Value("${system.site.subfix}")
-	private String siteSubfix;
+    @Value("${system.site.subfix}")
+    private String siteSubfix;
 
-	@Override
-	public void render() {
-		HttpServletRequest request = (HttpServletRequest)ctx.getGlobal("request");
-		Map result = Maps.newHashMap();
-		Long categoryId=  (this.getAttributeValue("categoryId") instanceof String)?Long.parseLong((String) this.getAttributeValue("categoryId")):(Long) this.getAttributeValue("categoryId");
-		Integer isParent=  (this.getAttributeValue("isParent") instanceof String)?Integer.parseInt((String) this.getAttributeValue("isParent")):(Integer) this.getAttributeValue("categoryId");
-		TCmsCategory category = categoryService.findById(categoryId);
-		TCmsSite site = siteService.findById(category.getSiteId());
-		String staticHtmlPath =  ctx.getGlobal("staticHtmlPath")==null?"":(String) ctx.getGlobal("staticHtmlPath");
-		if(CmsUtil.isNullOrEmpty(category))
-			throw new CmsException("栏目["+categoryId+"]不存在！");
-		if(isParent==1&&category.getParentId()!=0)
-			category = categoryService.findById(category.getParentId());
-		result.put("categoryId",category.getCategoryId());
-		result.put("categoryIcon",category.getCategoryIcon());
-		result.put("categoryName",category.getCategoryName());
-		result.put("content",category.getContent());
-		result.put("url", !StrUtil.isBlank(category.getUrl())?category.getUrl():request.getContextPath()   + staticHtmlPath + "/"+ site.getSiteKey()  + "/" + category.getAlias()+siteSubfix);
-		result.put("more", !StrUtil.isBlank(category.getUrl())?category.getUrl():request.getContextPath()   + staticHtmlPath + "/" + category.getAlias()+"/index_1"+siteSubfix);
-		result.put("prototype",category);
-		this.binds(result);
-		this.doBodyRender();
-	}
+    @Override
+    public void render() {
+        HttpServletRequest request = (HttpServletRequest) ctx.getGlobal("request");
+        Map result = Maps.newHashMap();
+        Long categoryId = (this.getAttributeValue("categoryId") instanceof String) ? Long.parseLong((String) this.getAttributeValue("categoryId")) : (Long) this.getAttributeValue("categoryId");
+        Integer isParent = (this.getAttributeValue("isParent") instanceof String) ? Integer.parseInt((String) this.getAttributeValue("isParent")) : (Integer) this.getAttributeValue("categoryId");
+        TCmsCategory category = categoryService.findById(categoryId);
+        TCmsSite site = siteService.findById(category.getSiteId());
+        String staticHtmlPath = ctx.getGlobal("staticHtmlPath") == null ? "" : (String) ctx.getGlobal("staticHtmlPath");
+        if (CmsUtil.isNullOrEmpty(category))
+            throw new CmsException("栏目[" + categoryId + "]不存在！");
+        if (isParent == 1 && category.getParentId() != 0)
+            category = categoryService.findById(category.getParentId());
+        result.put("categoryId", category.getCategoryId());
+        result.put("categoryIcon", category.getCategoryIcon());
+        result.put("categoryName", category.getCategoryName());
+        result.put("content", category.getContent());
+        result.put("url", !StrUtil.isBlank(category.getUrl()) ? category.getUrl() : request.getContextPath() + staticHtmlPath + "/" + site.getSiteKey() + "/" + category.getAlias() + siteSubfix);
+        result.put("more", !StrUtil.isBlank(category.getUrl()) ? category.getUrl() : request.getContextPath() + staticHtmlPath + "/" + category.getAlias() + "/index_1" + siteSubfix);
+        result.put("prototype", category);
+        this.binds(result);
+        this.doBodyRender();
+    }
 
 }

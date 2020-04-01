@@ -12,11 +12,11 @@ import com.nhfc99.shiro.MyExceptionResolver;
 @Configuration
 @ComponentScan("com.nhfc99")
 public class Application {
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
-	
-	// 注册统一异常处理bean
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+    // 注册统一异常处理bean
     @Bean
     public MyExceptionResolver myExceptionResolver() {
         return new MyExceptionResolver();

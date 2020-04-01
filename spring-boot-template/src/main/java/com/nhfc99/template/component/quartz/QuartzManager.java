@@ -151,7 +151,7 @@ public class QuartzManager {
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever())
                 .forJob(jobDetail())
                 .build();
-        scheduler.addJob(jobDetail(),true);
+        scheduler.addJob(jobDetail(), true);
         scheduler.scheduleJob(trigger);
     }
 

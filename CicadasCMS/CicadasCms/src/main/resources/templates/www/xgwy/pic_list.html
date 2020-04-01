@@ -88,8 +88,9 @@
         <div class="bd">
             <ul>
                 <#cms_index_silder titleLen="10" size="10" var="bean">
-					<li style="background-image: url('${bean.img!}')"></li>
-				    </#cms_index_silder>
+                <li style="background-image: url('${bean.img!}')"></li>
+            </
+            #cms_index_silder>
             </ul>
         </div>
         <a class="prev" href="javascript:void(0)"></a>
@@ -101,15 +102,16 @@
 <div class="nav_box row">
     <ul class="nav clearfix">
         <li><a href="${frontPath}/${site.siteKey!}/index.html">网站首页</a></li>
-        <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
+        <#cms_category_list siteId="${site.siteId}" categoryId="0" isNav="1" var="bean">
         <li><a href="${bean.url!}" target="_blank">${bean.categoryName!}</a></li>
-        </#cms_category_list>
+    </
+    #cms_category_list>
     </ul>
     <div class="msg">
         <div class="row clearfix">
             <div class="left">
                 <div class="bread">
-                    <#cms_site_pos  site="${site}" category="${category}"  var="bean">
+                    <#cms_site_pos site="${site}" category="${category}" var="bean">
                     <span>
                         <a href="${frontPath}/${site.siteKey!}/index.html">首页</a>
                         @for(location in bean.locations){
@@ -119,15 +121,16 @@
                         @}
                         @}
                    </span>
-                </#cms_site_pos>
-                </div>
+                </
+                #cms_site_pos>
             </div>
+        </div>
         <div class="search">
             <input type="text" placeholder="搜索关键词">
             <a href="#"><img src="${resPath}/xgwy/images/search.png"></a>
         </div>
-        </div>
     </div>
+</div>
 </div>
 
 <div class="h40"></div>
@@ -135,30 +138,33 @@
 <section class="layout clearfix mb30">
 
     <ul class="imgList">
-        <#cms_content_page  siteId="${site.siteId!}"  titleLen="15" page="${page!}"  var="content">
-        <li><a target="_blank" href="${content.url!}" style="background-image: url(${content.thumb!});"><h3>${content.title!}</h3></a></li>
-		</#cms_content_page>
+        <#cms_content_page siteId="${site.siteId!}" titleLen="15" page="${page!}" var="content">
+        <li><a target="_blank" href="${content.url!}" style="background-image: url(${content.thumb!});"><h3>
+            ${content.title!}</h3></a></li>
+    </
+    #cms_content_page>
     </ul>
 
 
     <div class="h30"></div>
 
     <div id="page">
-  <#cms_pagination siteId="${site.siteId}" categoryId="${category.categoryId}" page="${page}"  var="page" >
-            ${page.first}
-            @for( change in page.changePage){
-            @if(!change.isLink){
-            @if(change.isMore){
-            <a class="active">${change.value!}</a>
-            @}else{
-            ${change.value!}
-            @}
-            @}else{
-            ${change.url!}
-            @}
-            @}
-            ${page.next}
-           </#cms_pagination>
+        <#cms_pagination siteId="${site.siteId}" categoryId="${category.categoryId}" page="${page}" var="page" >
+        ${page.first}
+        @for( change in page.changePage){
+        @if(!change.isLink){
+        @if(change.isMore){
+        <a class="active">${change.value!}</a>
+        @}else{
+        ${change.value!}
+        @}
+        @}else{
+        ${change.url!}
+        @}
+        @}
+        ${page.next}
+    </
+    #cms_pagination>
 
     </div>
 

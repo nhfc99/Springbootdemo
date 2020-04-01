@@ -9,5 +9,5 @@ import com.zhiliao.mybatis.model.TCmsAdSilder;
  * @author Jin
  * @create 2017-06-12
  **/
-public interface SilderService extends BaseService<TCmsAdSilder,Integer>{
+public interface SilderService extends BaseService<TCmsAdSilder, Integer> {
 }

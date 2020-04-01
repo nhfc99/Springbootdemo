@@ -7,9 +7,9 @@ import com.nhfc99.test.domain.UserDO;
 
 @Mapper
 public interface UserDao {
-	// 用户数量
-	public int selectUserCount();
+    // 用户数量
+    public int selectUserCount();
 
-	// 获取所有的用户
-	public List<UserDO> selectAllUser();
+    // 获取所有的用户
+    public List<UserDO> selectAllUser();
 }

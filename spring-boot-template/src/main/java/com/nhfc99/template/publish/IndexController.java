@@ -100,16 +100,16 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public ModelAndView test(){
-        ModelAndView mav=new ModelAndView("thymeleaf/index");
+    public ModelAndView test() {
+        ModelAndView mav = new ModelAndView("thymeleaf/index");
         mav.addObject("time", new Date());
         mav.getModel().put("name", "caoyc");
         return mav;
     }
 
     @RequestMapping("/indexjsp")
-    public ModelAndView testjsp(){
-        ModelAndView mav=new ModelAndView("jsp/jndex");
+    public ModelAndView testjsp() {
+        ModelAndView mav = new ModelAndView("jsp/jndex");
         mav.addObject("time", new Date());
         mav.getModel().put("name", "cccc");
         return mav;

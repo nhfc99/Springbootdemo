@@ -17,6 +17,6 @@ public interface UUserDOMapper {
     int updateByPrimaryKeySelective(UUserDO record);
 
     int updateByPrimaryKey(UUserDO record);
-    
+
     UUserDO selectAllByName(String username);
 }

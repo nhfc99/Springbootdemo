@@ -27,7 +27,7 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    private TSysRoleMapper  roleMapper;
+    private TSysRoleMapper roleMapper;
 
     @Autowired
     private TSysPermissionMapper permissionMapper;
@@ -49,31 +49,31 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public String delete(Integer id) {
 
-        if(roleMapper.deleteByPrimaryKey(id)>0){
+        if (roleMapper.deleteByPrimaryKey(id) > 0) {
             rolePermissionMapper.delectByRoleId(id);
-            return JsonUtil.toSUCCESS("删除成功！","role",true);
+            return JsonUtil.toSUCCESS("删除成功！", "role", true);
         }
         return JsonUtil.toERROR("删除失败！");
     }
 
     @Override
     @Transactional(transactionManager = "masterTransactionManager")
-    public String update(TSysRole role,Integer[] permissionId) {
+    public String update(TSysRole role, Integer[] permissionId) {
         role.setRolename(PinyinUtil.convertLower(HtmlKit.getText(role.getRolename()).trim()));
-        if(roleMapper.updateByPrimaryKey(role)>0){
-            if(!CmsUtil.isNullOrEmpty(permissionId)) {
+        if (roleMapper.updateByPrimaryKey(role) > 0) {
+            if (!CmsUtil.isNullOrEmpty(permissionId)) {
                 /*清空当前角色的权限*/
                 rolePermissionMapper.delectByRoleId(role.getRoleId());
             }
-            if(!CmsUtil.isNullOrEmpty(permissionId)&&permissionId.length>0){
+            if (!CmsUtil.isNullOrEmpty(permissionId) && permissionId.length > 0) {
                 for (int id : permissionId) {
                     TSysRolePermission rp = new TSysRolePermission();
                     rp.setRoleId(role.getRoleId());
                     rp.setPermissonId(id);
                     SaveRolePermission(rp);
                 }
-             }
-            return JsonUtil.toSUCCESS("操作成功！","role",true);
+            }
+            return JsonUtil.toSUCCESS("操作成功！", "role", true);
         }
 
         return JsonUtil.toERROR("操作失败！");
@@ -81,26 +81,26 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(transactionManager = "masterTransactionManager")
-    public String save(TSysRole role,Integer[] permissionId) {
-        if(role!=null){
+    public String save(TSysRole role, Integer[] permissionId) {
+        if (role != null) {
             role.setRolename(PinyinUtil.convertLower(HtmlKit.getText(role.getRolename()).trim()));
-            if(roleMapper.insert(role)>0)
-                if(permissionId!=null&&permissionId.length>0){
-                   /* 遍历添加角色权限*/
-                   for(int id:permissionId){
-                       TSysRolePermission rp = new  TSysRolePermission();
-                       rp.setPermissonId(id);
-                       rp.setRoleId(role.getRoleId());
-                       SaveRolePermission(rp);
-                   }
+            if (roleMapper.insert(role) > 0)
+                if (permissionId != null && permissionId.length > 0) {
+                    /* 遍历添加角色权限*/
+                    for (int id : permissionId) {
+                        TSysRolePermission rp = new TSysRolePermission();
+                        rp.setPermissonId(id);
+                        rp.setRoleId(role.getRoleId());
+                        SaveRolePermission(rp);
+                    }
                 }
-                return JsonUtil.toSUCCESS("操作成功","role",true);
+            return JsonUtil.toSUCCESS("操作成功", "role", true);
         }
         return JsonUtil.toERROR("操作失败！");
     }
 
     @Override
-    public List<TSysRole> findAll(){
+    public List<TSysRole> findAll() {
         return roleMapper.selectAll();
     }
 
@@ -111,12 +111,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Integer findPermissionCountByRoleId(Integer roleId, Integer permissionId) {
-        return rolePermissionMapper.selectCountByRoleIdAndPermissionId(roleId,permissionId);
+        return rolePermissionMapper.selectCountByRoleIdAndPermissionId(roleId, permissionId);
     }
 
     @Override
-    public Integer  SaveRolePermission(TSysRolePermission  rolePermission){
-        return  rolePermissionMapper.insert(rolePermission);
+    public Integer SaveRolePermission(TSysRolePermission rolePermission) {
+        return rolePermissionMapper.insert(rolePermission);
     }
 
     @Override
@@ -127,23 +127,23 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public String save(TSysPermission permission) {
         permission.setName(PinyinUtil.convertLower(HtmlKit.getText(permission.getName())));
-        if(permissionMapper.insert(permission)>0)
-            return  JsonUtil.toSUCCESS("权限增加成功","permission",true);
+        if (permissionMapper.insert(permission) > 0)
+            return JsonUtil.toSUCCESS("权限增加成功", "permission", true);
         return JsonUtil.toERROR("权限增加失败");
     }
 
     @Override
     public String update(TSysPermission permission) {
         permission.setName(PinyinUtil.convertLower(HtmlKit.getText(permission.getName())));
-        if(permissionMapper.selectByPrimaryKey(permission.getPermissionId()).getPid()==0&&permission.getPid()!=0){
+        if (permissionMapper.selectByPrimaryKey(permission.getPermissionId()).getPid() == 0 && permission.getPid() != 0) {
             /* 父类交换 */
             TSysPermission p = permissionMapper.selectByPrimaryKey(permission.getPid());
             p.setPid(0);
             permission.setPid(permission.getPid());
             permissionMapper.updateByPrimaryKey(p);
         }
-        if(permissionMapper.updateByPrimaryKey(permission)>0)
-            return  JsonUtil.toSUCCESS("权限更新成功","permission",true);
+        if (permissionMapper.updateByPrimaryKey(permission) > 0)
+            return JsonUtil.toSUCCESS("权限更新成功", "permission", true);
         return JsonUtil.toERROR("权限更新失败");
     }
 
@@ -151,19 +151,19 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(transactionManager = "masterTransactionManager")
     public String delectPermissionById(Integer id) {
 
-        if(permissionMapper.deleteByPrimaryKey(id)>0){
+        if (permissionMapper.deleteByPrimaryKey(id) > 0) {
             /* 删除角色权限 */
             rolePermissionMapper.delectByPermissionId(id);
             /* 删除子节点的角色关联*/
             List<TSysPermission> permissions = permissionMapper.selectByPid(id);
-            if(permissions!=null&&permissions.size()>0){
-                for(TSysPermission p:permissions){
+            if (permissions != null && permissions.size() > 0) {
+                for (TSysPermission p : permissions) {
                     rolePermissionMapper.delectByPermissionId(p.getPermissionId());
                 }
             }
             /*删除子节点*/
             permissionMapper.deleteByPid(id);
-            return  JsonUtil.toSUCCESS("权限删除成功","permission",true);
+            return JsonUtil.toSUCCESS("权限删除成功", "permission", true);
         }
 
         return JsonUtil.toERROR("权限删除失败");

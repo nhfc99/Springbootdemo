@@ -8,7 +8,7 @@ import com.zhiliao.mybatis.model.TCmsAdGroup;
 
 import java.util.List;
 
-public interface AdService extends BaseService<TCmsAd,Integer>{
+public interface AdService extends BaseService<TCmsAd, Integer> {
 
     String toJavascript(Object id);
 
@@ -24,9 +24,9 @@ public interface AdService extends BaseService<TCmsAd,Integer>{
 
     List<TCmsAdGroup> findList(TCmsAdGroup pojo);
 
-    PageInfo<TCmsAdGroup> page(Integer pageNumber, Integer pageSize,TCmsAdGroup adGroup);
+    PageInfo<TCmsAdGroup> page(Integer pageNumber, Integer pageSize, TCmsAdGroup adGroup);
 
-     PageInfo<TCmsAdVo> page(Integer pageNumber, Integer pageSize,Integer status);
+    PageInfo<TCmsAdVo> page(Integer pageNumber, Integer pageSize, Integer status);
 
     String deleteGroup(Integer[] ids);
 }

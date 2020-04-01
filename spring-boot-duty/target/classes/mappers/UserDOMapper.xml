@@ -1,346 +1,346 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nhfc99.duty.dao.UserDOMapper">
-  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="u_name" jdbcType="VARCHAR" property="u_name" />
-    <result column="u_phone" jdbcType="VARCHAR" property="u_phone" />
-    <result column="u_dpid" jdbcType="INTEGER" property="u_dpid" />
-    <result column="u_pid" jdbcType="INTEGER" property="u_pid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, u_name, u_phone, u_dpid, u_pid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
-    insert into user (id, u_name, u_phone, 
-      u_dpid, u_pid)
-    values (#{id,jdbcType=INTEGER}, #{u_name,jdbcType=VARCHAR}, #{u_phone,jdbcType=VARCHAR}, 
-      #{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="u_name != null">
-        u_name,
-      </if>
-      <if test="u_phone != null">
-        u_phone,
-      </if>
-      <if test="u_dpid != null">
-        u_dpid,
-      </if>
-      <if test="u_pid != null">
-        u_pid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="u_name != null">
-        #{u_name,jdbcType=VARCHAR},
-      </if>
-      <if test="u_phone != null">
-        #{u_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="u_dpid != null">
-        #{u_dpid,jdbcType=INTEGER},
-      </if>
-      <if test="u_pid != null">
-        #{u_pid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
-    update user
-    <set>
-      <if test="u_name != null">
-        u_name = #{u_name,jdbcType=VARCHAR},
-      </if>
-      <if test="u_phone != null">
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="u_name"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="u_phone"/>
+        <result column="u_dpid" jdbcType="INTEGER" property="u_dpid"/>
+        <result column="u_pid" jdbcType="INTEGER" property="u_pid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, u_name, u_phone, u_dpid, u_pid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user (id, u_name, u_phone,
+        u_dpid, u_pid)
+        values (#{id,jdbcType=INTEGER}, #{u_name,jdbcType=VARCHAR}, #{u_phone,jdbcType=VARCHAR},
+        #{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="u_name != null">
+                u_name,
+            </if>
+            <if test="u_phone != null">
+                u_phone,
+            </if>
+            <if test="u_dpid != null">
+                u_dpid,
+            </if>
+            <if test="u_pid != null">
+                u_pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="u_name != null">
+                #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                #{u_pid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        <set>
+            <if test="u_name != null">
+                u_name = #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                u_phone = #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                u_dpid = #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                u_pid = #{u_pid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        set u_name = #{u_name,jdbcType=VARCHAR},
         u_phone = #{u_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="u_dpid != null">
         u_dpid = #{u_dpid,jdbcType=INTEGER},
-      </if>
-      <if test="u_pid != null">
-        u_pid = #{u_pid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
-    update user
-    set u_name = #{u_name,jdbcType=VARCHAR},
-      u_phone = #{u_phone,jdbcType=VARCHAR},
-      u_dpid = #{u_dpid,jdbcType=INTEGER},
-      u_pid = #{u_pid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="u_name" jdbcType="VARCHAR" property="u_name" />
-    <result column="u_phone" jdbcType="VARCHAR" property="u_phone" />
-    <result column="u_dpid" jdbcType="INTEGER" property="u_dpid" />
-    <result column="u_pid" jdbcType="INTEGER" property="u_pid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, u_name, u_phone, u_dpid, u_pid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
-    insert into user (id, u_name, u_phone, 
-      u_dpid, u_pid)
-    values (#{id,jdbcType=INTEGER}, #{u_name,jdbcType=VARCHAR}, #{u_phone,jdbcType=VARCHAR}, 
-      #{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="u_name != null">
-        u_name,
-      </if>
-      <if test="u_phone != null">
-        u_phone,
-      </if>
-      <if test="u_dpid != null">
-        u_dpid,
-      </if>
-      <if test="u_pid != null">
-        u_pid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="u_name != null">
-        #{u_name,jdbcType=VARCHAR},
-      </if>
-      <if test="u_phone != null">
-        #{u_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="u_dpid != null">
-        #{u_dpid,jdbcType=INTEGER},
-      </if>
-      <if test="u_pid != null">
-        #{u_pid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
-    update user
-    <set>
-      <if test="u_name != null">
-        u_name = #{u_name,jdbcType=VARCHAR},
-      </if>
-      <if test="u_phone != null">
+        u_pid = #{u_pid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="u_name"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="u_phone"/>
+        <result column="u_dpid" jdbcType="INTEGER" property="u_dpid"/>
+        <result column="u_pid" jdbcType="INTEGER" property="u_pid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, u_name, u_phone, u_dpid, u_pid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user (id, u_name, u_phone,
+        u_dpid, u_pid)
+        values (#{id,jdbcType=INTEGER}, #{u_name,jdbcType=VARCHAR}, #{u_phone,jdbcType=VARCHAR},
+        #{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="u_name != null">
+                u_name,
+            </if>
+            <if test="u_phone != null">
+                u_phone,
+            </if>
+            <if test="u_dpid != null">
+                u_dpid,
+            </if>
+            <if test="u_pid != null">
+                u_pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="u_name != null">
+                #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                #{u_pid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        <set>
+            <if test="u_name != null">
+                u_name = #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                u_phone = #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                u_dpid = #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                u_pid = #{u_pid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        set u_name = #{u_name,jdbcType=VARCHAR},
         u_phone = #{u_phone,jdbcType=VARCHAR},
-      </if>
-      <if test="u_dpid != null">
         u_dpid = #{u_dpid,jdbcType=INTEGER},
-      </if>
-      <if test="u_pid != null">
-        u_pid = #{u_pid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
-    update user
-    set u_name = #{u_name,jdbcType=VARCHAR},
-      u_phone = #{u_phone,jdbcType=VARCHAR},
-      u_dpid = #{u_dpid,jdbcType=INTEGER},
-      u_pid = #{u_pid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-	<resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="u_name" jdbcType="VARCHAR" property="u_name" />
-		<result column="u_phone" jdbcType="VARCHAR" property="u_phone" />
-		<result column="u_dpid" jdbcType="INTEGER" property="u_dpid" />
-		<result column="u_pid" jdbcType="INTEGER" property="u_pid" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, u_name, u_phone, u_dpid, u_pid
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where id = #{id,jdbcType=INTEGER}
-	</select>
+        u_pid = #{u_pid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <resultMap id="BaseResultMap" type="com.nhfc99.duty.model.UserDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="u_name"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="u_phone"/>
+        <result column="u_dpid" jdbcType="INTEGER" property="u_dpid"/>
+        <result column="u_pid" jdbcType="INTEGER" property="u_pid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, u_name, u_phone, u_dpid, u_pid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
 
-	<select id="selectAll" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user
-	</select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
 
-	<select id="selectUsersByPids" parameterType="java.util.List" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user where u_pid in
-		<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
-			#{item}
-		</foreach>
-	</select>
+    <select id="selectUsersByPids" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where u_pid in
+        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </select>
 
-	<select id="selectUsersByPidsExUids" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user where u_pid in
-		<if test="list.size() &gt; 0">
-			<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
-				#{item}
-			</foreach>
-		</if>
-		
-		<if test="uids.size() &gt; 0">
-		and
-		</if>
+    <select id="selectUsersByPidsExUids" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where u_pid in
+        <if test="list.size() &gt; 0">
+            <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
 
-		<if test="uids.size() &gt; 0">
-			id not in
-			<foreach close=")" collection="uids" index="index" item="item" open="(" separator=",">
-				#{item}
-			</foreach>
-		</if>
+        <if test="uids.size() &gt; 0">
+            and
+        </if>
 
-	</select>
+        <if test="uids.size() &gt; 0">
+            id not in
+            <foreach close=")" collection="uids" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
 
-	<select id="selectUsersByNDPidAndNPids" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from user where
+    </select>
 
-		<if test="list.size() &gt; 0">
-			u_dpid not in
-			<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
-				#{item}
-			</foreach>
-			and
-		</if>
+    <select id="selectUsersByNDPidAndNPids" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where
 
-		<if test="pidlist.size() &gt; 0">
-			u_pid not in
-			<foreach close=")" collection="pidlist" index="index" item="item" open="(" separator=",">
-				#{item}
-			</foreach>
-		</if>
+        <if test="list.size() &gt; 0">
+            u_dpid not in
+            <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+            and
+        </if>
 
-		<if test="uids != null">
-			<if test="uids.size() &gt; 0">
-				and
-				id not in
-				<foreach close=")" collection="uids" index="index" item="item" open="(" separator=",">
-					#{item}
-				</foreach>
-			</if>
-		</if>
-	</select>
+        <if test="pidlist.size() &gt; 0">
+            u_pid not in
+            <foreach close=")" collection="pidlist" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from user
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
-		insert into user (id, u_name,
-		u_phone,
-		u_dpid, u_pid)
-		values (#{id,jdbcType=INTEGER},
-		#{u_name,jdbcType=VARCHAR},
-		#{u_phone,jdbcType=VARCHAR},
-		#{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
-	</insert>
-	<insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
-		insert into user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="u_name != null">
-				u_name,
-			</if>
-			<if test="u_phone != null">
-				u_phone,
-			</if>
-			<if test="u_dpid != null">
-				u_dpid,
-			</if>
-			<if test="u_pid != null">
-				u_pid,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
-			<if test="u_name != null">
-				#{u_name,jdbcType=VARCHAR},
-			</if>
-			<if test="u_phone != null">
-				#{u_phone,jdbcType=VARCHAR},
-			</if>
-			<if test="u_dpid != null">
-				#{u_dpid,jdbcType=INTEGER},
-			</if>
-			<if test="u_pid != null">
-				#{u_pid,jdbcType=INTEGER},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
-		update user
-		<set>
-			<if test="u_name != null">
-				u_name = #{u_name,jdbcType=VARCHAR},
-			</if>
-			<if test="u_phone != null">
-				u_phone = #{u_phone,jdbcType=VARCHAR},
-			</if>
-			<if test="u_dpid != null">
-				u_dpid = #{u_dpid,jdbcType=INTEGER},
-			</if>
-			<if test="u_pid != null">
-				u_pid = #{u_pid,jdbcType=INTEGER},
-			</if>
-		</set>
-		where id = #{id,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
-		update user
-		set u_name = #{u_name,jdbcType=VARCHAR},
-		u_phone = #{u_phone,jdbcType=VARCHAR},
-		u_dpid =
-		#{u_dpid,jdbcType=INTEGER},
-		u_pid = #{u_pid,jdbcType=INTEGER}
-		where id =
-		#{id,jdbcType=INTEGER}
-	</update>
+        <if test="uids != null">
+            <if test="uids.size() &gt; 0">
+                and
+                id not in
+                <foreach close=")" collection="uids" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user (id, u_name,
+        u_phone,
+        u_dpid, u_pid)
+        values (#{id,jdbcType=INTEGER},
+        #{u_name,jdbcType=VARCHAR},
+        #{u_phone,jdbcType=VARCHAR},
+        #{u_dpid,jdbcType=INTEGER}, #{u_pid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.duty.model.UserDO">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="u_name != null">
+                u_name,
+            </if>
+            <if test="u_phone != null">
+                u_phone,
+            </if>
+            <if test="u_dpid != null">
+                u_dpid,
+            </if>
+            <if test="u_pid != null">
+                u_pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="u_name != null">
+                #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                #{u_pid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        <set>
+            <if test="u_name != null">
+                u_name = #{u_name,jdbcType=VARCHAR},
+            </if>
+            <if test="u_phone != null">
+                u_phone = #{u_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="u_dpid != null">
+                u_dpid = #{u_dpid,jdbcType=INTEGER},
+            </if>
+            <if test="u_pid != null">
+                u_pid = #{u_pid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.duty.model.UserDO">
+        update user
+        set u_name = #{u_name,jdbcType=VARCHAR},
+        u_phone = #{u_phone,jdbcType=VARCHAR},
+        u_dpid =
+        #{u_dpid,jdbcType=INTEGER},
+        u_pid = #{u_pid,jdbcType=INTEGER}
+        where id =
+        #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

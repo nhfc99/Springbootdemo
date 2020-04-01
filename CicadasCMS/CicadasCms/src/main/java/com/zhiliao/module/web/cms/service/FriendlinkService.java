@@ -13,9 +13,9 @@ import java.util.List;
  * @author Jin
  * @create 2017-06-12
  **/
-public interface FriendlinkService extends BaseService<TCmsFriendlink,Integer>{
+public interface FriendlinkService extends BaseService<TCmsFriendlink, Integer> {
 
-    PageInfo<TCmsFriendlinkGroup> page(Integer pageNumber, Integer pageSize,TCmsFriendlinkGroup group);
+    PageInfo<TCmsFriendlinkGroup> page(Integer pageNumber, Integer pageSize, TCmsFriendlinkGroup group);
 
     TCmsFriendlinkGroup findGroupById(Integer id);
 

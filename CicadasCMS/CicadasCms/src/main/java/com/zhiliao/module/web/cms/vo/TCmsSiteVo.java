@@ -8,8 +8,7 @@ import com.zhiliao.mybatis.model.TCmsSite;
  * @author Jin
  * @create 2017-05-16
  **/
-public class TCmsSiteVo extends TCmsSite{
-
+public class TCmsSiteVo extends TCmsSite {
 
 
     private String userIds;

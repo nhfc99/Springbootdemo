@@ -8,7 +8,7 @@ import com.zhiliao.mybatis.model.TCmsAd;
  * @author Jin
  * @create 2017-06-21
  **/
-public class TCmsAdVo extends TCmsAd{
+public class TCmsAdVo extends TCmsAd {
 
     private Integer groupId;
 

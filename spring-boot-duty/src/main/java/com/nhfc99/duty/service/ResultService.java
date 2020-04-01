@@ -18,117 +18,117 @@ import com.nhfc99.duty.vo.ResultVO;
 
 @Service
 public class ResultService {
-	@Autowired
-	ResultDOMapper resultDOMapper;
+    @Autowired
+    ResultDOMapper resultDOMapper;
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    UserService userService;
 
-	@Autowired
-	DepartmentService departmentService;
+    @Autowired
+    DepartmentService departmentService;
 
-	@Autowired
-	PositionService positionService;
+    @Autowired
+    PositionService positionService;
 
-	@Autowired
-	SdutyService sdutyService;
+    @Autowired
+    SdutyService sdutyService;
 
-	public List<ResultDO> selectAll() {
-		return resultDOMapper.selectAll();
-	}
+    public List<ResultDO> selectAll() {
+        return resultDOMapper.selectAll();
+    }
 
-	public List<ResultVO> selectResultAll() {
-		List<UserDO> userDOs = userService.selectAll();
-		List<DepartmentDO> departmentDOs = departmentService.selectAll();
-		List<PositionDO> positionDOs = positionService.selectAll();
-		List<SdutyDO> sdutyDOs = sdutyService.selectAll();
-		List<ResultDO> list = selectAll();
+    public List<ResultVO> selectResultAll() {
+        List<UserDO> userDOs = userService.selectAll();
+        List<DepartmentDO> departmentDOs = departmentService.selectAll();
+        List<PositionDO> positionDOs = positionService.selectAll();
+        List<SdutyDO> sdutyDOs = sdutyService.selectAll();
+        List<ResultDO> list = selectAll();
 
-		List<ResultVO> resultVOs = new ArrayList<ResultVO>();
+        List<ResultVO> resultVOs = new ArrayList<ResultVO>();
 
-		for (int i = 0; i < list.size(); i++) {
-			ResultDO resultDO = list.get(i);
+        for (int i = 0; i < list.size(); i++) {
+            ResultDO resultDO = list.get(i);
 
-			ResultVO resultVO = new ResultVO();
+            ResultVO resultVO = new ResultVO();
 
-			resultVO.setDate(resultDO.getR_date());
-			resultVO.setSduty(getSdutyDoBy(sdutyDOs, resultDO.getR_dutytype()).getS_name());
+            resultVO.setDate(resultDO.getR_date());
+            resultVO.setSduty(getSdutyDoBy(sdutyDOs, resultDO.getR_dutytype()).getS_name());
 
-			UserDO userDO = getUserDoBy(userDOs, resultDO.getR_dpuid());
-			resultVO.setLusername(userDO.getU_name());
-			resultVO.setLtelphone(userDO.getU_phone());
-			resultVO.setLdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
-			resultVO.setLposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
+            UserDO userDO = getUserDoBy(userDOs, resultDO.getR_dpuid());
+            resultVO.setLusername(userDO.getU_name());
+            resultVO.setLtelphone(userDO.getU_phone());
+            resultVO.setLdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
+            resultVO.setLposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
 
-			userDO = getUserDoBy(userDOs, resultDO.getR_fid1());
-			resultVO.setFusername(userDO.getU_name());
-			resultVO.setFtelphone(userDO.getU_phone());
-			resultVO.setFdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
-			resultVO.setFposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
+            userDO = getUserDoBy(userDOs, resultDO.getR_fid1());
+            resultVO.setFusername(userDO.getU_name());
+            resultVO.setFtelphone(userDO.getU_phone());
+            resultVO.setFdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
+            resultVO.setFposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
 
-			userDO = getUserDoBy(userDOs, resultDO.getR_fid2());
-			resultVO.setFfusername(userDO.getU_name());
-			resultVO.setFftelphone(userDO.getU_phone());
-			resultVO.setFfdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
-			resultVO.setFfposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
+            userDO = getUserDoBy(userDOs, resultDO.getR_fid2());
+            resultVO.setFfusername(userDO.getU_name());
+            resultVO.setFftelphone(userDO.getU_phone());
+            resultVO.setFfdepartment(getDepartmentDOBy(departmentDOs, userDO.getU_dpid()).getD_name());
+            resultVO.setFfposition(getPositionDOBy(positionDOs, userDO.getU_pid()).getName());
 
-			resultVOs.add(resultVO);
-		}
-		return resultVOs;
-	}
+            resultVOs.add(resultVO);
+        }
+        return resultVOs;
+    }
 
-	UserDO getUserDoBy(List<UserDO> userDOs, int uid) {
-		for (int i = 0; i < userDOs.size(); i++) {
-			UserDO userDO = userDOs.get(i);
-			if (userDO.getId() == uid) {
-				return userDO;
-			}
-		}
-		return null;
-	}
+    UserDO getUserDoBy(List<UserDO> userDOs, int uid) {
+        for (int i = 0; i < userDOs.size(); i++) {
+            UserDO userDO = userDOs.get(i);
+            if (userDO.getId() == uid) {
+                return userDO;
+            }
+        }
+        return null;
+    }
 
-	DepartmentDO getDepartmentDOBy(List<DepartmentDO> departmentDOs, int did) {
-		for (int i = 0; i < departmentDOs.size(); i++) {
-			DepartmentDO departmentDO = departmentDOs.get(i);
-			if (departmentDO.getId() == did) {
-				return departmentDO;
-			}
-		}
-		return null;
-	}
+    DepartmentDO getDepartmentDOBy(List<DepartmentDO> departmentDOs, int did) {
+        for (int i = 0; i < departmentDOs.size(); i++) {
+            DepartmentDO departmentDO = departmentDOs.get(i);
+            if (departmentDO.getId() == did) {
+                return departmentDO;
+            }
+        }
+        return null;
+    }
 
-	PositionDO getPositionDOBy(List<PositionDO> positionDOs, int pid) {
-		for (int i = 0; i < positionDOs.size(); i++) {
-			PositionDO positionDO = positionDOs.get(i);
-			if (positionDO.getId() == pid) {
-				return positionDO;
-			}
-		}
-		return null;
-	}
+    PositionDO getPositionDOBy(List<PositionDO> positionDOs, int pid) {
+        for (int i = 0; i < positionDOs.size(); i++) {
+            PositionDO positionDO = positionDOs.get(i);
+            if (positionDO.getId() == pid) {
+                return positionDO;
+            }
+        }
+        return null;
+    }
 
-	SdutyDO getSdutyDoBy(List<SdutyDO> sdutyDOs, int sid) {
-		for (int i = 0; i < sdutyDOs.size(); i++) {
-			SdutyDO sdutyDO = sdutyDOs.get(i);
-			if (sdutyDO.getId() == sid) {
-				return sdutyDO;
-			}
-		}
-		return null;
-	}
+    SdutyDO getSdutyDoBy(List<SdutyDO> sdutyDOs, int sid) {
+        for (int i = 0; i < sdutyDOs.size(); i++) {
+            SdutyDO sdutyDO = sdutyDOs.get(i);
+            if (sdutyDO.getId() == sid) {
+                return sdutyDO;
+            }
+        }
+        return null;
+    }
 
-	public int selectCountBy(Integer uid, Integer rtype) {
-		Map<String, Integer> params = new HashMap<String, Integer>();
-		params.put("uid", uid);
-		params.put("rtype", rtype);
-		return resultDOMapper.selectCountBy(params);
-	}
+    public int selectCountBy(Integer uid, Integer rtype) {
+        Map<String, Integer> params = new HashMap<String, Integer>();
+        params.put("uid", uid);
+        params.put("rtype", rtype);
+        return resultDOMapper.selectCountBy(params);
+    }
 
-	public void insert(ResultDO record) {
-		resultDOMapper.insert(record);
-	}
+    public void insert(ResultDO record) {
+        resultDOMapper.insert(record);
+    }
 
-	public void deleteAll() {
-		resultDOMapper.deleteAll();
-	}
+    public void deleteAll() {
+        resultDOMapper.deleteAll();
+    }
 }

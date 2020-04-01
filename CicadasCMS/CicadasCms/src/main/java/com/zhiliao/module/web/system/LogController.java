@@ -28,14 +28,14 @@ public class LogController {
     @RequiresUser
     @RequiresPermissions("log:view")
     @RequestMapping
-    public ModelAndView index(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
-                              @RequestParam(value = "pageSize",defaultValue = "50") Integer pageSize,
-                              @RequestParam(value="startTime",defaultValue = "") String startTime,
-                              @RequestParam(value = "endTime",defaultValue = "") String endTime){
+    public ModelAndView index(@RequestParam(value = "pageCurrent", defaultValue = "1") Integer pageNumber,
+                              @RequestParam(value = "pageSize", defaultValue = "50") Integer pageSize,
+                              @RequestParam(value = "startTime", defaultValue = "") String startTime,
+                              @RequestParam(value = "endTime", defaultValue = "") String endTime) {
         ModelAndView view = new ModelAndView("system/log_list");
-        view.addObject("model",logService.page(pageNumber,pageSize,startTime,endTime));
-        view.addObject("startTime",startTime);
-        view.addObject("endTime",endTime);
+        view.addObject("model", logService.page(pageNumber, pageSize, startTime, endTime));
+        view.addObject("startTime", startTime);
+        view.addObject("endTime", endTime);
         return view;
     }
 
@@ -45,7 +45,7 @@ public class LogController {
     @RequiresPermissions("log:delete")
     @RequestMapping("/del")
     @ResponseBody
-    public String delLog(@RequestParam("id") Integer[] logId){
+    public String delLog(@RequestParam("id") Integer[] logId) {
         return logService.deleteById(logId);
     }
 }

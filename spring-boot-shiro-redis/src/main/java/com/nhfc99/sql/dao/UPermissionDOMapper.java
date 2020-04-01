@@ -8,17 +8,17 @@ import com.nhfc99.sql.model.UPermissionDO;
 
 @Mapper
 public interface UPermissionDOMapper {
-	int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long id);
 
-	int insert(UPermissionDO record);
+    int insert(UPermissionDO record);
 
-	int insertSelective(UPermissionDO record);
+    int insertSelective(UPermissionDO record);
 
-	UPermissionDO selectByPrimaryKey(Long id);
+    UPermissionDO selectByPrimaryKey(Long id);
 
-	int updateByPrimaryKeySelective(UPermissionDO record);
+    int updateByPrimaryKeySelective(UPermissionDO record);
 
-	int updateByPrimaryKey(UPermissionDO record);
+    int updateByPrimaryKey(UPermissionDO record);
 
-	List<UPermissionDO> findPermissionByUid(Long id);
+    List<UPermissionDO> findPermissionByUid(Long id);
 }

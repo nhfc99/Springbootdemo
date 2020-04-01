@@ -11,6 +11,6 @@ public interface URolePermissionDOMapper {
     int insert(URolePermissionDO record);
 
     int insertSelective(URolePermissionDO record);
-    
+
     List<URolePermissionDO> getRolePermissionsByrid(long rid);
 }

@@ -12,5 +12,5 @@ public interface TSysOrgUserMapper extends Mapper<TSysOrgUser> {
     int selectCountByOrgIdAndUserId(@Param("orgId") Integer orgId, @Param("userId") Integer userId);
 
     @Delete("delete from t_sys_org_user where user_id =#{userId}")
-    int deleteByUserId( @Param("userId") Integer userId);
+    int deleteByUserId(@Param("userId") Integer userId);
 }

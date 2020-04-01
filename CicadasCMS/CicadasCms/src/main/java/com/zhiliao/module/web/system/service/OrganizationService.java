@@ -22,6 +22,6 @@ public interface OrganizationService {
 
     String update(TSysOrg pojo);
 
-    int findCountByOrgIdAndUserId(Integer orgId,Integer userId);
+    int findCountByOrgIdAndUserId(Integer orgId, Integer userId);
 
 }

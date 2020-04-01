@@ -23,11 +23,12 @@ public class Swagger2Configuration {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Cicadas Cms Api 接口")
                 .description("")
-                .contact(new Contact("Jin","","jin@westboy.net"))
+                .contact(new Contact("Jin", "", "jin@westboy.net"))
                 .version("1.0")
                 .build();
     }

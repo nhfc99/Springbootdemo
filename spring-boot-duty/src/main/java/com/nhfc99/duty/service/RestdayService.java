@@ -10,21 +10,21 @@ import com.nhfc99.duty.model.RestdayDO;
 
 @Service
 public class RestdayService {
-	@Autowired
-	RestdayDOMapper restdayDOMapper;
+    @Autowired
+    RestdayDOMapper restdayDOMapper;
 
-	public List<RestdayDO> selectAll() {
-		return restdayDOMapper.selectAll();
-	}
+    public List<RestdayDO> selectAll() {
+        return restdayDOMapper.selectAll();
+    }
 
-	public RestdayDO haveDate(List<RestdayDO> restdays, String datestr) {
-		for (int i = 0; i < restdays.size(); i++) {
-			RestdayDO restdayDO = restdays.get(i);
-			String restdaystr = restdayDO.getH_date();
-			if (restdaystr.equals(datestr)) {
-				return restdayDO;
-			}
-		}
-		return null;
-	}
+    public RestdayDO haveDate(List<RestdayDO> restdays, String datestr) {
+        for (int i = 0; i < restdays.size(); i++) {
+            RestdayDO restdayDO = restdays.get(i);
+            String restdaystr = restdayDO.getH_date();
+            if (restdaystr.equals(datestr)) {
+                return restdayDO;
+            }
+        }
+        return null;
+    }
 }

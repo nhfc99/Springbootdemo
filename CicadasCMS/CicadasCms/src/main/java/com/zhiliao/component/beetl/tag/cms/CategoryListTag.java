@@ -1,4 +1,5 @@
 package com.zhiliao.component.beetl.tag.cms;
+
 import com.zhiliao.common.exception.CmsException;
 import com.zhiliao.common.utils.CmsUtil;
 import com.zhiliao.common.utils.Pojo2MapUtil;
@@ -27,61 +28,62 @@ import java.util.Map;
 @Scope("prototype")
 public class CategoryListTag extends GeneralVarTagBinding {
 
-	@Autowired
-	private CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
-	@Autowired
-	private SiteService siteService;
+    @Autowired
+    private SiteService siteService;
 
-	@Value("${system.http.protocol}")
-	private String httpProtocol;
+    @Value("${system.http.protocol}")
+    private String httpProtocol;
 
-	@Value("${system.http.host}")
-	private String httpHost;
+    @Value("${system.http.host}")
+    private String httpHost;
 
-	@Value("${system.site.prefix}")
-	private String sitePrefix;
+    @Value("${system.site.prefix}")
+    private String sitePrefix;
 
-	@Value("${system.site.subfix}")
-	private String siteSubfix;
+    @Value("${system.site.subfix}")
+    private String siteSubfix;
 
 
-	@Override
-	public void render() {
-		Integer siteId=  (this.getAttributeValue("siteId") instanceof String)?Integer.parseInt((String) this.getAttributeValue("siteId")):(Integer)this.getAttributeValue("siteId");
-		Long categoryId=  (this.getAttributeValue("categoryId") instanceof String)?Long.parseLong((String) this.getAttributeValue("categoryId")):(Long) this.getAttributeValue("categoryId");
-		Integer isNav = Integer.parseInt((String) this.getAttributeValue("isNav"));
-		try {
-			this.wrapRender(siteId,categoryId,(isNav.intValue()==1?true:false));
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new CmsException(e.getMessage());
-		}
+    @Override
+    public void render() {
+        Integer siteId = (this.getAttributeValue("siteId") instanceof String) ? Integer.parseInt((String) this.getAttributeValue("siteId")) : (Integer) this.getAttributeValue("siteId");
+        Long categoryId = (this.getAttributeValue("categoryId") instanceof String) ? Long.parseLong((String) this.getAttributeValue("categoryId")) : (Long) this.getAttributeValue("categoryId");
+        Integer isNav = Integer.parseInt((String) this.getAttributeValue("isNav"));
+        try {
+            this.wrapRender(siteId, categoryId, (isNav.intValue() == 1 ? true : false));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new CmsException(e.getMessage());
+        }
 
-	}
-	private void wrapRender(Integer siteId,Long categoryId,boolean isNav) throws Exception {
-		TCmsSite site = siteService.findById(siteId);
-		if(CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:"+siteId+"]");
-		List<TCmsCategory> cats = categoryService.findCategoryListByPidAndIsNav(categoryId,siteId,isNav);
+    }
+
+    private void wrapRender(Integer siteId, Long categoryId, boolean isNav) throws Exception {
+        TCmsSite site = siteService.findById(siteId);
+        if (CmsUtil.isNullOrEmpty(site)) throw new CmsException("站点不存在[siteId:" + siteId + "]");
+        List<TCmsCategory> cats = categoryService.findCategoryListByPidAndIsNav(categoryId, siteId, isNav);
         int i = 1;
-		if(CmsUtil.isNullOrEmpty(cats)) {
-        	TCmsCategory category = categoryService.findById(categoryId);
-        	if(CmsUtil.isNullOrEmpty(category))
-        		throw new CmsException("没有查询到数据！[siteId:" + siteId + ",categoryId:" + categoryId + "]");
-			cats = categoryService.findCategoryListByPidAndIsNav(category.getParentId(),siteId,isNav);
-		}
-		HttpServletRequest request = (HttpServletRequest)ctx.getGlobal("request");
-		String staticHtmlPath =  ctx.getGlobal("staticHtmlPath")==null?"":(String) ctx.getGlobal("staticHtmlPath");
-        for (TCmsCategory category : cats){
-        	if(StrUtil.isBlank(category.getUrl()))
-        		category.setUrl(request.getContextPath() + staticHtmlPath + "/" + site.getSiteKey() + "/" + category.getAlias()+siteSubfix);
-			Map result = Pojo2MapUtil.toMap(category);
-			result.put("prototype",category);
-			result.put("index",i);
-        	this.binds(result);
-			this.doBodyRender();
-			i++;
-		}
-	}
+        if (CmsUtil.isNullOrEmpty(cats)) {
+            TCmsCategory category = categoryService.findById(categoryId);
+            if (CmsUtil.isNullOrEmpty(category))
+                throw new CmsException("没有查询到数据！[siteId:" + siteId + ",categoryId:" + categoryId + "]");
+            cats = categoryService.findCategoryListByPidAndIsNav(category.getParentId(), siteId, isNav);
+        }
+        HttpServletRequest request = (HttpServletRequest) ctx.getGlobal("request");
+        String staticHtmlPath = ctx.getGlobal("staticHtmlPath") == null ? "" : (String) ctx.getGlobal("staticHtmlPath");
+        for (TCmsCategory category : cats) {
+            if (StrUtil.isBlank(category.getUrl()))
+                category.setUrl(request.getContextPath() + staticHtmlPath + "/" + site.getSiteKey() + "/" + category.getAlias() + siteSubfix);
+            Map result = Pojo2MapUtil.toMap(category);
+            result.put("prototype", category);
+            result.put("index", i);
+            this.binds(result);
+            this.doBodyRender();
+            i++;
+        }
+    }
 
 }

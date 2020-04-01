@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Description:权限tag
  * 这个函数需要调用时遍历使用
+ *
  * @author Jin
  * @create 2017-04-14
  **/
@@ -30,27 +31,27 @@ public class TreeTopicCatagoryFunction implements Function {
         String siteId = objects[0].toString();
         String pid = (String) objects[1];
         String categoryIds = (String) objects[2];
-        return recursion(Long.parseLong(pid),Integer.parseInt(siteId),categoryIds);
+        return recursion(Long.parseLong(pid), Integer.parseInt(siteId), categoryIds);
 
     }
 
     /* 递归函数 */
-    private String recursion(Long pid,Integer siteId,String categoryIds){
+    private String recursion(Long pid, Integer siteId, String categoryIds) {
         StringBuffer sbf = new StringBuffer();
-        List<TCmsCategory> cats  = service.findCategoryListByPid(pid,siteId);
-        if(cats!=null&&cats.size()>0){
-            for(TCmsCategory cat:cats){
-                sbf.append("<li data-id=\""+cat.getCategoryId()+"\" data-pid=\""+pid+"\" "+isChecked(cat.getCategoryId(),categoryIds)+" >"+cat.getCategoryName()+" </li>");
-                sbf.append(recursion(cat.getCategoryId(),siteId,categoryIds));
+        List<TCmsCategory> cats = service.findCategoryListByPid(pid, siteId);
+        if (cats != null && cats.size() > 0) {
+            for (TCmsCategory cat : cats) {
+                sbf.append("<li data-id=\"" + cat.getCategoryId() + "\" data-pid=\"" + pid + "\" " + isChecked(cat.getCategoryId(), categoryIds) + " >" + cat.getCategoryName() + " </li>");
+                sbf.append(recursion(cat.getCategoryId(), siteId, categoryIds));
             }
-            return  sbf.toString();
+            return sbf.toString();
         }
         return "";
     }
 
 
-    public String isChecked(Long c1,String categoryIds){
-        if(!StrUtil.isBlank(categoryIds)) {
+    public String isChecked(Long c1, String categoryIds) {
+        if (!StrUtil.isBlank(categoryIds)) {
             String[] array = categoryIds.split(",");
             for (String catId : array) {
                 Long c2 = Long.parseLong(catId);

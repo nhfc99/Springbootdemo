@@ -38,20 +38,19 @@ public class CategoryController {
 
     @RequiresPermissions("category:admin")
     @RequestMapping
-    public String index(){
+    public String index() {
         return "cms/category";
     }
-
 
 
     @SysLog("栏目添加")
     @RequiresPermissions("category:input")
     @RequestMapping("/input")
-    public String input(@RequestParam(value = "id",required = false) Long Id, Model model) {
+    public String input(@RequestParam(value = "id", required = false) Long Id, Model model) {
         List<TCmsModel> models = modelService.findModelListByStatus(true);
-        model.addAttribute("models",models);
-        if(Id!=null)
-            model.addAttribute("pojo",categoryService.findById(Id));
+        model.addAttribute("models", models);
+        if (Id != null)
+            model.addAttribute("pojo", categoryService.findById(Id));
         return "cms/category_input";
     }
 
@@ -59,11 +58,11 @@ public class CategoryController {
     @RequiresPermissions("category:save")
     @RequestMapping("/save")
     @ResponseBody
-    public String save(TCmsCategory pojo)  {
+    public String save(TCmsCategory pojo) {
         UserVo userVo = UserUtil.getSysUserVo();
         pojo.setSiteId(userVo.getSiteId());
-        if(pojo.getCategoryId()!=null)
-          return   categoryService.update(pojo);
+        if (pojo.getCategoryId() != null)
+            return categoryService.update(pojo);
         return categoryService.save(pojo);
     }
 
@@ -77,8 +76,8 @@ public class CategoryController {
 
     @RequestMapping("/checkCategory")
     @ResponseBody
-    public String checkDomain(@RequestParam(value = "alias",required = false) String categoryName){
-        if(!CmsUtil.isNullOrEmpty(categoryService.findByAlias(PinyinUtil.convertLower(HtmlKit.getText(categoryName)))))
+    public String checkDomain(@RequestParam(value = "alias", required = false) String categoryName) {
+        if (!CmsUtil.isNullOrEmpty(categoryService.findByAlias(PinyinUtil.convertLower(HtmlKit.getText(categoryName)))))
             return "{\"error\": \"栏目已存在\"}";
         return "{\"ok\": \"验证通过\"}";
 

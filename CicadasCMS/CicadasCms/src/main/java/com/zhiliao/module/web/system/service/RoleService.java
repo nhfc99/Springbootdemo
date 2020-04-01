@@ -17,17 +17,17 @@ public interface RoleService {
 
     String delete(Integer id);
 
-    String update(TSysRole role,Integer[] permissionId);
+    String update(TSysRole role, Integer[] permissionId);
 
-    String save(TSysRole role,Integer[] permissionId);
+    String save(TSysRole role, Integer[] permissionId);
 
     List<TSysRole> findAll();
 
     List<TSysPermission> findPermissonByPid(Integer pid);
 
-    Integer findPermissionCountByRoleId(Integer roleId,Integer permissionId);
+    Integer findPermissionCountByRoleId(Integer roleId, Integer permissionId);
 
-    Integer  SaveRolePermission(TSysRolePermission rolePermission);
+    Integer SaveRolePermission(TSysRolePermission rolePermission);
 
     TSysPermission findPermissonByid(Integer pid);
 

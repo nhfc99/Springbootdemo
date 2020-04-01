@@ -13,14 +13,14 @@ public class TranslateController {
     private TranslateService translateService;
 
     @GetMapping
-    public String translate(){
+    public String translate() {
         return "system/translate";
     }
 
 
     @PostMapping
     @ResponseBody
-    public String translate(@RequestParam("text") String text){
+    public String translate(@RequestParam("text") String text) {
         return translateService.translateToString(text);
     }
 

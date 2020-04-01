@@ -15,7 +15,7 @@ public interface TCmsContentMapper extends Mapper<TCmsContent> {
 
     List<TCmsContent> selectByCondition(TCmsContent content);
 
-    List<TCmsContent> selectByTableNameAndMap(@Param("tableName") String tableName,@Param("categoryId") Long categoryId,@Param("param") Map param);
+    List<TCmsContent> selectByTableNameAndMap(@Param("tableName") String tableName, @Param("categoryId") Long categoryId, @Param("param") Map param);
 
     Map selectByContentIdAndTableName(@Param("contentId") Long contentId,
                                       @Param("tableName") String tableName);
@@ -30,20 +30,20 @@ public interface TCmsContentMapper extends Mapper<TCmsContent> {
     );
 
     List<Map> selectByTopicContentListBySiteIdAndCategoryIds(@Param("siteId") Integer siteId,
-                                                        @Param("categoryIds") Long[] categoryIds,
-                                                        @Param("orderBy") Integer orderBy,
-                                                        @Param("isHot") Integer isHot,
-                                                        @Param("isPic") Integer isPic,
-                                                        @Param("isRecommend") Integer isRecommend
+                                                             @Param("categoryIds") Long[] categoryIds,
+                                                             @Param("orderBy") Integer orderBy,
+                                                             @Param("isHot") Integer isHot,
+                                                             @Param("isPic") Integer isPic,
+                                                             @Param("isRecommend") Integer isRecommend
     );
 
     @Select("SELECT * FROM t_cms_content WHERE content_id = (SELECT max(content_id) FROM t_cms_content WHERE content_id < #{contentId} AND category_id =#{categoryId}  and status =1)")
     @ResultMap("BaseResultMap")
-    TCmsContent selectPrevContentByContentIdAndCategoryId(@Param("contentId") Long contentId,@Param("categoryId")Long categoryId);
+    TCmsContent selectPrevContentByContentIdAndCategoryId(@Param("contentId") Long contentId, @Param("categoryId") Long categoryId);
 
     @Select("SELECT * FROM t_cms_content WHERE content_id = (SELECT min(content_id) FROM t_cms_content WHERE content_id > #{contentId} AND category_id =#{categoryId}  and status =1)")
     @ResultMap("BaseResultMap")
-    TCmsContent selectNextContentByContentIdAndCategoryId(@Param("contentId")Long contentId,@Param("categoryId")Long categoryId);
+    TCmsContent selectNextContentByContentIdAndCategoryId(@Param("contentId") Long contentId, @Param("categoryId") Long categoryId);
 
     @Select("SELECT c.content_id contentId, " +
             "        c.site_id siteId, " +
@@ -74,7 +74,7 @@ public interface TCmsContentMapper extends Mapper<TCmsContent> {
             "c.site_id=#{siteId} and c.status=1 " +
             "order by c.content_id desc")
     @ResultType(Map.class)
-    List<Map> selectByCategoyId(@Param("categoryId") Long categoryId,@Param("siteId") Integer siteId ,@Param("tableName") String tableName);
+    List<Map> selectByCategoyId(@Param("categoryId") Long categoryId, @Param("siteId") Integer siteId, @Param("tableName") String tableName);
 
     @Select("SELECT c.content_id contentId, " +
             "        c.site_id siteId, " +
@@ -104,7 +104,7 @@ public interface TCmsContentMapper extends Mapper<TCmsContent> {
             "and c.site_id=#{siteId} and c.status=1" +
             " order by c.content_id desc")
     @ResultType(Map.class)
-    List<Map> selectByCategoyParentId(@Param("categoryIds") String categoryIds,@Param("siteId") Integer siteId,@Param("tableName") String tableName);
+    List<Map> selectByCategoyParentId(@Param("categoryIds") String categoryIds, @Param("siteId") Integer siteId, @Param("tableName") String tableName);
 
     @Select(" select " +
             "sum(case month(inputdate) when '1' then 1 else 0 end) as 一月份, " +

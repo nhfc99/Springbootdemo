@@ -18,31 +18,31 @@ import java.util.List;
  * @create 2017-05-22
  **/
 @Service
-public class LinkageServiceImpl implements LinkageService{
+public class LinkageServiceImpl implements LinkageService {
 
     @Autowired
     private TCmsLinkageMapper linkageMapper;
 
     @Override
     public String save(TCmsLinkage pojo) {
-        if (linkageMapper.insertSelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","linkage-tab",true);
-        return  JsonUtil.toERROR("操作失败");
+        if (linkageMapper.insertSelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "linkage-tab", true);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String update(TCmsLinkage pojo) {
-        if (linkageMapper.updateByPrimaryKeySelective(pojo)>0)
-            return JsonUtil.toSUCCESS("操作成功","linkage-tab",false);
-        return  JsonUtil.toERROR("操作失败");
+        if (linkageMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功", "linkage-tab", false);
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
     public String delete(Integer[] ids) {
-        if(ids!=null&&ids.length>0)
-            for(Integer id :ids)
+        if (ids != null && ids.length > 0)
+            for (Integer id : ids)
                 linkageMapper.deleteByPrimaryKey(id);
-        return JsonUtil.toSUCCESS("删除成功","linkage-tab",false);
+        return JsonUtil.toSUCCESS("删除成功", "linkage-tab", false);
     }
 
     @Override
@@ -62,13 +62,13 @@ public class LinkageServiceImpl implements LinkageService{
 
     @Override
     public PageInfo<TCmsLinkage> page(Integer pageNumber, Integer pageSize, TCmsLinkage pojo) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findList(pojo));
     }
 
     @Override
     public PageInfo<TCmsLinkage> page(Integer pageNumber, Integer pageSize) {
-        PageHelper.startPage(pageNumber,pageSize);
+        PageHelper.startPage(pageNumber, pageSize);
         return new PageInfo<>(findAll());
     }
 }

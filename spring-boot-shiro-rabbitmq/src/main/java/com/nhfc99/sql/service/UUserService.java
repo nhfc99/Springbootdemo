@@ -8,10 +8,10 @@ import com.nhfc99.sql.model.UUserDO;
 
 @Service
 public class UUserService {
-	@Autowired
-	private UUserDOMapper userDOMapper;
+    @Autowired
+    private UUserDOMapper userDOMapper;
 
-	public UUserDO selectAllByName(String username) {
-		return userDOMapper.selectAllByName(username);
-	}
+    public UUserDO selectAllByName(String username) {
+        return userDOMapper.selectAllByName(username);
+    }
 }

@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -25,12 +26,12 @@ import org.apache.http.util.EntityUtils;
 public class TranslateUtil {
 
     public static void main(String[] args) throws Exception {
-        String appKey ="4d3d69925e97b803";
+        String appKey = "4d3d69925e97b803";
         String query = "你好世界，哈哈哈";
         String salt = String.valueOf(System.currentTimeMillis());
         String from = "zh-CHS";
         String to = "EN";
-        String sign = md5(appKey + query + salt+ "tSnaJ4Q6rSLJSCbY1rbKkNcrvTFFIWne");
+        String sign = md5(appKey + query + salt + "tSnaJ4Q6rSLJSCbY1rbKkNcrvTFFIWne");
         Map params = new HashMap();
         params.put("q", query);
         params.put("from", from);
@@ -41,7 +42,7 @@ public class TranslateUtil {
         System.out.println(requestForHttp("http://openapi.youdao.com/api", params));
     }
 
-    public static String requestForHttp(String url,Map requestParams) throws Exception{
+    public static String requestForHttp(String url, Map requestParams) throws Exception {
         String result = null;
         CloseableHttpClient httpClient = HttpClients.createDefault();
         /**HttpPost*/
@@ -50,26 +51,26 @@ public class TranslateUtil {
         List params = new ArrayList();
         Iterator<Entry> it = requestParams.entrySet().iterator();
         while (it.hasNext()) {
-            Entry<String,String> en = it.next();
+            Entry<String, String> en = it.next();
             String key = en.getKey();
             String value = en.getValue();
             if (value != null) {
                 params.add(new BasicNameValuePair(key, value));
             }
         }
-        httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+        httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         /**HttpResponse*/
         CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
-        try{
+        try {
             HttpEntity httpEntity = httpResponse.getEntity();
             result = EntityUtils.toString(httpEntity, "utf-8");
             EntityUtils.consume(httpEntity);
-        }finally{
-            try{
-                if(httpResponse!=null){
+        } finally {
+            try {
+                if (httpResponse != null) {
                     httpResponse.close();
                 }
-            }catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -78,17 +79,18 @@ public class TranslateUtil {
 
     /**
      * 生成32位MD5摘要
+     *
      * @param string
      * @return
      */
     public static String md5(String string) {
-        if(string == null){
+        if (string == null) {
             return null;
         }
         char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                 'A', 'B', 'C', 'D', 'E', 'F'};
 
-        try{
+        try {
             byte[] btInput = string.getBytes("utf-8");
             /** 获得MD5摘要算法的 MessageDigest 对象 */
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
@@ -105,18 +107,19 @@ public class TranslateUtil {
                 str[k++] = hexDigits[byte0 & 0xf];
             }
             return new String(str);
-        }catch(NoSuchAlgorithmException | UnsupportedEncodingException e){
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             return null;
         }
     }
 
     /**
      * 根据api地址和参数生成请求URL
+     *
      * @param url
      * @param params
      * @return
      */
-    public static String getUrlWithQueryString(String url, Map<String,String> params) {
+    public static String getUrlWithQueryString(String url, Map<String, String> params) {
         if (params == null) {
             return url;
         }
@@ -148,8 +151,10 @@ public class TranslateUtil {
 
         return builder.toString();
     }
+
     /**
      * 进行URL编码
+     *
      * @param input
      * @return
      */

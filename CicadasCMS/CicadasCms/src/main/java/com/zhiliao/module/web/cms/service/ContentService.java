@@ -16,39 +16,40 @@ import java.util.Map;
  * @author Jin
  * @create 2017-04-18
  **/
-public interface  ContentService extends BaseService<TCmsContent,Long> {
+public interface ContentService extends BaseService<TCmsContent, Long> {
 
     PageInfo<TCmsContent> page(Integer pageNumber, Integer pageSize, TCmsContentVo pojo);
 
     Map findContentByContentIdAndTableName(Long contentId, String tableName);
+
     /*回收站*/
     String recovery(Long[] ids);
 
-    String save(TCmsContent content,String tableName, Map<String, Object> formParam,String[] tag) throws SQLException;
+    String save(TCmsContent content, String tableName, Map<String, Object> formParam, String[] tag) throws SQLException;
 
-    String update(TCmsContent content, String tableName, List<TCmsModelFiled> cmsModelFileds , Map<String, Object> formParam, String[] tag) throws SQLException;
+    String update(TCmsContent content, String tableName, List<TCmsModelFiled> cmsModelFileds, Map<String, Object> formParam, String[] tag) throws SQLException;
 
     PageInfo<Map> findContentListBySiteIdAndCategoryId(Integer siteId,
-                                                               Long categoryId,
-                                                               Integer orderBy,
-                                                               Integer pageNumber,
-                                                               Integer pageSize,
-                                                               Integer hasChild,
-                                                               Integer isHot,
-                                                               Integer isPic,
-                                                               Integer isRecommend);
+                                                       Long categoryId,
+                                                       Integer orderBy,
+                                                       Integer pageNumber,
+                                                       Integer pageSize,
+                                                       Integer hasChild,
+                                                       Integer isHot,
+                                                       Integer isPic,
+                                                       Integer isRecommend);
 
     PageInfo<Map> findTopicContentListBySiteIdAndCategoryIds(Integer siteId,
-                                                        Long[] categoryIds,
-                                                        Integer orderBy,
-                                                        Integer size,
-                                                        Integer isHot,
-                                                        Integer isPic,
-                                                        Integer isRecommend);
+                                                             Long[] categoryIds,
+                                                             Integer orderBy,
+                                                             Integer size,
+                                                             Integer isHot,
+                                                             Integer isPic,
+                                                             Integer isRecommend);
 
-    PageInfo<Map> page(Integer pageNumber,Integer siteId,Long categoryId);
+    PageInfo<Map> page(Integer pageNumber, Integer siteId, Long categoryId);
 
-    PageInfo<TCmsContent>  findContentListByModelFiledValue(int pageNumber,Long categoryId, String tableName, Map<String, Object> param);
+    PageInfo<TCmsContent> findContentListByModelFiledValue(int pageNumber, Long categoryId, String tableName, Map<String, Object> param);
 
     void viewUpdate(Long contentId);
 

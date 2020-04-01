@@ -6,7 +6,7 @@ package com.zhiliao.common.exception;
  * @author Jin
  * @create 2017-06-01
  **/
-public class CmsException extends RuntimeException{
+public class CmsException extends RuntimeException {
     public CmsException(String message) {
         super(message);
     }

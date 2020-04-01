@@ -19,6 +19,6 @@ public interface URoleDOMapper {
     int updateByPrimaryKeySelective(URoleDO record);
 
     int updateByPrimaryKey(URoleDO record);
-    
+
     List<URoleDO> findRoleByUid(Long id);
 }
