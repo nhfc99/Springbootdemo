@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.AreaprojectTunnelinfoTestfaultDomainMapper">
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.AreaprojectTunnelinfoTestfaultDomain">
+        <constructor>
+            <arg column="Id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CreateDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="FaultLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="FaultType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="IsFault" jdbcType="BIT" javaType="java.lang.Boolean"/>
+            <arg column="IsFix" jdbcType="BIT" javaType="java.lang.Boolean"/>
+            <arg column="FaultLevel" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="tunnelId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="ProjectInfoId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TunnelName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TunnelLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="BuildLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="TestLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="FixCrackLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="ProjectName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="ProjectAreaId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="AreaName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, CreateDate, faultLength, faultType,isFault,isFix,faultLevel,tunnelId,projectInfoId,tunnelName,tunnelLength,buildLength,
+    testLength,fixCrackLength,projectName,projectAreaId,areaName
+    </sql>
+    <select id="selectBy" resultType="com.nhfc99.template.domain.AreaprojectTunnelinfoTestfaultDomain">
+        select
+        <include refid="Base_Column_List"/>
+        from areaprojecttunnelinfotestfault
+        <where>
+            <if test="ProjectName != null and ProjectName != ''">
+                ProjectName = #{ProjectName,jdbcType=VARCHAR}
+            </if>
+
+            <if test="AreaName != null and AreaName != ''">
+                AND AreaName = #{AreaName,jdbcType=VARCHAR}
+            </if>
+
+            <if test="TunnelName != null and TunnelName != ''">
+                AND TunnelName = #{TunnelName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <insert id="insert" parameterType="com.nhfc99.template.domain.AreaprojectTunnelinfoTestfaultDomain">
+    insert into areaprojecttunnelinfotestfault (Id, CreateDate, FaultLength, FaultType,
+      IsFault, IsFix, FaultLevel, 
+      tunnelId, ProjectInfoId, TunnelName, 
+      TunnelLength, BuildLength, TestLength, 
+      FixCrackLength, ProjectName, ProjectAreaId, 
+      AreaName)
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{faultLength,jdbcType=DECIMAL}, #{faultType,jdbcType=VARCHAR},
+      #{isFault,jdbcType=BIT}, #{isFix,jdbcType=BIT}, #{faultLevel,jdbcType=INTEGER}, 
+      #{tunnelId,jdbcType=VARCHAR}, #{projectInfoId,jdbcType=VARCHAR}, #{tunnelName,jdbcType=VARCHAR}, 
+      #{tunnelLength,jdbcType=DECIMAL}, #{buildLength,jdbcType=DECIMAL}, #{testLength,jdbcType=DECIMAL}, 
+      #{fixCrackLength,jdbcType=DECIMAL}, #{projectName,jdbcType=VARCHAR}, #{projectAreaId,jdbcType=VARCHAR}, 
+      #{areaName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.template.domain.AreaprojectTunnelinfoTestfaultDomain">
+        insert into areaprojecttunnelinfotestfault
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="createDate != null">
+                CreateDate,
+            </if>
+            <if test="faultLength != null">
+                FaultLength,
+            </if>
+            <if test="faultType != null">
+                FaultType,
+            </if>
+            <if test="isFault != null">
+                IsFault,
+            </if>
+            <if test="isFix != null">
+                IsFix,
+            </if>
+            <if test="faultLevel != null">
+                FaultLevel,
+            </if>
+            <if test="tunnelId != null">
+                tunnelId,
+            </if>
+            <if test="projectInfoId != null">
+                ProjectInfoId,
+            </if>
+            <if test="tunnelName != null">
+                TunnelName,
+            </if>
+            <if test="tunnelLength != null">
+                TunnelLength,
+            </if>
+            <if test="buildLength != null">
+                BuildLength,
+            </if>
+            <if test="testLength != null">
+                TestLength,
+            </if>
+            <if test="fixCrackLength != null">
+                FixCrackLength,
+            </if>
+            <if test="projectName != null">
+                ProjectName,
+            </if>
+            <if test="projectAreaId != null">
+                ProjectAreaId,
+            </if>
+            <if test="areaName != null">
+                AreaName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="faultLength != null">
+                #{faultLength,jdbcType=DECIMAL},
+            </if>
+            <if test="faultType != null">
+                #{faultType,jdbcType=VARCHAR},
+            </if>
+            <if test="isFault != null">
+                #{isFault,jdbcType=BIT},
+            </if>
+            <if test="isFix != null">
+                #{isFix,jdbcType=BIT},
+            </if>
+            <if test="faultLevel != null">
+                #{faultLevel,jdbcType=INTEGER},
+            </if>
+            <if test="tunnelId != null">
+                #{tunnelId,jdbcType=VARCHAR},
+            </if>
+            <if test="projectInfoId != null">
+                #{projectInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelName != null">
+                #{tunnelName,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelLength != null">
+                #{tunnelLength,jdbcType=DECIMAL},
+            </if>
+            <if test="buildLength != null">
+                #{buildLength,jdbcType=DECIMAL},
+            </if>
+            <if test="testLength != null">
+                #{testLength,jdbcType=DECIMAL},
+            </if>
+            <if test="fixCrackLength != null">
+                #{fixCrackLength,jdbcType=DECIMAL},
+            </if>
+            <if test="projectName != null">
+                #{projectName,jdbcType=VARCHAR},
+            </if>
+            <if test="projectAreaId != null">
+                #{projectAreaId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

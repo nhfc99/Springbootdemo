@@ -151,7 +151,8 @@ public class ExceptionHandlerAdvice {
     }
 
     private <T extends Throwable> JSONResult resultFormat(int code, T ex) {
-        JSONResult json = JSONResult.result(code, ex.getMessage());
+        ex.printStackTrace();
+        JSONResult json = JSONResult.result(code, ex.toString());
         return json;
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.TestlinelengthgroupbyDomainMapper">
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.TestlinelengthgroupbyDomain">
+        <constructor>
+            <arg column="TunnelInfoId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TestLineLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    tunnelInfoId, testLineLength
+    </sql>
+
+    <select id="selectBy" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from testlinelengthgroupby
+        where TunnelInfoId in
+        <foreach item="item" collection="list" separator="," open="(" close=")" index="">
+            #{item, jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <insert id="insert" parameterType="com.nhfc99.template.domain.TestlinelengthgroupbyDomain">
+    insert into testlinelengthgroupby (TunnelInfoId, TestLineLength)
+    values (#{tunnelInfoId,jdbcType=VARCHAR}, #{testLineLength,jdbcType=DECIMAL})
+  </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.template.domain.TestlinelengthgroupbyDomain">
+        insert into testlinelengthgroupby
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tunnelInfoId != null">
+                TunnelInfoId,
+            </if>
+            <if test="testLineLength != null">
+                TestLineLength,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tunnelInfoId != null">
+                #{tunnelInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="testLineLength != null">
+                #{testLineLength,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+</mapper>

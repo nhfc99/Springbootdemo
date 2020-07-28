@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.TunnelfixcrackdetailDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.TunnelfixcrackdetailDomain" >
+    <constructor >
+      <idArg column="Id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="CreateUserId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LastEditDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="ProjectInfoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TunnelInfoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="StartKilometre" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="StartMetre" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="FixCrackMile" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CreateDate, CreateUserId, CreateUserName, LastEditDate, ProjectInfoId, TunnelInfoId, 
+    StartKilometre, StartMetre, FixCrackMile
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tunnelfixcrackdetail
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tunnelfixcrackdetail
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nhfc99.template.domain.TunnelfixcrackdetailDomain" >
+    insert into tunnelfixcrackdetail (Id, CreateDate, CreateUserId, 
+      CreateUserName, LastEditDate, ProjectInfoId, 
+      TunnelInfoId, StartKilometre, StartMetre, 
+      FixCrackMile)
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{lastEditDate,jdbcType=TIMESTAMP}, #{projectInfoId,jdbcType=VARCHAR}, 
+      #{tunnelInfoId,jdbcType=VARCHAR}, #{startKilometre,jdbcType=INTEGER}, #{startMetre,jdbcType=DECIMAL}, 
+      #{fixCrackMile,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nhfc99.template.domain.TunnelfixcrackdetailDomain" >
+    insert into tunnelfixcrackdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="createDate != null" >
+        CreateDate,
+      </if>
+      <if test="createUserId != null" >
+        CreateUserId,
+      </if>
+      <if test="createUserName != null" >
+        CreateUserName,
+      </if>
+      <if test="lastEditDate != null" >
+        LastEditDate,
+      </if>
+      <if test="projectInfoId != null" >
+        ProjectInfoId,
+      </if>
+      <if test="tunnelInfoId != null" >
+        TunnelInfoId,
+      </if>
+      <if test="startKilometre != null" >
+        StartKilometre,
+      </if>
+      <if test="startMetre != null" >
+        StartMetre,
+      </if>
+      <if test="fixCrackMile != null" >
+        FixCrackMile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditDate != null" >
+        #{lastEditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectInfoId != null" >
+        #{projectInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelInfoId != null" >
+        #{tunnelInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="startKilometre != null" >
+        #{startKilometre,jdbcType=INTEGER},
+      </if>
+      <if test="startMetre != null" >
+        #{startMetre,jdbcType=DECIMAL},
+      </if>
+      <if test="fixCrackMile != null" >
+        #{fixCrackMile,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.TunnelfixcrackdetailDomain" >
+    update tunnelfixcrackdetail
+    <set >
+      <if test="createDate != null" >
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        CreateUserId = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        CreateUserName = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditDate != null" >
+        LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectInfoId != null" >
+        ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelInfoId != null" >
+        TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="startKilometre != null" >
+        StartKilometre = #{startKilometre,jdbcType=INTEGER},
+      </if>
+      <if test="startMetre != null" >
+        StartMetre = #{startMetre,jdbcType=DECIMAL},
+      </if>
+      <if test="fixCrackMile != null" >
+        FixCrackMile = #{fixCrackMile,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.TunnelfixcrackdetailDomain" >
+    update tunnelfixcrackdetail
+    set CreateDate = #{createDate,jdbcType=TIMESTAMP},
+      CreateUserId = #{createUserId,jdbcType=VARCHAR},
+      CreateUserName = #{createUserName,jdbcType=VARCHAR},
+      LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+      ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+      TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+      StartKilometre = #{startKilometre,jdbcType=INTEGER},
+      StartMetre = #{startMetre,jdbcType=DECIMAL},
+      FixCrackMile = #{fixCrackMile,jdbcType=DECIMAL}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

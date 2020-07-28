@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.VrstaffDomainMapper">
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.VrstaffDomain">
+        <constructor>
+            <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="age" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="level" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="vrareasid" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="photo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, age, level, vrareasid, photo
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from vrstaff
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from vrstaff
+    </select>
+    <select id="selectAllExa" resultType="com.nhfc99.template.pojo.VrstaffExtaDomain">
+        select
+        <include refid="Base_Column_List"/>
+        from vrstaff
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from vrstaff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.nhfc99.template.domain.VrstaffDomain">
+    insert into vrstaff (id, name, age, 
+      level, vrareasid, photo
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{vrareasid,jdbcType=BIGINT}, #{photo,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.template.domain.VrstaffDomain">
+        insert into vrstaff
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="vrareasid != null">
+                vrareasid,
+            </if>
+            <if test="photo != null">
+                photo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="vrareasid != null">
+                #{vrareasid,jdbcType=BIGINT},
+            </if>
+            <if test="photo != null">
+                #{photo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.VrstaffDomain">
+        update vrstaff
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="vrareasid != null">
+                vrareasid = #{vrareasid,jdbcType=BIGINT},
+            </if>
+            <if test="photo != null">
+                photo = #{photo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.VrstaffDomain">
+    update vrstaff
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      vrareasid = #{vrareasid,jdbcType=BIGINT},
+      photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.TunneltestfaultmessageDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.TunneltestfaultmessageDomain" >
+    <constructor >
+      <idArg column="Id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="CreateUserId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreateUserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LastEditDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="ProjectInfoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TunnelInfoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TunnelTestReportId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TunnelTestFaultId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FaultType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FaultLevel" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="MessageContent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ReceiveUserId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BackMemo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CreateDate, CreateUserId, CreateUserName, LastEditDate, ProjectInfoId, TunnelInfoId, 
+    TunnelTestReportId, TunnelTestFaultId, FaultType, FaultLevel, MessageContent, ReceiveUserId, 
+    BackMemo, Status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tunneltestfaultmessage
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tunneltestfaultmessage
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nhfc99.template.domain.TunneltestfaultmessageDomain" >
+    insert into tunneltestfaultmessage (Id, CreateDate, CreateUserId, 
+      CreateUserName, LastEditDate, ProjectInfoId, 
+      TunnelInfoId, TunnelTestReportId, TunnelTestFaultId, 
+      FaultType, FaultLevel, MessageContent, 
+      ReceiveUserId, BackMemo, Status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{lastEditDate,jdbcType=TIMESTAMP}, #{projectInfoId,jdbcType=VARCHAR}, 
+      #{tunnelInfoId,jdbcType=VARCHAR}, #{tunnelTestReportId,jdbcType=VARCHAR}, #{tunnelTestFaultId,jdbcType=VARCHAR}, 
+      #{faultType,jdbcType=VARCHAR}, #{faultLevel,jdbcType=INTEGER}, #{messageContent,jdbcType=VARCHAR}, 
+      #{receiveUserId,jdbcType=VARCHAR}, #{backMemo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nhfc99.template.domain.TunneltestfaultmessageDomain" >
+    insert into tunneltestfaultmessage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="createDate != null" >
+        CreateDate,
+      </if>
+      <if test="createUserId != null" >
+        CreateUserId,
+      </if>
+      <if test="createUserName != null" >
+        CreateUserName,
+      </if>
+      <if test="lastEditDate != null" >
+        LastEditDate,
+      </if>
+      <if test="projectInfoId != null" >
+        ProjectInfoId,
+      </if>
+      <if test="tunnelInfoId != null" >
+        TunnelInfoId,
+      </if>
+      <if test="tunnelTestReportId != null" >
+        TunnelTestReportId,
+      </if>
+      <if test="tunnelTestFaultId != null" >
+        TunnelTestFaultId,
+      </if>
+      <if test="faultType != null" >
+        FaultType,
+      </if>
+      <if test="faultLevel != null" >
+        FaultLevel,
+      </if>
+      <if test="messageContent != null" >
+        MessageContent,
+      </if>
+      <if test="receiveUserId != null" >
+        ReceiveUserId,
+      </if>
+      <if test="backMemo != null" >
+        BackMemo,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditDate != null" >
+        #{lastEditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectInfoId != null" >
+        #{projectInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelInfoId != null" >
+        #{tunnelInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelTestReportId != null" >
+        #{tunnelTestReportId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelTestFaultId != null" >
+        #{tunnelTestFaultId,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null" >
+        #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevel != null" >
+        #{faultLevel,jdbcType=INTEGER},
+      </if>
+      <if test="messageContent != null" >
+        #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null" >
+        #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="backMemo != null" >
+        #{backMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.TunneltestfaultmessageDomain" >
+    update tunneltestfaultmessage
+    <set >
+      <if test="createDate != null" >
+        CreateDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        CreateUserId = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        CreateUserName = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditDate != null" >
+        LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectInfoId != null" >
+        ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelInfoId != null" >
+        TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelTestReportId != null" >
+        TunnelTestReportId = #{tunnelTestReportId,jdbcType=VARCHAR},
+      </if>
+      <if test="tunnelTestFaultId != null" >
+        TunnelTestFaultId = #{tunnelTestFaultId,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null" >
+        FaultType = #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevel != null" >
+        FaultLevel = #{faultLevel,jdbcType=INTEGER},
+      </if>
+      <if test="messageContent != null" >
+        MessageContent = #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null" >
+        ReceiveUserId = #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="backMemo != null" >
+        BackMemo = #{backMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.TunneltestfaultmessageDomain" >
+    update tunneltestfaultmessage
+    set CreateDate = #{createDate,jdbcType=TIMESTAMP},
+      CreateUserId = #{createUserId,jdbcType=VARCHAR},
+      CreateUserName = #{createUserName,jdbcType=VARCHAR},
+      LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+      ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+      TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+      TunnelTestReportId = #{tunnelTestReportId,jdbcType=VARCHAR},
+      TunnelTestFaultId = #{tunnelTestFaultId,jdbcType=VARCHAR},
+      FaultType = #{faultType,jdbcType=VARCHAR},
+      FaultLevel = #{faultLevel,jdbcType=INTEGER},
+      MessageContent = #{messageContent,jdbcType=VARCHAR},
+      ReceiveUserId = #{receiveUserId,jdbcType=VARCHAR},
+      BackMemo = #{backMemo,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

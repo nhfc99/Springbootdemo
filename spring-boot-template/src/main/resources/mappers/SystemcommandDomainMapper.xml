@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.SystemcommandDomainMapper">
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.SystemcommandDomain">
+        <constructor>
+            <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="value" jdbcType="CHAR" javaType="java.lang.String"/>
+            <arg column="mem" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, value, mem
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from systemcommand
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from systemcommand
+    </select>
+
+    <select id="selectBy" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from systemcommand
+        <where>
+            <if test="id != null ">id=#{id,jdbcType=BIGINT}</if>
+            <if test="value != null and value.length()>0">and value=#{value}</if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from systemcommand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.nhfc99.template.domain.SystemcommandDomain">
+    insert into systemcommand (id, value, mem)
+    values (#{id,jdbcType=BIGINT}, #{value,jdbcType=CHAR}, #{mem,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.template.domain.SystemcommandDomain" useGeneratedKeys="true" keyProperty="id">
+        insert into systemcommand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+            <if test="mem != null">
+                mem,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=CHAR},
+            </if>
+            <if test="mem != null">
+                #{mem,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.SystemcommandDomain">
+        update systemcommand
+        <set>
+            <if test="value != null">
+                value = #{value,jdbcType=CHAR},
+            </if>
+            <if test="mem != null">
+                mem = #{mem,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.SystemcommandDomain">
+    update systemcommand
+    set value = #{value,jdbcType=CHAR},
+      mem = #{mem,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

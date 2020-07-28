@@ -1,39 +1,44 @@
 package com.nhfc99.template.publish;
 
-import com.nhfc99.template.component.quartz.QuartzManager;
-import org.quartz.SchedulerException;
+import com.nhfc99.template.service.SecondService;
+import com.nhfc99.template.utils.JSONResult;
+import com.nhfc99.template.vo.SecondProgramInfoVo;
+import com.nhfc99.template.vo.SecondTestingBaseVo;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/nhfc99/publish/second")
+@Api(tags = "2屏接口模块")
+@RequestMapping("/api/second")
 public class SecondController {
-    @Autowired
-    IndexController indexController;
 
     @Autowired
-    QuartzManager quartzManager;
+    SecondService secondService;
 
-    @GetMapping("/list")
+    @ApiOperation("当前data指定项目部的数据信息")
+    @GetMapping("/programInfo")
     @ResponseBody
-    public String initView() {
-        return "list成功了";
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "data", dataType = "String", paramType = "query", required = false, value = "项目名称")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 0, message = "正常返回数据 SecondProgramInfoVo", response = SecondProgramInfoVo.class)
+    })
+    public Object getProgramInfo(@RequestParam("data") String data) {
+        if (data.length() == 0) {
+            return JSONResult.failed("请输入项目名称");
+        }
+        return secondService.getProgramInfo(data);
     }
 
-    @GetMapping("/startscheduler")
+    @ApiOperation("检测基地基础信息")
+    @GetMapping("/testingBase")
     @ResponseBody
-    public Object startScheduler() throws SchedulerException {
-        quartzManager.testScheduler1();
-        return "开启了";
-    }
-
-    @GetMapping("/stopscheduler")
-    @ResponseBody
-    public Object stopSchedule() throws SchedulerException {
-        quartzManager.stopSchedule1();
-        return "全部关闭了";
+    @ApiResponses({
+            @ApiResponse(code = 0, message = "正常返回数据 SecondTestingBaseVo", response = SecondTestingBaseVo.class)
+    })
+    public SecondTestingBaseVo getTestingBase() {
+        return secondService.getTestingBase();
     }
 }

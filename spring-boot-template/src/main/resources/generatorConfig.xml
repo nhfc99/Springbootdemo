@@ -15,10 +15,17 @@
         <!-- 生成的pojo，将implements Serializable -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 
-        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-        <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="true"/>
+        <!--        &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+        <!--        <commentGenerator>-->
+        <!--            &lt;!&ndash; 不生成时间戳 &ndash;&gt;-->
+        <!--            <property name="suppressDate" value="true" />-->
+        <!--            &lt;!&ndash; 生成注解 &ndash;&gt;-->
+        <!--            <property name="suppressAllComments" value="true" />-->
+        <!--&lt;!&ndash;             注解采用数据库的标注，suppressAllComments 必须设置为 false 才会生效&ndash;&gt;-->
+        <!--            <property name="addRemarkComments" value="true" />-->
+        <!--        </commentGenerator>-->
+
+        <commentGenerator type="com.nhfc99.template.config.MyCommentGenerator">
         </commentGenerator>
 
         <!--jdbc的数据库连接 -->
@@ -56,7 +63,7 @@
         <!--配置Mapper文件-->
         <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
         <sqlMapGenerator targetPackage="mappers"
-                         targetProject="${jdbc.output}">
+                         targetProject="${jdbc.resourceoutput}">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
@@ -68,18 +75,259 @@
 
         <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
         <!--tableName表名、domainObjectName对应的domain的文件名、其他的为案例-->
-        <table tableName="repair_educationdev" domainObjectName="RepairEducationdevDO"
+        <!--
+        <table tableName="tunnelfixcrackdetail" domainObjectName="TunnelfixcrackdetailDomain"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
         </table>
 
-        <table tableName="repair_apply" domainObjectName="RepairApplyDO"
+        <table tableName="tunnelfixfault" domainObjectName="TunnelfixfaultDomain"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
         </table>
+
+        <table tableName="tunnelfixreport" domainObjectName="TunnelfixreportDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="tunnelinfo" domainObjectName="TunnelinfoDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="tunneltestfault" domainObjectName="TunneltestfaultDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="tunneltestfaultmessage" domainObjectName="TunneltestfaultmessageDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="tunneltestlinedetail" domainObjectName="TunneltestlinedetailDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="tunneltestreport" domainObjectName="TunneltestreportDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="projectarea" domainObjectName="ProjectareaDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="attachfile" domainObjectName="AttachfileDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="checkhistory" domainObjectName="CheckhistoryDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="newsclass" domainObjectName="NewsclassDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="newsdetail" domainObjectName="NewsdetailDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="projectinfo" domainObjectName="ProjectinfoDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+
+        <table tableName="syslog" domainObjectName="SyslogDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="sysmodule" domainObjectName="SysmoduleDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="sysmodulebutton" domainObjectName="SysmodulebuttonDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="sysrole" domainObjectName="SysroleDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="sysroleauthorize" domainObjectName="SysroleauthorizeDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="sysuser" domainObjectName="SysuserDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrareas" domainObjectName="VrareasDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrequipments" domainObjectName="VrequipmentsDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrhonours" domainObjectName="VrhonoursDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrkeyworks" domainObjectName="VrkeyworksDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrstaff" domainObjectName="VrstaffDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrtestcenterbaseinfo" domainObjectName="VrtestcenterbaseinfoDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="vrprojectcoordinate" domainObjectName="VrprojectcoordinateDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="HomeQualityStatisticsAllArea" domainObjectName="HomeQualityStatisticsAllAreaDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="messageuser" domainObjectName="MessageUserDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="deviceipinfo" domainObjectName="DeviceipinfoDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="voicecommand" domainObjectName="VoicecommandDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="systemcommand" domainObjectName="SystemcommandDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="areaprojecttunnelinfotestfault" domainObjectName="AreaprojectTunnelinfoTestfaultDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="testlinelengthgroupby" domainObjectName="TestlinelengthgroupbyDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+        <table tableName="testingbase" domainObjectName="TestingbaseDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        -->
+        <table tableName="tunneltestfaultfixport" domainObjectName="TunneltestfaultfixportDomain"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
     </context>
 </generatorConfiguration>

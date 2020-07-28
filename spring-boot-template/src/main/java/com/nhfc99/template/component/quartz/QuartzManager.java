@@ -15,7 +15,7 @@ import java.util.Set;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-@Component
+//@Component
 @Transactional(rollbackFor = Exception.class)
 public class QuartzManager {
 

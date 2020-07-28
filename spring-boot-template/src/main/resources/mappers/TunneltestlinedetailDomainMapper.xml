@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nhfc99.template.dao.TunneltestlinedetailDomainMapper">
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.domain.TunneltestlinedetailDomain">
+        <constructor>
+            <idArg column="Id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CreateDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="CreateUserId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CreateUserName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="LastEditDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="ProjectInfoId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TunnelInfoId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TunnelTestReportId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TestLineType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TestPosition" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="StartKilometre" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="StartMetre" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="EndKilometre" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="EndMetre" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="TestLineLength" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    Id, CreateDate, CreateUserId, CreateUserName, LastEditDate, ProjectInfoId, TunnelInfoId, 
+    TunnelTestReportId, TestLineType, TestPosition, StartKilometre, StartMetre, EndKilometre, 
+    EndMetre, TestLineLength
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tunneltestlinedetail
+        where Id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectBy" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tunneltestlinedetail
+        <where>
+            <if test="projectInfoId != null">
+                projectInfoId=#{projectInfoId,jdbcType=VARCHAR}
+            </if>
+            <if test="tunnelInfoId != null">
+                and tunnelInfoId=#{tunnelInfoId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tunneltestlinedetail
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.nhfc99.template.domain.TunneltestlinedetailDomain">
+    insert into tunneltestlinedetail (Id, CreateDate, CreateUserId, 
+      CreateUserName, LastEditDate, ProjectInfoId, 
+      TunnelInfoId, TunnelTestReportId, TestLineType, 
+      TestPosition, StartKilometre, StartMetre, 
+      EndKilometre, EndMetre, TestLineLength
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{lastEditDate,jdbcType=TIMESTAMP}, #{projectInfoId,jdbcType=VARCHAR}, 
+      #{tunnelInfoId,jdbcType=VARCHAR}, #{tunnelTestReportId,jdbcType=VARCHAR}, #{testLineType,jdbcType=VARCHAR}, 
+      #{testPosition,jdbcType=VARCHAR}, #{startKilometre,jdbcType=INTEGER}, #{startMetre,jdbcType=DECIMAL}, 
+      #{endKilometre,jdbcType=INTEGER}, #{endMetre,jdbcType=DECIMAL}, #{testLineLength,jdbcType=DECIMAL}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.nhfc99.template.domain.TunneltestlinedetailDomain">
+        insert into tunneltestlinedetail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="createDate != null">
+                CreateDate,
+            </if>
+            <if test="createUserId != null">
+                CreateUserId,
+            </if>
+            <if test="createUserName != null">
+                CreateUserName,
+            </if>
+            <if test="lastEditDate != null">
+                LastEditDate,
+            </if>
+            <if test="projectInfoId != null">
+                ProjectInfoId,
+            </if>
+            <if test="tunnelInfoId != null">
+                TunnelInfoId,
+            </if>
+            <if test="tunnelTestReportId != null">
+                TunnelTestReportId,
+            </if>
+            <if test="testLineType != null">
+                TestLineType,
+            </if>
+            <if test="testPosition != null">
+                TestPosition,
+            </if>
+            <if test="startKilometre != null">
+                StartKilometre,
+            </if>
+            <if test="startMetre != null">
+                StartMetre,
+            </if>
+            <if test="endKilometre != null">
+                EndKilometre,
+            </if>
+            <if test="endMetre != null">
+                EndMetre,
+            </if>
+            <if test="testLineLength != null">
+                TestLineLength,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserName != null">
+                #{createUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastEditDate != null">
+                #{lastEditDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="projectInfoId != null">
+                #{projectInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelInfoId != null">
+                #{tunnelInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelTestReportId != null">
+                #{tunnelTestReportId,jdbcType=VARCHAR},
+            </if>
+            <if test="testLineType != null">
+                #{testLineType,jdbcType=VARCHAR},
+            </if>
+            <if test="testPosition != null">
+                #{testPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="startKilometre != null">
+                #{startKilometre,jdbcType=INTEGER},
+            </if>
+            <if test="startMetre != null">
+                #{startMetre,jdbcType=DECIMAL},
+            </if>
+            <if test="endKilometre != null">
+                #{endKilometre,jdbcType=INTEGER},
+            </if>
+            <if test="endMetre != null">
+                #{endMetre,jdbcType=DECIMAL},
+            </if>
+            <if test="testLineLength != null">
+                #{testLineLength,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nhfc99.template.domain.TunneltestlinedetailDomain">
+        update tunneltestlinedetail
+        <set>
+            <if test="createDate != null">
+                CreateDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                CreateUserId = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserName != null">
+                CreateUserName = #{createUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastEditDate != null">
+                LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="projectInfoId != null">
+                ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelInfoId != null">
+                TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="tunnelTestReportId != null">
+                TunnelTestReportId = #{tunnelTestReportId,jdbcType=VARCHAR},
+            </if>
+            <if test="testLineType != null">
+                TestLineType = #{testLineType,jdbcType=VARCHAR},
+            </if>
+            <if test="testPosition != null">
+                TestPosition = #{testPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="startKilometre != null">
+                StartKilometre = #{startKilometre,jdbcType=INTEGER},
+            </if>
+            <if test="startMetre != null">
+                StartMetre = #{startMetre,jdbcType=DECIMAL},
+            </if>
+            <if test="endKilometre != null">
+                EndKilometre = #{endKilometre,jdbcType=INTEGER},
+            </if>
+            <if test="endMetre != null">
+                EndMetre = #{endMetre,jdbcType=DECIMAL},
+            </if>
+            <if test="testLineLength != null">
+                TestLineLength = #{testLineLength,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nhfc99.template.domain.TunneltestlinedetailDomain">
+    update tunneltestlinedetail
+    set CreateDate = #{createDate,jdbcType=TIMESTAMP},
+      CreateUserId = #{createUserId,jdbcType=VARCHAR},
+      CreateUserName = #{createUserName,jdbcType=VARCHAR},
+      LastEditDate = #{lastEditDate,jdbcType=TIMESTAMP},
+      ProjectInfoId = #{projectInfoId,jdbcType=VARCHAR},
+      TunnelInfoId = #{tunnelInfoId,jdbcType=VARCHAR},
+      TunnelTestReportId = #{tunnelTestReportId,jdbcType=VARCHAR},
+      TestLineType = #{testLineType,jdbcType=VARCHAR},
+      TestPosition = #{testPosition,jdbcType=VARCHAR},
+      StartKilometre = #{startKilometre,jdbcType=INTEGER},
+      StartMetre = #{startMetre,jdbcType=DECIMAL},
+      EndKilometre = #{endKilometre,jdbcType=INTEGER},
+      EndMetre = #{endMetre,jdbcType=DECIMAL},
+      TestLineLength = #{testLineLength,jdbcType=DECIMAL}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
