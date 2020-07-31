@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nhfc99.template.modules.user.mapper.SysCompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.nhfc99.template.modules.user.entity.SysCompany">
+                <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="address" property="address"/>
+            <result column="telphone" property="telphone"/>
+            <result column="contacts" property="contacts"/>
+            <result column="province" property="province"/>
+            <result column="city" property="city"/>
+            <result column="zone" property="zone"/>
+            <result column="postcode" property="postcode"/>
+            <result column="mem" property="mem"/>
+    </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, name, address, telphone, contacts, province, city, zone, postcode, mem
+        </sql>
+
+</mapper>

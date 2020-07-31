@@ -1,6 +1,5 @@
 package com.nhfc99;
 
-import com.nhfc99.template.component.SocketServer.NettyServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -17,6 +16,6 @@ public class TemplateApplication {
         SpringApplication.run(TemplateApplication.class, args);
 
         //启动Socker Server
-        new NettyServer().run();
+//        new NettyServer().run();
     }
 }
