@@ -1,23 +1,23 @@
-2020-07-31 10:18:18.851  INFO 3797 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 3797 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 10:18:18.862  INFO 3797 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 10:18:18.895  INFO 3797 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 10:18:18.896  INFO 3797 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 10:18:19.757  INFO 3797 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 10:18:19.760  INFO 3797 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 10:18:19.786  INFO 3797 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 repository interfaces.
-2020-07-31 10:18:20.097  INFO 3797 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:18:20.191  INFO 3797 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$5f27ce4b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:18:20.449  INFO 3797 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 10:18:20.457  INFO 3797 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 10:18:20.457  INFO 3797 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 10:18:20.641  INFO 3797 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 10:18:20.647  INFO 3797 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 10:18:20.647  INFO 3797 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1751 ms
-2020-07-31 10:18:20.766  INFO 3797 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 10:18:20.774  INFO 3797 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 10:18:20.775  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 10:18:20.775  INFO 3797 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 10:18:20.776  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2020-07-31 17:29:38.347  INFO 10302 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 10302 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
+2020-07-31 17:29:38.349  INFO 10302 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
+2020-07-31 17:29:38.389  INFO 10302 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-31 17:29:38.389  INFO 10302 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-31 17:29:39.194  INFO 10302 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-31 17:29:39.196  INFO 10302 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-07-31 17:29:39.217  INFO 10302 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+2020-07-31 17:29:39.519  INFO 10302 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 17:29:39.610  INFO 10302 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$ae576eac] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 17:29:39.850  INFO 10302 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2020-07-31 17:29:39.857  INFO 10302 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-31 17:29:39.858  INFO 10302 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-07-31 17:29:40.043  INFO 10302 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-07-31 17:29:40.049  INFO 10302 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-31 17:29:40.049  INFO 10302 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1660 ms
+2020-07-31 17:29:40.156  INFO 10302 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2020-07-31 17:29:40.171  INFO 10302 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2020-07-31 17:29:40.172  INFO 10302 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
+2020-07-31 17:29:40.172  INFO 10302 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2020-07-31 17:29:40.173  INFO 10302 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -25,60 +25,49 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2020-07-31 10:18:20.776  INFO 3797 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 10:18:20.776  INFO 3797 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 10:18:20.776  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5ed2aee1
-2020-07-31 10:18:20.995  WARN 3797 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSocketServer': Unsatisfied dependency expressed through field 'allSocketService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'allSocketService': Unsatisfied dependency expressed through field 'socketClient'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2020-07-31 10:18:21.017  INFO 3797 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
-2020-07-31 10:18:21.018  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2020-07-31 10:18:21.018  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 10:18:21.019  INFO 3797 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2020-07-31 10:18:21.153  INFO 3797 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2020-07-31 10:18:21.161  WARN 3797 --- [restartedMain] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@11.0.5/java.lang.Object.wait(Native Method)
- java.base@11.0.5/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
- app//com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
-2020-07-31 10:18:21.167  INFO 3797 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-07-31 10:18:21.661 ERROR 3797 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field socketClient in com.nhfc99.template.service.AllSocketService required a bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' in your configuration.
-
-2020-07-31 10:39:43.393  INFO 5248 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 5248 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 10:39:43.395  INFO 5248 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 10:39:43.426  INFO 5248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 10:39:43.426  INFO 5248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 10:39:44.158  INFO 5248 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 10:39:44.159  INFO 5248 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 10:39:44.193  INFO 5248 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20ms. Found 0 repository interfaces.
-2020-07-31 10:39:44.579  INFO 5248 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:39:44.650  INFO 5248 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$a88f820c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:39:44.882  INFO 5248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 10:39:44.888  INFO 5248 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 10:39:44.888  INFO 5248 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 10:39:45.057  INFO 5248 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 10:39:45.063  INFO 5248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 10:39:45.063  INFO 5248 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1637 ms
-2020-07-31 10:39:45.168  INFO 5248 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 10:39:45.174  INFO 5248 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 10:39:45.175  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 10:39:45.176  INFO 5248 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 10:39:45.176  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2020-07-31 17:29:40.173  INFO 10302 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2020-07-31 17:29:40.173  INFO 10302 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
+2020-07-31 17:29:40.173  INFO 10302 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@33a7e3d0
+2020-07-31 17:29:40.933  INFO 10302 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-07-31 17:29:40.957  WARN 10302 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2020-07-31 17:29:41.106  INFO 10302 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-31 17:29:41.690  INFO 10302 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-07-31 17:29:41.703  INFO 10302 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-07-31 17:29:41.715  INFO 10302 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-07-31 17:29:41.892  INFO 10302 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2020-07-31 17:29:41.892  INFO 10302 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2020-07-31 17:29:41.922  INFO 10302 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2020-07-31 17:29:41.925  INFO 10302 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.86 seconds (JVM running for 4.561)
+2020-07-31 17:29:51.630  INFO 10302 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-31 17:29:51.631  INFO 10302 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-31 17:29:51.639  INFO 10302 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-07-31 17:41:32.056  INFO 10302 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 17:41:32.078  INFO 10302 --- [SpringContextShutdownHook] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2020-07-31 17:41:32.078  INFO 10302 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2020-07-31 17:41:32.078  INFO 10302 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 17:41:32.079  INFO 10302 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2020-07-31 18:37:45.141  INFO 2349 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on localhost with PID 2349 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
+2020-07-31 18:37:45.143  INFO 2349 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
+2020-07-31 18:37:45.176  INFO 2349 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-31 18:37:45.176  INFO 2349 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-31 18:37:45.796  INFO 2349 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-31 18:37:45.798  INFO 2349 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-07-31 18:37:45.815  INFO 2349 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+2020-07-31 18:37:45.913  WARN 2349 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysCompanyMapper' and 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' mapperInterface. Bean already defined with the same name!
+2020-07-31 18:37:45.914  WARN 2349 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.nhfc99]' package. Please check your configuration.
+2020-07-31 18:37:46.118  INFO 2349 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:37:46.195  INFO 2349 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$6520a87d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:37:46.434  INFO 2349 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2020-07-31 18:37:46.440  INFO 2349 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-31 18:37:46.441  INFO 2349 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-07-31 18:37:46.615  INFO 2349 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-07-31 18:37:46.621  INFO 2349 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-31 18:37:46.621  INFO 2349 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1445 ms
+2020-07-31 18:37:46.717  INFO 2349 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2020-07-31 18:37:46.724  INFO 2349 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2020-07-31 18:37:46.725  INFO 2349 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
+2020-07-31 18:37:46.726  INFO 2349 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2020-07-31 18:37:46.726  INFO 2349 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -86,61 +75,49 @@ Consider defining a bean of type 'com.nhfc99.template.component.SocketClient.Soc
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2020-07-31 10:39:45.177  INFO 5248 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 10:39:45.177  INFO 5248 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 10:39:45.178  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@751ab4a2
-2020-07-31 10:39:45.345  WARN 5248 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSocketServer': Unsatisfied dependency expressed through field 'allSocketService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'allSocketService': Unsatisfied dependency expressed through field 'socketClient'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2020-07-31 10:39:45.372  INFO 5248 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
-2020-07-31 10:39:45.372  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2020-07-31 10:39:45.372  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 10:39:45.372  INFO 5248 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2020-07-31 10:39:45.374  INFO 5248 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2020-07-31 10:39:45.387  WARN 5248 --- [restartedMain] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@11.0.5/java.lang.Object.wait(Native Method)
- java.base@11.0.5/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
- app//com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
-2020-07-31 10:39:45.393  INFO 5248 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-07-31 10:39:45.893 ERROR 5248 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field socketClient in com.nhfc99.template.service.AllSocketService required a bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'com.nhfc99.template.component.SocketClient.SocketClient' in your configuration.
-
-2020-07-31 10:43:25.836  INFO 5509 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 5509 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 10:43:25.839  INFO 5509 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 10:43:25.896  INFO 5509 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 10:43:25.896  INFO 5509 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 10:43:26.520  WARN 5509 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.nhfc99]' package. Please check your configuration.
-2020-07-31 10:43:26.574  INFO 5509 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 10:43:26.575  INFO 5509 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 10:43:26.592  INFO 5509 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
-2020-07-31 10:43:26.854  INFO 5509 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:43:26.929  INFO 5509 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$fb7dbe9d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:43:27.147  INFO 5509 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 10:43:27.153  INFO 5509 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 10:43:27.153  INFO 5509 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 10:43:27.315  INFO 5509 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 10:43:27.321  INFO 5509 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 10:43:27.322  INFO 5509 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1426 ms
-2020-07-31 10:43:27.423  INFO 5509 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 10:43:27.431  INFO 5509 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 10:43:27.432  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 10:43:27.432  INFO 5509 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 10:43:27.433  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2020-07-31 18:37:46.727  INFO 2349 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2020-07-31 18:37:46.727  INFO 2349 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
+2020-07-31 18:37:46.727  INFO 2349 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@22bcd8d5
+2020-07-31 18:37:47.412  INFO 2349 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-07-31 18:37:47.433  WARN 2349 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2020-07-31 18:37:47.549  INFO 2349 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-31 18:37:48.132  INFO 2349 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-07-31 18:37:48.140  INFO 2349 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-07-31 18:37:48.151  INFO 2349 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-07-31 18:37:48.247  INFO 2349 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2020-07-31 18:37:48.247  INFO 2349 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2020-07-31 18:37:48.270  INFO 2349 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2020-07-31 18:37:48.273  INFO 2349 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.364 seconds (JVM running for 4.58)
+2020-07-31 18:38:00.747  INFO 2349 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-31 18:38:00.748  INFO 2349 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-31 18:38:00.755  INFO 2349 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-07-31 18:39:50.143  INFO 2349 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 18:39:50.161  INFO 2349 --- [SpringContextShutdownHook] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2020-07-31 18:39:50.162  INFO 2349 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2020-07-31 18:39:50.162  INFO 2349 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 18:39:50.162  INFO 2349 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2020-07-31 18:40:34.629  INFO 2567 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on localhost with PID 2567 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
+2020-07-31 18:40:34.631  INFO 2567 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
+2020-07-31 18:40:34.677  INFO 2567 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-31 18:40:34.677  INFO 2567 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-31 18:40:35.274  INFO 2567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-31 18:40:35.276  INFO 2567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-07-31 18:40:35.293  INFO 2567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+2020-07-31 18:40:35.383  WARN 2567 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysCompanyMapper' and 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' mapperInterface. Bean already defined with the same name!
+2020-07-31 18:40:35.383  WARN 2567 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.nhfc99]' package. Please check your configuration.
+2020-07-31 18:40:35.571  INFO 2567 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:40:35.651  INFO 2567 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$8ca15ebd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:40:35.883  INFO 2567 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2020-07-31 18:40:35.889  INFO 2567 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-31 18:40:35.890  INFO 2567 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-07-31 18:40:36.050  INFO 2567 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-07-31 18:40:36.055  INFO 2567 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-31 18:40:36.056  INFO 2567 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1379 ms
+2020-07-31 18:40:36.140  INFO 2567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2020-07-31 18:40:36.148  INFO 2567 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2020-07-31 18:40:36.150  INFO 2567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
+2020-07-31 18:40:36.150  INFO 2567 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2020-07-31 18:40:36.150  INFO 2567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -148,57 +125,49 @@ Consider defining a bean of type 'com.nhfc99.template.component.SocketClient.Soc
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2020-07-31 10:43:27.433  INFO 5509 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 10:43:27.433  INFO 5509 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 10:43:27.433  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@24e1c8bd
-2020-07-31 10:43:27.660  WARN 5509 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysCompanyController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysCompanyServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup="", name="", description="", authenticationType=CONTAINER, type=java.lang.Object.class, mappedName="")}
-2020-07-31 10:43:27.669  INFO 5509 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
-2020-07-31 10:43:27.670  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2020-07-31 10:43:27.670  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 10:43:27.671  INFO 5509 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2020-07-31 10:43:27.673  INFO 5509 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2020-07-31 10:43:27.684  WARN 5509 --- [restartedMain] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@11.0.5/java.lang.Object.wait(Native Method)
- java.base@11.0.5/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
- app//com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
-2020-07-31 10:43:27.690  INFO 5509 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-07-31 10:43:27.832 ERROR 5509 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-A component required a bean of type 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' in your configuration.
-
-2020-07-31 10:44:33.808  INFO 5567 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 5567 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 10:44:33.810  INFO 5567 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 10:44:33.839  INFO 5567 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 10:44:33.840  INFO 5567 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 10:44:34.506  INFO 5567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 10:44:34.507  INFO 5567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 10:44:34.525  INFO 5567 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
-2020-07-31 10:44:34.780  INFO 5567 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:44:34.851  INFO 5567 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$dd889b86] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:44:35.068  INFO 5567 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 10:44:35.074  INFO 5567 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 10:44:35.074  INFO 5567 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 10:44:35.235  INFO 5567 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 10:44:35.241  INFO 5567 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 10:44:35.241  INFO 5567 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1401 ms
-2020-07-31 10:44:35.329  INFO 5567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 10:44:35.336  INFO 5567 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 10:44:35.337  INFO 5567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 10:44:35.337  INFO 5567 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 10:44:35.338  INFO 5567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2020-07-31 18:40:36.151  INFO 2567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2020-07-31 18:40:36.151  INFO 2567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
+2020-07-31 18:40:36.151  INFO 2567 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3e11356
+2020-07-31 18:40:36.832  INFO 2567 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-07-31 18:40:36.852  WARN 2567 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2020-07-31 18:40:36.966  INFO 2567 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-31 18:40:37.514  INFO 2567 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-07-31 18:40:37.523  INFO 2567 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-07-31 18:40:37.533  INFO 2567 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-07-31 18:40:37.626  INFO 2567 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2020-07-31 18:40:37.626  INFO 2567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2020-07-31 18:40:37.649  INFO 2567 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2020-07-31 18:40:37.652  INFO 2567 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.318 seconds (JVM running for 4.012)
+2020-07-31 18:40:40.402  INFO 2567 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-31 18:40:40.402  INFO 2567 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-31 18:40:40.408  INFO 2567 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-07-31 18:43:27.604  INFO 2567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 18:43:27.620  INFO 2567 --- [SpringContextShutdownHook] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2020-07-31 18:43:27.621  INFO 2567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2020-07-31 18:43:27.621  INFO 2567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2020-07-31 18:43:27.621  INFO 2567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2020-07-31 18:43:31.365  INFO 2723 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on localhost with PID 2723 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
+2020-07-31 18:43:31.367  INFO 2723 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: dev
+2020-07-31 18:43:31.404  INFO 2723 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-31 18:43:31.404  INFO 2723 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-31 18:43:32.021  INFO 2723 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-31 18:43:32.023  INFO 2723 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-07-31 18:43:32.040  INFO 2723 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
+2020-07-31 18:43:32.131  WARN 2723 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysCompanyMapper' and 'com.nhfc99.template.modules.user.mapper.SysCompanyMapper' mapperInterface. Bean already defined with the same name!
+2020-07-31 18:43:32.131  WARN 2723 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.nhfc99]' package. Please check your configuration.
+2020-07-31 18:43:32.320  INFO 2723 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:43:32.392  INFO 2723 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$5da84744] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-31 18:43:32.608  INFO 2723 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2020-07-31 18:43:32.614  INFO 2723 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-31 18:43:32.614  INFO 2723 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-07-31 18:43:32.776  INFO 2723 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-07-31 18:43:32.782  INFO 2723 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-31 18:43:32.782  INFO 2723 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1377 ms
+2020-07-31 18:43:32.872  INFO 2723 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2020-07-31 18:43:32.878  INFO 2723 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2020-07-31 18:43:32.880  INFO 2723 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
+2020-07-31 18:43:32.880  INFO 2723 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2020-07-31 18:43:32.881  INFO 2723 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -206,112 +175,19 @@ Consider defining a bean of type 'com.nhfc99.template.modules.user.mapper.SysCom
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2020-07-31 10:44:35.338  INFO 5567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 10:44:35.338  INFO 5567 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 10:44:35.338  INFO 5567 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4c66908d
-2020-07-31 10:44:36.044  INFO 5567 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-07-31 10:44:36.069  WARN 5567 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2020-07-31 10:44:36.223  INFO 5567 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-07-31 10:44:36.779  INFO 5567 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-07-31 10:44:36.791  INFO 5567 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-07-31 10:44:36.803  INFO 5567 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-07-31 10:44:36.977  INFO 5567 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
-2020-07-31 10:44:36.977  INFO 5567 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2020-07-31 10:44:37.007  INFO 5567 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
-2020-07-31 10:44:37.010  INFO 5567 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.413 seconds (JVM running for 4.056)
-2020-07-31 10:44:41.390  INFO 5567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 10:44:41.407  INFO 5567 --- [SpringContextShutdownHook] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
-2020-07-31 10:44:41.407  INFO 5567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2020-07-31 10:44:41.407  INFO 5567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 10:44:41.407  INFO 5567 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2020-07-31 10:57:01.853  INFO 6243 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 6243 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 10:57:01.854  INFO 6243 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 10:57:01.883  INFO 6243 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 10:57:01.883  INFO 6243 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 10:57:02.518  INFO 6243 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 10:57:02.520  INFO 6243 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 10:57:02.542  INFO 6243 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 0 repository interfaces.
-2020-07-31 10:57:02.819  INFO 6243 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:57:02.889  INFO 6243 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$1a171b10] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 10:57:03.103  INFO 6243 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 10:57:03.110  INFO 6243 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 10:57:03.110  INFO 6243 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 10:57:03.274  INFO 6243 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 10:57:03.280  INFO 6243 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 10:57:03.280  INFO 6243 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1397 ms
-2020-07-31 10:57:03.370  INFO 6243 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 10:57:03.376  INFO 6243 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 10:57:03.378  INFO 6243 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 10:57:03.378  INFO 6243 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 10:57:03.378  INFO 6243 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
-  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
-  NOT STARTED.
-  Currently in standby mode.
-  Number of jobs executed: 0
-  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
-  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
-
-2020-07-31 10:57:03.378  INFO 6243 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 10:57:03.378  INFO 6243 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 10:57:03.379  INFO 6243 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3c4263df
-2020-07-31 10:57:04.009  INFO 6243 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-07-31 10:57:04.029  WARN 6243 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2020-07-31 10:57:04.144  INFO 6243 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-07-31 10:57:04.650  INFO 6243 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-07-31 10:57:04.659  INFO 6243 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-07-31 10:57:04.669  INFO 6243 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-07-31 10:57:04.830  INFO 6243 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
-2020-07-31 10:57:04.830  INFO 6243 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2020-07-31 10:57:04.853  INFO 6243 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
-2020-07-31 10:57:04.858  INFO 6243 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.217 seconds (JVM running for 3.8)
-2020-07-31 10:57:30.355  INFO 6243 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-31 10:57:30.355  INFO 6243 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-07-31 10:57:30.363  INFO 6243 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-2020-07-31 11:11:06.289  INFO 6243 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 11:11:06.306  INFO 6243 --- [SpringContextShutdownHook] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
-2020-07-31 11:11:06.306  INFO 6243 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2020-07-31 11:11:06.306  INFO 6243 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2020-07-31 11:11:06.307  INFO 6243 --- [SpringContextShutdownHook] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2020-07-31 11:40:12.204  INFO 8437 --- [restartedMain] com.nhfc99.TemplateApplication           : Starting TemplateApplication on niuhongfeideMac-mini.local with PID 8437 (/Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template/target/classes started by nhf in /Users/nhf/Documents/GitHub/Springbootdemo/spring-boot-template)
-2020-07-31 11:40:12.206  INFO 8437 --- [restartedMain] com.nhfc99.TemplateApplication           : The following profiles are active: prod
-2020-07-31 11:40:12.247  INFO 8437 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-31 11:40:12.247  INFO 8437 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-31 11:40:12.994  INFO 8437 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-07-31 11:40:12.996  INFO 8437 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-07-31 11:40:13.017  INFO 8437 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10ms. Found 0 repository interfaces.
-2020-07-31 11:40:13.304  INFO 8437 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 11:40:13.397  INFO 8437 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.nhfc99.template.component.redis.RedisConfig$$EnhancerBySpringCGLIB$$adcd155] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 11:40:13.646  INFO 8437 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
-2020-07-31 11:40:13.654  INFO 8437 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-31 11:40:13.654  INFO 8437 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-31 11:40:13.831  INFO 8437 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2020-07-31 11:40:13.837  INFO 8437 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-31 11:40:13.838  INFO 8437 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1590 ms
-2020-07-31 11:40:13.940  INFO 8437 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2020-07-31 11:40:13.950  INFO 8437 --- [restartedMain] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2020-07-31 11:40:13.951  INFO 8437 --- [restartedMain] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.2.1 created.
-2020-07-31 11:40:13.951  INFO 8437 --- [restartedMain] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2020-07-31 11:40:13.952  INFO 8437 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.2.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
-  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
-  NOT STARTED.
-  Currently in standby mode.
-  Number of jobs executed: 0
-  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
-  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
-
-2020-07-31 11:40:13.952  INFO 8437 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2020-07-31 11:40:13.952  INFO 8437 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
-2020-07-31 11:40:13.952  INFO 8437 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@51053f98
-2020-07-31 11:40:14.663  INFO 8437 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-07-31 11:40:14.688  WARN 8437 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2020-07-31 11:40:14.818  INFO 8437 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-07-31 11:40:15.394  INFO 8437 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-07-31 11:40:15.408  INFO 8437 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-07-31 11:40:15.421  INFO 8437 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-07-31 11:40:15.631  INFO 8437 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
-2020-07-31 11:40:15.631  INFO 8437 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2020-07-31 11:40:15.658  INFO 8437 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
-2020-07-31 11:40:15.662  INFO 8437 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.701 seconds (JVM running for 4.372)
-2020-07-31 11:40:22.007  INFO 8437 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-31 11:40:22.007  INFO 8437 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-07-31 11:40:22.015  INFO 8437 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-07-31 18:43:32.881  INFO 2723 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2020-07-31 18:43:32.881  INFO 2723 --- [restartedMain] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.2.1
+2020-07-31 18:43:32.881  INFO 2723 --- [restartedMain] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@621c1a71
+2020-07-31 18:43:33.587  INFO 2723 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-07-31 18:43:33.607  WARN 2723 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2020-07-31 18:43:33.721  INFO 2723 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-31 18:43:34.295  INFO 2723 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-07-31 18:43:34.304  INFO 2723 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-07-31 18:43:34.314  INFO 2723 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-07-31 18:43:34.408  INFO 2723 --- [restartedMain] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2020-07-31 18:43:34.409  INFO 2723 --- [restartedMain] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2020-07-31 18:43:34.432  INFO 2723 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2020-07-31 18:43:34.435  INFO 2723 --- [restartedMain] com.nhfc99.TemplateApplication           : Started TemplateApplication in 3.316 seconds (JVM running for 3.939)
+2020-07-31 18:43:37.131  INFO 2723 --- [http-nio-8899-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-31 18:43:37.131  INFO 2723 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-31 18:43:37.141  INFO 2723 --- [http-nio-8899-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms

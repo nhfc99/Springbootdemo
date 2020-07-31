@@ -1,8 +1,8 @@
 package com.nhfc99.template.modules.user.entity;
 
+import com.nhfc99.template.modules.Base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,11 +20,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @since 2020-07-31
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("sys_company")
 @ApiModel(value="SysCompany", description="公司信息")
-public class SysCompany implements Serializable {
+public class SysCompany extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

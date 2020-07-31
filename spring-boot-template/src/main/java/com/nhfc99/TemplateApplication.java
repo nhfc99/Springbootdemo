@@ -14,8 +14,5 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class TemplateApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TemplateApplication.class, args);
-
-        //启动Socker Server
-//        new NettyServer().run();
     }
 }

@@ -1,8 +1,11 @@
 package com.nhfc99.template.modules.user.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.nhfc99.template.modules.Base.BaseController;
 import com.nhfc99.template.utils.JSONResult;
 import com.nhfc99.template.utils.PageUtils;
+import com.nhfc99.template.utils.ToolUtils;
+import com.nhfc99.template.vo.RequestPageVo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,8 @@ import com.nhfc99.template.modules.user.entity.SysCompany;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <p>
  * 公司信息
@@ -32,7 +37,8 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "公司信息服务")
 @RestController
 @RequestMapping("/api/user/sysCompany")
-public class SysCompanyController {
+
+public class SysCompanyController extends BaseController {
 
     @Resource
     private ISysCompanyService iSysCompanyService;
@@ -40,7 +46,7 @@ public class SysCompanyController {
     @ApiOperation("创建")
     @PostMapping("/create")
     public Object create(@Valid @RequestBody SysCompany sysCompany) {
-        iSysCompanyService.save(sysCompany);
+    iSysCompanyService.save(sysCompany);
         return JSONResult.result(0, "创建成功");
     }
 
@@ -66,20 +72,21 @@ public class SysCompanyController {
 
     @ApiOperation(value = "分页查询")
     @PostMapping("/queryByPage")
-    public Object queryByPage(@RequestBody JSONObject queryObject) {
+    public Object queryByPage(@RequestBody SysCompany sysCompany, @RequestBody(required = false) RequestPageVo requestPageVo)
+        throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         //添加条件
         QueryWrapper<SysCompany> queryWrapper = new QueryWrapper<>();
+        //添加条件 -- 可以去掉添加自己的条件
+        ToolUtils.queryWrapperEQ(sysCompany, queryWrapper);
         //queryWrapper.ge("age", 26);
         //判断是否分页
-        if (queryObject.containsKey("page") && queryObject.containsKey("pageSize")) {
-            long page = (long) queryObject.get("page");
-            long pageSize = (long) queryObject.get("pageSize");
-            Page<SysCompany> sysCompanyPage = new Page<>(page, pageSize, false);
-            IPage<SysCompany> iPage = iSysCompanyService.selectPage(sysCompanyPage, queryWrapper);
+        if (requestPageVo != null) {
+            Page<SysCompany> sysCompanyPage = new Page<>(requestPageVo.getPage(), requestPageVo.getPageSize(), false);
+            IPage<SysCompany> iPage = iSysCompanyService.page(sysCompanyPage, queryWrapper);
             PageUtils pageUtils = new PageUtils(iPage.getRecords(), iPage.getTotal());
             return pageUtils;
         } else {
-            return iSysCompanyService.selectList(queryWrapper);
+            return iSysCompanyService.list(queryWrapper);
         }
     }
 }

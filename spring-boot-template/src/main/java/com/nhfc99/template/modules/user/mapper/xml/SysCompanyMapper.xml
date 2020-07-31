@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.nhfc99.template.modules.user.entity.SysCompany">
-                <id column="id" property="id"/>
+            <id column="id" property="id"/>
             <result column="name" property="name"/>
             <result column="address" property="address"/>
             <result column="telphone" property="telphone"/>

@@ -17,13 +17,5 @@ import java.util.List;
  * @since 2020-07-31
  */
 public interface ISysCompanyService extends IService<SysCompany> {
-    /**
-     *  分页获取
-     */
-    public IPage<SysCompany> selectPage(IPage<SysCompany> page, QueryWrapper queryWrapper);
 
-    /**
-     *  不分页获取数据
-     */
-    public List<SysCompany> selectList(QueryWrapper queryWrapper);
 }

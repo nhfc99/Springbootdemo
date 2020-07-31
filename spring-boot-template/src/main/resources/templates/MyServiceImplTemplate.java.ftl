@@ -29,19 +29,5 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
     @Resource
     private ${table.mapperName} ${table.mapperName ? uncap_first};
-
-    /**
-     *  分页获取
-     */
-    public IPage<${entity}> selectPage(IPage<${entity}> page, QueryWrapper queryWrapper) {
-        return ${table.mapperName ? uncap_first}.selectPage(page, queryWrapper);
-    }
-
-    /**
-     *  不分页获取数据
-     */
-    public List<${entity}> selectList(QueryWrapper queryWrapper) {
-        return ${table.mapperName ? uncap_first}.selectList(queryWrapper);
-    }
 }
 </#if>

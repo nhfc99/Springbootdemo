@@ -20,14 +20,6 @@ import java.util.List;
 interface ${table.serviceName} : ${superServiceClass}<${entity}>
 <#else>
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
-    /**
-     *  分页获取
-     */
-    public IPage<${entity}> selectPage(IPage<${entity}> page, QueryWrapper queryWrapper);
 
-    /**
-     *  不分页获取数据
-     */
-    public List<${entity}> selectList(QueryWrapper queryWrapper);
 }
 </#if>

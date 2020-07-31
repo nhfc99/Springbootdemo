@@ -90,9 +90,9 @@ public class MybatisPlusGenerate {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setRestControllerStyle(true);
-        // strategy.setSuperEntityClass("com.baomidou.mybatisplus.samples.generator.common.BaseEntity");
+        strategy.setSuperEntityClass("com.nhfc99.template.modules.Base.BaseEntity");
         strategy.setEntityLombokModel(true);
-        // strategy.setSuperControllerClass("com.baomidou.mybatisplus.samples.generator.common.BaseController");
+        strategy.setSuperControllerClass("com.nhfc99.template.modules.Base.BaseController");
         strategy.setInclude(scanner("表名"));
 //        strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(false);

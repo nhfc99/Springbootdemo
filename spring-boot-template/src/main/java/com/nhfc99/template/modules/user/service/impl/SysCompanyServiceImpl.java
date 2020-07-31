@@ -24,18 +24,4 @@ import java.util.List;
 public class SysCompanyServiceImpl extends ServiceImpl<SysCompanyMapper, SysCompany> implements ISysCompanyService {
     @Resource
     private SysCompanyMapper sysCompanyMapper;
-
-    /**
-     *  分页获取
-     */
-    public IPage<SysCompany> selectPage(IPage<SysCompany> page, QueryWrapper queryWrapper) {
-        return sysCompanyMapper.selectPage(page, queryWrapper);
-    }
-
-    /**
-     *  不分页获取数据
-     */
-    public List<SysCompany> selectList(QueryWrapper queryWrapper) {
-        return sysCompanyMapper.selectList(queryWrapper);
-    }
 }

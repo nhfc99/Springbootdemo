@@ -12,7 +12,7 @@
     <resultMap id="BaseResultMap" type="${package.Entity}.${entity}">
         <#list table.fields as field>
             <#if field.keyFlag><#--生成主键排在第一位-->
-                <id column="${field.name}" property="${field.propertyName}"/>
+            <id column="${field.name}" property="${field.propertyName}"/>
             </#if>
         </#list>
         <#list table.commonFields as field><#--生成公共字段 -->

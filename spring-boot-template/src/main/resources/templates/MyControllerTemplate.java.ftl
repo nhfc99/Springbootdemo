@@ -30,7 +30,12 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "${table.comment!}服务")
 @RestController
 @RequestMapping("/api<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
+
+<#if superControllerClass??>
+public class ${table.controllerName} extends ${superControllerClass} {
+<#else>
 public class ${table.controllerName} {
+</#if>
 
     @Resource
     private ${table.serviceName} ${table.serviceName ? uncap_first};
@@ -38,7 +43,7 @@ public class ${table.controllerName} {
     @ApiOperation("创建")
     @PostMapping("/create")
     public Object create(@Valid @RequestBody ${entity} ${entity ? uncap_first}) {
-        ${table.serviceName ? uncap_first}.save(${entity ? uncap_first});
+    ${table.serviceName ? uncap_first}.save(${entity ? uncap_first});
         return JSONResult.result(0, "创建成功");
     }
 
@@ -64,20 +69,21 @@ public class ${table.controllerName} {
 
     @ApiOperation(value = "分页查询")
     @PostMapping("/queryByPage")
-    public Object queryByPage(@RequestBody JSONObject queryObject) {
+    public Object queryByPage(@RequestBody ${entity} ${entity ? uncap_first}, @RequestBody(required = false) RequestPageVo requestPageVo)
+        throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         //添加条件
         QueryWrapper<${entity}> queryWrapper = new QueryWrapper<>();
+        //添加条件 -- 可以去掉添加自己的条件
+        ToolUtils.queryWrapperEQ(${entity ? uncap_first}, queryWrapper);
         //queryWrapper.ge("age", 26);
         //判断是否分页
-        if (queryObject.containsKey("page") && queryObject.containsKey("pageSize")) {
-            long page = (long) queryObject.get("page");
-            long pageSize = (long) queryObject.get("pageSize");
-            Page<${entity}> sysCompanyPage = new Page<>(page, pageSize, false);
-            IPage<${entity}> iPage = ${table.serviceName ? uncap_first}.selectPage(sysCompanyPage, queryWrapper);
+        if (requestPageVo != null) {
+            Page<${entity}> sysCompanyPage = new Page<>(requestPageVo.getPage(), requestPageVo.getPageSize(), false);
+            IPage<${entity}> iPage = ${table.serviceName ? uncap_first}.page(sysCompanyPage, queryWrapper);
             PageUtils pageUtils = new PageUtils(iPage.getRecords(), iPage.getTotal());
             return pageUtils;
         } else {
-            return ${table.serviceName ? uncap_first}.selectList(queryWrapper);
+            return ${table.serviceName ? uncap_first}.list(queryWrapper);
         }
     }
 }
